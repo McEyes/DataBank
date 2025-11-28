@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Stg</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DateFormatExtensions\**" />
+    <Compile Remove="DocumentFilter\**" />
+    <Compile Remove="ProxyApi\Dto\Common\**" />
+    <Compile Remove="WebApi\UnifyResult\**" />
+    <EmbeddedResource Remove="DateFormatExtensions\**" />
+    <EmbeddedResource Remove="DocumentFilter\**" />
+    <EmbeddedResource Remove="ProxyApi\Dto\Common\**" />
+    <EmbeddedResource Remove="WebApi\UnifyResult\**" />
+    <None Remove="DateFormatExtensions\**" />
+    <None Remove="DocumentFilter\**" />
+    <None Remove="ProxyApi\Dto\Common\**" />
+    <None Remove="WebApi\UnifyResult\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DistributedCache\RedisCachePuls.cs" />
+    <Compile Remove="EvenBus\KafkaEventSourceStorer.cs" />
+    <Compile Remove="EvenBus\RabbitMQEventSourceStorer.cs" />
+    <Compile Remove="Extensions\RedisCacheExtension.cs" />
+    <Compile Remove="Extensions\SpecificationDocumentServiceCollectionExtensions.cs" />
+    <Compile Remove="Extensions\SqlUtils.cs" />
+    <Compile Remove="Filter\AsyncActionResultFilter.cs" />
+    <Compile Remove="ProxyApi\Dto\OpenSearchQuery.cs" />
+    <Compile Remove="ProxyApi\FlowDataGrantApplyProxyService.cs" />
+    <Compile Remove="ProxyApi\FunctionProxyService.cs" />
+    <Compile Remove="ProxyApi\OpenSearchProxyService.cs" />
+    <Compile Remove="ProxyApi\UserProxyService.cs" />
+    <Compile Remove="ProxyApi\WorkFlowApiService.cs" />
+    <Compile Remove="SqlParser\Models\OrderInfo.cs" />
+    <Compile Remove="SqlParser\SqlParser2.cs" />
+    <Compile Remove="WebApi\DatabaseService.cs" />
+    <Compile Remove="WebApi\DynamicTableTypeGenerator.cs" />
+    <Compile Remove="WebApi\LimitConfig.cs" />
+    <Compile Remove="WebApi\RateLimiter.cs" />
+    <Compile Remove="WebApi\RequestValidator.cs" />
+    <Compile Remove="WebApi\RouteInfo.cs" />
+    <Compile Remove="WebApi\RouteRegistrationRequest.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Consul" Version="1.7.14.7" />
+    <PackageReference Include="dotnet-etcd" Version="7.2.0" />
+    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.18.0" />
+    <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.9.7.43" />
+    <PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.9.7.43" />
+    <PackageReference Include="Furion.Pure" Version="4.9.7.43" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.16" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.2" />
+    <PackageReference Include="MiniExcel" Version="1.41.3" />
+    <PackageReference Include="Ocelot" Version="24.0.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
+    <PackageReference Include="Shapeless" Version="1.0.24" />
+    <PackageReference Include="SqlSugarCore" Version="5.1.4.175" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="8.1.1" />
+    <PackageReference Include="Winton.Extensions.Configuration.Consul" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Attributes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ITPortal.Extension\ITPortal.Extension.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(TargetDir)*.*&quot; &quot;$(OutputPath)..\..\..\..\..\formwork\ITPortal.Core\&quot; /E /Y" />
+  </Target>
+
+</Project>

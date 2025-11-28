@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.Flow.Application.xml</DocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="System\**" />
+	  <EmbeddedResource Remove="System\**" />
+	  <None Remove="System\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Jobs\EmployeeAppService.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="applicationsettings.json" />
+		<None Remove="ITPortal.Flow.Application.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="applicationsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.Flow.Core\ITPortal.Flow.Core.csproj" />
+	</ItemGroup>
+
+</Project>

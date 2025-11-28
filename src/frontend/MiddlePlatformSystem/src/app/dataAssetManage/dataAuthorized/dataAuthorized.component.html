@@ -1,0 +1,108 @@
+<div class="contents">
+  <div *ngIf="currPanel === 'list'" class="xd-grey-box" style="height: calc(100%)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <div class="tableCard">
+        <p-table [loading]="loading"[value]="tableData" [selectionPageOnly]="true"
+          [scrollable]="true" scrollHeight="flex" [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="xd-theader-white" style="min-width: 250px; max-width: 250px">
+                {{'field.table.name' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 200px; max-width: 200px">
+                {{'field.source.system' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 300px; max-width: 300px">
+                {{'field.api.address' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 300px; max-width: 300px">
+                {{'field.business.description' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 200px; max-width: 200px">
+                {{'field.owner' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 150px; max-width: 150px">
+                {{'field.security.level' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 150px; max-width: 150px">
+                {{'field.topic.domain' | translate}}
+              </th>
+              <th class="xd-theader-white" pFrozenColumn alignFrozen="right" style="min-width: 280px; max-width: 280px">
+                {{'label.operate' | translate}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr style="height: 40px">
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 250px; max-width: 250px">
+                {{item.tableName}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 200px; max-width: 200px">
+                {{item.sourceName}}
+              </td>
+              <td (click)="onCopy('data',item['data'],item)" class="xd-tbody text-overflow inline-block isHover"
+                style="min-width: 300px; max-width: 300px" [title]="item.data" [innerHTML]="convertHtml(item.data)">
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 300px; max-width: 300px">
+                {{item.tableComment}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 200px; max-width: 200px">
+                {{item.ownerName}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 150px; max-width: 150px">
+                {{item.levelName}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 150px; max-width: 150px">
+                {{item.ctlName}}
+              </td>
+              <td class="xd-tbody" pFrozenColumn alignFrozen="right" style="min-width: 280px; max-width: 280px">
+                <div class="xd-table-button-box">
+                  <span class="table-button" (click)="allTableBtn('data',item)" >
+                    {{'operate.data.preview' | translate}}
+                  </span>
+                  <span class="table-button" (click)="allTableBtn('details',item)">
+                    {{'operate.view' | translate}}
+                  </span>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div style="width: 100%" [hidden]="!(totalRecords > 0)">
+      <nz-pagination class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum" [nzTotal]="totalRecords"
+        nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+        (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+      <ng-template #rangeTemplate let-range="range" let-total>
+        {{ (queryParams.pageNum - 1) * queryParams.pageSize + 1 }}-{{
+        queryParams.pageNum * queryParams.pageSize }} {{'pagination.of' | translate}} {{
+        totalRecords }} {{'pagination.items' | translate}}
+      </ng-template>
+    </div>
+  </div>
+
+  <app-data-preview *ngIf="currPanel === 'preview'" (goBack)="currPanel = 'list'" [field]="params"></app-data-preview>
+  <app-asset-query-details *ngIf="currPanel === 'details'" (goBack)="currPanel = 'list'"
+    [field]="params"></app-asset-query-details>
+</div>
+<p-dialog (onHide)="onCloseAPIDialog()" [header]="'operate.view.api' | translate  " [(visible)]="dialogviewApiValue"
+  [modal]="true" [style]="{ width: '50vw' }">
+  <div class="m-0 viewapiclass">
+    <div *ngFor="let item of viewApiList" class="viewapiclass-item">
+      <div class="viewapiclass-item-url" [innerHTML]="convertHtml(item)"></div>
+      <div class="viewapiclass-item-btn">
+        <div class="da-button viewapiclass-copy" (click)="copyText(item)">
+          {{'operate.copy' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+<p-toast></p-toast>

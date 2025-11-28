@@ -1,0 +1,55 @@
+<div class="main login">
+  <!-- <div class="bg-image"> -->
+  <!-- <img src="../../../assets/images/login/login-bg.png" alt="" /> -->
+  <!-- </div> -->
+  <div class="l-container">
+    <div class="left-content">
+      <img class="left-img" src="../../../assets/images/login/login_bg.png" alt="" />
+      <!-- <img class="left-img-logo" src="../../../assets/images/login/login-logo.png" alt="" /> -->
+    </div>
+    <div class="right-content">
+      <div class="card p-fluid">
+        <h5>
+          <img class="left-img" src="../../../assets/images/login/login_logo.png" alt="" />
+          <!-- <div>Created By Data Bank</div> -->
+        </h5>
+
+        <div class="language">
+          <div style="position: relative;display: inline;">
+            <img src="../../../assets/images/login/language.png" alt="" (click)="lang.toggle($event)" />
+            <p-tieredMenu #lang [model]="language" [popup]="true"></p-tieredMenu>
+          </div>
+
+        </div>
+        <div class="user">
+          <img src="../../../assets/images/login/user.png" alt="" />
+          <div class="line"></div>
+          <input [(ngModel)]="username" [placeholder]="'NTID' | translate" pInputText type="text"
+            (keyup)="winLogin($event)" />
+        </div>
+        <div class="pwd">
+          <img src="../../../assets/images/login/pwd.png" alt="" />
+          <div class="line"></div>
+          <input [type]="pwdType" [(ngModel)]="password" [placeholder]="'password' | translate" pInputText
+            (keyup)="winLogin($event)" />
+          <img (mousedown)="pwdType='text'" (mouseup)="pwdType='password'" alt="" class="eye"
+            src="../../../assets/images/login/pwd-eye.png" />
+        </div>
+        <!-- <div class="operator">
+          <p-checkbox [(ngModel)]="rememberPwd" [binary]="true" inputId="binary"></p-checkbox>
+          <label for="binary">{{'remember.me' | translate}}</label>
+        </div> -->
+        <!-- <div class="operator">
+          <p-checkbox [(ngModel)]="clearCookie" [binary]="true" inputId="binary"></p-checkbox>
+          <label for="binary">{{'label.clear.cookie' | translate}}</label>
+        </div> -->
+        <div class="field">
+          <button pButton type="button" (click)="login()">{{'login' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<jabil-loading style="height: 100%;" *ngIf="loading"></jabil-loading>
+<p-toast position="top-center"></p-toast>

@@ -1,0 +1,118 @@
+<div class="datasource-box">
+  <ng-container *ngIf="currPanel === 'list'">
+    <div class="sys-search-form">
+      <div class="form-item">
+        <label>{{'field.source.name'| translate}}</label>
+        <input type="text" pInputText [placeholder]="'input.please' | translate" [(ngModel)]="listForm.sourceName"
+          [disabled]="isEdit" />
+      </div>
+      <div class="form-item btn">
+        <div class="da-button search" (click)="onQuery()">{{'operate.search' | translate}}</div>
+        <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+        <div class="da-button add" (click)="allTableBtn('add')">
+          {{'operate.add' | translate}}
+        </div>
+      </div>
+    </div>
+    <div class="tableBox">
+      <div class="tableCard" style="height: calc(100% - 40px)">
+        <p-table [loading]="loading" [scrollable]="true" styleClass="sys-table" scrollHeight="flex" [value]="pageData"
+        [resizableColumns]="true"  columnResizeMode="expand"
+          dataKey="id" [tableStyle]="{ 'min-width': '50rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th pResizableColumn>
+                {{'field.source.name'| translate}}
+              </th>
+              <th pResizableColumn>
+                {{'field.source.code'| translate}}
+              </th>
+              <th pResizableColumn>
+                {{'field.source.type'| translate}}
+              </th>
+              <th pResizableColumn>
+                {{'field.synchronous' | translate}}
+              </th>
+              <th pResizableColumn>
+                {{'field.source.system.name' | translate}}
+              </th>
+              <th pResizableColumn>
+                {{'status' | translate}}
+              </th>
+              <th pResizableColumn>
+                {{'remark' | translate}}
+              </th>
+              <th pResizableColumn>
+                {{'create.time' | translate}}
+              </th>
+              <th pFrozenColumn alignFrozen="right" >
+                {{'label.operate' | translate}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td [title]="item.sourceName" class="xd-tbody text-overflow inline-block" >
+                {{ item.sourceName }}   ({{item.dbSchema.host}})
+              </td>
+              <td class="xd-tbody text-overflow inline-block" >
+                {{ item.sourceCode}}
+              </td>
+              <td [title]="newDataType[item.dbType]" class="xd-tbody text-overflow inline-block" >
+                {{newDataType[item.dbType]}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" >
+                {{ item._isSync}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" >
+                {{ item.systemName }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block">
+                  <p-tag *ngIf="item.status == 0" severity="danger" [value]="'label.deactivate' | translate"></p-tag>
+                  <p-tag *ngIf="item.status == 1" severity="success" [value]="'label.enable' | translate"></p-tag>
+              </td>
+
+              <td class="xd-tbody text-overflow inline-block" [title]="item.remark || ''">
+                {{ item.remark }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" >
+                {{ item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" pFrozenColumn alignFrozen="right">
+                <div class="table-button-box">
+                  <div class="table-button" (click)="allTableBtn('edit',item)">
+                    {{'operate.edit' | translate}}
+                  </div>
+                  <div class="table-button" (click)="ondelete($event,item)">
+                    {{'operate.delete' | translate}}
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div style="width: 100%" [hidden]="!(total > 0)">
+        <nz-pagination style="margin-top: 5px" class="flex justify-content-center" [nzPageIndex]="listForm.pageNum"
+          [nzTotal]="total" nzShowSizeChanger [nzPageSize]="listForm.pageSize" [nzShowTotal]="rangeTemplate"
+          (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+        <ng-template #rangeTemplate let-range="range" let-total>
+          {{ (listForm.pageNum - 1) * listForm.pageSize + 1 }}-{{ listForm.pageNum * listForm.pageSize
+          }} {{'label.pagination.of' | translate}} {{ total }}
+        </ng-template>
+      </div>
+    </div>
+  </ng-container>
+
+  <app-data-source-details [field]="detailParams" (goBack)="goBack($event)"
+    *ngIf="currPanel === 'detail'"></app-data-source-details>
+</div>
+
+
+<p-confirmPopup></p-confirmPopup>
+<p-toast></p-toast>

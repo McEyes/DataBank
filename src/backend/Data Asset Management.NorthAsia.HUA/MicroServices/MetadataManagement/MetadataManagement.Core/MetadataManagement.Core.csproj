@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>MetadataManagement.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Entitys_bak\**" />
+	  <EmbeddedResource Remove="Entitys_bak\**" />
+	  <None Remove="Entitys_bak\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="MetadataManagement.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Furion.Extras.DatabaseAccessor.Dapper" Version="4.9.7.132" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Shared\ITPortal.Core\ITPortal.Core.csproj" />
+	</ItemGroup>
+
+</Project>

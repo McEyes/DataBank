@@ -1,0 +1,402 @@
+@import '~bootstrap/scss/buttons';
+
+body {
+	.p-datatable {
+		font-size: 0.875rem;
+
+		.p-paginator {
+			padding: 0.85rem 0.75rem;
+		}
+		.p-datatable-header,
+		.p-datatable-footer {
+			padding: 0.85rem 0.75rem;
+			color: $body-color;
+			background: $body-bg;
+			border: 1px solid $border-color;
+			border-radius: 0;
+		}
+		.p-datatable-header {
+			border-bottom-width: 0;
+		}
+		.p-datatable-footer {
+			border-top-width: 0;
+		}
+		.p-datatable-thead {
+			& > tr {
+				& > th {
+					padding: 0.75rem;
+					color: $body-color;
+					font-weight: 700;
+					background-color: $white;
+					border: 1px solid $border-color;
+				}
+			}
+
+			.p-column-filter-menu-button {
+				width: 2rem;
+				height: 2rem;
+				margin-left: 0.5rem;
+				color: $gray-600;
+				font-size: 1rem;
+				background: transparent;
+				border: 0 none;
+				border-radius: 50%;
+				transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+
+				&:focus {
+					outline: 0 none;
+					outline-offset: 0;
+					box-shadow: 0 0 0 0.2rem $shadow-color;
+				}
+
+				&.p-column-filter-menu-button-open,
+				&.p-column-filter-menu-button-open:hover {
+					color: $body-color;
+					background: $gray-200;
+				}
+			}
+		}
+		.p-datatable-tbody {
+			& > tr {
+				color: $body-color;
+				background-color: $body-bg;
+				& > td {
+					padding: 0.75rem;
+					background-color: inherit;
+					border: 1px solid $border-color;
+				}
+				&.p-highlight {
+					color: $white;
+					background-color: $primary-blue;
+					a {
+						color: $white;
+					}
+				}
+				&.p-contextmenu-selected {
+					color: $white;
+					background-color: $primary-blue;
+				}
+				&.p-datatable-dragpoint-top {
+					& > td {
+						box-shadow: inset 0 2px 0 0 $primary-blue;
+					}
+				}
+				&.p-datatable-dragpoint-bottom {
+					& > td {
+						box-shadow: inset 0 -2px 0 0 $primary-blue;
+					}
+				}
+				&:focus {
+					outline: none;
+					& + tr {
+						& > td {
+							box-shadow: 0 -0.2rem 0 0 $shadow-color;
+						}
+					}
+					& > td {
+						box-shadow: 0 -0.2rem 0 0 $shadow-color,
+							0 0.2rem 0 0 $shadow-color;
+					}
+				}
+				&:nth-child(even) {
+					background-color: $white;
+				}
+				&:nth-child(even).p-highlight {
+					color: $white;
+					background-color: $primary-blue;
+					a {
+						color: $white;
+					}
+				}
+				&:nth-child(even).p-contextmenu-selected {
+					color: $white;
+					background-color: $primary-blue;
+				}
+			}
+		}
+		.p-datatable-tfoot {
+			& > tr {
+				& > td {
+					padding: 0.75rem;
+					color: $body-color;
+					font-weight: 700;
+					background-color: $white;
+					border: 1px solid $border-color;
+				}
+			}
+		}
+		.p-sortable-column {
+			color: $body-color;
+			transition: box-shadow 0.2s;
+			&:focus {
+				outline: 0 none;
+				outline-offset: 0;
+				box-shadow: inset 0 0 0 0.2rem $shadow-color;
+			}
+			.p-sortable-column-icon {
+				color: $dark-grey;
+				vertical-align: middle;
+			}
+			&:not(.p-highlight):hover {
+				color: $hover-dark-color;
+				background-color: $body-bg;
+				.p-sortable-column-icon {
+					color: $hover-dark-color;
+					background-color: $body-bg;
+				}
+			}
+			&.p-highlight {
+				color: $white;
+				background-color: $primary-blue;
+				border-top-color: $primary-blue;
+				.p-sortable-column-icon {
+					color: $white;
+				}
+			}
+		}
+		p-sorticon {
+			vertical-align: baseline;
+		}
+		.p-editable-column {
+			input {
+				font-size: 1rem;
+				font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+				&:focus {
+					outline: 1px solid $shadow-color;
+					outline-offset: 2px;
+				}
+			}
+		}
+		.p-datatable-virtual-scrollable-body {
+			.p-datatable-tbody {
+				& > tr {
+					&:nth-child(even) {
+						background-color: $white;
+					}
+					&:nth-child(even).p-highlight {
+						color: $white;
+						background-color: $primary-blue;
+						a {
+							color: $white;
+						}
+					}
+				}
+			}
+		}
+		&.p-datatable-hoverable-rows {
+			.p-datatable-tbody {
+				& > tr {
+					&.p-selectable-row {
+						&:not(.p-highlight):hover {
+							color: $body-color;
+							background-color: $gray-900;
+							cursor: pointer;
+						}
+						&:not(.p-highlight):not(.p-contextmenu-selected):hover {
+							color: $hover-dark-color;
+							background-color: $body-bg;
+							cursor: pointer;
+						}
+					}
+				}
+			}
+		}
+		.p-column-resizer-helper {
+			background-color: $primary-blue;
+		}
+		.p-dropdown {
+			min-width: 8.5rem;
+		}
+		.table-sm {
+			.p-datatable-thead > tr > th,
+			.p-datatable-tbody > tr > td {
+				padding: 0.25rem;
+			}
+		}
+
+		&.table-no-borders {
+			.p-datatable-thead {
+				& > tr {
+					& > th {
+						border-width: 0 0 1px 0;
+					}
+				}
+			}
+
+			.p-datatable-tbody {
+				& > tr {
+					& > td {
+						border-width: 0 0 1px 0;
+					}
+				}
+			}
+
+			.p-datatable-header,
+			.p-datatable-footer {
+				border-width: 0;
+			}
+
+			.p-datatable-header {
+				border-bottom-width: 1px;
+			}
+		}
+
+		.p-datatable-scrollable-header {
+			border: none;
+		}
+	}
+}
+
+.p-column-filter-overlay {
+	min-width: 12.5rem;
+	color: $body-color;
+	background: $white;
+	border: 1px solid $border-color;
+	border-radius: 3px;
+
+	.p-column-filter-row-items {
+		padding: 0.5rem 0;
+
+		.p-column-filter-row-item {
+			margin: 0;
+			padding: 0.5rem 1rem;
+			color: $body-color;
+			background: transparent;
+			border: 0 none;
+			border-radius: 0;
+			transition: box-shadow 0.2s;
+
+			&.p-highlight {
+				color: $body-color;
+				background: $light-100-gray;
+			}
+			&:not(.p-highlight):not(.p-disabled):hover {
+				color: $body-color;
+				background: $body-bg;
+			}
+
+			&:focus {
+				outline: 0 none;
+				outline-offset: 0;
+				box-shadow: inset 0 0 0 0.15rem $shadow-color;
+			}
+		}
+
+		.p-column-filter-separator {
+			margin: 0.25rem 0;
+			border-top: 1px solid $gray-300;
+		}
+	}
+}
+
+.p-column-filter-overlay-menu {
+	.p-column-filter-operator {
+		margin: 0;
+		padding: 0.5rem 1rem;
+		color: $body-color;
+		background: $gray-100;
+		border-bottom: 0 none;
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+	}
+
+	.p-column-filter-constraint {
+		padding: 1rem;
+		border-bottom: 1px solid $gray-100;
+
+		.p-column-filter-matchmode-dropdown {
+			margin-bottom: 0.5rem;
+		}
+		.p-column-filter-remove-button {
+			margin-top: 0.5rem;
+		}
+
+		&:last-child {
+			border-bottom: 0 none;
+		}
+	}
+	.p-column-filter-add-rule {
+		padding: 0.5rem 1rem;
+
+		.p-button {
+			@extend .btn, .btn-sm, .btn-light;
+
+			width: 100%;
+
+			.p-button-icon {
+				position: static;
+			}
+
+			.p-button-label {
+				display: inline-block;
+			}
+		}
+	}
+	.p-column-filter-remove-button {
+		&.p-button-danger {
+			@extend .btn, .btn-sm, .btn-light;
+
+			width: 100%;
+
+			&:enabled:hover {
+				@extend .btn-light;
+			}
+		}
+
+		.p-button-icon {
+			position: static;
+		}
+
+		.p-button-label {
+			display: inline-block;
+		}
+	}
+	.p-column-filter-buttonbar {
+		padding: 1rem;
+
+		.p-button:first-child {
+			@extend .btn, .btn-outline-secondary, .btn-sm;
+		}
+		.p-button:last-child {
+			@extend .btn, .btn-primary, .btn-sm;
+		}
+	}
+}
+
+@media screen and (max-width: 40rem) {
+	body {
+		.p-datatable {
+			&.p-datatable-responsive {
+				.p-paginator-top {
+					border-bottom: 1px solid $border-color;
+				}
+				.p-paginator-bottom {
+					border-top: 1px solid $border-color;
+				}
+				.p-datatable-tbody {
+					& > tr {
+						td {
+							border: 0 none;
+						}
+						&:focus {
+							& + tr {
+								& > td {
+									box-shadow: none;
+								}
+							}
+							& > td {
+								box-shadow: none;
+								&:first-child {
+									box-shadow: none;
+								}
+								&:last-child {
+									box-shadow: none;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,194 @@
+<div class="datatable-details-container" style="padding: 10px">
+  <level-one-panel [titleName]="('operate.add' | translate) +' '+ ('field.table.name' | translate)">
+    <level-two-panel [titleName]="'label.basic.information'| translate">
+      <div class="datatable-form sys-form">
+        <div class="form-item" style="width: 66%">
+          <label><span class="valid-pre">*</span>{{'field.table.alias' | translate}}</label>
+          <input type="text" pInputText [(ngModel)]="formData.alias" class="input-text"
+            [placeholder]="'input.please' | translate"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.alias }" />
+        </div>
+        <div class="form-item" >
+          <label><span class="valid-pre">*</span>{{'field.table.code' | translate}}</label>
+          <input type="text" pInputText [(ngModel)]="formData.tableCode" class="input-text"
+            [placeholder]="'input.auto.gen' | translate" [disabled]="true"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.tableCode }" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.source.system' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="sourceList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.sourceId"
+            [filter]="true" filterBy="sourceName" optionLabel="sourceName" optionValue="id"
+            (onChange)="onSourceChange($event)" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.sourceId }"
+           ></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.table.name' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="tableList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.tableName"
+            [filter]="true" filterBy="tableName" optionLabel="tableName" optionValue="tableName"
+            (onChange)="onChangeTable($event)" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.tableName }"
+           optionDisabled="inactive">
+            <ng-template pTemplate="selectedItem">
+              <div>
+                <div>{{formData.tableName}}</div>
+              </div>
+            </ng-template>
+            <ng-template let-table pTemplate="item">
+              <div [ngStyle]="{'background-color': table.type == 1?'#f1f2f2':'#fff'}">
+                <div [ngStyle]="{'color': table.type == 1?'':'#000'}">{{table.tableName}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.data.owner' | translate}}</label>
+          <p-multiSelect [pTooltip]="showOwnerName" tooltipPosition="top"
+            [placeholder]="'input.select.please' | translate"
+            [ngClass]="{ 'ng-invalid': formData.invalid && formData.ownerList.length == 0 }" [showToggleAll]="false"
+            [options]="userList" [(ngModel)]="ownerList" [virtualScroll]="true" [virtualScrollItemSize]="38"
+            optionLabel="name" optionValue="id" (onPanelHide)="onPanelHideOwner($event)"
+            (onClick)="onPanelHideOwner($event)" (onChange)="onChangeUserOwner($event)" class="input-text"
+            [placeholder]="'input.select.please' | translate" [selectionLimit]="1" [showClear]="true" (onClear)="clearDataOwner()">
+            <ng-template pTemplate="item" let-item>
+              {{item.name}}
+              <font style="color: #999"><span *ngIf="item.department">({{item.department}})</span></font>
+            </ng-template>
+          </p-multiSelect>
+        </div>
+
+        <div class="form-item">
+          <label>{{'field.department' | translate}}</label>
+          <input readonly type="text" pInputText [(ngModel)]="formData.ownerDepart" class="input-text"
+            [placeholder]="'input.please' | translate" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.previewable' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="reviewableList" [placeholder]="'input.select.please' | translate"
+            [(ngModel)]="formData.reviewable" optionLabel="label" optionValue="value"></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label>{{'field.multi.level.approvers' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="isHaveApproversList" [placeholder]="'input.select.please' | translate"
+            [(ngModel)]="isHaveApprovers" optionLabel="label" optionValue="value"
+          ></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label class="break">{{'field.need.sup' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="reviewableList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.needSup"
+            optionLabel="label" optionValue="value"></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label>{{'field.limit' | translate}}</label>
+          <nz-input-number [(ngModel)]="formData.jsonSqlConfig.limit" [nzDisabled]="titleName == 'look'"
+            class="input-number-input" [nzMin]="0" [nzStep]="1"></nz-input-number>
+        </div>
+        <!-- <div class="form-item">
+          <label nz-checkbox [(ngModel)]="formData.jsonSqlConfig.counTable">{{'field.countable' | translate}}</label>
+          <label nz-checkbox [(ngModel)]="formData.jsonSqlConfig.updatable">{{'field.updatable' | translate}}</label>
+          <label nz-checkbox [(ngModel)]="formData.jsonSqlConfig.insertable">{{'field.insertable' | translate}}</label>
+          <label nz-checkbox [(ngModel)]="formData.jsonSqlConfig.deletable">{{'field.deletable' | translate}}</label>
+        </div> -->
+
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.update.method' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="updateMethod" [placeholder]="'input.select.please' | translate"
+            [(ngModel)]="formData.updateMethod" optionLabel="name" optionValue="value"></p-dropdown>
+        </div>
+
+        <div class="form-item"  style="width: 66%">
+          <label><span class="valid-pre">*</span>{{'field.update.frequency' | translate}}</label>
+          <input type="text" pInputText [(ngModel)]="formData.updateFrequency" class="input-text"
+            [placeholder]="'info.update.frequency' | translate"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.updateFrequency }" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.data.category' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="dataCategoryList" [placeholder]="'input.select.please' | translate"
+            [(ngModel)]="formData.dataCategory" optionLabel="itemText" optionValue="itemValue"></p-dropdown>
+        </div>
+
+        <div class="form-item" style="width: 66%">
+          <label><span class="valid-pre">*</span>{{'field.time.range' | translate}}</label>
+          <input type="text" pInputText [(ngModel)]="formData.dataTimeRange" class="input-text"
+            [placeholder]="'info.data.time.range' | translate"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.dataTimeRange }" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.update.category' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="updateCategoryList" [placeholder]="'input.select.please' | translate"
+            [(ngModel)]="formData.updateCategory" optionLabel="itemText" optionValue="itemValue"></p-dropdown>
+        </div>
+
+        <div class="form-item" style="width: 66%">
+          <label>{{'field.tag' | translate}}</label>
+          <nz-select style="border: none; width: calc(100% - 160px)" [(ngModel)]="tagValue" [nzSize]="'default'"
+            nzMode="tags" [nzPlaceHolder]="'input.select.please' | translate">
+            <nz-option *ngFor="let item of tagList" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+          </nz-select>
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.app.source' | translate}}</label>
+          <!-- <input type="text" pInputText [(ngModel)]="formData.appSource" class="input-text"
+            [placeholder]="'input.please' | translate"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.appSource }" /> -->
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="appSourceList" [placeholder]="'input.select.please' | translate"  (onChange)="onChangeAllAppSource($event)"
+            [(ngModel)]="formData.appSource" optionLabel="clientName" [filter]="true"
+          optionValue="nickName" appendTo="body"></p-dropdown>
+        </div>
+
+        <div class="form-item" style="width: 100%; align-items: flex-start">
+          <label><span class="valid-pre">*</span>{{'field.table.comment' | translate}}</label>
+          <textarea rows="5" cols="30" class="input-text" pInputTextarea [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.tableComment"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.tableComment }"></textarea>
+        </div>
+      </div>
+    </level-two-panel>
+
+    <level-two-panel [titleName]="'field.multi.level.approvers'| translate" *ngIf="isHaveApprovers">
+      <app-datatable-multi-level-approvers #multiLevelApprovers [userList]="userList"
+        [multiLevelApproversList]="multiLevelApproversList"
+        (onPanelHideEvent)="onPanelHide($event)"></app-datatable-multi-level-approvers>
+    </level-two-panel>
+
+    <level-two-panel [titleName]="'label.technical.information'| translate">
+      <div class="datatable-form sys-form">
+        <div class="form-item" style="width: calc(50% - 10px);">
+          <label>{{'field.source.type' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="dbTypeList" [placeholder]="'input.select.please' | translate" [(ngModel)]="source.dbType"
+            optionLabel="itemValue" optionValue="itemText" [disabled]="true "></p-dropdown>
+        </div>
+        <div class="form-item" style="width: calc(50% - 10px);">
+          <label>{{'field.source.status' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="statusList" [placeholder]="'input.select.please' | translate" [(ngModel)]="source.status"
+            optionLabel="itemValue" optionValue="itemText" [disabled]="true"></p-dropdown>
+        </div>
+      </div>
+    </level-two-panel>
+
+    <level-two-panel [titleName]="'label.data.information'| translate">
+      <app-datatable-data-info #dataInfo [formData]="formData" [titleName]="titleName" [appSource]="appSource"></app-datatable-data-info>
+    </level-two-panel>
+  </level-one-panel>
+  <div ngProjectAs="bottom" class="bottom-btn">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="submit()" *ngIf="!noEdit && titleName != 'look'">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
+<p-confirmDialog [style]="{ width: '450px' }" key="tipDialog"></p-confirmDialog>
+<p-toast></p-toast>
+<jabil-loading [hidden]="!dropdownLoading"></jabil-loading>

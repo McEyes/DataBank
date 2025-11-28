@@ -1,0 +1,50 @@
+<div class="tableBox">
+  <p-table [loading]="loading" [scrollable]="true" [selectionPageOnly]="true" [columns]="tableHeaderData"
+    [value]="tableData" [(selection)]="selectedItems" [paginator]="tableData.length>0 ?true:false" [rows]="20"
+    [showCurrentPageReport]="true" styleClass="sys-table" [rowsPerPageOptions]="[10,20,50]"
+    [tableStyle]="{ 'min-width': '100%' }">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="xd-theader-white" style="max-width: 55px" *ngIf="this.detailData.isDisabled !== true">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th class="xd-theader-white" *ngFor="let col of columns" style="min-width: 200px; max-width: 300px">
+          {{col.header | translate}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td class="xd-tbody" style="max-width: 55px" *ngIf="this.detailData.isDisabled !== true">
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+        <td class="xd-tbody text-overflow inline-block" *ngFor="let col of columns"
+          style="min-width: 200px; max-width: 300px">
+          <ng-container *ngIf="col.field === 'colKey' || col.field === 'nullable'">
+            {{rowData[col.field] === '1' ? ('yes' | translate) : ('no' | translate)}}
+          </ng-container>
+
+          <ng-container *ngIf="col.field !== 'nullable' && col.field !== 'colKey'">
+            {{rowData[col.field]}}
+          </ng-container>
+
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <!-- <div style="width: 100%; margin: 5px 0px" [hidden]="!(total > 0)">
+    <nz-pagination class="flex justify-content-center" [nzPageIndex]="params.pageNum" [nzTotal]="total"
+      nzShowSizeChanger [nzPageSize]="params.pageSize" [nzShowTotal]="rangeTemplate"
+      (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+    <ng-template #rangeTemplate let-range="range" let-total>
+      {{ params.pageNum + (params.pageNum - 1) *
+      params.pageSize }}-{{ params.pageNum * params.pageSize
+      }} {{'label.pagination.of' | translate}} {{ total }}
+    </ng-template>
+  </div> -->
+</div>

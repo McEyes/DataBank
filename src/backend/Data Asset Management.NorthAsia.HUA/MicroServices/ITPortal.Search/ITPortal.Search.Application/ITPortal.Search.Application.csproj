@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.Search.Application.xml</DocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Search\**" />
+	  <Compile Remove="System\**" />
+	  <EmbeddedResource Remove="Search\**" />
+	  <EmbeddedResource Remove="System\**" />
+	  <None Remove="Search\**" />
+	  <None Remove="System\**" />
+	</ItemGroup>
+  
+	<ItemGroup>
+	  <Compile Remove="ElasticManager\DocSearchManager.cs" />
+	  <Compile Remove="OpenSearch\Dtos\TopicDocumentPageResultDto.cs" />
+	  <Compile Remove="OpenSearch\Services\IOpenSearchAppService.cs" />
+	  <Compile Remove="SearchTopicGrants\SearchTopicGrantsAppService.cs" />
+	  <Compile Remove="TopicDocument\Dtos\CandidateWordQueryDto.cs" />
+	  <Compile Remove="TopicDocument\Dtos\GroupByTopicDocumentDto.cs" />
+	  <Compile Remove="TopicDocument\Dtos\GroupByTopicDocumentQueryDto.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="applicationsettings.json" />
+		<None Remove="ITPortal.Search.Application.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="applicationsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.Search.Core\ITPortal.Search.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="OpenSearch\Services\" />
+		<Folder Include="TopicDocument\Services\" />
+	</ItemGroup>
+
+</Project>

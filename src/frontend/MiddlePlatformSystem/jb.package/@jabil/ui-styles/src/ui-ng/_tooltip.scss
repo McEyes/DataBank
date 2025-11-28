@@ -1,0 +1,28 @@
+body .p-tooltip {
+	&.p-state-error {
+		border: 0 none;
+	}
+
+	.p-tooltip-text {
+		padding: 0.125em 0.5em;
+		color: $white;
+		background-color: $gray-600;
+		border-radius: 4px;
+	}
+
+	&.p-tooltip-right .p-tooltip-arrow {
+		border-right-color: $gray-600;
+	}
+
+	&.p-tooltip-left .p-tooltip-arrow {
+		border-left-color: $gray-600;
+	}
+
+	&.p-tooltip-top .p-tooltip-arrow {
+		border-top-color: $gray-600;
+	}
+
+	&.p-tooltip-bottom .p-tooltip-arrow {
+		border-bottom-color: $gray-600;
+	}
+}

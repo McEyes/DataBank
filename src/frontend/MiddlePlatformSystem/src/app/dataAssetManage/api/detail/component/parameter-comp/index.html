@@ -1,0 +1,137 @@
+<div class="addmodeldetails-main-form">
+  <div class="main-form-title">{{ 'label.request.parameters' | translate }}</div>
+  <div class="main-form-table">
+    <p-table [value]="paramsForm.reqParams" dataKey="id" [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="xd-theader-white">{{ 'No.' | translate }}</th>
+          <th class="xd-theader-white">{{ 'field.parameter.name' | translate }}</th>
+          <th class="xd-theader-white" style="min-width: 100px; max-width: 100px">
+            {{ 'field.null' | translate }}
+          </th>
+          <th class="xd-theader-white" style="min-width: 250px; max-width: 250px">
+            {{ 'remark' | translate }}
+          </th>
+          <th class="xd-theader-white">{{ 'field.parameter.type' | translate }}</th>
+          <th class="xd-theader-white" style="min-width: 100px; max-width: 100px">
+            {{ 'field.operator' | translate }}
+          </th>
+          <th class="xd-theader-white" style="min-width: 200px; max-width: 200px">
+            {{ 'field.parameter.default.value' | translate }}
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-reqParam>
+        <tr>
+          <td class="xd-theader-white">{{reqParam.index}}</td>
+          <td class="xd-theader-white">{{reqParam.paramName}}</td>
+          <td class="xd-theader-white" style="min-width: 100px; max-width: 100px">
+            {{(reqParam.nullable == 0 ? 'no':'yes') | translate}}
+          </td>
+          <td class="xd-theader-white" style="min-width: 250px; max-width: 250px">
+            {{reqParam.paramComment}}
+          </td>
+          <td class="xd-theader-white">
+            <div *ngFor="let item of dataTypeList">
+              <div *ngIf="item.itemText == reqParam.paramType">{{ item.itemValue }}</div>
+            </div>
+          </td>
+          <td class="xd-theader-white" style="min-width: 100px; max-width: 100px">
+            <p-dropdown appendTo="body" [options]="whereTypeList" [(ngModel)]="reqParam.whereType"
+              optionLabel="itemValue" optionValue="itemText"
+              (onChange)="onChangeWhereType($event,reqParam)"></p-dropdown>
+          </td>
+          <td style="min-width: 200px; max-width: 200px" class="xd-theader-white">
+            <div *ngIf="reqParam.whereType != 'between'">
+              <!-- string -->
+              <input
+                *ngIf="reqParam.whereType != 'between'&& reqParam.paramType != 'datetime'&&reqParam.paramType != 'date'&&reqParam.paramType != 'year'&&reqParam.paramType != 'time'"
+                class="input-text" [disabled]="formType == 'look'" pInputText [type]="inputType[reqParam.paramType]"
+                [(ngModel)]="reqParam.defaultValue" (blur)="onBlur($event)" />
+              <!-- datetime -->
+              <div *ngIf="reqParam.paramType == 'datetime' ">
+                <p-calendar appendTo="body" dateFormat="yy-mm-dd" [showTime]="true" [showSeconds]="true"
+                  class="input-text" [(ngModel)]="reqParam.defaultValue"
+                  (onSelect)="onChangeDefaultDateTime($event,reqParam)"></p-calendar>
+              </div>
+              <!-- date -->
+              <div *ngIf="reqParam.paramType == 'date' ">
+                <p-calendar appendTo="body" dateFormat="yy-mm-dd" class="input-text"
+                  [(ngModel)]="reqParam.defaultValue"></p-calendar>
+              </div>
+              <!-- year -->
+              <div *ngIf="reqParam.paramType == 'year' ">
+                <p-calendar appendTo="body" view="year" dateFormat="yy" class="input-text"
+                  [(ngModel)]="reqParam.defaultValue"></p-calendar>
+              </div>
+              <!-- time -->
+              <div *ngIf="reqParam.paramType == 'time'">
+                <input class="input-text" [disabled]="formType == 'look'" pInputText type="number"
+                  [(ngModel)]="reqParam.defaultValue" (blur)="onBlur($event)" />
+              </div>
+            </div>
+            <!-- between -->
+            <div *ngIf="reqParam.whereType == 'between'" style="display: flex; align-items: center; column-gap: 10px">
+              <!-- datetime -->
+              <p-calendar [pTooltip]="showDataTime?showDataTime:''" tooltipPosition="top"
+                *ngIf="reqParam.paramType == 'datetime' " appendTo="body" dateFormat="yy-mm-dd" [showTime]="true"
+                [showSeconds]="true" selectionMode="range" class="input-text" [(ngModel)]="reqParam.betweenDate"
+                (onSelect)="onChangeDate($event,reqParam)"></p-calendar>
+              <p-calendar *ngIf="reqParam.paramType == 'date' " appendTo="body" dateFormat="yy-mm-dd"
+                selectionMode="range" class="input-text" [(ngModel)]="reqParam.betweenDate"
+                (onSelect)="onChangeDate($event,reqParam)"></p-calendar>
+              <p-calendar *ngIf="reqParam.paramType == 'year' " appendTo="body" view="year" dateFormat="yy"
+                selectionMode="range" class="input-text" [(ngModel)]="reqParam.betweenDate"
+                (onSelect)="onChangeDate($event,reqParam)"></p-calendar>
+              <div style="display: flex; align-items: center; column-gap: 5px"
+                *ngIf="reqParam.paramType == 'bigint'||reqParam.paramType == 'time'||reqParam.paramType == 'tinyint'||reqParam.paramType == 'int'||reqParam.paramType == 'float'||reqParam.paramType == 'double'">
+                <div style="width: 47.5%">
+                  <input id="satrt" class="input-text" [disabled]="formType == 'look'" pInputText type="number"
+                    [min]="0" [(ngModel)]="reqParam.betweenStartValue" (blur)="onBlurStart($event,reqParam)" />
+                </div>
+                <div style="width: 5%">{{lange == 'en'?'To':"至"}}</div>
+                <div style="width: 47.5%">
+                  <input id="end" class="input-text" [disabled]="formType == 'look'" pInputText type="number" [min]="0"
+                    [(ngModel)]="reqParam.betweenEndValue" (blur)="onBlurEnd($event,reqParam)" />
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="main-form-title">{{ 'label.return.field' | translate }}</div>
+  <div class="main-form-table">
+    <p-table [value]="paramsForm.resParams" dataKey="id" [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th class="xd-theader-white">{{ 'field.number' | translate }}</th>
+          <th class="xd-theader-white">{{ 'field.field.name' | translate }}</th>
+          <th class="xd-theader-white" style="min-width: 180px; max-width: 180px">
+            {{ 'remark' | translate }}
+          </th>
+          <th class="xd-theader-white">{{ 'field.data.type' | translate }}</th>
+          <th class="xd-theader-white">{{ 'field.field.alias' | translate }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-resParam>
+        <tr>
+          <td class="xd-theader-white">{{resParam.index}}</td>
+          <td class="xd-theader-white">{{resParam.fieldName}}</td>
+          <td class="xd-theader-white" style="min-width: 180px; max-width: 180px">
+            {{resParam.fieldComment}}
+          </td>
+          <td class="xd-theader-white">
+            <div *ngFor="let item of dataTypeList">
+              <div *ngIf="item.itemText == resParam.dataType">{{ item.itemValue }}</div>
+            </div>
+          </td>
+
+          <td class="xd-theader-white">{{resParam.fieldAliasName}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+<p-toast></p-toast>

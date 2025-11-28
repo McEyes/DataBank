@@ -1,0 +1,299 @@
+<div class="breadcrumbs">
+  <div class="left">
+    <span>
+      <i class="pi pi-home"></i>
+      {{'menu.data.bank' | translate}}
+    </span>
+
+    <span>
+      <i class="pi pi-angle-right"></i>
+      <span>
+        {{'menu.data.topic.store' | translate}}
+      </span>
+    </span>
+
+    <span *ngIf="currBreadcrumbs.name">
+      <i class="pi pi-angle-right"></i>
+      <span>{{currBreadcrumbs.name}}</span>
+    </span>
+  </div>
+
+  <div class="right">
+    <div [hidden]="!currBreadcrumbs.name" class="back" (click)="goBack()">
+      <img [alt]="'back' | translate" src="./assets/images/dataTopicStore/icon_back.png">
+      {{'back' | translate}}
+    </div>
+  </div>
+</div>
+<div class="query-contents">
+  <div class="main" style="height: calc(100% - 88px)" [ngClass]="isCollapsed&&isCollapseMenu? 'sm': ''">
+    <div (click)="toggleCollapsed()" [ngClass]="isCollapsed ? 'right' : ''" class="collapseIcon"></div>
+
+    <div [hidden]="currPanel === 'edit'" class="leftBox">
+
+
+      <div class="menu" (mouseenter)="showMenu(false)" (mouseleave)="showMenu(true)">
+        <div class="logo">
+          <img src="./assets/images/dataTopicStore/icon_datatopic.png" />
+
+          <div>
+            <div class="name">{{'label.business.model' | translate}}</div>
+            <div class="info">{{'label.menu.list' | translate}}</div>
+          </div>
+        </div>
+        <div class="m-list">
+          <div class="search-bar">
+            <input [placeholder]="'input.keyword' | translate" (input)="searchTree()" [(ngModel)]="treeQuery">
+            <img src="./assets/images/dataTopicStore/icon_search.png" />
+          </div>
+
+          <div class="home" (click)="goHome()">
+            <img src="./assets/images/dataTopicStore/icon_ranks_w.png" />
+            <span>{{'label.home' | translate}}</span>
+          </div>
+
+          <div class="home create" (click)="goCreateData()">
+            <i class="pi pi-plus" style="color: #fff;margin-right: 20px;"></i>
+            <span>{{'operate.new.data.topic' | translate}}</span>
+          </div>
+
+          <div class="line"></div>
+
+          <ul class="customer" nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed&&isCollapseMenu">
+            <ng-container *ngFor="let item of treeData">
+              <li *ngIf="!(item.children && item.children.length > 0)" nz-menu-item
+                [nzSelected]="item.key === currMenu.key">
+                <span title>
+                  <!-- <i *ngIf="item.title !== 'Home'" nz-icon>
+                    <img *ngIf="item?.imgUrls && item?.imgUrls[0]" style="width: 25px;"
+                      [src]="'/gateway/reportcenter/file/preview?fileName=' + item.imgUrls[0]" />
+                    <img *ngIf="item?.imgUrls && item?.imgUrls[1]" class="gray" style="width: 25px;"
+                      [src]="'/gateway/reportcenter/file/preview?fileName=' + item.imgUrls[1]" />
+                    <img *ngIf="!item?.imgUrls || !item?.imgUrls[0]" style="width: 25px;"
+                      src="./assets/images/common/icon_default.png" />
+                    <img *ngIf="!item?.imgUrls || !item?.imgUrls[1]" class="gray" style="width: 25px;"
+                      src="./assets/images/common/icon_default_gray.png" />
+                  </i>
+                  <i *ngIf="item.title === 'Home'" nz-icon>
+                    <img *ngIf="!item?.imgUrls || !item?.imgUrls[0]" style="width: 25px;"
+                      src="./assets/images/common/icon_home.png" />
+                    <img *ngIf="!item?.imgUrls || !item?.imgUrls[1]" class="gray" style="width: 25px;"
+                      src="./assets/images/common/icon_home_gray.png" />
+                  </i> -->
+                  <span (click)="nodeSelect($event, item)">{{item.label}}</span>
+                </span>
+              </li>
+
+              <li *ngIf="item.children && item.children.length > 0" nz-submenu
+                [ngClass]="item.key === currMenu.key ? 'active': ''">
+                <span title>
+                  <!-- <i nz-icon>
+                    <img *ngIf="item?.imgUrls && item?.imgUrls[0]" style="width: 25px;"
+                      [src]="'/gateway/reportcenter/file/preview?fileName=' + item.imgUrls[0]" />
+                    <img *ngIf="item?.imgUrls && item?.imgUrls[1]" class="gray" style="width: 25px;"
+                      [src]="'/gateway/reportcenter/file/preview?fileName=' + item.imgUrls[1]" />
+                    <img *ngIf="!item?.imgUrls || !item?.imgUrls[0]" style="width: 25px;"
+                      src="./assets/images/common/icon_default.png" />
+                    <img *ngIf="!item?.imgUrls || !item?.imgUrls[1]" class="gray" style="width: 25px;"
+                      src="./assets/images/common/icon_default_gray.png" />
+                  </i> -->
+                  <span (click)="nodeSelect($event,item)">{{item.label}}</span>
+                </span>
+
+                <ul>
+                  <ng-container *ngFor="let aItem of item.children">
+                    <li *ngIf="!(aItem.children && aItem.children.length > 0)" nz-menu-item
+                      [nzSelected]="aItem.key === currMenu.key">
+                      <span title>
+                        <span (click)="nodeSelect($event ,aItem)">{{aItem.label}}</span>
+                      </span>
+                    </li>
+
+                    <li *ngIf="aItem.children && aItem.children.length > 0" nz-submenu>
+                      <span title>
+                        <span (click)="nodeSelect($event ,aItem)">{{aItem.label}}</span>
+                      </span>
+
+                      <ul>
+                        <ng-container *ngFor="let bItem of aItem.children">
+                          <li *ngIf="!(bItem.children && bItem.children.length > 0)" nz-menu-item
+                            [nzSelected]="bItem.key === currMenu.key">
+                            <span title>
+                              <span (click)="nodeSelect($event,bItem)">{{bItem.label}}</span>
+                            </span>
+                          </li>
+
+                          <li *ngIf="bItem.children && bItem.children.length > 0" nz-submenu>
+                            <span title>
+                              <span (click)="nodeSelect($event,bItem)">{{bItem.label}}</span>
+                            </span>
+
+                            <ul>
+                              <ng-container *ngFor="let cItem of bItem.children">
+                                <li *ngIf="!(cItem.children && cItem.children.length > 0)" nz-menu-item
+                                  [nzSelected]="cItem.key === currMenu.key">
+                                  <span title>
+                                    <span (click)="nodeSelect($event,cItem)">{{cItem.label}}</span>
+                                  </span>
+                                </li>
+
+                                <li *ngIf="cItem.children && cItem.children.length > 0" nz-submenu>
+                                  <span title>
+                                    <span (click)="nodeSelect($event,cItem)">{{cItem.label}}</span>
+                                  </span>
+
+                                  <ul>
+                                    <ng-container *ngFor="let dItem of cItem.children">
+                                      <li *ngIf="!(dItem.children && dItem.children.length > 0)"
+                                        [nzSelected]="dItem.key === currMenu.key" nz-menu-item>
+                                        <span title>
+                                          <span (click)="nodeSelect($event,dItem)">{{cItem.label}}</span>
+                                        </span>
+                                      </li>
+
+                                      <li *ngIf="dItem.children && dItem.children.length > 0" nz-submenu>
+                                        <span title>
+                                          <span (click)="nodeSelect($event,dItem)">{{dItem.label}}</span>
+                                        </span>
+                                      </li>
+                                    </ng-container>
+                                  </ul>
+                                </li>
+                              </ng-container>
+                            </ul>
+                          </li>
+                        </ng-container>
+                      </ul>
+                    </li>
+                  </ng-container>
+                </ul>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="rightBox" [style]="{width: currPanel === 'edit' ? '100%' : '78%'}">
+
+      <div *ngIf="currPanel === 'list'" class="tableBox">
+        <div class="sys-search-form">
+          <div class="form-item">
+            <label>{{'field.name'| translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="listForm.topicName" />
+          </div>
+          <div class="form-item btn">
+            <div class="da-button search" (click)="queryTable()">{{'operate.search' | translate}}</div>
+            <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+          </div>
+
+          <div class="da-button add" (click)="createData()">
+            <i class="pi pi-plus"></i>
+            {{'operate.new.data.topic' | translate}}
+          </div>
+        </div>
+
+        <div class="tableCard" style="height: calc(100% - 120px)">
+          <p-table [loading]="loading" [scrollable]="true" styleClass="sys-table" scrollHeight="flex"
+            [value]="tableData" [resizableColumns]="true" columnResizeMode="expand" dataKey="id"
+            [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="min-width: 200px;" id="code">
+                  {{'field.code' | translate}}
+                </th>
+                <th style="min-width: 200px;" id="name">
+                  {{'field.name' | translate}}
+                </th>
+                <th style="min-width: 300px;max-width: 300px;" id="desc">
+                  {{'field.desc' | translate}}
+                </th>
+                <th id="owner">
+                  {{'field.owner' | translate}}
+                </th>
+                <th id="function">
+                  {{'field.function' | translate}}
+                </th>
+                <th id="score">
+                  {{'field.score' | translate}}
+                </th>
+                <th id="version">
+                  {{'field.version' | translate}}
+                </th>
+                <th style="min-width: 220px;" pFrozenColumn alignFrozen="right">
+                  {{'label.operate' | translate}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+              <tr>
+                <td style="min-width: 200px;" [title]="item.id" class="xd-tbody text-overflow inline-block">
+                  {{ item.id }}
+                </td>
+                <td style="min-width: 200px;" [title]="item.name" class="xd-tbody text-overflow inline-block">
+                  {{ item.name }}
+                </td>
+                <td style="min-width: 300px;max-width: 300px;" [title]="item.description"
+                  class="xd-tbody text-overflow inline-block">
+                  {{ item.description}}
+                </td>
+                <td class="xd-tbody text-overflow inline-block">
+                  {{ item.author }}
+                </td>
+                <td class="xd-tbody text-overflow inline-block">
+                  {{ item.department }}
+                </td>
+                <td class="xd-tbody text-overflow inline-block" [title]="item.remark || ''">
+                  {{ item.ratings }}
+                </td>
+                <td class="xd-tbody text-overflow inline-block">
+                  {{ item.version }}
+                </td>
+                <td style="min-width: 220px;" class="xd-tbody text-overflow inline-block" pFrozenColumn
+                  alignFrozen="right">
+                  <div class="table-button-box">
+                    <div class="table-button" (click)="openDetail(item, 'list')">
+                      {{'view' | translate}}
+                    </div>
+                    <div class="table-button" (click)="askPermission(item)">
+                      {{'operate.ask.permission' | translate}}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div style="width: 100%" [hidden]="!(total > 0)">
+          <nz-pagination style="margin-top: 5px" class="flex justify-content-center" [nzPageIndex]="listForm.pageNum"
+            [nzTotal]="total" nzShowSizeChanger [nzPageSize]="listForm.pageSize" [nzShowTotal]="rangeTemplate"
+            (nzPageIndexChange)="nzPageIndexChange($event)"
+            (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+          <ng-template #rangeTemplate let-range="range" let-total>
+            {{ (listForm.pageNum - 1) * listForm.pageSize + 1 }}-{{ listForm.pageNum * listForm.pageSize
+            }} {{'label.pagination.of' | translate}} {{ total }}
+          </ng-template>
+        </div>
+      </div>
+
+      <app-data-topic-store-home #home (goDetail)="openDetail($event)"
+        (updateBreadcrumbs)="currBreadcrumbs = {name: lang==='en' ? 'More' : '更多'}" *ngIf="currPanel === 'home'"></app-data-topic-store-home>
+
+      <app-data-topic-store-detail #detail [field]="currRow"
+        *ngIf="currPanel === 'detail'"></app-data-topic-store-detail>
+
+      <app-data-topic-create #create status="create" [categoryId]="categoryId" *ngIf="currPanel === 'create'"
+        (goBack)="backEvent()"></app-data-topic-create>
+
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

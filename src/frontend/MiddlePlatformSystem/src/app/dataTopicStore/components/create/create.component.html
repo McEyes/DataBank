@@ -1,0 +1,89 @@
+<div class="e-container">
+  <div class="e-title">
+    {{'operate.new.data.topic' | translate}}
+  </div>
+
+  <div class="tab-list">
+    <div class="step1" [ngClass]="currStep === 1? 'active' : ''">
+      <div class="img"></div>
+      <div class="label">{{'label.business.modeling' | translate}}</div>
+      <div class="next"></div>
+    </div>
+
+    <div class="step2" [ngClass]="currStep === 2? 'active' : ''">
+      <div class="img"></div>
+      <div class="label">{{'label.it.developing' | translate}}</div>
+      <div class="next"></div>
+    </div>
+
+    <div class="step3" [ngClass]="currStep === 3? 'active' : ''">
+      <div class="img"></div>
+      <div class="label">{{'label.validation' | translate}}</div>
+      <div class="next"></div>
+    </div>
+
+    <div class="step4" [ngClass]="currStep === 4? 'active' : ''">
+      <div class="img"></div>
+      <div class="label">{{'label.publish' | translate}}</div>
+    </div>
+  </div>
+
+  <div *ngIf="formData || status === 'create'" class="e-content">
+    <app-data-topic-edit-step1 #step1 [hidden]="currStep !== 1"></app-data-topic-edit-step1>
+    <ng-container *ngIf="status !== 'create'">
+      <app-data-topic-edit-step2 #step2 [hidden]="currStep !== 2"></app-data-topic-edit-step2>
+      <app-data-topic-edit-step3 #step3 (getValidation)="getValidation($event)" [field]="formData"
+        [hidden]="currStep !== 3"></app-data-topic-edit-step3>
+      <app-data-topic-edit-step4 #step4 [field]="formData" [hidden]="currStep !== 4"></app-data-topic-edit-step4>
+    </ng-container>
+  </div>
+
+  <div class="e-footer" [style]="{'justify-content': currStep > 1 ? 'space-between' : 'flex-end'}">
+    <!-- 上下流转 -->
+    <div *ngIf="currStep > 1" class="da-button save" (click)="previous()">{{'operate.step.previous' | translate}}</div>
+
+    <div class="end">
+      <!-- 上下流转 -->
+      <div *ngIf="showNext() && status !== 'create'" class="da-button save" (click)="next()">{{'operate.next' |
+        translate}}</div>
+
+      <!-- 最后发布 -->
+      <div *ngIf="currStep === 4 && status !== 'view' && showApprove()" class="da-button save" (click)="publish()">{{'publish' |
+        translate}}</div>
+
+      <!-- 创建数据 -->
+      <div style="background: #0990CF;" *ngIf="currStep === 1 && status === 'create'" class="da-button save" (click)="createData()">{{'submit' |
+        translate}}</div>
+
+      <!-- 保存ITdev -->
+      <div style="background: #0990CF;" *ngIf="currStep === 2 && status === 'edit'" class="da-button save" (click)="saveITDev()">{{'submit' |
+        translate}}</div>
+
+      <!-- 审批 -->
+      <div *ngIf="showApprove() && status !== 'view'" class="da-button save" (click)="approve()">{{'approve' |
+        translate}}</div>
+    </div>
+  </div>
+</div>
+
+<p-dialog [header]="'label.approval' | translate" [(visible)]="approvalDialogVisible" [style]="{ width: '550px' }">
+  <level-one-panel style="height:100%">
+    <div class="contents-form-item" style="display: flex;align-items: flex-start;width: 100%;margin-bottom: 10px;">
+      <textarea class="input-text" [ngStyle]="{'background-color': '#F7F9FD', 'height': 'auto', 'width': '100%'}"
+        id="float-input" [placeholder]="'info.audit.content' | translate" rows="5" cols="30"
+        [(ngModel)]="approvalRemark" pInputTextarea></textarea>
+    </div>
+
+  </level-one-panel>
+  <div class="ui-dialog-buttonpane" style="text-align: center;margin-top: 10px;">
+    <button type="button" pButton (click)="approvalDialogVisible=false" [label]="'cancel'|translate"></button>
+    <button style="margin: 0 10px;" type="button" pButton (click)="applyPermission(2)"
+      [label]="'agree'|translate"></button>
+    <button type="button" pButton (click)="applyPermission(5)" [label]="'return'|translate"></button>
+    <button style="margin-left: 10px;" type="button" pButton (click)="applyPermission(99)"
+      [label]="'reject'|translate"></button>
+  </div>
+</p-dialog>
+
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

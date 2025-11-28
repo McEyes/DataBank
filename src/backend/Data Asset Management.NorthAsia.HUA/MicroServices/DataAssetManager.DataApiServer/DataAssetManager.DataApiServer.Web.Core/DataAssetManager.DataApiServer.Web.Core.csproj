@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>DataAssetManager.DataApiServer.Web.Core.xml</DocumentationFile>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Extensions\SpecificationDocumentBuilder.cs" />
+	  <Compile Remove="Filter\AccessLimitFilter.cs" />
+	  <Compile Remove="Filter\DynamicRouteDocumentFilter.cs" />
+	  <Compile Remove="Handlers\JwtHandler.cs" />
+	  <Compile Remove="Middleware\DynamicEndpointDataSource.cs" />
+	  <Compile Remove="Middleware\DynamicRouteMiddleware - 副本.cs" />
+	  <Compile Remove="Middleware\DynamicRouteMiddleware copy.cs" />
+	  <Compile Remove="Middleware\TokenMiddleware.cs" />
+	  <Compile Remove="SqlsugarSetup.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="DataAssetManager.DataApiServer.Web.Core.xml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DataAssetManager.DataApiServer.Application\DataAssetManager.DataApiServer.Application.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Handlers\" />
+	</ItemGroup>
+
+</Project>

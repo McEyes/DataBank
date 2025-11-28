@@ -1,0 +1,51 @@
+* {
+  font-family: Roboto;
+}
+
+:host {
+  .form {
+    width: 100%;
+
+    .form-item {
+      width: calc(50% - 10px);
+
+      label {
+        width: 130px;
+      }
+
+      .input-text, p-dropdown, textarea {
+        width: calc(100% - 130px);
+        font-size: 14px !important;
+      }
+
+      ::ng-deep {
+        .p-dropdown {
+          width: 100%;
+          font-size: 14px !important;
+        }
+
+        .ant-input-number {
+          border: none;
+
+          input {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    &.zh {
+      .form-item {
+
+        label {
+          width: 118px;
+        }
+
+        .input-text {
+          width: calc(100% - 118px);
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,111 @@
+* {
+  font-family: Roboto;
+}
+
+.datasource-box {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 10px 10px 5px 10px;
+
+  .tableBox {
+    width: 100%;
+    height: calc(100% - 55px);
+    border-radius: 20px;
+    background-color: #F7F9FD;
+    overflow: hidden;
+    padding: 15px;
+
+    .tableCard {
+      width: 100%;
+
+      // height: 95%;
+      table,
+      tbody {
+        display: block;
+        height: 40px !important;
+      }
+
+      tbody {
+        overflow-y: scroll;
+      }
+
+      table thead,
+      tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+    }
+  }
+
+  .department-paginator {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+::ng-deep {
+  .p-dropdown {
+    width: 100% !important;
+  }
+
+  .p-calendar {
+    width: 100% !important;
+  }
+
+  .p-calendar .p-inputtext {
+    width: 100%;
+  }
+
+  .main-content .p-datatable-scrollable .p-datatable-tbody tr:nth-child(2n + 1) {
+    background-color: #F5F5F5;
+  }
+}
+
+:host ::ng-deep .p-datatable>.p-datatable-wrapper {
+  &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #f1f2f2;
+    background-color: #f1f2f2 !important;
+    border-radius: 3px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px !important;
+    -webkit-box-shadow: inset 0 0 6px #999 !important;
+    background-color: #999 !important;
+  }
+}
+
+:host ::ng-deep {
+  .p-inputtext {
+    height: auto;
+  }
+
+  .p-ripple {
+    // background-color: #fff !important;
+  }
+
+  .p-inputtext {
+    height: auto !important;
+    background-color: #fff;
+  }
+
+  .p-dropdown {
+    width: 100% !important;
+    background-color: #fff !important;
+  }
+
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #e3f2fd !important;
+    border-color: #e3f2fd !important;
+  }
+}

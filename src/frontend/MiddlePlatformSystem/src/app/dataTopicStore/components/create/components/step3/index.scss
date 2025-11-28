@@ -1,0 +1,79 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+
+    .table-box {
+        width: 100%;
+        height: 100%;
+
+        .obj-content {
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px;
+
+            &>div {
+                margin-bottom: 5px;
+            }
+
+            span {
+                &.name {
+                    display: inline-block;
+                    width: 200px;
+                    text-align: right;
+                    margin-right: 10px;
+                    font-weight: bold;
+                }
+                font-size: 16px;
+            }
+        }
+
+        .operate-bar {
+            display: flex;
+            column-gap: 10px;
+            position: relative;
+
+            .error {
+                color: red;
+                padding: 20px 10px;
+                font-size: 14px;
+            }
+
+            .success {
+                color: green;
+                padding: 20px 10px;
+                font-size: 14px;
+            }
+            
+            .pass {
+                margin: 20px;
+                background: #669933;
+            }
+
+            // .fail {
+            //     background: #CB333B;
+            //     margin-bottom: 20px;
+            // }
+
+            div {
+                cursor: pointer;
+                color: #fff;
+
+                img {
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 10px;
+                }
+            }
+
+            .img-status {
+                position: absolute;
+                z-index: 9;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+    }
+}

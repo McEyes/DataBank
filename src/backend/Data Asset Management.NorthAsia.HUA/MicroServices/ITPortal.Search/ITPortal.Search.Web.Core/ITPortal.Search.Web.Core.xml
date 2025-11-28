@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITPortal.Search.Web.Core</name>
+    </assembly>
+    <members>
+        <member name="M:ITPortal.Search.Web.Core.Extensions.InitExtensions.AddUnifyProvider``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            添加规范化提供器
+            </summary>
+            <typeparam name="TUnifyResultProvider"></typeparam>
+            <param name="services"></param>
+            <param name="providerName"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

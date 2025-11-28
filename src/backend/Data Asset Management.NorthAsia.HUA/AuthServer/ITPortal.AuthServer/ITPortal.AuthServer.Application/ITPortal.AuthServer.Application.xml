@@ -1,0 +1,416 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITPortal.AuthServer.Application</name>
+    </assembly>
+    <members>
+        <member name="T:ITPortal.AuthServer.Application.AccountAppService">
+            <summary>
+            账号管理
+            </summary>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.AccountAppService.GetMsg(System.String)">
+            <summary>
+            检查配置文件
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.AccountAppService.GetTokenUserInfo">
+            <summary>
+            获取当前登陆token信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.AccountAppService.LoginAd(ITPortal.AuthServer.Application.Account.Services.Dtos.LoginInput)">
+            <summary>
+            AD登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.AccountAppService.Login(ITPortal.AuthServer.Application.Account.Services.Dtos.LoginInput)">
+            <summary>
+            登陆
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.AccountAppService.Reset(ITPortal.AuthServer.Application.Account.Services.Dtos.ResetInput)">
+            <summary>
+            重置密码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.AccountAppService.Logout">
+            <summary>
+            注销
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.PrivilegeDto.RedirectUrl">
+            <summary>
+            跳转路径
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.PrivilegeEntity.RedirectUrl">
+            <summary>
+            跳转路径
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserEntity.Id">
+            <summary>
+            后续改成ntid
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserEntity.UserName">
+            <summary>
+            user name 大多数=NTID
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserEntity.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserEntity.Surname">
+            <summary>
+            NTID
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserEntity.Status">
+            <summary>
+            1启用
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserInfoDto.Id">
+            <summary>
+            后续改成ntid
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserInfoDto.UserName">
+            <summary>
+            user name 大多数=NTID
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserInfoDto.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Dtos.UserInfoDto.Surname">
+            <summary>
+            NTID
+            </summary>
+        </member>
+        <member name="T:ITPortal.AuthServer.Application.Account.Services.Dtos.LoginInput">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Services.Dtos.LoginInput.Name">
+            <summary>
+            用户名或者邮箱
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Services.Dtos.LoginInput.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:ITPortal.AuthServer.Application.Account.Services.Dtos.ResetInput">
+            <summary>
+            登录
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Services.Dtos.ResetInput.Name">
+            <summary>
+            用户名或者邮箱
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Services.Dtos.ResetInput.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Application.Account.Services.Dtos.ResetInput.NewPassword">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="T:ITPortal.AuthServer.Application.UserAppService">
+            <summary>
+            账号管理
+            </summary>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.UserAppService.UserApplayCallback(ITPortal.Core.Services.Result{ITPortal.Core.ProxyApi.Flow.Dto.FlowBackDataEntity})">
+            <summary>
+            根据用户名(ntid)或者邮件地址查询
+            http://cnhuam0appprd03:6001/api/User/UserFlowCallback
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.UserAppService.GetUserInfoById(System.String)">
+            <summary>
+            根据用户名(ntid)或者邮件地址查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.UserAppService.GetUserInfo(System.String)">
+            <summary>
+            根据用户名(ntid)或者邮件地址查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.UserAppService.GetUserRoleInfo(System.String)">
+            <summary>
+            根据用户名(ntid)或者邮件地址查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.UserAppService.GetUserRoles(System.String)">
+            <summary>
+            根据用户名(ntid)或者邮件地址查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.UserAppService.GetUserMenus">
+            <summary>
+            获取当前登陆用户的菜单权限
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.UserAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService">
+            <summary>
+            账号管理
+            </summary>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetConfig(System.String)">
+            <summary>
+            检查config参数
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetAllEmployee(System.Boolean)">
+            <summary>
+            获取所有员工信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetAllUserInfo(System.Boolean)">
+            <summary>
+            获取所有员工用户格式信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.Query(ITPortal.AuthServer.Application.Account.Dtos.EmployeeQueryDto)">
+            <summary>
+            已查询员工信心
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.Page(ITPortal.AuthServer.Application.Account.Dtos.EmployeeQueryDto)">
+            <summary>
+            分页查询员工信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetEmployeeInfo(System.String)">
+            <summary>
+            根据ntid获取员工信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetEmployeeInfoByWdid(System.String)">
+            <summary>
+            根据ID/wdid获取员工信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetEmployeeInfoByid(System.String)">
+            <summary>
+            根据ID/wdid获取员工信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.getMasterByUserId(System.String)">
+            <summary>
+            获取主管员工信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetManagerNtIdAsync(System.String)">
+            <summary>
+            获取主管ntid
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetEmployeeDeptManagerAsync(System.String)">
+            <summary>
+            根据员工所在部门部门主管信息
+            </summary>
+            <param name="ntid">ntid，区分大小写</param>
+            <returns>部门主管wdid</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetDeptManagerAsync(System.String)">
+            <summary>
+            根据员工所在部门部门主管信息
+            </summary>
+            <param name="dept">部门名称，区分大小写</param>
+            <returns>部门主管wdid</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetFunctionManager(System.String)">
+            <summary>
+             获取Cost Center Function Manager
+            </summary>
+            <param name="costCenterId">Cost Center ID，区分大小写</param>
+            <returns>Function Manager</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetEmployeeFMAsync(System.String)">
+            <summary>
+             获取员工 Function Manager
+            </summary>
+            <param name="ntid">ntid，区分大小写</param>
+            <returns>Function Manager</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.EmployeeAppService.GetAllDepartments">
+            <summary>
+            所有部门清单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetEmployeeListAsync(System.String)">
+            <summary>
+            根据员工ntid获取详细信息
+            实际访问：/userapi/Employee/info接口
+            </summary>
+            <param name="WorkNTIDs">ntid;,;</param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetEmployeeListAsync(System.String[])">
+            <summary>
+            根据员工ntid获取详细信息
+            实际访问：/userapi/Employee/info接口
+            </summary>
+            <param name="ntids">ntid</param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetManagerNtIdAsync(System.String)">
+            <summary>
+            根据员工ntid获取上级领导ntid
+            </summary>
+            <param name="ntid">ntid</param>
+            <returns>上级etid</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetManagerAsync(System.String)">
+            <summary>
+            根据员工ntid获取上级领导
+            </summary>
+            <param name="ntid">ntid</param>
+            <returns>上级信息</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetEmployeeDeptManagerAsync(System.String)">
+            <summary>
+            根据员工所在部门部门主管信息
+            </summary>
+            <param name="ntid">部门名称，区分大小写</param>
+            <returns>部门主管wdid</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetFunctionManagerAsync(System.String)">
+            <summary>
+            获取Cost Center Function Manager
+            </summary>
+            <param name="costCenterId">Cost Center ID，区分大小写</param>
+            <returns>部门主管wdid</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetEmployeeFMAsync(System.String)">
+            <summary>
+            获取员工Function Manager
+            </summary>
+            <param name="ntid">部门名称，区分大小写</param>
+            <returns>部门主管wdid</returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.EmployeeInfos.Services.EmployeeBaseInfoService.GetDeptManagerAsync(System.String)">
+            <summary>
+            根据员工所在部门部门主管信息
+            </summary>
+            <param name="dept">部门名称，区分大小写</param>
+            <returns>部门主管wdid</returns>
+        </member>
+        <member name="T:ITPortal.AuthServer.Application.Jobs.SynEmployeeInfoJob">
+            <summary>
+            同步员工信息,一小时同步一次
+            每天凌晨4点同步
+            </summary>
+        </member>
+        <member name="T:ITPortal.AuthServer.Application.RoleAppService">
+            <summary>
+            账号管理
+            </summary>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.RoleAppService.GetRoleInfo(System.String)">
+            <summary>
+            根据用户名(ntid)或者邮件地址查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.RoleAppService.Get(System.String)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Application.RoleAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.AuthServer.Core.AccountService.DbAccountService.FixedTimeEquals(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+             <summary>
+             Determine the equality of two byte sequences in an amount of time which depends on
+             the length of the sequences, but not the values.
+             </summary>
+             <param name="left">The first buffer to compare.</param>
+             <param name="right">The second buffer to compare.</param>
+             <returns>
+               <c>true</c> if <paramref name="left"/> and <paramref name="right"/> have the same
+               values for <see cref="P:System.ReadOnlySpan`1.Length"/> and the same contents, <c>false</c>
+               otherwise.
+             </returns>
+             <remarks>
+               This method compares two buffers' contents for equality in a manner which does not
+               leak timing information, making it ideal for use within cryptographic routines.
+               This method will short-circuit and return <c>false</c> only if <paramref name="left"/>
+               and <paramref name="right"/> have different lengths.
+            
+               Fixed-time behavior is guaranteed in all other cases, including if <paramref name="left"/>
+               and <paramref name="right"/> reference the same address.
+             </remarks>
+        </member>
+        <member name="M:ITPortal.AuthServer.Core.AccountService.LDAPAccountService.AuthenticateAsync(System.String,System.String,System.String)">
+            <summary>
+            验证域账号密码
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Core.AccountService.LDAPOptions.MachineAccountName">
+            <summary>
+            查询账号
+            </summary>
+        </member>
+        <member name="P:ITPortal.AuthServer.Core.AccountService.LDAPOptions.MachineAccountPassword">
+            <summary>
+            查询账号密码
+            </summary>
+        </member>
+    </members>
+</doc>

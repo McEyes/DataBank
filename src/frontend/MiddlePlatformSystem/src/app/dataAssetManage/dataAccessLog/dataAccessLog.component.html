@@ -1,0 +1,166 @@
+<div *ngIf="currPanel === 'list'" class="api-log-box">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <!-- <label> {{'label.keyword.search' | translate}}</label> -->
+      <input type="text" class="input-text" pInputText [placeholder]="'input.keyword' | translate"
+        [(ngModel)]="searchData.apiName" [disabled]="isEdit" />
+    </div>
+    <div class="form-item" style="width: 180px;">
+      <!-- <label>
+        {{'status' | translate}}
+      </label> -->
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="statusList"  [showClear]="true"
+        [placeholder]="'input.select.status' | translate" [(ngModel)]="searchData.status" optionLabel="label"
+        optionValue="value"></p-dropdown>
+    </div>
+      <div class="form-item" style="width: 200px;">
+        <!-- <label>{{'field.data.owner.dept'| translate}}</label> -->
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="deptList"
+          [placeholder]="'input.select.owner.dept' | translate" [(ngModel)]="searchData.OwnerDepart" optionLabel="name"
+          [filter]="true" filterBy="name" optionValue="id" [showClear]="true"></p-dropdown>
+      </div>
+      <div class="form-item" style="width: 200px;">
+        <!-- <label>{{'field.data.owner'| translate}}</label> -->
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+          [(ngModel)]="searchData.owner" [placeholder]="'input.select.owner' | translate" [virtualScroll]="true"
+          [virtualScrollItemSize]="38" [filter]="true" filterBy="name" class="w-100" optionLabel="name" [showClear]="true"
+          optionValue="id"></p-dropdown>
+      </div>
+      <div class="form-item">
+        <nz-range-picker [(ngModel)]="searchData.dateRange" nzSize="small"></nz-range-picker>
+      </div>
+    <div class="form-item btn">
+      <div class="da-button search" (click)="queryBtn()">{{'operate.search' | translate}}</div>
+      <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+      <div class="da-button" (click)="exportExcel()">{{'label.export.excel' | translate}}</div>
+    </div>
+  </div>
+  <div style="height: calc(100% - 50px)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <p-table [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="tableData" dataKey="code"
+        styleClass="sys-table" [tableStyle]="{ 'min-width': '100%' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width: 60px; max-width:60px">
+              {{'field.number' | translate}}
+            </th>
+            <th style="min-width: 400px; max-width:400px">
+              {{'field.interface.name' | translate}}
+            </th>
+            <th style="min-width: 200px; max-width: 200px">
+              {{'field.table.name' | translate}}
+            </th>
+            <th style="min-width: 120px; max-width: 120px">
+              {{'field.owner' | translate}}
+            </th>
+            <th style="min-width: 100px; max-width: 120px">
+              {{'field.owner.dept' | translate}}
+            </th>
+            <th style="min-width: 120px; max-width: 120px">
+              {{'field.caller.ip' | translate}}
+            </th>
+            <th style="min-width: 120px; max-width: 120px">
+              {{'field.caller' | translate}}
+            </th>
+            <th style="min-width: 120px; max-width:120px">
+              {{'field.call.data.volume' | translate}}
+            </th>
+            <th style="min-width: 80px; max-width:80px">
+              {{'field.use.time' | translate}}
+            </th>
+            <th style="min-width: 80px; max-width: 80px">
+              {{'field.status' | translate}}
+            </th>
+            <th style="min-width: 160px; max-width:160px">{{'field.call.time' | translate}}</th>
+            <th style="min-width: 100px; max-width: 400px">
+              {{'field.error.msg' | translate}}
+            </th>
+            <th style="min-width: 100px; max-width:400px">
+              {{'field.table.comment' | translate}}
+            </th>
+            <th pFrozenColumn alignFrozen="right" [ngStyle]="{'min-width': '180px','max-width':'180px'}">
+              {{'label.operate' | translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr>
+            <td class="xd-tbody text-overflow inline-block" style="min-width:  60px; max-width:  60px">
+              {{ row.index }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" [title]="row.apiName" style="min-width:  400px; max-width:  400px">
+              {{ row.apiName }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 200px; max-width: 200px" [title]="row.tableName">
+              {{ row.tableName }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 120px; max-width: 120px" [title]="row.ownerName">
+              {{ row.ownerName }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 100px; max-width: 120px" [title]="row.ownerDepart">
+              {{ row.ownerDepart }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 120px; max-width: 120px">
+              {{ row.callerIp }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 120px; max-width: 120px" [title]="row.callerName">
+              {{ row.callerName }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 120px; max-width: 120px">
+              {{ row.callerSize }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 80px; max-width:80px">
+              {{ row.time }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 80px; max-width: 80px">
+              <div *ngFor="let item of statusList">
+                <p-tag *ngIf="item.value == row.status" [value]="item.label"
+                  [severity]="statusColor[row.status]"></p-tag>
+              </div>
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 160px; max-width: 160px">{{ row.callerDate | date:'yyyy-MM-dd HH:mm:ss'}}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width: 100px; max-width: 400px">
+              {{ row.msg }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" style="min-width:100px; max-width: 400px">
+              {{ row.tableComment }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block" pFrozenColumn alignFrozen="right"
+              [ngStyle]="{'min-width': '180px','max-width':'180px'}">
+              <div class="table-button-box">
+                <div class="table-button" (click)="allTableBtn('look',row)">
+                  {{'operate.view' | translate}}
+                </div>
+                <div class="table-button" (click)="ondelete($event, row)">
+                  {{'operate.delete' | translate}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <div style="width: 100%" [hidden]="!(totalRecords > 0)">
+        <nz-pagination style="margin-top: 5px" class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum"
+          [nzTotal]="totalRecords" nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+          (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+        <ng-template #rangeTemplate let-range="range" let-total>
+          {{ (queryParams.pageNum - 1) * queryParams.pageSize + 1 }}-{{
+          queryParams.pageNum * queryParams.pageSize }} {{'label.pagination.of' | translate}} {{
+          totalRecords }}
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <p-confirmPopup></p-confirmPopup>
+  <p-toast></p-toast>
+
+</div>
+
+<app-data-access-log-details [field]="params" (goBack)="goBack($event)" *ngIf="currPanel === 'detail'"></app-data-access-log-details>

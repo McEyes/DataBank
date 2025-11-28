@@ -1,0 +1,1304 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataTopicStore.Core</name>
+    </assembly>
+    <members>
+        <member name="T:DataTopicStore.Core.DbContext">
+            <summary>
+            数据库上下文对象
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.CategoryEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.CategoryEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.CategoryEntity.name">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.CategoryEntity.parent_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.CategoryEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.CategoryEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.CategoryEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.CategoryEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.LogsEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.type_name">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.loglevel">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.action">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.message">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.LogsEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.SchemaColumnsEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.SchemaTablesEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.table_schema">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.table_name">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.table_comment">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.is_custom">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.SchemaTablesEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.access_request_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.status">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.remark">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.approval_user_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestApprovalRecordsEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestEntity.topic_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestEntity.user_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestEntity.status">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAccessRequestEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAuthorizationUserEntity.user_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAuthorizationUserEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAuthorizationUserEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAuthorizationUserEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicAuthorizationUserEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicCommentsEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.topic_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.content">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.likes">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.dislikes">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary> 
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicCommentsLikesEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.comments_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.like_type">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.user_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicCommentsLikesEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicDraftEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.name">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.cover">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.ratings">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.version">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.description">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.referenced_times">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.favorite_count">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.comments_count">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.awards">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.author_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.author">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.content">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.json_data_lineage">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.json_formula">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.json_parameters_input">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.json_parameters_output">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicDraftEntity.sql_scripts">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.name">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.cover">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.ratings">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.version">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.description">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.referenced_times">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.favorite_count">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.comments_count">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.awards">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.author_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.author">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.content">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.json_data_lineage">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.json_formula">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.json_parameters_input">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.json_parameters_output">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.sql_scripts">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicEntity.category_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicFavoritesEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicFavoritesEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicFavoritesEntity.topic_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicFavoritesEntity.user_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicFavoritesEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicFavoritesEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicFavoritesEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicFavoritesEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicGoalEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.topic_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.goal_column">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.month">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicGoalEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicHistoryEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.topic_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.name">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.cover">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.ratings">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.version">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.description">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.referenced_times">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.favorite_count">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.comments_count">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.awards">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.author_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.author">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.content">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.json_data_lineage">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.json_formula">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.json_parameters_input">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.json_parameters_output">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.sql_scripts">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.category_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.ratings_count">
+            <summary>
+            Desc:
+            Default:0
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.progress">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.json_develop_records">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.json_validation_result">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.is_verification_passed">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.verification_failure_reason">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicHistoryEntity.department">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicLikesEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.topic_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.like_type">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.user_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicLikesEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="T:DataTopicStore.Core.Entities.TopicRatingsEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicRatingsEntity.id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicRatingsEntity.topic_id">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicRatingsEntity.star">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicRatingsEntity.created_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:False
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicRatingsEntity.updated_time">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicRatingsEntity.created_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Entities.TopicRatingsEntity.updated_by">
+            <summary>
+            Desc:
+            Default:
+            Nullable:True
+            </summary>           
+        </member>
+        <member name="P:DataTopicStore.Core.Models.ParametersOutputSettingModel.Type">
+            <summary>
+            object,array
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.Id">
+            <summary>
+            userid guid
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.UserName">
+            <summary>
+            用户名，对应username字段
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.EnglishName">
+            <summary>
+            用户名，对应username字段
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.ChineseName">
+            <summary>
+            显示名称：
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.Surname">
+            <summary>
+            用户名，对应username字段
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.UserId">
+            <summary>
+            userid guid
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.NtId">
+            <summary>
+            Ntid
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.Name">
+            <summary>
+            显示名称：
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Core.Models.UserInfo.Department">
+            <summary>
+            显示名称：
+            </summary>
+        </member>
+    </members>
+</doc>

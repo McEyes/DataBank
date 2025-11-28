@@ -1,0 +1,38 @@
+<div class="search-page">
+  <div class="search-head">
+    <div class="head-search-content">
+      <input type="text" class="input-text" [placeholder]="'input.keyword' | translate" (input)="onInput($event)"
+        [(ngModel)]="searchData.keyword" (focus)="focusInput()" (keyup)="enterSearch($event)" nz-input
+        [nzAutocomplete]="auto" />
+      <nz-autocomplete nzBackfill [nzDefaultActiveFirstOption]="false" #auto (selectionChange)="search()">
+        <nz-auto-option *ngFor="let item of searchList" [nzValue]="item.keyword || item">
+          {{item.keyword || item}}
+          <img *ngIf="item.keyword" (click)="deleteHistroySearch($event, item.id)" style="width: 16px;float: right;"
+            src="./assets/images/home/home_delete.png">
+        </nz-auto-option>
+      </nz-autocomplete>
+      <img src="./assets/images/home/home_search.png" (click)="search()">
+    </div>
+
+    <img class="back" src="./assets/images/home/home_back.png" (click)="goBack()">
+  </div>
+
+  <div class="search-list">
+    <div *ngFor="let item of listData" class="search-item" (click)="goDetail(item)">
+      <div class="title">[{{topicObj[item.topic]}}]{{item.title}}</div>
+      <div [innerHTML]="item.description"></div>
+    </div>
+
+    <div class="nodata" *ngIf="listData.length === 0">
+      <img src="./assets/images/home/home_search_no_data.png" />
+      <span>{{'nodata' | translate}}</span>
+    </div>
+  </div>
+
+  <div class="sub-item" *ngIf="listData.length > 0">
+    <p-paginator [first]="searchData.first" [rows]="searchData.pageSize" [totalRecords]="recordCount"
+      [rowsPerPageOptions]="[10, 15, 20]" (onPageChange)="paginate($event)"></p-paginator>
+  </div>
+</div>
+
+<jabil-loading *ngIf="loading"></jabil-loading>

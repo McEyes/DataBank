@@ -1,0 +1,119 @@
+// Imports
+@import '~@fortawesome/fontawesome-free/scss/variables';
+@import '~@fortawesome/fontawesome-free/scss/mixins';
+@import '~@fortawesome/fontawesome-free/scss/animated';
+@import './mixins';
+
+// Styles
+.pi {
+	display: inline-block;
+	font-weight: 900;
+	/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+	font-family: 'Font Awesome 5 Free';
+	font-style: normal;
+	font-feature-settings: normal;
+	font-variant: normal;
+	text-rendering: auto;
+	line-height: 1;
+}
+
+.pi-fw {
+	width: 1.2rem;
+	text-align: center;
+}
+
+.pi-spin {
+	// Extending from "~@fortawesome/.../animated"
+	@extend .fa-spin;
+}
+
+@include icon-convert('.pi-times', $fa-var-times);
+@include icon-convert('.pi-times-circle', $fa-var-times);
+
+@include icon-convert('.pi-info-circle', $fa-var-info-circle);
+
+@include icon-convert('.pi-check', $fa-var-check);
+
+@include icon-convert('.pi-exclamation-triangle', $fa-var-exclamation-triangle);
+
+@include icon-convert('.pi-calendar', $fa-var-calendar-alt);
+
+@include icon-convert('.pi-chevron-up', $fa-var-chevron-up);
+
+@include icon-convert('.pi-chevron-down', $fa-var-chevron-down);
+
+@include icon-convert('.pi-chevron-left', $fa-var-chevron-left);
+
+@include icon-convert('.pi-chevron-right', $fa-var-chevron-right);
+
+@include icon-convert('.pi-external-link', $fa-var-external-link-alt);
+
+@include icon-convert('.pi-window-maximize', $fa-var-window-maximize);
+
+@include icon-convert('.pi-window-minimize', $fa-var-window-minimize);
+
+@include icon-convert('.pi-sort-alt', $fa-var-sort);
+
+@include icon-convert('.pi-sort-amount-up-alt', $fa-var-angle-down);
+
+@include icon-convert('.pi-sort-amount-down', $fa-var-angle-up);
+
+@include icon-convert('.pi-cog', $fa-var-cog);
+
+@include icon-convert('.pi-step-backward', $fa-var-step-backward);
+@include icon-convert('.pi-caret-left', $fa-var-caret-left);
+@include icon-convert('.pi-angle-left', $fa-var-caret-left);
+@include icon-convert('.pi-caret-right', $fa-var-caret-right);
+@include icon-convert('.pi-angle-right', $fa-var-caret-right);
+@include icon-convert('.pi-caret-up', $fa-var-caret-up);
+@include icon-convert('.pi-angle-up', $fa-var-caret-up);
+@include icon-convert('.pi-caret-down', $fa-var-caret-down);
+@include icon-convert('.pi-angle-down', $fa-var-caret-down);
+@include icon-convert('.pi-angle-double-right', $fa-var-angle-double-right);
+@include icon-convert('.pi-angle-double-left', $fa-var-angle-double-left);
+@include icon-convert('.pi-angle-double-up', $fa-var-angle-double-up);
+@include icon-convert('.pi-angle-double-down', $fa-var-angle-double-down);
+@include icon-convert('.pi-step-forward', $fa-var-step-forward);
+
+@include icon-convert('.pi-pencil', $fa-var-pencil-alt);
+
+@include icon-convert('.pi-bars', $fa-var-bars);
+
+@include icon-convert('.pi-file-o', $fa-var-file);
+
+@include icon-convert('.pi-file', $fa-var-file);
+
+@include icon-convert('.pi-file-excel', $fa-var-file-excel);
+
+@include icon-convert('.pi-file-pdf', $fa-var-file-pdf);
+
+@include icon-convert('.pi-search', $fa-var-search);
+
+@include icon-convert('.pi-home', $fa-var-home);
+
+@include icon-convert('.pi-question', $fa-var-question);
+
+@include icon-convert('.pi-plus', $fa-var-plus);
+
+@include icon-convert('.pi-trash', $fa-var-trash-alt);
+
+@include icon-convert('.pi-refresh', $fa-var-sync);
+
+@include icon-convert('.pi-tags', $fa-var-tags);
+
+@include icon-convert('.pi-save', $fa-var-save);
+
+@include icon-convert('.pi-minus', $fa-var-minus);
+
+@include icon-convert('.pi-users', $fa-var-users);
+
+@include icon-convert('.pi-briefcase', $fa-var-briefcase);
+
+@include icon-convert('.pi-video', $fa-var-video);
+
+@include icon-convert('.pi-power-off', $fa-var-power-off);
+
+@include icon-convert('.pi-filter', $fa-var-filter);
+
+@include icon-convert('.pi-arrow-up', $fa-var-arrow-up);
+@include icon-convert('.pi-arrow-down', $fa-var-arrow-down);

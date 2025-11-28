@@ -1,0 +1,11 @@
+import { PipeTransform } from '@angular/core';
+import { NavItem } from '../../models';
+export declare class NavMenuFilterPipe implements PipeTransform {
+    /**
+     * Transform function returns array of items matching search term
+     * @param value - menu item to be filtered
+     * @param term - search term
+     */
+    transform(value?: NavItem[], term?: string): NavItem[];
+    private containsFilterValue;
+}

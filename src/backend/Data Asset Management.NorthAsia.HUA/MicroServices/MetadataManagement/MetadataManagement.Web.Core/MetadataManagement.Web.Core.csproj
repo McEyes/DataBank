@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>MetadataManagement.Web.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Handlers\**" />
+	  <EmbeddedResource Remove="Handlers\**" />
+	  <None Remove="Handlers\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="MetadataManagement.Web.Core.xml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\MetadataManagement.Application\MetadataManagement.Application.csproj" />
+	</ItemGroup>
+
+</Project>

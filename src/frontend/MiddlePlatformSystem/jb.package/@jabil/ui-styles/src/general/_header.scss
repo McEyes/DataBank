@@ -1,0 +1,56 @@
+//
+// Header
+// --------------------------------------------------
+
+@use 'sass:selector';
+
+#page-header {
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+	background-color: $header-bg;
+}
+
+// Header overlay (used for various reasons eg: loading or search)
+.overlay-header {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: $white;
+	transform: translateY(-100%);
+	opacity: 0;
+	transition: opacity 0.1s ease-in-out;
+	will-change: opacity;
+
+	&.show {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+// Content header sections
+.content-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: $header-height;
+	margin: 0 auto;
+
+	@at-root #{selector.unify(&, '#page-header *')} {
+		padding-right: $space-mobile;
+		padding-left: $space-mobile;
+
+		@include media-breakpoint-up(md) {
+			padding-right: $space-base;
+			padding-left: $space-base;
+		}
+	}
+
+	@at-root #{selector.unify(&, '#sidebar *')},
+		#{selector.unify(&, '#side-overlay *')} {
+		padding-right: $space-side;
+		padding-left: $space-side;
+	}
+}

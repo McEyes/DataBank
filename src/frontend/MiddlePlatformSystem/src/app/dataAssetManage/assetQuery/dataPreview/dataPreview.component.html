@@ -1,0 +1,69 @@
+<div class="xd-all-box" style="height: 100%;">
+  <div class="xd-grey-box" style="height: 100%">
+    <div class="flex info" style="color: #414042;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 10px 20px;">
+      {{field?.tableComment}}
+
+      <div class="flex" style="margin-left: 40px;">
+        <div *ngIf="field?.updateFrequency">
+          <span> {{'field.update.frequency' | translate}}:</span>
+          <span> {{field?.updateFrequency}}</span>
+        </div>
+        <div *ngIf="field?.dataTimeRange" style="margin-left: 20px;">
+          <span> {{'field.time.range' | translate}}:</span>
+          <span> {{field?.dataTimeRange}}</span>
+        </div>
+        <div *ngIf="field?.updateMethod" style="margin-left: 20px;">
+          <span> {{'field.update.method' | translate}}:</span>
+          <span> {{updateMethodObj[field?.updateMethod]}}</span>333333
+        </div>
+      </div>
+    </div>
+    <div class="tableBox" style="height: calc(100% - 110px);background: unset;">
+      <div class="tableCard">
+        <p-table [loading]="loading" [scrollable]="true" scrollHeight="flex" [columns]="tableData.columnList"
+          [value]="tableData.dataList" dataKey="code" [paginator]="tableData.dataList.length>0 ?true:false" [rows]="20"
+          (sortFunction)="customSort($event)" [customSort]="true"
+          [showCurrentPageReport]="true" styleClass="sys-table" [rowsPerPageOptions]="[10,20,50]" [tableStyle]="{ 'min-width': '100%' }">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th class="xd-theader-white" style="min-width: 200px;" *ngFor="let col of columns"  [pSortableColumn]="col" >
+                {{col}}
+                <p-sortIcon [field]="col" />
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td [title]="rowData[col]" class="xd-tbody text-overflow inline-block"
+                style="min-width: 200px;" *ngFor="let col of columns" [title]="rowData[col]">
+                {{rowData[col]}}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+
+      </div>
+    </div>
+    <div class="flex" style="justify-content: center;margin-top: 10px;">
+      <div style="display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 83px;
+      height: 40px;
+      background: #F7F9FD;
+      border-radius: 4px 4px 4px 4px;" class="da-button" (click)="goback()">{{'operate.back' | translate}}</div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>

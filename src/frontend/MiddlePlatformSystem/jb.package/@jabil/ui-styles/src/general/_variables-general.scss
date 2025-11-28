@@ -1,0 +1,180 @@
+//
+// general variables
+// --------------------------------------------------
+
+// Colors
+
+$theme-colors: map-merge(
+	(
+		'primary-light': lighten($primary, 15%),
+		'primary-lighter': lighten($primary, 28%),
+		'primary-dark': #3e4a59,
+		'primary-darker': #002b49,
+		'success-light': #e0f5e9,
+		'info-light': #edf6fd,
+		'warning-light': #fdf3e5,
+		'danger-light': #f9eae8,
+	),
+	$theme-colors
+);
+
+$body-bg-dark: darken($body-bg, 4%);
+$body-bg-light: lighten($body-bg, 1.5%);
+
+$body-color-dark: #373737 !default;
+$body-color-light: $body-bg-dark !default;
+
+// Paragraphs
+
+$paragraph-line-height: 1.6;
+$paragraph-line-height-lg: 1.8;
+
+// Fonts
+
+$font-size-root: 1rem;
+$enable-text-optimize-legibility: true; // you can set it to false to increase rendering performance
+
+// Z-index main list additions
+
+$zindex-block-pinned: $zindex-fixed + 1 !default;
+$zindex-sidebar: $zindex-fixed + 2 !default;
+$zindex-page-overlay: $zindex-fixed + 3 !default;
+$zindex-side-overlay: $zindex-fixed + 4 !default;
+$zindex-block-fullscreen: $zindex-fixed + 5 !default;
+
+// Header
+
+$header-height: 3.75rem !default; // Best values > 3rem and < 5rem
+$header-bg: $white !default;
+$header-dark-bg: theme-color('primary-darker') !default;
+
+// Sidebar and Side Overlay
+
+$sidebar-bg: $white !default;
+$sidebar-dark-bg: theme-color('primary-darker') !default;
+$sidebar-width: 230px !default;
+$sidebar-mini-width: 60px !default;
+
+$side-overlay-bg: $white !default;
+$side-overlay-width: 320px !default;
+
+$side-transition: 0.28s ease-out !default;
+
+// Main Navigation
+
+$main-nav-transition: 0.25s ease-out !default;
+
+// Layout Spaces
+
+$space-base: 1.875rem !default; // Content padding
+$space-mobile: 1rem !default; // Content padding in mobile
+$space-side: 1.25rem !default; // Content padding inside side content
+$space-row-gutter-tiny: 0.375rem !default; // Row with tiny gutter
+$space-block: 1.25rem !default; // Block padding
+$space-boxed: 1280px !default; // Boxed content max width
+$space-narrow: 95% !default; // Narrow content max width
+
+// Third Party
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts' !default;
+$simple-line-font-path: '~simple-line-icons/fonts/' !default;
+$simple-line-icon-prefix: 'si-' !default;
+
+// general style variables
+$general-badge-secondary-variant-color: rgba($black, 0.33) !default;
+$general-block-box-shadow-color: rgba(0, 0, 0, 0.01) !default;
+$general-block-box-shadow: 0 0.125rem $general-block-box-shadow-color !default;
+$general-block-themed-title-color: rgba($white, 0.9) !default;
+$general-block-themed-title-small-color: rgba($white, 0.7) !default;
+$general-block-pinned-box-shadow-color: rgba(0, 0, 0, 0.1) !default;
+$general-block-pinned-box-shadow: 0 0 2rem
+	$general-block-pinned-box-shadow-color !default;
+$general-carousel-gradient-first-color: rgba(0, 0, 0, 0.25) !default;
+$general-carousel-gradient-second-color: rgba(0, 0, 0, 0.001) !default;
+$general-carousel-indicator-item-background-color: rgba(
+	$carousel-indicator-active-bg,
+	0.5
+) !default;
+$general-carousel-light-content-btn-background-color: rgba(
+	0,
+	0,
+	0,
+	0.75
+) !default;
+$general-carousel-light-content-btn-box-shadow-color: rgba(
+	0,
+	0,
+	0,
+	0.35
+) !default;
+$general-carousel-light-content-btn-box-shadow: 0 2px 16px 0
+	$general-carousel-light-content-btn-box-shadow-color !default;
+$general-switch-checked-box-shadow-color: rgba(0, 0, 0, 0.2) !default;
+$general-switch-checked-box-shadow: -0.125rem 0 0.125rem
+	$general-switch-checked-box-shadow-color !default;
+$general-img-avatar-thumb-box-shadow-color: rgba(255, 255, 255, 0.3) !default;
+$general-img-avatar-thumb-box-shadow: 0 0 0 0.25rem
+	$general-img-avatar-thumb-box-shadow-color !default;
+$general-page-container-fixed-header-box-shadow: 0 0.125rem 0.375rem
+	rgba(0, 0, 0, 0.02) !default;
+$general-page-overlay-background-color: rgba($black, 0.6) !default;
+$general-nav-main-sub-menu-background-color: rgba(0, 0, 0, 0.02) !default;
+$general-nav-main-sub-menu-lg-box-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.08) !default;
+$general-nav-main-dark-heading-color: rgba(255, 255, 255, 0.4) !default;
+$general-nav-main-dark-link-color: rgba(255, 255, 255, 0.5) !default;
+$general-nav-main-dark-link-icon-color: rgba(255, 255, 255, 0.2) !default;
+$general-nav-main-dark-link-hover-color: rgba(255, 255, 255, 0.5) !default;
+$general-nav-main-dark-link-hover-background-color: rgba(0, 0, 0, 0.2) !default;
+$general-nav-main-dark-sub-menu-background-color: rgba(0, 0, 0, 0.15) !default;
+$general-nav-main-dark-sub-menu-link-color: rgba(255, 255, 255, 0.4) !default;
+$general-nav-main-dark-open-sub-menu-bg-color: rgba(0, 0, 0, 0.15) !default;
+$general-ribbon-glass-variation-color: rgba(255, 255, 255, 0.4) !default;
+$general-side-overlay-lg-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.15) !default;
+$general-side-overlay-hover-box-shadow: 0 0 1.25rem rgba($black, 0.3) !default;
+$general-theme-custom-select-box-shadow-inset-color: rgba(
+	$black,
+	0.075
+) !default;
+$general-theme-custom-select-box-shadow-color: rgba(
+	$input-focus-border-color,
+	0.5
+) !default;
+$general-theme-border-white-op-color: rgba($white, 0.1) !default;
+$general-theme-border-black-op-color: rgba($black, 0.1) !default;
+$general-background-black-5: rgba(0, 0, 0, 0.05) !default;
+$general-background-black-10: rgba(0, 0, 0, 0.1) !default;
+$general-background-black-25: rgba(0, 0, 0, 0.25) !default;
+$general-background-black-50: rgba(0, 0, 0, 0.5) !default;
+$general-background-black-75: rgba(0, 0, 0, 0.75) !default;
+$general-background-black-90: rgba(0, 0, 0, 0.9) !default;
+$general-background-black-95: rgba(0, 0, 0, 0.95) !default;
+$general-background-white-5: rgba(255, 255, 255, 0.05) !default;
+$general-background-white-10: rgba(255, 255, 255, 0.1) !default;
+$general-background-white-25: rgba(255, 255, 255, 0.25) !default;
+$general-background-white-50: rgba(255, 255, 255, 0.5) !default;
+$general-background-white-75: rgba(255, 255, 255, 0.75) !default;
+$general-background-white-90: rgba(255, 255, 255, 0.9) !default;
+$general-background-white-95: rgba(255, 255, 255, 0.95) !default;
+$general-border-white-op-color: rgba($white, 0.1) !default;
+$general-border-black-op-color: rgba($black, 0.1) !default;
+$general-click-ripple-background-color: rgba($white, 0.6) !default;
+$general-text-white-50: rgba($white, 0.5) !default;
+$general-text-white-75: rgba($white, 0.75) !default;
+$general-text-black-50: rgba($black, 0.5) !default;
+$general-text-black-75: rgba($black, 0.75) !default;
+$general-select2-remove-color: rgba(255, 255, 255, 0.5) !default;
+$general-select2-remove-hover-color: rgba(255, 255, 255, 0.75) !default;
+$general-slick-button-background-color: rgba(0, 0, 0, 0.03) !default;
+$general-slick-button-hover-background-color: rgba(0, 0, 0, 0.15) !default;
+$general-slick-white-button-background-color: rgba(255, 255, 255, 0.5) !default;
+$general-slick-white-button-hover-background-color: rgba(
+	255,
+	255,
+	255,
+	1
+) !default;
+$general-slick-black-button-background-color: rgba(0, 0, 0, 0.25) !default;
+$general-slick-black-button-hover-background-color: rgba(0, 0, 0, 1) !default;
+$general-jqs-tooltip-background-color: rgba(0, 0, 0, 0.75) !default;
+
+// end of general style variables

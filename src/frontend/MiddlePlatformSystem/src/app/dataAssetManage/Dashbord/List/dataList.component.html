@@ -1,0 +1,210 @@
+<div *ngIf="currPanel === 'list'" class="datatable-box">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <label>{{'field.topic.domain'| translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="queryParams.ctl_name" />
+    </div>
+    <div class="form-item">
+      <label>{{'field.business.description'| translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="queryParams.table_comment" />
+    </div>
+    <div class="form-item">
+      <label>{{'field.table.name'| translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="queryParams.table_name" />
+    </div>
+
+    <div class="form-item">
+      <label style="width: 100px;">{{'field.data.dept'| translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="deptList"
+        [showClear]="true" [placeholder]="'input.select.dept' | translate" [(ngModel)]="queryParams.ownerDept"
+        optionLabel="name" [filter]="true" filterBy="name" optionValue="id" [showClear]="true"></p-dropdown>
+    </div>
+    <div class="form-item">
+      <label style="width: 150px;">{{'field.owner.name'| translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+        [(ngModel)]="queryParams.owner" [placeholder]="'input.select.owner' | translate" [virtualScroll]="true"
+        [virtualScrollItemSize]="38" [filter]="true" filterBy="name" class="w-100" optionLabel="name" [showClear]="true"
+        optionValue="id"></p-dropdown>
+    </div>
+
+    <div class="form-item btn">
+      <div class="da-button search" (click)="onQuery()">{{'operate.search' | translate}}</div>
+      <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+    </div>
+  </div>
+  <div class="xd-grey-box" style="height: calc(100% - 50px)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <p-table #dataTable dataKey="id" styleClass="sys-table" [loading]="loading" [scrollable]="true"
+        scrollHeight="flex" [value]="pageData" [resizableColumns]="true" [tableStyle]="{ 'min-width': '100%' }"
+        [expandedRowKeys]="expandedRowKeys">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 5rem"></th>
+            <th style="min-width: 280px; " class="xd-theader-white" pResizableColumn>
+              {{'field.topic.domain' | translate}}
+            </th>
+            <th style="min-width: 250px; " class="xd-theader-white" pResizableColumn>
+              {{'field.business.description' | translate}}
+            </th>
+            <th style="min-width: 100px;" class="xd-theader-white">
+              {{'field.data.table.alias' | translate}}
+            </th>
+            <th style="width: 150px;" class="xd-theader-white">
+              {{'field.visited30days.times' | translate}}
+            </th>
+            <th style="width: 150px; " class="xd-theader-white" pResizableColumn>
+              {{'field.quality.score' | translate}}
+            </th>
+
+            <th style="min-width: 200px; " class="xd-theader-white">
+              {{'field.owner' | translate}}
+            </th>
+            <th style="min-width: 200px; " class="xd-theader-white">
+              {{'field.data.dept' | translate}}
+            </th>
+            <th style="width: 150px;" class="xd-theader-white" pResizableColumn>
+              {{'field.security.level' | translate}}
+            </th>
+
+            <th style="min-width: 100px;" class="xd-theader-white">
+              {{'field.time.range' | translate}}
+            </th>
+            <th style="min-width: 100px;" class="xd-theader-white">
+              {{'field.update.frequency' | translate}}
+            </th>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-expanded="expanded">
+          <tr>
+            <td>
+              <button type="button" (click)="getAllList(item)" pButton pRipple [pRowToggler]="item"
+                class="p-button-text p-button-rounded p-button-plain"
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <td style="min-width: 280px;">
+              {{item.ctl_name}}
+            </td>
+            <td style="min-width: 250px;">
+              {{item.table_comment}}
+            </td>
+            <td style="min-width: 100px; ">
+              {{item.table_name}}
+            </td>
+            <td style="width: 150px;">
+              {{item.reviewable}}
+            </td>
+            <td style="min-width: 150px;">
+              {{item.quality_score}}
+            </td>
+
+            <td style="min-width: 200px;">
+              {{item.owner_name}}
+            </td>
+            <td style="min-width: 200px;">
+              {{item.owner_depart}}
+            </td>
+            <td style="width: 150px;">
+              {{item.level_name}}
+            </td>
+
+            <td style="min-width: 100px;">
+              {{item.data_time_range}}
+            </td>
+            <td style="min-width: 100px;">
+              {{item.update_frequency}}
+            </td>
+
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="rowexpansion" let-item>
+          <tr style="height: auto;">
+            <td colspan="19">
+              <div style="width: 100%;" class="p-3">
+                <p-table [value]="item.children" dataKey="id" styleClass="sys-table"  [scrollable]="true"
+        scrollHeight="flex"  [resizableColumns]="true" scrollHeight="500px" >
+                  <ng-template pTemplate="header">
+          <tr>
+            <th>
+              table_name
+            </th>
+            <th>
+              column_name
+            </th>
+            <th>
+              column_id
+            </th>
+            <th>
+              column_comment
+            </th>
+            <th>
+              indicator_code
+            </th>
+            <!-- <th>
+              Dashboard
+            </th> -->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-childNode>
+          <tr>
+            <td>{{childNode.table_name}}</td>
+            <td>{{childNode.column_name}}</td>
+            <td>{{childNode.column_id}}</td>
+            <td>{{childNode.column_comment}}</td>
+            <td>{{childNode.indicator_code}}</td>
+            <!-- <td>
+              <input type="checkbox" title="Indicator" [(ngModel)]="childNode.IsIndicator"
+                (change)="onStatuChange(childNode)">
+              <input (change)="onStatuChange(childNode)" [hidden]="!childNode.IsIndicator"
+                [placeholder]="'IndicatorCode' | translate" type="text" style="margin-left: 10px;" class="input-text"
+                pInputText [(ngModel)]="childNode.IndicatorCode" />
+            </td> -->
+            <!-- <td>
+              <input title="Dashboard" type="checkbox" [(ngModel)]="childNode.IsDashboard"
+                (change)="onStatuChange(childNode)">
+            </td> -->
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6">There are no order for this product yet.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    </td>
+    </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+      </tr>
+    </ng-template>
+    </p-table>
+    <div class="form-item btn" [hidden]="!(selRowData.length > 0)">
+      <div class="da-button search" (click)="onSave()">{{'operate.save' | translate}}</div>
+    </div>
+  </div>
+  <div style="width: 100%" [hidden]="!(total > 0)">
+    <nz-pagination class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum" [nzTotal]="total"
+      nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+      (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+    <ng-template #rangeTemplate let-range="range" let-total>
+      {{ queryParams.pageNum + (queryParams.pageNum - 1) * queryParams.pageSize }}-{{
+      queryParams.pageNum * queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ total }}
+    </ng-template>
+  </div>
+
+</div>
+</div>
+
+<app-data-preview *ngIf="currPanel === 'preview'" [field]="params" (goBack)="goBack($event)"></app-data-preview>
+<app-datatable-details *ngIf="currPanel === 'detail'" [field]="params"
+  (goBack)="goBack($event)"></app-datatable-details>
+<app-datatable-field *ngIf="currPanel === 'field'" [field]="params" (goBack)="goBack($event)"></app-datatable-field>
+
+<p-confirmPopup></p-confirmPopup>
+<p-toast></p-toast>

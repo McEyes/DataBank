@@ -1,0 +1,759 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MetadataManagement.Application</name>
+    </assembly>
+    <members>
+        <member name="T:MetadataManagement.Application.DataCatalogAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:MetadataManagement.Application.DataCatalogAppService.Get(System.Int64)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MetadataManagement.Application.DataCatalogAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MetadataManagement.Application.DataColumnAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:MetadataManagement.Application.DataColumnAppService.Get(System.Int64)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MetadataManagement.Application.DataColumnAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MetadataManagement.Application.DataSourceAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:MetadataManagement.Application.DataSourceAppService.Get(System.Int64)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MetadataManagement.Application.DataSourceAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MetadataManagement.Application.DataTableAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:MetadataManagement.Application.DataTableAppService.Get(System.Int64)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MetadataManagement.Application.DataTableAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MetadataManagement.Application.SystemAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:MetadataManagement.Application.SystemAppService.GetDescription">
+            <summary>
+            获取系统描述
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataCatalogDto">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.Id">
+             <summary>
+             备  注:唯一ID
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.Code">
+             <summary>
+             备  注:编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.EnglishName">
+             <summary>
+             备  注:英文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.Parentid">
+             <summary>
+             备  注:数据主题上级ID
+             默认值:
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MetadataManagement.Core.Entitys.DataCatalogDto.Remark" -->
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.Sort">
+             <summary>
+             备  注:排序序号
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.Status">
+             <summary>
+             备  注:状态：1启用，0禁用
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.CreateByName">
+             <summary>
+             备  注:创建人名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogDto.UpdateByName">
+             <summary>
+             备  注:更新人名称
+             默认值:
+            </summary>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataCatalogQuery">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogQuery.Code">
+             <summary>
+             备  注:编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogQuery.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogQuery.Parentid">
+             <summary>
+             备  注:数据主题上级ID
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataCatalogQuery.Status">
+             <summary>
+             备  注:状态：1启用，0禁用
+             默认值:
+            </summary>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataColumnDto">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.Id">
+             <summary>
+             备  注:唯一ID
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.Code">
+             <summary>
+             备  注:表编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.DataType">
+             <summary>
+             备  注:字段类型
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.TableId">
+             <summary>
+             备  注:表Id
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.SourceId">
+             <summary>
+             备  注:数据源Id
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.FromDesc">
+             <summary>
+             备  注:来源说明
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.FromColumnId">
+             <summary>
+             备  注:来源字段
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.FromTableId">
+             <summary>
+             备  注:来源表
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.FromDatabase">
+             <summary>
+             备  注:来源数据库
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.FromCatalog">
+             <summary>
+             备  注:来源系统/分类
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.DataFormat">
+             <summary>
+             备  注:数据格式
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.ColumnDesc">
+             <summary>
+             备  注:中文描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.ColumnEnglishDesc">
+             <summary>
+             备  注:英文描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.IsKey">
+             <summary>
+             备  注:是否为主键
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.Sort">
+             <summary>
+             备  注:显示顺序
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.DataLength">
+             <summary>
+             备  注:数据长度
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.DataPrecision">
+             <summary>
+             备  注:数据精度
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.DataScale">
+             <summary>
+             备  注:数据小数位
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.QaUnits">
+             <summary>
+             备  注:度量单位
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.ValueRange">
+             <summary>
+             备  注:取值范围
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.QaRules">
+             <summary>
+             备  注:计算规则:QA规则列表
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.Remark">
+             <summary>
+             备  注:备注说明
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.LevelId">
+             <summary>
+             备  注:安全级别
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.TechnologyInfo">
+             <summary>
+             备  注:技术信息,json数据
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.EnglishName">
+             <summary>
+             备  注:英文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.RealColumnName">
+             <summary>
+             备  注:物理字段名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.Topic">
+             <summary>
+             备  注:主题域
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnDto.BusinessDescription">
+             <summary>
+             备  注:业务描述，业务含义
+             默认值:
+            </summary>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataColumnQuery">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.Code">
+             <summary>
+             备  注:表编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.DataType">
+             <summary>
+             备  注:字段类型
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.TableId">
+             <summary>
+             备  注:表Id
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.SourceId">
+             <summary>
+             备  注:数据源Id
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.FromDesc">
+             <summary>
+             备  注:来源说明
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.FromColumnId">
+             <summary>
+             备  注:来源字段
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.FromTableId">
+             <summary>
+             备  注:来源表
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.FromDatabase">
+             <summary>
+             备  注:来源数据库
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.FromCatalog">
+             <summary>
+             备  注:来源系统/分类
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.ColumnDesc">
+             <summary>
+             备  注:中文描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.ColumnEnglishDesc">
+             <summary>
+             备  注:英文描述
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.IsKey">
+             <summary>
+             备  注:是否为主键
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.QaRules">
+             <summary>
+             备  注:计算规则:QA规则列表
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.LevelId">
+             <summary>
+             备  注:安全级别
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.TechnologyInfo">
+             <summary>
+             备  注:技术信息,json数据
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.EnglishName">
+             <summary>
+             备  注:英文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.RealColumnName">
+             <summary>
+             备  注:物理字段名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.Topic">
+             <summary>
+             备  注:主题域
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataColumnQuery.BusinessDescription">
+             <summary>
+             备  注:业务描述，业务含义
+             默认值:
+            </summary>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataSourceDto">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.Id">
+             <summary>
+             备  注:唯一ID
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.CatalogId">
+             <summary>
+             备  注:资源类型:元数据类别
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.Code">
+             <summary>
+             备  注:数据源编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.EnglishName">
+             <summary>
+             备  注:英文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.NickName">
+             <summary>
+             备  注:系统英文简称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.SystemType">
+             <summary>
+             备  注:业务系统类别/应用类型
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.OwnerDept">
+             <summary>
+             备  注:所属部门
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.SmeNtid">
+             <summary>
+             备  注:SME NTID/ 负责人NTID/
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.SmeName">
+             <summary>
+             备  注:SME 姓名
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.DbType">
+             <summary>
+             备  注:数据库类型/数据源类型
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.Remark">
+             <summary>
+             备  注:备注说明
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.BaseInfo">
+             <summary>
+             备  注:基础信息,Json数据
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.TechnologyInfo">
+             <summary>
+             备  注:技术信息,Json数据
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.CreateByName">
+             <summary>
+             备  注:创建人名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceDto.UpdateByName">
+             <summary>
+             备  注:更新人名称
+             默认值:
+            </summary>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataSourceQuery">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.CatalogId">
+             <summary>
+             备  注:资源类型:元数据类别
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.Code">
+             <summary>
+             备  注:数据源编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.EnglishName">
+             <summary>
+             备  注:英文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.NickName">
+             <summary>
+             备  注:系统英文简称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.SystemType">
+             <summary>
+             备  注:业务系统类别/应用类型
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.OwnerDept">
+             <summary>
+             备  注:所属部门
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.SmeNtid">
+             <summary>
+             备  注:SME NTID/ 负责人NTID/
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.SmeName">
+             <summary>
+             备  注:SME 姓名
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.DbType">
+             <summary>
+             备  注:数据库类型/数据源类型
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.BaseInfo">
+             <summary>
+             备  注:基础信息,Json数据
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataSourceQuery.TechnologyInfo">
+             <summary>
+             备  注:技术信息,Json数据
+             默认值:
+            </summary>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataTableDto">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.Id">
+             <summary>
+             备  注:唯一ID
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.Code">
+             <summary>
+             备  注:编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.EnglishName">
+             <summary>
+             备  注:英文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.Parentid">
+             <summary>
+             备  注:数据主题上级ID
+             默认值:
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:MetadataManagement.Core.Entitys.DataTableDto.Remark" -->
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.Sort">
+             <summary>
+             备  注:排序序号
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.Status">
+             <summary>
+             备  注:状态：1启用，0禁用
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.CreateByName">
+             <summary>
+             备  注:创建人名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableDto.UpdateByName">
+             <summary>
+             备  注:更新人名称
+             默认值:
+            </summary>
+        </member>
+        <member name="T:MetadataManagement.Core.Entitys.DataTableQuery">
+             <summary>
+             元数据类别
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableQuery.Code">
+             <summary>
+             备  注:编码
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableQuery.Name">
+             <summary>
+             备  注:中文名称
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableQuery.Parentid">
+             <summary>
+             备  注:数据主题上级ID
+             默认值:
+            </summary>
+        </member>
+        <member name="P:MetadataManagement.Core.Entitys.DataTableQuery.Status">
+             <summary>
+             备  注:状态：1启用，0禁用
+             默认值:
+            </summary>
+        </member>
+    </members>
+</doc>

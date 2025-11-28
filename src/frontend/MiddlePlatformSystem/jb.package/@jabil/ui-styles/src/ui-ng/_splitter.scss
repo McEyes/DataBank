@@ -1,0 +1,14 @@
+.p-splitter {
+	.p-splitter-gutter {
+		background: $lighter-gray;
+		transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+
+		.p-splitter-gutter-handle {
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==);
+		}
+	}
+
+	.p-splitter-gutter-resizing {
+		background: $border-color;
+	}
+}

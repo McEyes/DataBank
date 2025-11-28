@@ -1,0 +1,47 @@
+<div class="content">
+  <level-one-panel [titleName]="'label.dict.title' | translate">
+    <level-two-panel>
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.dictCode' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.dictCode" [ngClass]="{ 'ng-invalid': invalid && !formData.dictCode }" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.dictName' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.dictName" [ngClass]="{ 'ng-invalid': invalid && !formData.dictName }" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'status' | translate}}</label>
+            <p-inputSwitch [(ngModel)]="formData.status2"></p-inputSwitch>
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.sort' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.itemSort" />
+          </div>
+
+          <div class="form-item" style="width: 100%;">
+            <label>{{'field.remark' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.remark" />
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="saveClick()">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>

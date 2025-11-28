@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataAssetManager.DataApiServer.Core</name>
+    </assembly>
+    <members>
+        <member name="T:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity">
+            <summary>
+            数据库表信息表
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.Status">
+            <summary>
+            所属数据源
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.Remark">
+            <summary>
+            表名
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.Version">
+            <summary>
+            表注释
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.ObjectType">
+            <summary>
+            表注释
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.ObjectId">
+            <summary>
+            表注释
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.FieldName">
+            <summary>
+            表注释
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.FieldOldValue">
+            <summary>
+            表注释
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.DataChangeRecordEntity.FieldNewValue">
+            <summary>
+            表注释
+            </summary>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Core.SqlsugarSetup.GetDiff(System.Collections.Generic.List{SqlSugar.DiffLogTableInfo},System.Collections.Generic.List{SqlSugar.DiffLogTableInfo},System.String)">
+            <summary>
+            比较两个数据对象的修改内容
+            </summary>
+            <param name="beforeData"></param>
+            <param name="afterData"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.LimitConfig.Enable">
+            <summary>
+            是否启用限制
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.LimitConfig.Times">
+            <summary>
+            允许的调用次数
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.LimitConfig.Seconds">
+            <summary>
+             时间窗口（秒）
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.LimitConfig.EnableIpLimit">
+            <summary>
+            是否启用 IP 限制
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.LimitConfig.EnableUserLimit">
+            <summary>
+            是否启用用户限制
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Core.LimitConfig.EnableDeviceNameLimit">
+            <summary>
+            是否启用设备名称限制
+            </summary>
+        </member>
+    </members>
+</doc>

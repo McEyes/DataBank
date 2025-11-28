@@ -1,0 +1,29 @@
+// *{
+//   font-family: Roboto;
+// }
+// .index-text-class{
+//     width: calc(100% - 100px);
+//     background-color: #fff;
+//     border: 1px solid #e6e6e6;
+// }
+// .custom-header {
+//     background-color: #fff !important;
+//     color: #000 !important;
+//   }
+//   .custom-body{
+//       background-color: #fff !important;
+//       color: #000 !important; 
+//   }
+// .input-text {
+//     width: calc(100% - 100px);
+//     background-color: #fff;
+//     border: 1px solid #e6e6e6;
+//   }
+
+:host {
+  input {
+    background: transparent;
+    border: 1px solid #dedede;
+    width: 100%;
+  }
+}

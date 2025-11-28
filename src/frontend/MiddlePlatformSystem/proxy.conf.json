@@ -1,0 +1,28 @@
+{
+  "/gateway/datatopicstore": {
+    "target": "http://cnhuam0webstg85:7703/",
+    "changeOrigin": true,
+    "pathRewrite": {"^/gateway/datatopicstore" : ""}
+  },
+
+  "/gateway": {
+    "target": "http://cnhuam0itstg81:4200/",
+    "changeOrigin": true
+  },
+
+  "/language": {
+    "target": "https://jabilbus.jblapps.com/",
+    "changeOrigin": true
+  },
+
+  "/api/account": {
+    "target": "http://cnhuam0webstg85:6001/",
+    "changeOrigin": true
+  },
+
+  "/api": {
+    "target": "http://cnhuam0webstg85:6010/",
+    "changeOrigin": true
+  }
+  
+}

@@ -1,0 +1,57 @@
+<div class="topiccategory-details" style="padding: 10px">
+  <level-one-panel [titleName]="(operate | translate) +' '+('label.topic.domain.definition' | translate)">
+    <level-two-panel [titleName]="'label.basic.information' | translate">
+      <div class="topiccategoryDetails-main">
+        <div class="sys-form form ">
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{ 'field.name' | translate }}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.name" [ngClass]="{ 'ng-invalid': invalid && !formData.name }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{ 'field.english.name' | translate }}</label>
+            <input type="text" class="input-text" pInputText maxlength="50" [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+          </div>
+          <div class="form-item">
+            <label>{{ 'field.parent.subject' | translate }}</label>
+            <p-treeSelect appendTo="body" class="input-treeSelect-text" [(ngModel)]="parentCtlIdInfo" [showClear]="true"
+              [options]="topicTree" [metaKeySelection]="false" [placeholder]="'input.select.please' | translate"
+              [filter]="true" [filterInputAutoFocus]="true" scrollHeight="300px"></p-treeSelect>
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{ 'status' | translate }}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+              [options]="statusList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.status"
+              optionLabel="label" optionValue="value"
+            ></p-dropdown>
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{ 'sort' | translate }}</label>
+             <input type="number" class="input-text" pInputText maxlength="4" [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.sort" [ngClass]="{ 'ng-invalid': invalid && !formData.sort }" />
+          </div>
+          <div class="form-item" style="width: 100%; align-items: flex-start">
+            <label><span class="valid-pre">*</span>{{ 'remark' | translate }}</label>
+            <textarea style="height: 100px; font-size: 14px" class="input-text" rows="5" cols="30" pInputTextarea
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.remark"
+              [ngClass]="{ 'ng-invalid': invalid && !formData.remark }"></textarea>
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+
+  </level-one-panel>
+  <div ngProjectAs="bottom">
+    <div class="bottom-btn">
+      <div class="da-button" (click)="goback()">{{'operate.back' | translate}}</div>
+      <div *ngIf="!noEdit" class="da-button save" (click)="onSumit()" >
+        {{'operate.save' | translate}}
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

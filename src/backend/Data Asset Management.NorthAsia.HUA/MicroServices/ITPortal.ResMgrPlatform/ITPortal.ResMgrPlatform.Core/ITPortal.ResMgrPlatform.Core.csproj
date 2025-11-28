@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.ResMgrPlatform.Core.xml</DocumentationFile>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<None Remove="ITPortal.ResMgrPlatform.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SqlSugarCore" Version="5.1.4.175" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Shared\ITPortal.Core\ITPortal.Core.csproj" />
+	</ItemGroup>
+
+</Project>

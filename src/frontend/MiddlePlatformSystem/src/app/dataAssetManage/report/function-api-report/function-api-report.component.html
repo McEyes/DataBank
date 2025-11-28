@@ -1,0 +1,77 @@
+<div class="chart-container">
+  <div id="function-api-chart" class="chart-item">
+
+  </div>
+
+  <div class="chart-item">
+    <div class="p-title">
+      <img src="./assets/images/home/icon_p5.png">
+      {{'label.report.apiTotalStatistics' | translate}}
+    </div>
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-title">{{'field.report.apimorethan85' | translate}}</div>
+        <div class="stat-value">{{apiMoreThan85}}</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-title">{{'field.report.apilessthan85' | translate}}</div>
+        <div class="stat-value">{{apiLessThan85}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="chart-item scroll-panel">
+    <div class="p-title">
+      <img src="./assets/images/home/icon_p5.png">
+      {{'label.report.functionStatistics' | translate}}
+    </div>
+    <div class="p-content">
+      <p-table [value]="functionTable"  dataKey="key"
+        rowGroupMode="rowspan" groupRowsBy="functionname" sortField="functionname" sortMode="single" >
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width:200px;">Function</th>
+            <th style="width: 200px;">{{'field.data.category' | translate}}</th>
+            <th style="width: 200px;">{{'field.report.apimorethan85' | translate}}</th>
+            <th style="width: 200px;">{{'field.report.apilessthan85' | translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product  let-rowgroup="rowgroup" let-rowspan="rowspan">
+          <tr>
+            <td *ngIf="rowgroup" [attr.rowspan]="rowspan" style="width:200px;"  [title]="product.functionname">{{ product.functionname }}</td>
+            <td style="min-width:200px;" [title]="product.datacategory">{{ 'dict.data_category.'+product.datacategory |  translate }}</td>
+            <td style="width: 200px;" [title]="product.apimorethan85">{{ product.apimorethan85 }}</td>
+            <td style="width: 200px;" [title]="product.apilessthan85">{{ product.apilessthan85 }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="chart-item scroll-panel">
+
+    <div class="p-title">
+      <img src="./assets/images/home/icon_p5.png">
+      {{'label.report.dataCategoryStatistics' | translate}}
+    </div>
+    <div class="p-content">
+      <p-table [value]="dataCategoryTable" [scrollable]="true" scrollHeight="flex">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 200px;">{{'field.data.category' | translate}}</th>
+            <th style="width: 200px;">{{'field.report.apimorethan85' | translate}}</th>
+            <th style="width: 200px;">{{'field.report.apilessthan85' | translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <!-- <td style="min-width:200px;" [title]="product.functionname">{{ 'dict.data_category.'+product.functionname | translate }}</td> -->
+            <td style="min-width:200px;" [title]="product.datacategory">{{ 'dict.data_category.'+product.datacategory |
+              translate }}</td>
+            <td style="width: 200px;" [title]="product.apimorethan85">{{ product.apimorethan85 }}</td>
+            <td style="width: 200px;" [title]="product.apilessthan85">{{ product.apilessthan85 }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+  </div>
+</div>

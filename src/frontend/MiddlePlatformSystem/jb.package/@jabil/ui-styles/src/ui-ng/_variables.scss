@@ -1,0 +1,365 @@
+//
+// jabilbootstrap variables
+// --------------------------------------------------
+
+// Colors
+
+$theme-colors: map-merge(
+	(
+		'primary-light': lighten($primary, 15%),
+		'primary-lighter': lighten($primary, 28%),
+		'primary-dark': #3e4a59,
+		'primary-darker': #002b49,
+		'success-light': #e0f5e9,
+		'info-light': #edf6fd,
+		'warning-light': #fdf3e5,
+		'danger-light': #f9eae8,
+	),
+	$theme-colors
+);
+
+$body-bg-dark: darken($body-bg, 4%) !default;
+$body-bg-light: lighten($body-bg, 1.5%) !default;
+
+$body-color-dark: #373737 !default;
+$body-color-light: $body-bg-dark !default;
+$light-grey: #ccc !default;
+$light-100-gray: #ebebeb !default;
+$lighter-gray: #eee !default;
+$border-color: #ddd !default;
+$primary-blue: #005288 !default;
+$dark-grey: #777 !default;
+$darken-grey: #999 !default;
+$lighter-gray-background-color: #f9f9f9 !default;
+$lighter-gray-200-background-color: #f5f5f5 !default;
+$hover-dark-color: #1d1e1f !default;
+
+$focus-border-color: #007fe5 !default;
+$focus-border: 1px solid $focus-border-color !default;
+$form-invalid-box-shadow-color: rgb(200 72 55 / 25%) !default;
+$form-invalid-box-shadow: 0 0 0 0.2rem $form-invalid-box-shadow-color !default;
+
+// Paragraphs
+
+$paragraph-line-height: 1.6 !default;
+$paragraph-line-height-lg: 1.8 !default;
+
+// Fonts
+
+$font-size-root: 1rem !default;
+$enable-text-optimize-legibility: true !default; // you can set it to false to increase rendering performance
+
+// Z-index main list additions
+
+$zindex-block-pinned: $zindex-fixed + 1 !default;
+$zindex-sidebar: $zindex-fixed + 2 !default;
+$zindex-page-overlay: $zindex-fixed + 3 !default;
+$zindex-side-overlay: $zindex-fixed + 4 !default;
+$zindex-block-fullscreen: $zindex-fixed + 5 !default;
+
+// Header
+
+$header-height: 3.75rem !default; // Best values > 3rem and < 5rem
+$header-bg: $white !default;
+$header-dark-bg: theme-color('primary-darker') !default;
+
+// Sidebar and Side Overlay
+
+$sidebar-bg: $white !default;
+$sidebar-dark-bg: theme-color('primary-darker') !default;
+$sidebar-width: 230px !default;
+$sidebar-mini-width: 60px !default;
+
+$side-overlay-bg: $white !default;
+$side-overlay-width: 320px !default;
+$side-overlay-hover-width: 15px !default;
+
+$side-transition: 0.28s ease-out !default;
+
+// Main Navigation
+
+$main-nav-transition: 0.25s ease-out !default;
+
+// Layout Spaces
+
+$space-base: 1.875rem !default; // Content padding
+$space-mobile: 1rem !default; // Content padding in mobile
+$space-side: 1.25rem !default; // Content padding inside side content
+$space-row-gutter-tiny: 0.375rem !default; // Row with tiny gutter
+$space-block: 1.25rem !default; // Block padding
+$space-boxed: 1280px !default; // Boxed content max width
+$space-narrow: 95% !default; // Narrow content max width
+
+// Third Party
+
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts' !default;
+$simple-line-font-path: '~simple-line-icons/fonts/' !default;
+$simple-line-icon-prefix: 'si-' !default;
+
+// Messages
+
+$info-color: #285778 !default;
+$info-background: #dbeefa !default;
+$info-border: #cde7f8 !default;
+$info-box-shadow: inset 0 -0.125rem #c5e3f7 !default;
+$message-info-link-color: #1b3b52 !default;
+
+$success-color: #1f5e39 !default;
+$success-background: #d8f0e2 !default;
+$success-border: #c8ead6 !default;
+$success-box-shadow: inset 0 -0.125rem #c6e9d4 !default;
+$message-success-link-color: #123822 !default;
+
+$warn-color: #76430c !default;
+$warn-background: #f9e6d1 !default;
+$warn-border: #f7dcbe !default;
+$warn-box-shadow: inset 0 -0.125rem #f6daba !default;
+$message-warn-link-color: #482907 !default;
+
+$error-color: #68251d !default;
+$error-background: #f4dad7 !default;
+$error-border: #f0ccc7 !default;
+$error-box-shadow: inset 0 -0.125rem #efc8c3 !default;
+$message-error-link-color: #401712 !default;
+
+$primary-color: #001d35 !default;
+$primary-background: #ccd7e0 !default;
+$primary-border: #b8c7d4 !default;
+$primary-box-shadow: inset 0 -0.125rem #bccbd6 !default;
+$message-primary-link-color: #000102 !default;
+
+$secondary-color: #383d41 !default;
+$secondary-background: #e2e3e5 !default;
+$secondary-border: #d6d8db !default;
+$secondary-box-shadow: inset 0 -0.125rem #d5d6d9 !default;
+$message-secondary-link-color: #202326 !default;
+
+$light-color: #818182 !default;
+$light-background: #fefefe !default;
+$light-border: #fdfdfe !default;
+$light-box-shadow: inset 0 -0.125rem #f1f1f1 !default;
+$message-light-link-color: #686868 !default;
+
+$dark-color: #1b1e21 !default;
+$dark-background: #d6d8d9 !default;
+$dark-border: #c6c8ca !default;
+$dark-box-shadow: inset 0 -0.125rem #c9cbcd !default;
+$message-dark-link-color: #040505 !default;
+
+$message-close-shadow-color: #ffe8b3 !default;
+
+// Calendars
+
+$calendar_arrow_size: 1.25em !default;
+$calendar-border: 1px solid $border-color !default;
+$calendar-border-radius: 4px !default;
+$calendar_hover: $lighter-gray !default;
+$calendar-padding: 1rem !default;
+$calendar-inner-padding: 0.375rem !default;
+$calendar-shadow: 0 0.25rem 2rem rgba(0, 0, 0, 0.08) !default;
+$today: #faeab9 !default;
+$today_active_bg: #ffc966 !default;
+$today_active_border: #f59e00 !default;
+
+// Toasts
+
+$toast-padding-x: 1.25rem !default;
+$toast-padding-y: 0.75rem !default;
+
+// Dialogs
+
+$dialog-backdrop-bg-color: rgba(0, 0, 0, 0.25) !default;
+$dialog-padding: 1.25rem !default;
+$dialog-margin: 1.25rem !default;
+$dialog-padding-y: 0.625rem !default;
+$dialog-title-font-size: 1.25rem !default;
+$dialog-btn-border-radius: 0.2rem !default;
+$yes-btn-shadow: 0 0 0 0.2rem rgba(38, 86, 124, 0.5) !default;
+$yes-btn-hover-bg-color: #00233f !default;
+$yes-btn-hover-border-color: #001c32 !default;
+$no-btn-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5) !default;
+$no-btn-hover-bg-color: #dae0e5 !default;
+$no-btn-hover-border-color: #d3d9df !default;
+$footer-border-color: $light-100-gray !default;
+
+// Auto-complete
+$shadow-color: rgba(0, 56, 101, 0.25) !default;
+$auto-complete-box-shadow: 0 0 0 0.2rem $shadow-color !default;
+$auto-complete-panel-border: 1px solid $border-color !default;
+$primary-button-hover-bg-color: #00233f !default;
+$primary-button-hover-border-color: #001c32 !default;
+
+//Tab-view
+
+$tab-padding-x: 1.25rem !default;
+$tab-padding-y: 0.75rem !default;
+$tab-view-box-shadow-color: rgba(0, 0, 0, 0.01) !default;
+$tab-view-box-shadow: 0 0.125rem $tab-view-box-shadow-color !default;
+
+// tab-menu
+$tab-menu-box-shadow-color: rgba(0, 0, 0, 0.01) !default;
+$tab-menu-box-shadow: 0 0.125rem $tab-menu-box-shadow-color !default;
+
+// Custom Scrollbar
+$scroll-handle-dark: rgba(0, 135, 244, 0.5) !default;
+$scroll-handle-light: rgba(87, 87, 87, 0.5) !default;
+
+// multiselect
+
+$multi-select-pill-background-color: #00233f !default;
+$multi-select-pill-border-color: #001c32 !default;
+
+// tree
+$tree-toggler-color: #073f75 !default;
+$tree-node-active-color: #007ad9 !default;
+$tree-node-content-box-shadow-color: #8dcdff !default;
+$tree-mode-selected-background-color: #007c59 !default;
+$tree-filter-focus-border-color: #abc0d2 !default;
+$tree-node-background-color: rgba(0, 0, 0, 0.1) !default;
+$tree-node-border-color: rgba(0, 0, 0, 0.2) !default;
+$tree-node-border: 1px solid $tree-node-border-color !default;
+$tree-node-highlight-background-color: rgba(0, 0, 0, 0.1) !default;
+$tree-filter-input-focus-box-shadow-color: rgba(102, 175, 233, 0.4) !default;
+$tree-filter-input-focus-box-shadow-inset-color: rgba(
+	102,
+	175,
+	233,
+	0.4
+) !default;
+$tree-filter-input-focus-box-shadow: 0 0 6px
+	$tree-filter-input-focus-box-shadow-color !default;
+$tree-filter-input-focus-box-shadow-inset: inset 0 1px 1px
+	$tree-filter-input-focus-box-shadow-inset-color !default;
+
+// checkbox
+$checkbox-focus-box-shadow-color: rgba(0, 56, 101, 0.25) !default;
+
+// dropdown
+$dropdown-hover-box-shadow-color: rgba(0, 0, 0, 0.06) !default;
+
+// carousel
+$carousel-btn-background-color: rgba(0, 0, 0, 0.03) !default;
+$carousel-btn-hover-background-color: rgba(0, 0, 0, 0.15) !default;
+$carousel-btn-focus-box-shadow-color: rgba(108, 117, 125, 0.5) !default;
+
+// layout
+$layout-right-container-hover-box-shadow: rgba(0, 0, 0, 0.3) !default;
+$layout-left-container-hover-box-shadow: rgba(0, 0, 0, 0.3) !default;
+$layout-page-overlay-background-color: rgba(0, 0, 0, 0.6) !default;
+
+// menu
+$menu-box-shadow-color: rgba(0, 0, 0, 0.08) !default;
+$menu-box-shadow: 0 0.25rem 2rem $menu-box-shadow-color !default;
+
+//overlay panel
+$overlay-panel-close-focus-box-shadow: 0 0 0 0.2rem rgb(38 86 124 / 50%) !default;
+
+// progress bar
+$progress-bar-stripped-gradient-color: rgba(255, 255, 255, 0.15) !default;
+
+// steps
+$steps-menu-focus-box-shadow-color: rgba(0, 56, 101, 0.25) !default;
+$steps-menu-focus-box-shadow: 0 0 0 0.2rem $steps-menu-focus-box-shadow-color !default;
+$steps-item-link-focus-box-shadow-color: rgba(216, 217, 219, 0.5) !default;
+$steps-item-link-focus-box-shadow: 0 0 0 0.2rem
+	$steps-item-link-focus-box-shadow-color !default;
+$steps-item-link-title-color: rgba(255, 255, 255, 0.5) !default;
+
+// tired-menu
+$tired-menu-sub-list-box-shadow-color: rgba(0, 0, 0, 0.16) !default;
+$tired-menu-sub-list-box-shadow: 0 0 6px 0 $tired-menu-sub-list-box-shadow-color !default;
+
+// primeng core
+$prime-ng-error-color: #a94442 !default;
+$prime-ng-link-color: #0062cc !default;
+$prime-ng-link-hover-color: #006fe6 !default;
+$prime-ng-form-focus-border-color: #80bdff !default;
+$prime-ng-input-switch-color: #a8acb1 !default;
+$prime-ng-editor-gray-color: #444 !default;
+$prime-nt-rating-ban-color: #f790c8 !default;
+$prime-nt-rating-ban-hover-color: #f9a8d4 !default;
+$prime-ng-hover-icon-color: #bd9090 !default;
+$prime-ng-invalid-color: #b94a48 !default;
+$prime-ng-component-overlay-background-color: rgba(0, 0, 0, 0.4) !default;
+$prime-ng-input-text-focus-box-shadow-color: rgba(0, 123, 255, 0.25) !default;
+$prime-ng-button-focus-box-shadow-color: rgba(38, 86, 124, 0.5) !default;
+$prime-mg-chkbox-focus-box-shadow-color: rgba(0, 123, 255, 0.25) !default;
+$prime-ng-chips-focus-box-shadow-color: rgba(0, 0, 0, 0.2) !default;
+$prime-ng-radio-btn-focus-box-shadow-color: rgba(0, 123, 255, 0.25) !default;
+$prime-ng-input-switch-focus-box-shadow-color: rgba(0, 123, 255, 0.25) !default;
+$prime-ng-fc-active-button-box-shadow-color: rgba(0, 0, 0, 0.125) !default;
+$prime-ng-secondary-btn-hover-background: #5a6268 !default;
+$prime-ng-secondary-btn-hover-border-color: #545b62 !default;
+$prime-ng-secondary-btn-focus-box-shadow-color: rgba(
+	108,
+	117,
+	125,
+	0.5
+) !default;
+$prime-ng-success-btn-background: #28a745 !default;
+$prime-ng-success-btn-hover-background: #218838 !default;
+$prime-ng-success-btn-hover-border-color: #1e7e34 !default;
+$prime-ng-success-btn-active-border-color: #1c7430 !default;
+$prime-ng-success-btn-focus-box-shadow-color: rgba(40, 167, 69, 0.5) !default;
+
+$prime-ng-info-btn-background: #17a2b8 !default;
+$prime-ng-info-btn-hover-background: #138496 !default;
+$prime-ng-info-btn-hover-border-color: #117a8b !default;
+$prime-ng-info-btn-active-border-color: #10707f !default;
+$prime-ng-info-btn-focus-box-shadow-color: rgba(23, 162, 184, 0.5) !default;
+
+$prime-ng-warning-btn-background: #ffc107 !default;
+$prime-ng-warning-btn-hover-background: #e0a800 !default;
+$prime-ng-warning-btn-hover-border-color: #d39e00 !default;
+$prime-ng-warning-btn-active-border-color: #c69500 !default;
+$prime-ng-warning-btn-focus-box-shadow-color: rgba(255, 193, 7, 0.5) !default;
+
+$prime-ng-danger-btn-background: #dc3545 !default;
+$prime-ng-danger-btn-hover-background: #c82333 !default;
+$prime-ng-danger-btn-hover-border-color: #bd2130 !default;
+$prime-ng-danger-btn-active-border-color: #b21f2d !default;
+$prime-ng-danger-btn-focus-box-shadow-color: rgba(220, 53, 69, 0.5) !default;
+
+$prime-ng-light-btn-background: #f8f9fa !default;
+$prime-ng-light-btn-hover-background: #e2e6ea !default;
+$prime-ng-light-btn-hover-border-color: #dae0e5 !default;
+$prime-ng-light-btn-active-border-color: #d3d9df !default;
+$prime-ng-light-btn-focus-box-shadow-color: rgba(248, 249, 250, 0.5) !default;
+
+$prime-ng-dark-btn-background: #343a40 !default;
+$prime-ng-dark-btn-hover-background: #23272b !default;
+$prime-ng-dark-btn-hover-border-color: #1d2124 !default;
+$prime-ng-dark-btn-active-border-color: #171a1d !default;
+$prime-ng-dark-btn-focus-box-shadow-color: rgba(52, 58, 64, 0.5) !default;
+
+$prime-ng-slider-background-color: #dee2e6 !default;
+$prime-ng-slider-hover-color: #2196f3 !default;
+$prime-ng-slider-box-shadow-color: #a6d5fa !default;
+
+$prime-ng-toggle-button-focus-background: #e6e6e6 !default;
+$prime-ng-toggle-button-focus-border: #adadad !default;
+
+$prime-ng-panel-content-border: #dce1e7 !default;
+$prime-ng-fieldset-background: #dcdcdc !default;
+$prime-ng-fieldset-border-color: #c4c4c4 !default;
+
+$prime-ng-growl-info-color: #31708f !default;
+$prime-ng-growl-info-background-color: #d9edf7 !default;
+$prime-ng-growl-info-border-color: #bcdff1 !default;
+$prime-ng-growl-info-image-color: #5bb1dc !default;
+
+$prime-ng-growl-warn-color: #8a6d3b !default;
+$prime-ng-growl-warn-background-color: #fcf8e3 !default;
+$prime-ng-growl-warn-border-color: #faf2cc !default;
+$prime-ng-growl-warn-image-color: #edd559 !default;
+
+$prime-ng-growl-error-color: $prime-ng-error-color !default;
+$prime-ng-growl-error-background-color: #f2dede !default;
+$prime-ng-growl-error-border-color: #ebcccc !default;
+$prime-ng-growl-error-image-color: #c77070 !default;
+
+$prime-ng-growl-success-color: #3c763d !default;
+$prime-ng-growl-success-background-color: #dff0d8 !default;
+$prime-ng-growl-success-border-color: #d6e9c6 !default;
+$prime-ng-growl-success-image-color: #a3d48e !default;
+// end of primeng core

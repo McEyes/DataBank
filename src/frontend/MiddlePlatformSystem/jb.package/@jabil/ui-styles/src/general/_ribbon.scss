@@ -1,0 +1,139 @@
+//
+// Ribbon
+// --------------------------------------------------
+
+.ribbon {
+	position: relative;
+	min-height: 3.25rem;
+}
+
+.ribbon-box {
+	position: absolute;
+	top: 0.75rem;
+	right: 0;
+	z-index: 5;
+	height: 2.25rem;
+	padding: 0 0.75rem;
+	font-weight: $font-weight-bold;
+	line-height: 2.25rem;
+	border-top-left-radius: $border-radius;
+	border-bottom-left-radius: $border-radius;
+
+	&:before {
+		position: absolute;
+		display: block;
+		width: 0;
+		height: 0;
+		content: '';
+	}
+}
+
+// Bookmark variation
+.ribbon-bookmark {
+	.ribbon-box {
+		padding-left: 0.625rem;
+		border-radius: 0 !important;
+	}
+
+	.ribbon-box:before {
+		top: 0;
+		right: 100%;
+		height: 2.25rem;
+		border: 1rem solid;
+		border-right-width: 0;
+		border-left-width: 0.625rem;
+	}
+}
+
+// Modern variation
+.ribbon-modern {
+	.ribbon-box {
+		top: 0;
+		padding-right: 0.75rem;
+		padding-left: 0.75rem;
+		border-radius: 0 !important;
+	}
+
+	.ribbon-box:before {
+		right: 100%;
+		border: 1.125rem solid;
+	}
+}
+
+// Position variations
+.ribbon-left {
+	.ribbon-box {
+		right: auto;
+		left: 0;
+		border-radius: 0;
+		border-top-right-radius: $border-radius;
+		border-bottom-right-radius: $border-radius;
+	}
+
+	&.ribbon-bookmark {
+		.ribbon-box {
+			padding-right: 0.625rem;
+			padding-left: 0.75rem;
+		}
+
+		.ribbon-box:before {
+			right: auto;
+			left: 100%;
+			border-right-width: 0.625rem;
+			border-left-width: 0;
+		}
+	}
+
+	&.ribbon-modern {
+		.ribbon-box:before {
+			right: auto;
+			left: 100%;
+		}
+	}
+}
+
+.ribbon-bottom {
+	.ribbon-box {
+		top: auto;
+		bottom: 0.75rem;
+	}
+
+	&.ribbon-modern {
+		.ribbon-box {
+			bottom: 0;
+		}
+	}
+}
+
+// Color variation
+.ribbon-light {
+	@include ribbon-variation($body-bg-dark, $body-color);
+}
+
+.ribbon-dark {
+	@include ribbon-variation(theme-color('dark'), $white);
+}
+
+.ribbon-primary {
+	@include ribbon-variation(theme-color('primary'), $white);
+}
+
+.ribbon-success {
+	@include ribbon-variation(theme-color('success'), $white);
+}
+
+.ribbon-info {
+	@include ribbon-variation(theme-color('info'), $white);
+}
+
+.ribbon-warning {
+	@include ribbon-variation(theme-color('warning'), $white);
+}
+
+.ribbon-danger {
+	@include ribbon-variation(theme-color('danger'), $white);
+}
+
+.ribbon-glass {
+	@include ribbon-variation($general-ribbon-glass-variation-color, $white);
+}

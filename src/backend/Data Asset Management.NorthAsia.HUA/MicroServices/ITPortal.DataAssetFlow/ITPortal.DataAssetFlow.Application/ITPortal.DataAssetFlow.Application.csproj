@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.DataAssetFlow.Application.xml</DocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="ApplyFlowAttacchments\**" />
+	  <Compile Remove="FlowDataGrantApplys\**" />
+	  <Compile Remove="FlowDataSourceApplys\**" />
+	  <Compile Remove="FlowDataTableGrantApplys\**" />
+	  <EmbeddedResource Remove="ApplyFlowAttacchments\**" />
+	  <EmbeddedResource Remove="FlowDataGrantApplys\**" />
+	  <EmbeddedResource Remove="FlowDataSourceApplys\**" />
+	  <EmbeddedResource Remove="FlowDataTableGrantApplys\**" />
+	  <None Remove="ApplyFlowAttacchments\**" />
+	  <None Remove="FlowDataGrantApplys\**" />
+	  <None Remove="FlowDataSourceApplys\**" />
+	  <None Remove="FlowDataTableGrantApplys\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="applicationsettings.json" />
+		<None Remove="ITPortal.DataAssetFlow.Application.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="applicationsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.DataAssetFlow.Core\ITPortal.DataAssetFlow.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="System\Services\" />
+	</ItemGroup>
+
+</Project>

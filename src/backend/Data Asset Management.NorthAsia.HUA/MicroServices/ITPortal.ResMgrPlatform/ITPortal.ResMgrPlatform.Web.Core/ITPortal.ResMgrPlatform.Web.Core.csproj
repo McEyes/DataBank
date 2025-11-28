@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.ResMgrPlatform.Web.Core.xml</DocumentationFile>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Extensions\**" />
+	  <Compile Remove="Handlers\**" />
+	  <EmbeddedResource Remove="Extensions\**" />
+	  <EmbeddedResource Remove="Handlers\**" />
+	  <None Remove="Extensions\**" />
+	  <None Remove="Handlers\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="ITPortal.ResMgrPlatform.Web.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.ResMgrPlatform.Application\ITPortal.ResMgrPlatform.Application.csproj" />
+	</ItemGroup>
+
+</Project>

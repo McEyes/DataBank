@@ -1,0 +1,273 @@
+@use 'sass:selector';
+
+@import '~@fortawesome/fontawesome-free/scss/variables';
+@import './mixins';
+
+// MIXINS
+@mixin messages-styles(
+	$color,
+	$backgroundColor,
+	$borderColor,
+	$boxShadow,
+	$linkColor
+) {
+	color: $color;
+	background-color: $backgroundColor;
+	border-color: $borderColor;
+	box-shadow: $boxShadow;
+	.p-message-icon {
+		color: $color;
+	}
+	.p-message-close {
+		color: $color;
+	}
+	.p-messages-link {
+		color: $linkColor;
+	}
+}
+
+@mixin message-styles($color, $backgroundColor, $borderColor, $boxShadow) {
+	color: $color;
+	background-color: $backgroundColor;
+	border-color: $borderColor;
+	box-shadow: $boxShadow;
+	.p-message-icon {
+		color: $color;
+	}
+}
+
+.p-message {
+	display: flex;
+	.p-message-icon {
+		display: inline-block;
+		padding: 0;
+		font-size: 1.5rem;
+		vertical-align: middle;
+	}
+	.p-message-summary {
+		margin-left: 0.25rem;
+		padding: 0.25rem;
+		padding: 0.25rem 0 0.25rem 0;
+		font-weight: bold;
+	}
+	.p-message-detail {
+		margin-left: 0.25rem;
+		padding: 0.25rem;
+		padding: 0.25rem 0 0.25rem 0;
+	}
+	.p-message-close {
+		top: 5px;
+		right: 5px;
+		cursor: pointer;
+
+		&.p-link {
+			position: absolute;
+		}
+	}
+
+	&.p-message-noicon {
+		ul {
+			margin: 0 1.5rem 0 0;
+		}
+	}
+}
+body {
+	.p-inline-message {
+		position: relative;
+		margin: 0;
+		margin-right: 0.25rem;
+		padding: 0.5rem 0.75rem;
+		border: 0 solid transparent;
+		border-radius: 0;
+		.p-inline-message-icon {
+			display: none;
+			margin-right: 0.75rem;
+			font-size: 1.25rem;
+		}
+		.p-inline-message-text {
+			font-size: 1rem;
+		}
+
+		&.p-inline-message-info {
+			@include message-styles(
+				$info-color,
+				$info-background,
+				$info-border,
+				$info-box-shadow
+			);
+		}
+		&.p-inline-message-success {
+			@include message-styles(
+				$success-color,
+				$success-background,
+				$success-border,
+				$success-box-shadow
+			);
+		}
+		&.p-inline-message-warn {
+			@include message-styles(
+				$warn-color,
+				$warn-background,
+				$warn-border,
+				$warn-box-shadow
+			);
+		}
+		&.p-inline-message-error {
+			@include message-styles(
+				$error-color,
+				$error-background,
+				$error-border,
+				$error-box-shadow
+			);
+		}
+	}
+
+	p-message[class~='p-message-show-severity-icon'] {
+		.p-message-icon {
+			display: initial;
+		}
+	}
+
+	.p-message {
+		position: relative;
+		margin-bottom: 1rem;
+		padding: 0.75rem 1.25rem;
+		border: 0 solid transparent;
+		border-radius: 0;
+		// Hide severity icon
+		.p-message-icon {
+			display: none;
+			font-size: 1.5rem;
+			line-height: 1.3;
+		}
+		.p-messages-link {
+			font-weight: 700;
+		}
+		.p-message-wrapper {
+			display: block;
+		}
+		.p-messages-heading {
+			display: block;
+			margin: 10px 0;
+			color: inherit;
+		}
+		.p-message-close {
+			top: 0.25rem;
+			overflow: hidden;
+			font-size: 1.5rem;
+			line-height: 1;
+			border-radius: 3px;
+			transition: box-shadow 0.2s;
+			&:focus {
+				outline: 0 none;
+				outline-offset: 0;
+				box-shadow: 0 0 0 0.2em $message-close-shadow-color;
+			}
+		}
+
+		// add styleClass in case we need severity icon
+		&.p-messages-show-severity-icon {
+			.p-message-icon {
+				display: initial;
+			}
+		}
+		&.p-message-block {
+			display: block;
+		}
+		&.p-message-info {
+			@include messages-styles(
+				$info-color,
+				$info-background,
+				$info-border,
+				$info-box-shadow,
+				$message-info-link-color
+			);
+		}
+		&.p-message-success {
+			@include messages-styles(
+				$success-color,
+				$success-background,
+				$success-border,
+				$success-box-shadow,
+				$message-success-link-color
+			);
+		}
+		&.p-message-warn {
+			@include messages-styles(
+				$warn-color,
+				$warn-background,
+				$warn-border,
+				$warn-box-shadow,
+				$message-warn-link-color
+			);
+		}
+		&.p-message-error {
+			@include messages-styles(
+				$error-color,
+				$error-background,
+				$error-border,
+				$error-box-shadow,
+				$message-error-link-color
+			);
+		}
+	}
+
+	// Custom styled message
+	p-messages .p-messages-severity-primary .p-message,
+	p-message.p-message-severity-primary .p-inline-message {
+		@include messages-styles(
+			$primary-color,
+			$primary-background,
+			$primary-border,
+			$primary-box-shadow,
+			$message-primary-link-color
+		);
+	}
+	p-messages .p-messages-severity-secondary .p-message,
+	p-message.p-message-severity-secondary .p-inline-message {
+		@include messages-styles(
+			$secondary-color,
+			$secondary-background,
+			$secondary-border,
+			$secondary-box-shadow,
+			$message-secondary-link-color
+		);
+	}
+	p-messages .p-messages-severity-light .p-message,
+	p-message.p-message-severity-light .p-inline-message {
+		@include messages-styles(
+			$light-color,
+			$light-background,
+			$light-border,
+			$light-box-shadow,
+			$message-light-link-color
+		);
+	}
+	p-messages .p-messages-severity-dark .p-message,
+	p-message.p-message-severity-dark .p-inline-message {
+		@include messages-styles(
+			$dark-color,
+			$dark-background,
+			$dark-border,
+			$dark-box-shadow,
+			$message-dark-link-color
+		);
+	}
+
+	@include icon-convert(
+		selector.unify('.p-messages-icon', '.pi-check'),
+		$fa-var-check-circle
+	);
+	@include icon-convert(
+		selector.unify('.p-message-icon', '.pi-check'),
+		$fa-var-check-circle
+	);
+	@include icon-convert(
+		selector.unify('.p-messages-icon', '.pi-times'),
+		$fa-var-times-circle
+	);
+	@include icon-convert(
+		selector.unify('.p-message-icon', '.pi-times'),
+		$fa-var-times-circle
+	);
+}

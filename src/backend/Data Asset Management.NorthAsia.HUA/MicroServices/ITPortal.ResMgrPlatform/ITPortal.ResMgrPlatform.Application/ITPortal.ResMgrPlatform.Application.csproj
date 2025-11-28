@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.ResMgrPlatform.Application.xml</DocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="File\Services\**" />
+	  <EmbeddedResource Remove="File\Services\**" />
+	  <None Remove="File\Services\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="applicationsettings.json" />
+		<None Remove="ITPortal.ResMgrPlatform.Application.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="applicationsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="SMBLibrary" Version="1.5.4.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.ResMgrPlatform.Core\ITPortal.ResMgrPlatform.Core.csproj" />
+	</ItemGroup>
+
+</Project>

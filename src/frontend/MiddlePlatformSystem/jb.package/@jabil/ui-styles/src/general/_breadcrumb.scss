@@ -1,0 +1,21 @@
+//
+// Breadcrumb
+// --------------------------------------------------
+
+.breadcrumb.breadcrumb-alt {
+	.breadcrumb-item {
+		font-weight: $font-weight-bold;
+		font-size: $font-size-sm;
+	}
+
+	.breadcrumb-item + .breadcrumb-item:before {
+		position: relative;
+		top: 1px;
+		width: 1.25rem;
+		color: gray('400');
+		font-size: $font-size-sm;
+		/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+		font-family: 'simple-line-icons';
+		content: '\e606';
+	}
+}

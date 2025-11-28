@@ -1,0 +1,28 @@
+<div class="content">
+  <level-one-panel [titleName]="(titleType[titleName] | translate) +' '+ ('label.role.name' | translate)">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'label.role.code' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'label.role.name' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.name" [ngClass]="{ 'ng-invalid': invalid && !formData.name }" />
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="saveClick()" *ngIf="!noEdit && titleName != 'look'">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>

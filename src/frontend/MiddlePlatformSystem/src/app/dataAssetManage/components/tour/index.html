@@ -1,0 +1,17 @@
+<div class="tour">
+    <div class='step1'>
+        <div class="content">
+
+            <div class="info">
+                {{'info.tour.step1.tips' | translate}}
+            </div>
+            <img *ngIf="lang === 'en'" (click)="step1ClickEvent()" class="bg" src="./assets/images/common/img_masterdata.png">
+            <img *ngIf="lang === 'zh'"  (click)="step1ClickEvent()" class="bg" src="./assets/images/common/img_masterdata_cn.png">
+            <img (click)="closePanel()" class="close-btn" src="./assets/images/common/delete.png">
+            <div class="tip" [ngClass]="lang">
+                <p-checkbox [(ngModel)]="showStatus" value="1" inputId="ny"></p-checkbox>
+                <label for="ny">{{'info.do.not.prompt.again' | translate}}</label>
+            </div>
+        </div>
+    </div>
+</div>

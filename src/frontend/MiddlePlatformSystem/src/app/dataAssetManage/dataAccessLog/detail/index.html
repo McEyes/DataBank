@@ -1,0 +1,106 @@
+<div class="xd-all-box" style="height:100%;">
+  <level-one-panel
+    [titleName]="'label.data.access.log' | translate">
+    <level-two-panel [titleName]="'label.basic.information' | translate">
+      <div class="api-log-form sys-form">
+        <div class="form-item">
+          <label>{{ 'field.interface.name' | translate }}</label>
+          <input
+            type="text"
+            class="input-text"
+            pInputText
+            readonly
+            [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.apiName" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{ 'field.caller.ip' | translate }}</label>
+          <input
+            type="text"
+            class="input-text"
+            pInputText
+            readonly
+            [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.callerIp" />
+        </div>
+        <div class="form-item">
+          <label>{{ 'field.call.interface.url' | translate }}</label>
+          <input
+            [pTooltip]="formData.callerUrl"
+            tooltipPosition="top"
+            type="text"
+            class="input-text"
+            pInputText
+            readonly
+            [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.callerUrl" />
+        </div>
+        <div class="form-item">
+          <label>{{ 'field.call.params' | translate }}</label>
+          <input
+            [pTooltip]="formData.callerParams"
+            tooltipPosition="top"
+            type="text"
+            class="input-text"
+            pInputText
+            readonly
+            [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.callerParams" />
+        </div>
+
+        <div class="form-item">
+          <label>{{ 'field.call.time' | translate }}</label>
+          <input
+            [pTooltip]="formData.callerParams"
+            tooltipPosition="top"
+            type="text"
+            class="input-text"
+            pInputText
+            readonly
+            [placeholder]="'input.please' | translate"
+            [value]="formData.callerDate | date:'yyyy-MM-dd'" />
+        </div>
+        <div class="form-item">
+          <label>{{ 'field.use.time' | translate }}</label>
+          <input
+            type="number"
+            class="input-text"
+            pInputText
+            maxlength="50"
+            readonly
+            [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.time" />
+        </div>
+        <div class="form-item" style="width: 100%">
+          <label>{{ 'status' | translate }}</label>
+          <div class="flex">
+            <div class="radio-text">
+              <p-radioButton name="status" [value]="1" [(ngModel)]="formData.status"
+                [label]="'info.success' | translate" [disabled]="true"></p-radioButton>
+              <p-radioButton name="status" [value]="0" [(ngModel)]="formData.status"
+                [label]="'info.fail' | translate" [disabled]="true"></p-radioButton>
+            </div>
+          </div>
+        </div>
+        <div class="form-item" style="align-items: flex-start; width: 100%">
+          <label>{{ 'field.information.record' | translate }}</label>
+          <textarea
+            style="height: 100px"
+            rows="5"
+            cols="30"
+            class="input-text"
+            pInputTextarea
+            readonly
+            [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.msg"></textarea>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div ngProjectAs="bottom">
+    <div  class="bottom-btn">
+      <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    </div>
+  </div>
+  <p-toast position="top-center" key="key"></p-toast>
+</div>

@@ -1,0 +1,45 @@
+﻿<default>.top20251025001.building_name <- trace_ehs.ehs_project.building_name
+<default>.top20251025001.building_no <- trace_ehs.ehs_project.building_no
+<default>.top20251025001.id <- trace_ehs.ehs_project.id
+<default>.top20251025001.project_code <- trace_ehs.ehs_project.project_code
+<default>.top20251025001.project_name <- trace_ehs.ehs_project.project_name
+
+
+_default_.topic20251025002.building_name <- trace_ehs.ehs_project.building_name
+_default_.topic20251025002.building_no <- trace_ehs.ehs_project.building_no
+_default_.topic20251025002.id <- trace_ehs.ehs_project.id
+_default_.topic20251025002.project_code <- trace_ehs.ehs_project.project_code
+_default_.topic20251025002.project_name <- trace_ehs.ehs_project.project_name
+
+
+
+Statements(#): 1
+Source Tables:  
+trace_emrb.tp_material_scrap_report   
+trace_kpi.mes_mrb_workcell_customer_mapping  
+trace_kpi.rr_std_price_by_model    
+trace_mes.tp_shipping_record
+
+Target Tables:
+
+
+
+<default>.tttt.bb <- cte.bb\n
+<default>.tttt.cc <- cte.cc\n
+<default>.tttt.dd <- cte.dd\n
+<default>.tttt.tt <- cte.aa\n
+<default>.tttt.tt <- cte.bb\n
+
+
+
+_default_.table1.aa <- <default>.table33.aa
+_default_.table1.bb <- <default>.table33.bb
+_default_.table1.cc <- <default>.table33.cc
+_default_.table1.cte1 <- <default>.table33.dd
+
+
+_default_.table1.aa <- <default>.table33.aa\n
+_default_.table1.bb <- <default>.table33.bb\n
+_default_.table1.cc <- <default>.table33.cc\n
+_default_.table1.cte1 <- <default>.table33.cc\n
+_default_.table1.cte1 <- <default>.table33.dd\n

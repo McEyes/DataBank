@@ -1,0 +1,112 @@
+body {
+	.p-splitbutton {
+		&.p-buttonset {
+			.p-menu {
+				width: 100%;
+				min-width: 11.25rem;
+			}
+		}
+	}
+	.p-menu {
+		max-width: 12rem;
+		margin: 0.125rem 0 0;
+		padding: 0.5rem 0;
+		color: $body-color;
+		font-size: 1rem;
+		text-align: left;
+		list-style: none;
+		background-color: $white;
+		background-clip: padding-box;
+		border: 1px solid $border-color;
+		border-radius: 0;
+		box-shadow: $menu-box-shadow;
+		.p-menu-dynamic {
+			position: absolute;
+		}
+		.p-menuitem-link {
+			display: block;
+			clear: both;
+			width: 100%;
+			padding: 0.5rem 0.75rem;
+			color: $body-color;
+			font-weight: 400;
+			white-space: nowrap;
+			text-align: inherit;
+			background-color: transparent;
+			border: 0;
+			.p-menuitem-text {
+				color: $body-color;
+				line-height: 1.5;
+			}
+			.p-menuitem-icon {
+				display: inline-block;
+				min-width: 20px;
+				margin-right: 0.5rem;
+				color: $body-color;
+				text-align: center;
+			}
+			&.p-disabled {
+				color: $gray-600;
+				background-color: transparent;
+				pointer-events: none;
+			}
+			&:not(.p-disabled):hover {
+				color: $body-color;
+				text-decoration: none;
+				background-color: $body-bg;
+				.p-menuitem-text {
+					color: $body-color;
+				}
+				.p-menuitem-icon {
+					color: $body-color;
+				}
+			}
+			&:not(.p-disabled):active {
+				color: $white;
+				text-decoration: none;
+				background-color: $primary;
+				.p-menuitem-text {
+					color: $white;
+				}
+				.p-menuitem-icon {
+					color: $white;
+				}
+			}
+			&:focus {
+				color: $body-color;
+				text-decoration: none;
+				background-color: $body-bg;
+				outline: 0 none;
+				outline-offset: 0;
+			}
+			&.p-menuitem-link-active {
+				color: $white;
+				text-decoration: none;
+				background-color: $primary;
+				.p-menuitem-text {
+					color: $white;
+				}
+				.p-menuitem-icon {
+					color: $white;
+					vertical-align: middle;
+				}
+			}
+		}
+		.p-menuitem {
+			margin: 0;
+		}
+		.p-submenu-header {
+			margin: 0;
+			padding: 8px 20px;
+			color: $body-color-dark;
+			font-weight: 700;
+			background-color: $body-bg-dark;
+			border: 0 none;
+			border-radius: 0;
+		}
+		.p-menu-separator {
+			border: 1px solid $light-grey;
+			border-width: 1px 0 0 0;
+		}
+	}
+}

@@ -1,0 +1,661 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@jabil/ui-styles/dist/main.css';
+
+@import '../node_modules/ng-zorro-antd/src/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/select/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/upload/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/cascader/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/tabs/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/tag/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/pagination/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/input-number/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/checkbox/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/switch/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/tree/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/page-header/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/collapse/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/message/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/notification/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/spin/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/drawer/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/modal/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/tooltip/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/progress/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/badge/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/card/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/timeline/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/steps/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/carousel/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/collapse/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/table/style/index.min.css';
+// @import '../node_modules/ng-zorro-antd/calendar/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/space/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/descriptions/style/index.min.css'; //descriptions
+@import '../node_modules/ng-zorro-antd/date-picker/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/input/style/index.min.css';
+@import '../node_modules/ng-zorro-antd/menu/style/index.min.css';
+
+@import "../node_modules/jabil-bus-lib/src/style/jabil-bus.css";
+@import "../node_modules/jabil-bus-lib/src/style/prime-ng.css";
+
+@import "./style/variable.scss";
+@import "./style/breadcrumbs.scss";
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('~src/assets/fonts/Roboto-Regular.ttf');
+}
+
+* {
+  font-family: Roboto;
+  font-size: 14px;
+}
+
+*::placeholder,
+.p-placeholder {
+  color: #aaa !important;
+}
+
+.p-component {
+
+  div,
+  span {
+    font-size: 14px;
+  }
+}
+
+//  header logout
+.h-user {
+  background: $bg-color;
+}
+
+.bodyOffset.p-multiselect-panel {
+  min-width: unset !important;
+  width: 300px;
+}
+
+// table style
+.sys-table {
+  &.p-datatable,
+  &.p-treetable {
+    .p-datatable-thead, .p-treetable-thead {
+      tr {
+        background: #F7F9FD;
+
+        th {
+          background: #F7F9FD;
+          font-weight: bold;
+          font-size: 14px;
+          color: #464F60;
+          border: none;
+        }
+      }
+    }
+
+    .p-datatable-tbody tr:nth-child(2n) td,
+    .p-treetable-tbody tr:nth-child(2n) td {
+      background-color: #F7F9FD;
+    }
+
+    .p-datatable-tbody tr:nth-child(2n + 1) td 
+    .p-treetable-tbody tr:nth-child(2n + 1) td {
+      background-color: #fff;
+      font-weight: 400;
+      font-size: 14px;
+      color: #010101;
+    }
+  }
+
+  .table-button-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 15px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .table-button-defult {
+    color: #03a2eb;
+    font-weight: 500;
+  }
+
+  .table-button {
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #EEF1F5;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: #464F60;
+  }
+
+  .sd-button {
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #EEF1F5;
+    padding: 3px 8px;
+    border-radius: 4px;
+    width: 26px;
+    min-width: 26px;
+    margin-left: 10px;
+    height: 26px;
+    color: #464F60;
+  }
+
+  .sp-sub-button,
+  .p-speeddial-opened .p-speeddial-item {
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #EEF1F5;
+    padding: 0px;
+    margin: 0px;
+    border-radius: 4px;
+    width: 35px;
+    min-width: 26px;
+    height: 26px;
+    color: #464F60;
+    background-color: #464F60;
+  }
+
+  .p-speeddial {
+    position: relative;
+    display: inline-block;
+    width: auto !important;
+    text-align: right;
+
+    .p-speeddial-list {
+      position: absolute;
+      right: 20px;
+      top: 0px;
+    }
+  }
+
+  .p-speeddial-button.p-button.p-button-icon-only {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    background-color: #000;
+    color: #464F60;
+    position: relative;
+    text-align: right;
+  }
+
+  .p-speeddial-button.p-button.p-button-icon-only .p-button-icon {
+    padding-right: 0px !important;
+  }
+
+  .p-speeddial-action {
+    width: 33px;
+    height: 25px;
+    font-weight: bolder;
+    // background-color: #000;
+    color: #464F60;
+
+    :hover {
+      color: #050505;
+    }
+  }
+}
+
+// ant design conmponets style
+.ant-tabs-tab:hover {
+  color: #003865;
+}
+
+.ant-tabs-ink-bar {
+  background: #003865;
+}
+
+// button style
+.da-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 40px;
+  padding: 0 20px;
+  background: #F7F9FD;
+  border-radius: 4px 4px 4px 4px;
+  color: #010101;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &.next,
+  &.export,
+  &.search,
+  &.submit,
+  &.operate,
+  &.save {
+    background: #003865;
+    color: #fff;
+  }
+
+  &.add {
+    background: #669933;
+    color: #fff;
+  }
+
+  &.delete {
+    background: #fc0101;
+    color: #fff;
+  }
+}
+
+// search bar style
+.sys-search-form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+  margin-bottom: 10px;
+
+  .form-item {
+    display: flex;
+    column-gap: 1px;
+
+    label {
+      height: 40px;
+      line-height: 40px;
+      background: #F7F9FD;
+      border-radius: 4px 0px 0px 4px;
+      padding: 0 10px;
+      margin: 0;
+    }
+
+    input {
+      width: 300px;
+      height: 40px;
+      background: #F7F9FD;
+      border-radius: 0px 4px 4px 0px;
+    }
+
+    .ant-checkbox-input {
+      width: auto;
+    }
+
+    input,
+    .p-dropdown {
+      width: 300px;
+      height: 40px;
+      background: #F7F9FD;
+      border-radius: 0px 4px 4px 0px;
+    }
+
+    p-dropdown {
+      height: 40px;
+      width: 300px;
+
+      .p-dropdown {
+        width: 300px;
+
+        .p-dropdown-label {
+          background: #F7F9FD;
+          line-height: 40px;
+          padding: 0 5px;
+        }
+
+        .p-dropdown-trigger {
+          background: #F7F9FD;
+        }
+      }
+    }
+
+    .ant-picker-input {
+      input {
+        width: auto !important;
+      }
+    }
+
+    &.btn {
+      column-gap: 15px;
+    }
+  }
+}
+
+// form style
+.sys-form {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+
+  .form-item {
+    display: flex;
+    align-items: center;
+    column-gap: 2px;
+
+    label {
+      height: 40px;
+      line-height: 40px;
+      background: #F7F9FD;
+      border-radius: 4px 0px 0px 4px;
+      padding: 0 10px;
+      margin: 0;
+      text-align: right;
+      color: #414042;
+      font-family: Noto Sans SC;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      white-space: nowrap;
+
+      &.ant-checkbox-wrapper {
+        background: unset;
+      }
+
+      &.break {
+        white-space: break-spaces;
+        line-height: normal;
+      }
+    }
+
+    p-radiobutton {
+      label {
+        background: unset;
+      }
+    }
+
+    input {
+      padding-left: 5px;
+      width: 300px;
+      height: 40px;
+      background: #F7F9FD;
+      border-radius: 0px 4px 4px 0px;
+    }
+
+    .no-input {
+      display: inline-block;
+      width: 100%;
+      height: 40px;
+      background: #F7F9FD;
+      line-height: 38px;
+      padding-left: 3px;
+    }
+
+    .ant-checkbox-input {
+      width: auto;
+    }
+
+    p-treeselect,
+    p-dropdown,
+    p-multiselect {
+      height: 40px;
+
+      .p-dropdown,
+      .p-multiselect,
+      .p-treeselect {
+        background: unset !important;
+        width: 300px;
+        height: 40px;
+        border-radius: 0px 4px 4px 0px;
+        border: none;
+
+        .p-dropdown-label,
+        .p-treeselect-label,
+        .p-multiselect-label {
+          background: #F7F9FD;
+          line-height: 40px;
+          padding: 0 5px;
+          height: 40px;
+        }
+
+        .p-treeselect-trigger,
+        .p-multiselect-trigger,
+        .p-dropdown-trigger {
+          background: #F7F9FD;
+        }
+
+        &.p-disabled {
+
+          .p-dropdown-label,
+          .p-treeselect-label,
+          .p-multiselect-label {
+            background: #f5f5f5;
+          }
+
+          .p-dropdown-trigger,
+          .p-treeselect-trigger,
+          .p-dropdown-trigger {
+            background: #f5f5f5;
+          }
+        }
+      }
+
+    }
+
+    textarea {
+      background: #F7F9FD;
+      padding: 5px;
+    }
+
+    p-password {
+      height: 40px;
+
+      .p-password {
+        height: 40px;
+
+        .p-element {
+          background: #F7F9FD;
+          line-height: 27px;
+          padding: 0 5px;
+        }
+      }
+    }
+
+    .ant-select-selector {
+      background: #F7F9FD;
+      height: 40px;
+    }
+
+    &.btn {
+      column-gap: 15px;
+    }
+
+    &.ver-item {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        position: relative;
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        border-bottom: 1px solid rgba(70, 79, 96, 0.1);
+        ;
+      }
+
+      &>span {
+        display: inline-block;
+        padding: 0px 6px;
+        width: 100%;
+        background: #F7F9FD;
+      }
+
+      textarea {
+        height: 80px;
+      }
+
+      .da-button {
+        position: absolute;
+        top: 6px;
+        right: 20px;
+        width: 64px;
+        height: 26px;
+        background: #fff;
+        border-radius: 4px 4px 4px 4px;
+        border: 1px solid #D6D6D6;
+      }
+
+      .file {
+        display: inline-block;
+        width: 100%;
+        height: 85px;
+        overflow: auto;
+        background: #F7F9FD;
+      }
+    }
+  }
+}
+
+// form bottom button style
+.bottom-btn {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .da-button {
+    margin-right: 15px;
+    border: 1px solid #fff;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.smallWidth.p-dropdown-panel {
+  min-width: 300px !important;
+  width: 300px;
+}
+
+.smallWidth.p-multiselect-panel {
+  min-width: 300px !important;
+  width: 300px;
+}
+
+.popover {
+  position: relative;
+  width: 116px;
+  // height: 57px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 6px;
+  padding-top: 2px;
+  padding-bottom: 3px;
+  box-shadow: 0px 1px 1px 1px #f6f6f688;
+
+  p {
+    width: 108px;
+    height: 22px;
+    background: #f6f6f6;
+    color: #000;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+
+    &.active {
+      background: #15BEF0 !important;
+      color: #fff;
+    }
+
+    &:hover {
+      background: #15BEF066;
+      color: #fff;
+    }
+  }
+}
+
+.p-overlay {
+  min-width: unset !important;
+}
+
+text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+
+  .nav {
+    img {
+      width: 12px;
+      height: 12px;
+      margin: 5px;
+
+      &:first-child {
+        position: relative;
+        top: -2px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    span {
+      font-weight: 400;
+      font-size: 14px;
+      color: #464F60;
+
+      &:last-child {
+        display: inline-block;
+        height: 23px;
+        padding: 0 15px;
+        background: #003865;
+        border-radius: 30px 30px 30px 30px;
+        color: #15BEF0;
+      }
+    }
+  }
+
+  .p-button-outlined {
+    box-shadow: none !important;
+    border: none !important;
+    background: #fff !important;
+    color: #464F60 !important;
+    border-radius: 4px;
+
+    img {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.ant-page-header {
+  .ant-page-header-heading {
+    border-radius: 8px 8px 0px 0px;
+    background-color: #f6f6f6;
+    box-sizing: border-box;
+  }
+
+  .ant-page-header-content,
+  .ant-page-header.has-breadcrumb {
+    padding-top: 0px;
+  }
+
+  .ant-page-header-footer {
+    margin-top: 0px;
+    background-color: #f6f6f6;
+    border-radius: 0px 0px 8px 8px;
+    padding-top: 5px;
+  }
+}
+
+//
+.ant-tabs-card.ant-tabs-top>.ant-tabs-nav .ant-tabs-tab-active,
+.ant-tabs-card.ant-tabs-top>div>.ant-tabs-nav .ant-tabs-tab-active {
+  background-color: #F7F9FD;
+}
+
+.pi {
+  font-family: 'primeicons' !important;
+}
+
+.p-speeddial-button.p-button.p-button-icon-only {
+  width: 1rem;
+  height: 1rem;
+}
+

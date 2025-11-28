@@ -1,0 +1,72 @@
+<div class="content">
+  <level-one-panel [titleName]="'label.application.config' | translate">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+          <div class="form-item">
+            <label>{{'field.name' | translate}}</label>
+            <nz-input-group nzCompact>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.name" style="width:calc(90% - 60px);"/>
+              <nz-upload [nzAction]="fileHost+'/api/file/upload?category=Document'"
+                [nzHeaders]="{ authorization: 'Bearer ' + token}" (nzChange)="handleChange($event)" [nzShowUploadList]="false">
+                <button class="da-button">{{'upload' | translate}}</button>
+              </nz-upload>
+            </nz-input-group>
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.displayNameCn' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.displayNameCn" [ngClass]="{ 'ng-invalid': invalid && !formData.displayNameCn }" />
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.displayNameEn' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.displayNameEn" [ngClass]="{ 'ng-invalid': invalid && !formData.displayNameEn }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.catalog' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate" readonly
+              [(ngModel)]="formData.catalog" [ngClass]="{ 'ng-invalid': invalid && !formData.catalog }" />
+          </div>
+          <div class="form-item">
+            <label>{{'field.sort' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.sort" />
+          </div>
+          <div class="form-item">
+            <label>{{'status' | translate}}</label>
+            <p-inputSwitch [(ngModel)]="formData.status"></p-inputSwitch>
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.icon' | translate}}</label>
+            <nz-input-group nzCompact>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.docIconUrl" style="width:calc(90% - 60px);"/>
+              <nz-upload [nzAction]="fileHost+'/api/file/upload?category=Document/Icon&keepName=true'"
+                [nzHeaders]="{ authorization: 'Bearer ' + token}" (nzChange)="handleChangeIcon($event)" [nzShowUploadList]="false">
+                <button class="da-button">{{'upload' | translate}}</button>
+              </nz-upload>
+            </nz-input-group>
+          </div>
+          <div class="form-item">
+            <label>{{'field.docver' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate" readonly
+              [(ngModel)]="formData.docVer" [ngClass]="{ 'ng-invalid': invalid && !formData.docVer }" />
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="saveClick()">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>

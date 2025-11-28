@@ -1,0 +1,268 @@
+@use 'sass:selector';
+
+@import '~@fortawesome/fontawesome-free/scss/variables';
+@import './mixins';
+
+body {
+	.p-treetable {
+		.p-paginator {
+			padding: 0.85rem 0.75rem;
+		}
+
+		.p-treetable-header,
+		.p-treetable-footer {
+			padding: 0.85rem 0.75rem;
+			color: $body-color;
+			text-align: center;
+			background: $body-bg;
+			border: 1px solid $border-color;
+		}
+
+		.p-treetable-header {
+			border-bottom: 0 none;
+
+			.p-checkbox {
+				vertical-align: middle;
+			}
+		}
+
+		.p-treetable-footer {
+			font-weight: 700;
+			border-top: 0 none;
+		}
+
+		.p-treetable-thead > tr > th,
+		.p-treetable-tbody > tr > td,
+		.p-treetable-tfoot > tr > td {
+			padding: 0.75rem;
+			color: $body-color;
+			background-color: $white;
+			border: 1px solid $border-color;
+		}
+
+		.p-treetable-thead > tr > th,
+		.p-treetable-tfoot > tr > td {
+			font-weight: 700;
+		}
+
+		.p-treetable-thead tr .p-inputtext {
+			width: 100%;
+		}
+
+		.p-treetable-tbody tr {
+			.p-treetable-toggler {
+				color: $dark-grey;
+				vertical-align: baseline;
+				outline: none;
+
+				.pi.pi-chevron-down {
+					vertical-align: baseline;
+				}
+			}
+
+			&.p-highlight {
+				color: $white;
+				background-color: $primary-blue;
+				> td {
+					color: inherit;
+					background: inherit;
+					border-color: $primary-blue;
+
+					.p-treetable-toggler {
+						color: $white;
+					}
+				}
+			}
+
+			&.p-contextmenu-selected {
+				color: $white;
+				background-color: $primary-blue;
+			}
+
+			&:focus {
+				outline: none;
+				& + tr {
+					& > td {
+						box-shadow: none;
+					}
+				}
+				& > td {
+					box-shadow: none;
+					&:first-child {
+						box-shadow: none;
+					}
+					&:last-child {
+						box-shadow: none;
+					}
+				}
+			}
+		}
+
+		.p-sortable-column {
+			color: $body-color;
+			&:focus {
+				outline: 0 none;
+				outline-offset: 0;
+			}
+			.p-sortable-column-icon {
+				color: $dark-grey;
+				vertical-align: middle;
+			}
+			&:not(.p-highlight):hover {
+				color: $hover-dark-color;
+				background-color: $body-bg;
+				.p-sortable-column-icon {
+					color: $hover-dark-color;
+					background-color: $body-bg;
+				}
+			}
+			&.p-highlight {
+				color: $white;
+				background-color: $primary-blue;
+				border-top-color: $primary-blue;
+				.p-sortable-column-icon {
+					color: $white;
+				}
+			}
+		}
+
+		p-treetablesorticon,
+		p-treetabletoggler {
+			vertical-align: baseline;
+		}
+
+		p-treetablecheckbox {
+			vertical-align: baseline;
+			.p-checkbox {
+				vertical-align: text-bottom;
+			}
+		}
+
+		.p-editable-column {
+			input {
+				font-size: 1rem;
+				font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+				&:focus {
+					outline: 1px solid $shadow-color;
+					outline-offset: 2px;
+				}
+			}
+		}
+
+		.p-treetable-scrollable-header {
+			border: none;
+		}
+
+		.p-treetable-loading-content .pi-spin {
+			color: $white;
+			animation: 2s linear infinite fa-spin;
+		}
+
+		&.p-treetable-hoverable-rows {
+			.p-treetable-tbody tr {
+				&:not(.p-highlight):hover {
+					color: $body-color;
+					background-color: $gray-900;
+					cursor: pointer;
+
+					> td {
+						color: inherit;
+						background-color: inherit;
+					}
+				}
+
+				&:not(.p-highlight):not(.p-contextmenu-selected):hover {
+					color: $hover-dark-color;
+					background-color: $body-bg-light;
+					cursor: pointer;
+
+					> td {
+						color: inherit;
+						background-color: inherit;
+					}
+				}
+			}
+		}
+
+		.p-column-resizer-helper {
+			background-color: $primary-blue;
+		}
+		.p-dropdown {
+			min-width: 8.5rem;
+		}
+		.treetable-sm {
+			.p-treetable-thead > tr > th,
+			.p-treetable-tbody > tr > td,
+			.p-treetable-tfoot > tr > td {
+				padding: 0.25rem;
+			}
+		}
+
+		.treetable-striped {
+			.p-treetable-tbody > tr {
+				background-color: $body-bg;
+
+				& > td {
+					background-color: inherit;
+				}
+
+				&:nth-child(even) {
+					background-color: $white;
+				}
+
+				&:nth-child(even).p-highlight {
+					color: $white;
+					background-color: $primary-blue;
+					> td {
+						color: inherit;
+						background: inherit;
+						border-color: $primary-blue;
+
+						.p-treetable-toggler {
+							color: $white;
+						}
+					}
+				}
+				&:nth-child(even).p-contextmenu-selected {
+					color: $white;
+					background-color: $primary-blue;
+				}
+			}
+
+			.p-treetable-virtual-scrollable-body {
+				.p-treetable-tbody {
+					& > tr {
+						&:nth-child(even) {
+							background-color: $white;
+						}
+						&:nth-child(even).p-highlight {
+							color: $white;
+							background-color: $primary-blue;
+							> td {
+								color: inherit;
+								background: inherit;
+								border-color: $primary-blue;
+
+								.p-treetable-toggler {
+									color: $white;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.treetable-icon-alt {
+			@include icon-convert(
+				selector.nest('.p-treetable-toggler', '.pi-chevron-down'),
+				$fa-var-minus
+			);
+
+			@include icon-convert(
+				selector.nest('.p-treetable-toggler', '.pi-chevron-right'),
+				$fa-var-plus
+			);
+		}
+	}
+}

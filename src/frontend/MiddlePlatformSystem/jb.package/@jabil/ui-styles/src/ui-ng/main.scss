@@ -1,0 +1,49 @@
+//
+// UI/UX Suite - ui-ng Styles
+// --------------------------------------------------
+
+// Global variables
+@import '../general/variables';
+@import './variables';
+
+// General theme
+@import './vendor/primeng';
+
+// Override primeng icons
+@import './icons';
+
+// Custom styled components
+@import './auto-complete';
+@import './dropdown';
+@import './calendars';
+@import './carousel';
+@import './custom-scroll';
+@import './messages';
+@import './dialog';
+@import './tab-menu';
+@import './tab-view';
+@import './toast';
+@import './tooltip';
+@import './paginator';
+@import './table';
+@import './progress-bar';
+@import './menus-general';
+@import './menu';
+@import './overlay-panel';
+@import './accordion';
+@import './breadcrumb';
+@import './context-menu';
+@import './megamenu';
+@import './menubar';
+@import './multi-select';
+@import './panel-menu';
+@import './pick-list';
+@import './steps';
+@import './tiered-menu';
+@import './tree';
+@import './tree-table';
+@import './checkbox';
+@import './splitter';
+
+// Custom components
+@import './layout';

@@ -1,0 +1,105 @@
+//
+// UI/UX Suite - Styles
+// --------------------------------------------------
+$primary: #003865 !default;
+$primary-dark: #002b49 !default;
+$success: #3bb56e !default;
+$info: #4ca8e6 !default;
+$warning: #e28118 !default;
+$danger: #c84837 !default;
+
+// Global variables
+@import './general/variables';
+
+// Custom mixins and Bootstrap overrides
+@import './general/mixins';
+
+// Bootstrap components
+//@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/code';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/tables';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/transitions';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/button-group';
+@import '~bootstrap/scss/input-group';
+@import '~bootstrap/scss/custom-forms';
+@import '~bootstrap/scss/nav';
+//@import '~bootstrap/scss/navbar';
+//@import '~bootstrap/scss/card';
+@import '~bootstrap/scss/breadcrumb';
+@import '~bootstrap/scss/pagination';
+@import '~bootstrap/scss/badge';
+@import '~bootstrap/scss/jumbotron';
+@import '~bootstrap/scss/alert';
+@import '~bootstrap/scss/progress';
+@import '~bootstrap/scss/media';
+@import '~bootstrap/scss/list-group';
+@import '~bootstrap/scss/close';
+@import '~bootstrap/scss/toasts';
+@import '~bootstrap/scss/modal';
+@import '~bootstrap/scss/tooltip';
+@import '~bootstrap/scss/popover';
+@import '~bootstrap/scss/carousel';
+@import '~bootstrap/scss/spinners';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/print';
+
+// Extend Bootstrap styles and override the ones..
+// ..we can't alter with the provided variables
+@import './general/reboot';
+@import './general/type';
+@import './general/grid';
+@import './general/tables';
+@import './general/forms';
+@import './general/buttons';
+@import './general/transitions';
+@import './general/dropdown';
+@import './general/input-group';
+@import './general/custom-forms';
+@import './general/nav';
+@import './general/carousel';
+@import './general/breadcrumb';
+@import './general/pagination';
+@import './general/badge';
+@import './general/modal';
+@import './general/print';
+
+// Custom layout
+@import './general/layout';
+@import './general/header';
+@import './general/footer';
+@import './general/sidebar';
+@import './general/side-overlay';
+@import './general/layout-variations';
+@import './general/hero';
+@import './general/block';
+
+// Custom components
+@import './general/page-loader';
+@import './general/nav-main';
+@import './general/images';
+@import './general/lists';
+@import './general/item';
+@import './general/overlay';
+@import './general/timeline';
+@import './general/ribbon';
+
+// Utilities
+@import './general/utilities';
+
+// Core third party components
+@import '~animate.css/animate.css';
+@at-root {
+	@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+	@import '~@fortawesome/fontawesome-free/scss/regular';
+	@import '~@fortawesome/fontawesome-free/scss/solid';
+	@import '~@fortawesome/fontawesome-free/scss/brands';
+	@import '~simple-line-icons/scss/simple-line-icons';
+}
+@import '~simplebar/dist/simplebar.css';

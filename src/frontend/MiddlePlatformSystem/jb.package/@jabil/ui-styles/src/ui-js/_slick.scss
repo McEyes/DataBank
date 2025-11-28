@@ -1,0 +1,116 @@
+//
+// Slick
+//
+// Overwrite/Extend styles
+// --------------------------------------------------
+
+.slick-slider {
+	.slick-slide {
+		outline: none;
+	}
+
+	&.slick-dotted {
+		margin-bottom: 3rem;
+
+		.slick-dots {
+			bottom: -2rem;
+		}
+	}
+
+	&.slick-dotted.slick-dotted-inner {
+		margin-bottom: 0;
+
+		.slick-dots {
+			bottom: 0.625rem;
+		}
+	}
+
+	&.slick-dotted.slick-dotted-white {
+		.slick-dots li button:before {
+			color: $white;
+		}
+	}
+
+	.slick-prev,
+	.slick-next {
+		z-index: 2;
+		width: 2.5rem;
+		height: 3.75rem;
+		text-align: center;
+		background-color: $general-slick-button-background-color;
+
+		@include hover {
+			background-color: $general-slick-button-hover-background-color;
+		}
+
+		&:before {
+			color: theme-color('primary-dark');
+			font-weight: 600;
+			font-size: 28px;
+			/* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+			font-family: 'Font Awesome 5 Free', 'Font Awesome 5 Pro';
+			line-height: 28px;
+		}
+	}
+
+	.slick-prev {
+		left: 0;
+
+		&:before {
+			content: '\f104';
+		}
+	}
+
+	.slick-next {
+		right: 0;
+
+		&:before {
+			content: '\f105';
+		}
+	}
+
+	&.slick-nav-white {
+		.slick-prev,
+		.slick-next {
+			background-color: $general-slick-white-button-background-color;
+
+			@include hover {
+				background-color: $general-slick-white-button-hover-background-color;
+			}
+
+			&:before {
+				color: $black;
+			}
+		}
+	}
+
+	&.slick-nav-black {
+		.slick-prev,
+		.slick-next {
+			background-color: $general-slick-black-button-background-color;
+
+			@include hover {
+				background-color: $general-slick-black-button-hover-background-color;
+			}
+
+			&:before {
+				color: $white;
+			}
+		}
+	}
+
+	&.slick-nav-hover {
+		.slick-prev,
+		.slick-next {
+			opacity: 0;
+			transition: opacity 0.25s ease-out;
+		}
+
+		@include hover {
+			.slick-prev,
+			.slick-next {
+				opacity: 1;
+			}
+		}
+	}
+}

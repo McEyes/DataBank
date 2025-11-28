@@ -1,0 +1,239 @@
+<div class="template">
+  <div class="content">
+    <div class="sys-search-form">
+      <div class="form-item">
+        <label>{{'field.table.name'| translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="searchData.tableName" />
+      </div>
+      <div class="form-item">
+        <label>{{'field.data.owner.dept'| translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="deptList"
+          [placeholder]="'input.select.please' | translate" [(ngModel)]="searchData.dept" optionLabel="name"
+          [filter]="true" filterBy="name" optionValue="id" [showClear]="true"></p-dropdown>
+      </div>
+      <div class="form-item">
+        <label>{{'field.data.owner'| translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+          [(ngModel)]="searchData.owner" [placeholder]="'input.select.please' | translate" [virtualScroll]="true"
+          [virtualScrollItemSize]="38" [filter]="true" filterBy="name" class="w-100" optionLabel="name"
+          [showClear]="true" optionValue="id"></p-dropdown>
+      </div>
+      <div class="form-item">
+        <label>{{'field.quality.score'| translate}}</label>
+        <p-inputNumber [placeholder]="'input.please' | translate" [(ngModel)]="searchData.scoreFrom" inputId="minmax" mode="decimal" [min]="0" [max]="100"></p-inputNumber>
+        <span class="split">-</span>
+        <p-inputNumber [placeholder]="'input.please' | translate" [(ngModel)]="searchData.scoreTo" inputId="minmax" mode="decimal" [min]="0" [max]="100"></p-inputNumber>
+      </div>
+      <div class="form-item btn">
+        <div class="da-button search" (click)="search()">{{'operate.search' | translate}}</div>
+        <div class="da-button" (click)="search(true)">{{'operate.reset' | translate}}</div>
+      </div>
+    </div>
+    <p-table [value]="tableData" scrollHeight="flex" [scrollable]="true" [loading]="loading" styleClass="sys-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="min-width: unset;max-width: 100px;">{{'field.number'|translate}}</th>
+          <th>{{'field.db.name'|translate}}</th>
+          <th>{{'field.table.name'|translate}}</th>
+          <th style="min-width: 300px;">{{'field.table.business.description'|translate}}</th>
+          <th>{{'field.quality.score'|translate}}</th>
+          <th>{{'field.table.creation.time'|translate}}</th>
+          <th>{{'field.update.frequency'|translate}}</th>
+          <th>{{'field.last.check.execution.time'|translate}}</th>
+          <th>{{'field.check.the.number.of.rules'|translate}}</th>
+          <th>{{'field.data.owner'|translate}}</th>
+          <th>{{'field.data.owner.dept'|translate}}</th>
+          <th style="min-width: 250px;max-width: 250px; justify-content: center" pFrozenColumn alignFrozen="right">
+            {{'operation'|translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-ri="rowIndex">
+        <tr>
+          <td style="min-width: unset;max-width: 100px;" class="text-overflow inline-block">
+            {{ ri+1 + (searchData.pageSize * (searchData.pageIndex - 1))}}
+          </td>
+          <td class="text-overflow inline-block" [title]="item.dbName">{{ item.dbName }}</td>
+          <td class="text-overflow inline-block" [title]="item.tableName">{{ item.tableName }}</td>
+          <td class="text-overflow inline-block" [title]="item.tableComment" style="min-width: 300px;">{{
+            item.tableComment }}</td>
+          <td class="text-overflow inline-block">
+            <span [class]="getScoreColor(item.score)" style="margin-right: 5px;cursor: pointer;"
+              (click)="report(item)">{{ item.score }}</span>
+            <ng-container *ngIf="item.lastScore&&item.score">
+              <i *ngIf="item.score<item.lastScore" class="pi pi-arrow-down" style="color: red"></i>
+              <i *ngIf="item.score>item.lastScore" class="pi pi-arrow-up" style="color: green"></i>
+            </ng-container>
+          </td>
+          <td class="text-overflow inline-block">{{ item.createdTableTime | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td class="text-overflow inline-block" [title]="item.updateFrequency">{{ item.updateFrequency }}</td>
+          <td class="text-overflow inline-block">{{ item.executionTime | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td class="text-overflow inline-block">{{ item.ruleCount }}</td>
+          <td class="text-overflow inline-block">{{ item.dataOwner }}</td>
+          <td class="text-overflow inline-block" [title]="item.ownerDept">{{ item.ownerDept }}</td>
+          <td style="min-width: 250px;max-width: 250px; justify-content: center" pFrozenColumn alignFrozen="right">
+            <div class="table-button-box" style="justify-content:flex-start">
+              <div class="table-button" (click)="editData(item)">
+                {{'operate.rule.bind'|translate}}
+              </div>
+              <div class="table-button" (click)="executeCheck(item)">
+                <span *ngIf="!item.status || item.status === 'Finished'">{{'operate.execute.check'|translate}}</span>
+                <span *ngIf="item.status === 'InEvaluation'">{{'label.check.in.progress'|translate}}</span>
+                <span *ngIf="item.status === 'Waiting'">{{'label.check.in.waiting'|translate}}</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" class="no-data">{{'nodata' | translate}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="sub-item" *ngIf="tableData.length > 0">
+      <p-paginator [first]="searchData.first" [rows]="searchData.pageSize" [totalRecords]="recordCount"
+        [showJumpToPageDropdown]="true" [rowsPerPageOptions]="[10, 15, 20]"
+        (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+  </div>
+</div>
+
+<p-dialog (onHide)="allClose()" [header]="'operate.rule.bind' | translate" [(visible)]="dataDialog" [modal]="true"
+  [style]="{ width: '95%', 'min-height': '500px' }">
+  <div class="m-0" style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      column-gap: 10px;
+      width: 100%;
+      overflow: hidden;
+    ">
+    <level-one-panel style="width: 100%">
+      <div class="sys-search-form">
+        <div class="form-item">
+          <input style="background: #fff;" type="text" class="input-text" pInputText [(ngModel)]="dialogRuleName"
+            [placeholder]="('input.keyword'| translate) + '(' +  ('field.rule.name'| translate) + ')'" />
+        </div>
+        <div class="form-item btn">
+          <div class="da-button search" (click)="onBlurSelectList()">{{'operate.search' | translate}}</div>
+          <div class="da-button" style="background: #fff;" (click)="onResetSelectList()">{{'operate.reset' | translate}}
+          </div>
+        </div>
+      </div>
+      <div style="border-radius: 0px; height: calc(100% - 50px)">
+        <p-table [paginator]="false" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30]"
+          [loading]="dataLoading" scrollHeight="flex" [scrollable]="true" [value]="checkDataTableSelects" dataKey="id"
+          styleClass="sys-table" class="dialog">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{'field.rule.number' | translate}}</th>
+              <th>{{'field.rule.name' | translate}}</th>
+              <th>{{'field.verification.type' | translate}}</th>
+              <th>{{'field.monitoring.level' | translate}}</th>
+              <th>{{'field.field.type' | translate}}</th>
+              <th style="max-width: unset;min-width: 300px;">{{'field.rule.description' | translate}}</th>
+              <th>{{'field.rule.source' | translate}}</th>
+              <th class="weight" pFrozenColumn alignFrozen="right">{{'field.weight' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td class="text-overflow inline-block" [title]="item.id">{{item.id}}</td>
+              <td class="text-overflow inline-block" [title]="item.name">{{item.name}}</td>
+              <td class="text-overflow inline-block" [title]="item.validateType">{{item.validateType}}</td>
+              <td class="text-overflow inline-block">{{item.monitoringLevel}}</td>
+              <td class="text-overflow inline-block">{{item.fieldType}}</td>
+              <td style="max-width: unset;min-width: 300px;" class="text-overflow inline-block"
+                [title]="item.description">{{item.description}}</td>
+              <td class="text-overflow inline-block" [title]="item.source">{{item.source}}</td>
+              <td class="weight" class="text-overflow inline-block" pFrozenColumn alignFrozen="right">
+                <div>
+                  <p-inputNumber [(ngModel)]="item.weight" inputId="minmax" mode="decimal" [min]="0"
+                    [max]="100"></p-inputNumber>
+                  <span>%</span>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="10" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </level-one-panel>
+  </div>
+  <ng-template pTemplate="footer">
+    <div style="display: flex;justify-content: center;width: 100%;">
+      <div class="da-button" (click)="allClose()" style="margin-right: 10px">
+        {{'operate.close' | translate}}
+      </div>
+
+      <div class="da-button submit" (click)="submitRule()" style="margin-right: 10px">
+        {{'submit' | translate}}
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-dialog [header]="tableName+ ' ' + ('operate.report' | translate)" [(visible)]="reportDialog" [modal]="true"
+  [style]="{ width: '95%', 'min-height': '500px' }">
+  <div class="m-0" style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      column-gap: 10px;
+      width: 100%;
+      overflow: hidden;
+    ">
+    <level-one-panel style="width: 100%">
+      <div style="border-radius: 0px; height: calc(100% - 50px)">
+        <p-table [paginator]="false" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30]"
+          [loading]="dataLoading" scrollHeight="flex" [scrollable]="true" [value]="reportDataTable" dataKey="id"
+          styleClass="sys-table" class="dialog">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{'field.rule.number' | translate}}</th>
+              <th>{{'field.rule.name' | translate}}</th>
+              <th>{{'field.verification.type' | translate}}</th>
+              <th>{{'field.inspection.field' | translate}}</th>
+              <th style="max-width: 100px;">{{'field.quality.score' | translate}}</th>
+              <th style="max-width: unset;min-width: 300px;">{{'field.rule.description' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr style="height: auto;">
+              <td class="text-overflow inline-block">{{item.ruleNo}}</td>
+              <td class="text-overflow inline-block">{{item.ruleName}}</td>
+              <td class="text-overflow inline-block">{{item.validateType}}</td>
+              <td class="text-overflow inline-block" [title]="item.fields">{{item.fields}}</td>
+              <td style="max-width: 100px;" class="text-overflow inline-block">
+                <span [style]="{color: item.score < 100 ? 'orange': '#000'}">{{item.score}}</span>
+              </td>
+              <td style="max-width: unset;min-width: 300px;white-space:pre-wrap;" class="text-overflow inline-block"
+                [title]="item.description">{{item.description}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="10" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </level-one-panel>
+  </div>
+  <ng-template pTemplate="footer">
+    <div style="display: flex;justify-content: center;width: 100%;">
+      <div class="da-button" (click)="reportDialog = false" style="margin-right: 10px">
+        {{'operate.close' | translate}}
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<jabil-loading style="height: 100%" *ngIf="submitLoading"></jabil-loading>
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -1,0 +1,27 @@
+﻿{
+  "$schema": "https://gitee.com/dotnetchina/Furion/raw/v4/schemas/v4/furion-schema.json",
+  "SpecificationDocumentSettings": {
+    "DocumentTitle": "数据质量评分接口",
+    "GroupOpenApiInfos": [
+      {
+        "Group": "Default",
+        "Title": "数据质量评分接口",
+        "Description": "数据质量评分接口。",
+        "Version": "1.0.0",
+        "TermsOfService": "http://cnhuam0itds01/",
+        "Contact": {
+          "Name": "Xian qiu",
+          "Url": "http://cnhuam0itds01/",
+          "Email": "xian_qiu@jabil.com"
+        }
+      }
+    ]
+  },
+  "CorsAccessorSettings": {
+    "WithExposedHeaders": [
+      "access-token",
+      "x-access-token",
+      "environment"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+:host{
+    input {
+        background: transparent !important;
+        border: 1px solid #dedede;
+    }
+    ::ng-deep {
+        .p-calendar {
+          width: 300px !important;
+          background-color: transparent !important;
+          border: 1px solid #dedede !important;
+        }
+        .p-calendar .p-inputtext {
+          border: none !important;
+        }
+        .p-dropdown {
+          width: 100% !important;
+          border: none !important;
+        }
+      }
+} 

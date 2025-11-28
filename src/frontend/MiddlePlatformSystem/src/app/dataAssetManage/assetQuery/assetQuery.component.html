@@ -1,0 +1,472 @@
+<div class="query-contents">
+  <div [hidden]="currPanel !== 'list'" class="mian">
+    <div class="leftBox">
+      <div class="header">
+        <div class="title" [class]="{'title-left-active':menuActive == '1'}" (click)="onClickMenuBtns('0')"
+          [ngStyle]="{'width': menuActive == '0'?'50%':'60%'}">
+          <p [ngStyle]="{'left': menuActive == '0'?'8px':'-13px','padding-left':menuActive == '0'?'0px':'8px'}">
+            {{'label.data.asset.navigation' | translate}}
+          </p>
+        </div>
+        <div class="title" [class]="{'title-right-active':menuActive == '0'}" (click)="onClickMenuBtns('1')"
+          [ngStyle]="{'width': menuActive == '0'?'50%':'40%'}">
+          <p
+            [ngStyle]="{'left': menuActive == '0'?'0px':'0px','text-align':'center','padding-right':menuActive == '0'?'0px':'15px'}">
+            {{'search' | translate}}
+          </p>
+        </div>
+      </div>
+      <!-- 树形查询 -->
+      <div class="treebox" [hidden]="menuActive == '1'" style="position: relative; height: calc(100% - 50px)">
+        <input style="width: 100%; height: 40px; background-color: #fff;width: calc(100% -  20px);margin: 10px;"
+          type="text" pInputText [placeholder]="'input.keyword' | translate" (input)="searchTree()"
+          [(ngModel)]="treeQuery" />
+        <div style="height: calc(100% - 250px); width: 100%">
+          <p-tree [loading]="treeLoaing" scrollHeight="flex" [value]="treeData" selectionMode="single"
+            [(selection)]="selectedFile" (onNodeSelect)="nodeSelect($event)">
+            <ng-template let-node pTemplate="default">
+              <div class="node-label-class">
+                <div style="white-space: nowrap !important">{{node.label}}</div>
+                <div class="node-label-num" [hidden]="!node.count">
+                  {{node.count}}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="empty"> {{'nodata' | translate}} </ng-template>
+          </p-tree>
+        </div>
+        <img class="master-bg" *ngIf="lang === 'en'" (click)="step1Click()"
+          src="./assets/images/common/img_masterdata.png">
+        <img class="master-bg" *ngIf="lang === 'zh'" (click)="step1Click()"
+          src="./assets/images/common/img_masterdata_cn.png">
+        <div style="width: 100%; overflow-y: auto"></div>
+      </div>
+      <!-- 输入框标签查询 -->
+      <div class="treebox" [hidden]="menuActive == '0'" style="height:calc(100% );padding: 10px;overflow: hidden;">
+        <nz-tabset nzCentered (nzSelectChange)="changeTabset($event)" [(nzSelectedIndex)]="tabsNavNumber">
+          <!-- 输入框查询 -->
+          <nz-tab [nzTitle]="'label.keyword.search' | translate ">
+            <input style="width: 100%; height: 40px; background-color: #fff" type="text" pInputText
+              [placeholder]="'input.keyword' | translate" [(ngModel)]="queryParams.keyword" />
+            <div class="menuFormBtns">
+              <div class="menuFormBtns-btns btn-blue" (click)="getList()">
+                {{'Search' | translate}}
+              </div>
+            </div>
+          </nz-tab>
+          <!-- 标签查询 -->
+          <nz-tab [nzTitle]="'label.tag.search' | translate ">
+            <div style="width: 100%;height: calc(100% - 55px);">
+              <div style="width: 100%;height:100%;overflow-y: auto;">
+                <ng-container *ngFor="let tag of tagList">
+                  <nz-tag nzBordered="false" style="margin-bottom: 3px; cursor: pointer" nzMode="checkable"
+                    [nzChecked]="tag.checked" (nzCheckedChange)="checkChange($event,tag)">{{ tag.label }}</nz-tag>
+                </ng-container>
+              </div>
+            </div>
+
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </div>
+    <div class="rightBox">
+      <div class="rightBox-main">
+
+        <div class="sys-search-form formgroup-inline justify-content-between" style="align-items:flex-start">
+          <div class="form-item">
+            <label>{{'label.keyword.search' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.api.keyword' | translate"
+              style="width: 500px;" [(ngModel)]="defaultParams.keyword" />
+          </div>
+          <div class="form-item">
+            <label>{{'field.data.category' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="dataCategoryList"
+              [placeholder]="'input.select.please' | translate" [(ngModel)]="defaultParams.dataCategory" [showClear]="true"
+              optionLabel="itemText" optionValue="itemValue"></p-dropdown>
+          </div>
+          <!-- <div class="form-item">
+            <label>{{'status' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="statusList"
+              [placeholder]="'input.select.please' | translate" [(ngModel)]="defaultParams.status" optionLabel="label"
+              optionValue="value"></p-dropdown>
+          </div> -->
+
+          <div class="form-item btn" style="justify-content:flex-end;column-gap:10px;flex:1;width: 100%;">
+            <div class="da-button search" (click)="queryBtn()">{{'operate.search' | translate}}</div>
+            <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+          </div>
+        </div>
+
+        <div class="query-table-class">
+          <p-table [resizableColumns]="true" styleClass="p-datatable-gridlines sys-table" [loading]="loading"
+          (sortFunction)="customSort($event)" [customSort]="true"
+            columnResizeMode="expand" [(selection)]="selectedCustomers" [value]="tableData" [selectionPageOnly]="true"
+            [scrollable]="true" scrollHeight="flex" [tableStyle]="{'min-width':  '50rem'}">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="max-width: 45px">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th style="min-width: 80px; max-width: 180px" pResizableColumn>
+                  {{'field.topic.domain' | translate}}
+                </th>
+                <th style="min-width: 100px; max-width: 200px" pResizableColumn>
+                  {{'field.business.description' | translate}}
+                </th>
+                <th style="min-width: 140px; max-width: 140px" pResizableColumn  pSortableColumn="qualityscore">
+                  {{'field.quality.score' | translate}}
+                  <p-sortIcon field="qualityscore" ></p-sortIcon>
+                </th>
+                <th style="min-width: 80px; max-width: 100px" pResizableColumn>
+                  {{'field.visited30days.times' | translate}}
+                </th>
+                <th style="min-width: 200px; max-width: 300px" pResizableColumn>
+                  {{'field.api.address' | translate}}
+                </th>
+                <th style="min-width: 120px; max-width: 220px" pResizableColumn>
+                  {{'field.owner' | translate}}
+                </th>
+                <th style="min-width: 120px; max-width: 150px" pResizableColumn>
+                  {{'field.security.level' | translate}}
+                </th>
+                <th style="min-width: 150px; max-width: 250px" pResizableColumn>
+                  {{'field.data.table.alias' | translate}}
+                </th>
+                <th style="min-width: 150px; max-width: 250px" pResizableColumn>
+                  {{'field.tag' | translate}}
+                </th>
+                <th style="min-width: 150px; max-width: 250px" pResizableColumn>
+                  {{'field.update.frequency' | translate}}
+                </th>
+                <th style="min-width: 150px; max-width: 250px" pResizableColumn>
+                  {{'field.time.range' | translate}}
+                </th>
+                <th style="min-width: 80px; max-width: 120px" pResizableColumn>
+                  {{'field.update.method' | translate}}
+                </th>
+                <th style="min-width: 80px; max-width: 200px" class="xd-theader-white" pResizableColumn>
+                  {{'field.data.category' | translate}}
+                </th>
+                <th style="min-width: 80px; max-width: 120px" pResizableColumn>
+                  {{'field.update.category' | translate}}
+                </th>
+                <th style="min-width: 80px; max-width: 120px" pResizableColumn>
+                  {{'field.source.system' | translate}}
+                </th>
+                <th *ngIf="false" pFrozenColumn alignFrozen="right" style="min-width: 360px;max-width: 360px;">
+                  {{'label.operate' | translate}}
+                </th>
+                <th pFrozenColumn alignFrozen="right"
+                  [ngStyle]="{'min-width': langType == 'en' ? '200px':'160px','max-width': langType == 'en' ? '200px':'160px'}">
+                  {{'field.permission' | translate}}
+                </th>
+                <!-- <th pFrozenColumn alignFrozen="right"
+                  [ngStyle]="{'min-width': langType == 'en' ? '180px':'120px','max-width': langType == 'en' ? '180px':'120px'}"
+                  style="color: #464F60 !important; cursor: pointer; border: 1px solid #EEF1F5;
+                  padding: 3px 8px;
+                  border-radius: 4px;" (click)="onBath()">
+                  {{'field.batch.application' | translate}}
+                </th> -->
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+              <tr style="height: 40px">
+                <td class="xd-tbody text-overflow inline-block" style="max-width: 45px">
+                  <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                </td>
+                <td [title]="item._ctlName" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 80px; max-width: 180px">
+                  {{item._ctlName}}
+                </td>
+                <td [title]="item.tableComment || ''" class="xd-tbody text-overflow inline-block" [ngClass]="'isHover'"
+                  style="min-width: 100px; max-width: 200px" (click)="tableBtn('details',item)">
+                  {{item.tableComment}}
+                </td>
+                <td [title]="item.qualityScore || ''" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 140px; max-width: 140px">
+                  <span [class]="getScoreColor(item.qualityScore)" style="margin-right: 5px;cursor: pointer;"
+                    (click)="report(item)">{{ item.qualityScore }}</span>
+                  <ng-container *ngIf="item.lastScore&&item.qualityScore">
+                    <i style="font-family: 'primeicons'" *ngIf="item.qualityScore<item.lastScore"
+                      class="pi pi-arrow-down" style="color: red"></i>
+                    <i style="font-family: 'primeicons'" *ngIf="item.qualityScore>item.lastScore" class="pi pi-arrow-up"
+                      style="color: green"></i>
+                  </ng-container>
+                </td>
+                <td [title]="item.visitedTimes || ''" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 80px; max-width: 100px">
+                  {{item.visitedTimes}}
+                </td>
+                <td class="xd-tbody text-overflow inline-block" style="min-width: 200px; max-width: 300px"
+                  [ngClass]="'isHover'" [title]="item.data || ''" [innerHTML]="convertHtml(item.data)"
+                  (click)="viewApi(item)">
+                </td>
+
+                <td [title]="item.ownerName" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 120px; max-width: 220px">
+                  {{item.ownerName}}
+                </td>
+                <td class="xd-tbody text-overflow inline-block" style="min-width: 120px; max-width: 150px">
+                  {{item._levelName}}
+                </td>
+                <td [title]="item.alias" class="xd-tbody text-overflow inline-block" [ngClass]="'isHover'"
+                  style="min-width: 150px; max-width: 250px" (click)="tableBtn('data',item)">
+                  {{item.alias}}
+                </td>
+                <td [title]="item.tag" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 150px; max-width: 250px">
+                  {{item.tag}}
+                </td>
+                <td [title]="item.tag" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 150px; max-width: 250px">
+                  {{item.updateFrequency}}
+                </td>
+                <td [title]="item.tag" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 150px; max-width: 250px">
+                  {{item.dataTimeRange}}
+                </td>
+                <td [title]="item.tag" class="xd-tbody text-overflow inline-block"
+                  style="min-width: 80px; max-width: 120px">
+                  {{updateMethodObj[item?.updateMethod]}}
+                </td>
+                <td style="min-width: 80px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+                  [title]="item.dataCategory|translate">
+                  {{ ("dict.data_category."+(item.dataCategory||"none"))|translate }}
+                </td>
+                <td style="min-width: 80px; max-width: 120px" class="xd-tbody text-overflow inline-block"
+                  [title]="item.dataCategory|translate">
+                  {{ ("dict.update_category."+(item.updateCategory||"none"))|translate }}
+                </td>
+                <td class="xd-tbody text-overflow inline-block" style="min-width: 80px; max-width: 150px">
+                  {{item.sourceName}}
+                </td>
+                <td *ngIf="false" class="xd-tbody" pFrozenColumn alignFrozen="right"
+                  style="min-width: 360px;max-width: 360px;">
+                  <div class="table-button-box">
+                    <div
+                      [ngStyle]="{'color': item.reviewable ==1 ?'':'#dedede','cursor': item.reviewable ==1?'pointer':'no-drop'}"
+                      class="table-button" (click)="tableBtn('data',item)">
+                      {{'operate.data.preview' | translate}}
+                    </div>
+                    <div class="table-button" (click)="tableBtn('details',item)">
+                      {{'operate.view' | translate}}
+                    </div>
+                    <div [ngStyle]="{'color': !!item.data ?'':'#dedede','cursor': !!item.data?'pointer':'no-drop'}"
+                      class="table-button" (click)="viewApi(item)">
+                      {{'operate.view.api' | translate}}
+                    </div>
+                    <div class="table-button" (click)="onAuthority(item)">
+                      {{'operate.feedback' | translate}}
+                    </div>
+                  </div>
+                </td>
+                <td pFrozenColumn alignFrozen="right" style="flex-direction: row-reverse;"
+                  [ngStyle]="{'min-width': langType == 'en' ? '200px':'180px','max-width': langType == 'en' ? '200px':'180px'}">
+                  <p-speedDial (onShow)="onShowOperate($event,item)" [model]="actionItems" [radius]="0" direction="left"
+                    buttonClassName="sd-button " showIcon="pi pi-ellipsis-h" hideIcon="pi pi-times"></p-speedDial>
+
+                  <div class="table-button" (click)="goPerminssion(item)">
+                    {{'operate.apply.permission' | translate}}
+                  </div>
+                </td>
+                <!-- <td class="xd-tbody" pFrozenColumn alignFrozen="right"
+                  [ngStyle]="{'min-width': langType == 'en' ? '180px':'120px','max-width': langType == 'en' ? '180px':'120px'}">
+                  <div class="table-button-box">
+                    <div class="table-button" (click)="onAuthority(item)">
+                      {{'operate.apply.permission' | translate}}
+                    </div>
+                  </div>
+                </td> -->
+
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div style="width: 100%" [hidden]="!(total > 0)">
+          <nz-pagination style="margin-top: 5px" class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum"
+            [nzTotal]="total" nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+            (nzPageIndexChange)="nzPageIndexChange($event)"
+            (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+          <ng-template #rangeTemplate let-range="range" let-total>
+            {{ (queryParams.pageNum - 1) * queryParams.pageSize + 1 }}-{{ queryParams.pageNum *
+            queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ total }}
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-data-preview *ngIf="currPanel === 'preview'" (goBack)="currPanel = 'list'" [field]="params"></app-data-preview>
+  <app-asset-query-details *ngIf="currPanel === 'details'" (goBack)="currPanel = 'list'"
+    [field]="params"></app-asset-query-details>
+
+  <app-asset-query-permission *ngIf="currPanel === 'permission'" (goBack)="currPanel = 'list'"
+    [field]="params"></app-asset-query-permission>
+</div>
+
+<p-toast></p-toast>
+
+<p-dialog (onHide)="onCloseDialog()" [header]="'operate.feedback.apply' | translate " [(visible)]="dialogValue"
+  [modal]="true" [style]="{ width: '50vw' }">
+  <div class="">
+    <div class="xd-grey-box" style="border-radius: 0px; background-color: #fff;padding: 10px;">
+      <div class="contents-form" [hidden]="!(stepNumber == 1)">
+        <div class="contents-form-item" style="display: flex;margin-bottom: 10px;">
+          <label style="width: 130px;text-align: right;padding-right: 20px;"><span
+              class="valid-pre">*</span>{{'label.feedback.provider' | translate}}</label>
+          <div>
+            {{dialogForm.userName}}
+          </div>
+        </div>
+        <div class="contents-form-item" style="display: flex; align-items: flex-start;margin-bottom: 10px;">
+          <label style="width: 130px;text-align: right;padding-right: 20px;"><span
+              class="valid-pre">*</span>{{'label.feedback.owner' | translate}}</label>
+          <div>
+            {{dialogForm.ownerName}}
+          </div>
+        </div>
+        <div class="contents-form-item" style="display: flex;align-items: flex-start;width: 100%;margin-bottom: 10px;">
+          <label style="width: 130px;text-align: right;padding-right: 20px;"><span
+              class="valid-pre">*</span>{{'label.feedback.issue' | translate}}</label>
+          <textarea [ngClass]="{ 'ng-invalid': dialogInvalid && !dialogForm.reason }" class="input-text"
+            [ngStyle]="{'background-color': '#F7F9FD', 'height': 'auto', 'width': '100%'}" id="float-input"
+            [placeholder]="'please.input' | translate" rows="5" cols="30" [(ngModel)]="dialogForm.reason"
+            pInputTextarea></textarea>
+        </div>
+      </div>
+      <div class="xd-flex xd-f-14" style="padding: 10px" [hidden]="!(stepNumber == 2)">
+        {{'info.sending.loading' | translate}}
+      </div>
+      <div class="xd-flex xd-f-14" style="padding: 10px" [hidden]="!(stepNumber == 3)">
+        {{'info.sending.success' | translate}}{{sendMessage?':'+sendMessage:''}}
+      </div>
+      <div class="xd-flex xd-f-14" style="padding: 10px" [hidden]="!(stepNumber == 4)">
+        {{'info.sending.fail' | translate}}
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <div style="display: flex; align-items: center; justify-content: center">
+      <div style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 83px;
+      height: 40px;
+      background: #F7F9FD;
+      color: #010101;
+      margin-right: 15px;
+      border-radius: 4px 4px 4px 4px;" class="da-button" (click)="onCloseDialog()">
+        {{(stepNumber==3 || stepNumber==4? 'operate.close':'operate.cancel' )| translate}}
+      </div>
+      <div style="display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 83px;
+      height: 40px;
+      background: #003865;
+      color: #fff;
+      border-radius: 4px 4px 4px 4px;" class=" da-button" [hidden]="!(stepNumber == 1)" (click)="onDataDialogSumit()">
+        {{'operate.send' | translate}}
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-dialog (onHide)="onCloseAPIDialog()" [header]="'operate.view.api' | translate " [(visible)]="dialogviewApiValue"
+  [modal]="true" [style]="{ width: '70vw' }">
+  <div class="m-0 viewapiclass">
+
+    <nz-tabset [nzSelectedIndex]="0"  nzType="card">
+      <nz-tab nzTitle="Prefered">
+        <div *ngFor="let item of viewApiList" class="viewapiclass-item">
+          <div class="viewapiclass-item-url" [innerHTML]="convertHtml(item,'https')"></div>
+          <div class="viewapiclass-item-btn">
+            <div class="da-button viewapiclass-copy" (click)="copyText(item,'https')">
+              {{'operate.copy' | translate }}
+            </div>
+          </div>
+        </div>
+      </nz-tab>
+
+      <nz-tab nzTitle="Obsolete">
+        <div *ngFor="let item of viewApiList" class="viewapiclass-item">
+          <div class="viewapiclass-item-url" [innerHTML]="convertHtml(item,'http')"></div>
+          <div class="viewapiclass-item-btn">
+            <div class="da-button viewapiclass-copy" (click)="copyText(item,'http')">
+              {{'operate.copy' | translate }}
+            </div>
+          </div>
+        </div>
+      </nz-tab>
+    </nz-tabset>
+
+  </div>
+</p-dialog>
+
+<p-dialog [header]="tableName+ ' ' + ('operate.report' | translate)" [(visible)]="reportDialog" [modal]="true"
+  [style]="{ width: '95%', 'min-height': '500px' }">
+  <div class="m-0" style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      column-gap: 10px;
+      width: 100%;
+      overflow: hidden;
+    ">
+    <level-one-panel style="width: 100%">
+      <div style="border-radius: 0px; height: calc(100% - 50px)">
+        <p-table [paginator]="false" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,20,30]"
+          scrollHeight="flex" [scrollable]="true" [value]="reportDataTable" dataKey="id" styleClass="sys-table"
+          class="dialog">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="max-width: 250px;">{{'field.rule.number' | translate}}</th>
+              <th style="max-width: 250px;">{{'field.rule.name' | translate}}</th>
+              <th style="max-width: 250px;">{{'field.verification.type' | translate}}</th>
+              <th style="max-width: 250px;">{{'field.inspection.field' | translate}}</th>
+              <th style="max-width: 100px;">{{'field.quality.score' | translate}}</th>
+              <th style="max-width: unset;min-width: 300px;">{{'field.rule.description' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr style="height: auto;">
+              <td style="max-width: 250px;" class="text-overflow inline-block">{{item.ruleNo}}</td>
+              <td style="max-width: 250px;" class="text-overflow inline-block">{{item.ruleName}}</td>
+              <td style="max-width: 250px;" class="text-overflow inline-block">{{item.validateType}}</td>
+              <td style="max-width: 250px;" class="text-overflow inline-block" [title]="item.fields">{{item.fields}}
+              </td>
+              <td style="max-width: 100px;" class="text-overflow inline-block">
+                <span [style]="{color: item.score < 100 ? 'orange': '#000'}">{{item.score}}</span>
+              </td>
+              <td style="max-width: unset;min-width: 300px;white-space:pre-wrap;" class="text-overflow inline-block"
+                [title]="item.description">{{item.description}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="10" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </level-one-panel>
+  </div>
+  <ng-template pTemplate="footer">
+    <div style="display: flex;justify-content: center;width: 100%;">
+      <div class="da-button" (click)="reportDialog = false" style="margin-right: 10px">
+        {{'operate.close' | translate}}
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+<jabil-loading *ngIf="xdLoading"></jabil-loading>
+
+<!-- <system-tour *ngIf="showTour" (close)="closeTour($event)" (step1Click)="step1Click()"></system-tour> -->

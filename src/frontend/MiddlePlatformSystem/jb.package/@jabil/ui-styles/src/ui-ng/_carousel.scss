@@ -1,0 +1,55 @@
+.p-carousel {
+	.p-carousel-content {
+		.p-carousel-prev,
+		.p-carousel-next {
+			width: 2.5em;
+			height: 3.5em;
+			margin: 0.2em;
+			padding: 0;
+			color: $white;
+			background-color: $carousel-btn-background-color;
+			border: none;
+			border-radius: 4px;
+			transition: color 0.3s;
+		}
+
+		.p-carousel-prev span,
+		.p-carousel-next span {
+			color: $body-color;
+			font-size: 14px;
+			vertical-align: middle;
+		}
+
+		.p-carousel-prev:not(.p-disabled):hover,
+		.p-carousel-next:not(.p-disabled):hover {
+			background-color: $carousel-btn-hover-background-color;
+			border-color: $carousel-btn-hover-background-color;
+		}
+
+		.p-carousel-prev:not(.p-disabled):focus,
+		.p-carousel-next:not(.p-disabled):focus {
+			outline: 0 none;
+			box-shadow: 0 0 0 0.2rem $carousel-btn-focus-box-shadow-color;
+		}
+	}
+
+	.p-carousel-indicators {
+		.p-carousel-indicator {
+			.p-link {
+				width: 6px;
+				height: 6px;
+				margin: 1em;
+				background-color: $body-bg-dark;
+				border-radius: 6px;
+			}
+
+			&.p-highlight {
+				background-color: $white;
+
+				.p-link {
+					background-color: $primary-blue;
+				}
+			}
+		}
+	}
+}

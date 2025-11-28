@@ -1,0 +1,248 @@
+* {
+  font-family: Roboto;
+}
+
+// @import '~src/style/dataasset.scss';
+.sql-box {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  padding: 10px;
+  overflow-y: auto;
+
+  .sql-copy-class-header {
+    padding: 20px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 900;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+   
+  }
+
+  .sql-copy-class-main-form {
+    width: 100%;
+
+    .sql-copy-class-item {
+      float: left;
+      width: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 10px;
+      margin-bottom: 10px;
+
+      label {
+        width: 80px;
+        text-align: right;
+        color: #414042;
+        font-family: Noto Sans SC;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .valid-pre {
+        color: red;
+      }
+
+      .dropdown-text {
+        width: calc(100% - 90px) !important;
+      }
+
+      .input-text {
+        width: calc(100% - 90px);
+        background-color: #fff;
+        border: 1px solid #e6e6e6;
+        font-size: 14px !important;
+      }
+
+      .field-radiobutton {
+        width: 115px;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        column-gap: 10px;
+
+        label {
+          text-align: left;
+        }
+      }
+
+      .remark-text {
+        width: calc(100% - 150px);
+        height: 80px;
+      }
+
+      .number-box {
+        width: calc(100% - 150px);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        column-gap: 10px;
+      }
+    }
+  }
+
+  .sql-form {
+    width: 100%;
+    // overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px;
+
+    label {
+      text-align: right;
+      color: #414042;
+      font-family: Noto Sans SC;
+      font-size: 14px;
+      font-style: normal;
+      // font-weight: 400;
+      line-height: normal;
+    }
+
+    .number-box {
+      width: calc(100% - 100px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 10px;
+    }
+
+    .sql-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+    }
+
+    .sql-item-input-text {
+      width: calc(100% - 100px);
+    }
+
+    .sql-form-item {
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+    }
+
+    .input-text {
+      width: 300px;
+      // background-color: #fff;
+      // border: 1px solid #e6e6e6;
+      font-size: 14px;
+    }
+
+    .field-radiobutton {
+      width: 115px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      column-gap: 10px;
+
+      label {
+        text-align: left;
+      }
+    }
+
+    .remark-text {
+      width: 480px;
+    }
+  }
+
+  .sql-edit-box {
+    width: 100%;
+    height: 500px;
+    // margin: 10px 0px 5px;
+  }
+
+  .sql-massage-box {
+    width: 100%;
+    border: #f3f8fd 1px solid;
+    border-top: none;
+
+    .sql-massage-tab {
+      // background-color: #f3f8fd;
+      background-color: #ebebeb;
+      width: 100%;
+      height: 50px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding: 0 20px;
+
+      .tabCardClass {
+        display: inline-block;
+        cursor: pointer;
+        height: 45px;
+        width: 100px;
+        box-sizing: border-box;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 45px;
+        transition: all 0.3s ease;
+        transition: transform 0.2s;
+        font-weight: 900;
+      }
+
+      .sql-massage-tab-card {}
+
+      .sql-massage-tab-card-active {
+        cursor: pointer;
+        color: #000;
+        position: relative;
+        font-weight: 900;
+        background-color: #fff;
+        border-radius: 10px 10px 0px 0px;
+        margin-top: 5px;
+      }
+
+      // .sql-massage-tab-card-active::after{
+      //   cursor: pointer;
+      //   content: '';
+      //   position: absolute;
+      //   bottom: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 2px;
+      //   background-color: #409eff;
+      //   transition: all 0.3s ease;
+      //   transition:transform .2s;
+      // }
+    }
+
+    .sql-massage-main {
+      padding: 20px;
+    }
+  }
+}
+
+.sql-form-item {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+:host {
+  input {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .header-btn {
+    background: #fff;
+    position: absolute;
+    right: 30px;
+    top: 15px;
+  }
+}
+

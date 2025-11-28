@@ -1,0 +1,150 @@
+<div *ngIf="currPanel==='list'" class="template">
+  <div class="content">
+    <p-table [value]="tableData" scrollHeight="flex" [scrollable]="true" [loading]="loading" styleClass="sys-table">
+      <ng-template pTemplate="caption">
+        <div class="t-caption ">
+          <div class="formgroup-inline justify-content-between w-100 sys-search-form">
+            <div class="form-item" style="width:300px;">
+              <!-- <label>{{'search' | translate}}</label> -->
+              <input type="text" pInputText class="p-inputtext" [placeholder]="'input.keyword'| translate"
+                [(ngModel)]="searchData.keyword" />
+            </div>
+            <div class="form-item" style="width:200px;">
+              <!-- <label>
+                {{'status' | translate}}
+              </label> -->
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="statusList"
+                [placeholder]="'input.select.status' | translate" [(ngModel)]="searchData.enabled" optionLabel="label"
+                optionValue="value"></p-dropdown>
+            </div>
+            <div class="form-item" style="width:200px;">
+              <!-- <label>{{'field.data.owner.dept'| translate}}</label> -->
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="deptList"
+                [showClear]="true" [placeholder]="'input.select.owner.dept' | translate"
+                [(ngModel)]="searchData.ownerDept" optionLabel="name" [filter]="true" filterBy="name" optionValue="id"
+                [showClear]="true"></p-dropdown>
+            </div>
+            <div class="form-item">
+              <!-- <label>{{'field.data.owner'| translate}}</label> -->
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="userList" [(ngModel)]="searchData.sme" [placeholder]="'input.select.sme' | translate"
+                [virtualScroll]="true" [virtualScrollItemSize]="38" [filter]="true" filterBy="name" class="w-100"
+                optionLabel="name" [showClear]="true" optionValue="id"></p-dropdown>
+            </div>
+            <div class="form-item">
+              <!-- <label>{{'field.data.owner'| translate}}</label> -->
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="userList" [(ngModel)]="searchData.owner" [placeholder]="'input.select.bsa' | translate"
+                [virtualScroll]="true" [virtualScrollItemSize]="38" [filter]="true" filterBy="name" class="w-100"
+                optionLabel="name" [showClear]="true" optionValue="id"></p-dropdown>
+            </div>
+            <div class="form-item">
+              <!-- <label>{{'field.data.owner'| translate}}</label> -->
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="typeList" [(ngModel)]="searchData.belongArea"
+                [placeholder]="'input.select.belongarea' | translate" [virtualScroll]="true"
+                [virtualScrollItemSize]="38" [filter]="true" filterBy="name" class="w-100" optionLabel="name"
+                [showClear]="true" optionValue="id"></p-dropdown>
+            </div>
+            <div class="form-item">
+              <!-- <label>{{'field.data.owner'| translate}}</label> -->
+              <p-dropdown [options]="useTypeList" optionLabel="name" optionValue="name" class="input-text"
+                [showClear]="true" appendTo="body" [(ngModel)]="searchData.useType" appendTo="body" class="w-100"
+                [placeholder]="'input.select.useType' | translate" optionLabel="itemText" optionValue="itemValue">
+              </p-dropdown>
+            </div>
+            <div class="field form-item" style="justify-content: flex-end;column-gap: 15px;">
+              <div class="da-button" (click)="search(true)">{{'reset' | translate}}</div>
+              <div class="da-button search" (click)="search()">
+                {{'search' | translate}}
+              </div>
+              <div class="da-button add" (click)="editData(null,'add')">
+                {{'add'|translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <!-- <th style="min-width: 250px;max-width: 280px;" id="ID">{{'ID'|translate}}</th> -->
+          <th style="min-width: 250px;max-width: 280px;" id="app">{{'field.application.name'|translate}}</th>
+          <th style="max-width: 120px;min-width: 80px;" id="abbreviation">{{'field.abbreviation'|translate}}</th>
+          <th style="max-width: 100px;min-width: 100px;" id="status">{{'status'|translate}}</th>
+          <th style="min-width: 120px;max-width: 200px;" id="sme">{{'SME'|translate}}</th>
+          <th style="max-width:180px;min-width: 120px;" id="BSA">{{'BSA'|translate}}</th>
+          <th style="max-width: 120px;min-width: 80px;" id="department">{{'field.bsa.department'|translate}}</th>
+          <th style="max-width: 80px;min-width: 80px;" id="type">{{'type'|translate}}</th>
+          <th style="min-width: 80px;max-width: 280px;" id="master">{{'field.master.data.type'|translate}}</th>
+          <th style="min-width: 120px;max-width: 120px;" id="master">{{'field.useType'|translate}}</th>
+          <th style="max-width: 300px;" id="BSA">{{'field.link'|translate}}</th>
+          <th pFrozenColumn alignFrozen="right" style="max-width: 250px; justify-content: center" id="operation">
+            {{'operation'|translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-ri="rowIndex">
+        <tr>
+          <!-- <td style="min-width: 250px;max-width: 280px;" class="text-overflow inline-block" [title]="item.clientId">{{ item.clientId }}
+          </td> -->
+          <td style="min-width: 250px;max-width: 280px;" class="text-overflow inline-block" [title]="item.clientName">{{
+            currentLanguage== 'en'?item.clientNameEn||item.clientName : item.clientName
+            }}</td>
+          <td style="max-width: 120px;min-width: 80px;" class="text-overflow inline-block">{{ item.nickName }}</td>
+          <td style="max-width: 100px;min-width: 100px;" class="text-overflow inline-block">
+            <p-tag *ngIf="!item.enabled" severity="danger" [value]="'label.deactivate' | translate"></p-tag>
+            <p-tag *ngIf="item.enabled" severity="success" [value]="'label.enable' | translate"></p-tag>
+          </td>
+          <td style="min-width: 120px;max-width: 200px;" class="text-overflow inline-block"
+            [title]="getSMEName(item.smeList)">
+            <ng-container *ngFor="let obj of item.smeList">
+              {{obj.userName + ' '}}
+            </ng-container>
+          </td>
+          <td style="max-width:180px;min-width: 120px;" class="text-overflow inline-block">{{ item.ownerName }}</td>
+          <td style="max-width: 120px;min-width: 80px;" class="text-overflow inline-block">{{ item.ownerDept }}</td>
+          <td style="max-width: 80px;min-width: 80px;" class="text-overflow inline-block">{{ item.belongArea }}</td>
+          <td style="min-width: 80px;max-width: 280px;" class="text-overflow inline-block"
+            [title]="item.masterDataTypes">{{
+            item.masterDataTypes }}</td>
+          <td style="min-width: 120px;max-width: 120px;" class="text-overflow inline-block"
+            [title]="currentLanguage=='en'? item.useTypeEn:item.useType">{{ currentLanguage=='en'? item.useTypeEn:item.useType }}</td>
+          <td style="max-width: 300px;" class="text-overflow inline-block" [title]="item.clientUrl">
+            <a href="item.clientUrl"> {{ item.clientUrl }}</a>
+          </td>
+          <td pFrozenColumn alignFrozen="right" style="max-width: 250px; justify-content: center">
+            <div class="table-button-box justify-content-center">
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="editData(item,'edit')">
+
+                {{'edit'|translate}}
+              </div>
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="deleteData(item)">
+                {{'delete'|translate}}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" class="no-data">{{'nodata' | translate}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="sub-item" *ngIf="tableData.length > 0">
+      <p-paginator [first]="searchData.first" [rows]="searchData.pageSize" [totalRecords]="recordCount"
+        [showJumpToPageDropdown]="true" [rowsPerPageOptions]="[10, 15, 20]"
+        (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+  </div>
+</div>
+
+<app-system-application-details [field]="currRow" (goBack)="goBack()"
+  *ngIf="currPanel === 'edit'"></app-system-application-details>
+
+<jabil-loading style="height: 100%" *ngIf="submitLoading"></jabil-loading>
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

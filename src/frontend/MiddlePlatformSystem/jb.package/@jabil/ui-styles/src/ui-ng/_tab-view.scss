@@ -1,0 +1,168 @@
+.p-tabview,
+.p-tabview.p-tabview-top,
+.p-tabview.p-tabview-bottom,
+.p-tabview.p-tabview-left,
+.p-tabview.p-tabview-right {
+	margin-bottom: 1.75rem;
+	padding: 0;
+	color: $body-color;
+	font-size: $font-size-base;
+	line-height: 1.5;
+	background-color: $white;
+	border: none;
+	border-radius: 0;
+	box-shadow: $tab-view-box-shadow;
+
+	ul.p-tabview-nav {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 0;
+		line-height: 1.5;
+		background-color: $lighter-gray-background-color;
+		border: none;
+		border-radius: 0;
+	}
+
+	.p-tabview-nav li {
+		display: inline-grid;
+
+		.p-tabview-left-icon {
+			margin-right: 0.25em;
+		}
+
+		.p-tabview-close {
+			position: absolute;
+			top: 50%;
+			right: 4px;
+			margin-top: -0.5em;
+			font-size: 14px;
+			cursor: pointer;
+			opacity: 0.3;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&:not(.p-highlight):not(.p-disabled):hover {
+			a {
+				color: $primary;
+			}
+
+			.p-tabview-close {
+				opacity: 1;
+			}
+		}
+
+		&.p-highlight {
+			color: $body-color;
+			background-color: $white;
+
+			&:hover {
+				.p-tabview-close {
+					opacity: 1;
+				}
+			}
+		}
+
+		&.p-tabview-selected a {
+			cursor: pointer;
+		}
+	}
+}
+
+.p-tabview.p-tabview-left,
+.p-tabview.p-tabview-right {
+	ul.p-tabview-nav {
+		flex-direction: column;
+	}
+}
+
+body {
+	.p-tabview,
+	.p-tabview.p-tabview-top .p-tabview-nav li,
+	.p-tabview.p-tabview-bottom .p-tabview-nav li,
+	.p-tabview.p-tabview-left .p-tabview-nav li,
+	.p-tabview.p-tabview-right .p-tabview-nav li {
+		border-radius: 0;
+
+		a.p-tabview-nav-link {
+			display: inline-block;
+			float: none;
+			padding: $tab-padding-y $tab-padding-x;
+			padding-right: 32px;
+			color: $body-color;
+			font-weight: $font-weight-bold;
+			font-size: 0.875rem;
+			border: 1px solid transparent;
+		}
+
+		.p-tabview-close {
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+
+	.p-tabview.p-tabview-left .p-tabview-nav li,
+	.p-tabview.p-tabview-right .p-tabview-nav li {
+		width: 100%;
+	}
+
+	.p-tabview.p-tabview-top .p-tabview-nav li {
+		top: 0;
+	}
+
+	.p-tabview.p-tabview-bottom .p-tabview-nav li {
+		bottom: 0;
+	}
+
+	.p-tabview.p-tabview-left .p-tabview-nav li {
+		left: 0;
+	}
+
+	.p-tabview.p-tabview-right .p-tabview-nav li {
+		right: 0;
+	}
+}
+
+.p-tabview {
+	.p-tabview-panels {
+		padding: $tab-padding-x $tab-padding-x 1px;
+		overflow-x: visible;
+		background-color: $white;
+
+		.p-tabview-panel {
+			padding: 0;
+			p {
+				margin: 0 0 1.25rem 0;
+			}
+		}
+	}
+}
+
+.nav-tabs-primary {
+	.p-tabview,
+	.p-tabview.p-tabview-top,
+	.p-tabview.p-tabview-bottom,
+	.p-tabview.p-tabview-left,
+	.p-tabview.p-tabview-right {
+		ul.p-tabview-nav {
+			background-color: $white;
+			border-bottom: 1px solid $footer-border-color;
+		}
+
+		.p-tabview-nav li {
+			margin-bottom: -2px;
+
+			&.p-highlight,
+			&:not(.p-highlight):not(.p-disabled):hover {
+				box-shadow: inset 0 -2px $primary;
+			}
+
+			&.p-disabled {
+				background-color: $white;
+			}
+		}
+	}
+}

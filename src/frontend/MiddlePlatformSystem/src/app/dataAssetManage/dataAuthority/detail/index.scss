@@ -1,0 +1,103 @@
+.input-text {
+  width: 100%;
+  background-color: #fff;
+}
+
+.node-label-class {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+
+  .node-label-num {
+    border-radius: 20px;
+    background: #693;
+    display: inline-flex;
+    padding: 0px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #fff;
+  }
+}
+
+:host {
+
+  level-one-panel {
+    display: block;
+    height: 60px;
+
+    &.p-tree {
+      padding: 0;
+      
+      ::ng-deep {
+        .l1-box {
+          height: 100% !important;
+          padding-bottom: 0
+        }
+      }
+    }
+
+    ::ng-deep {
+      .l1-box {
+        height: auto !important;
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .p-multiselect {
+      width: 100% !important;
+      background-color: #fff;
+      font-size: 14px !important;
+    }
+
+    .p-tree .p-tree-filter-container .p-tree-filter {
+      background-color: #fff !important;
+    }
+
+    .p-tree {
+      background-color: #f1f2f2;
+      border: none;
+
+      button.p-tree-toggler {
+        width: 14px !important;
+        height: 14px !important;
+        border-radius: unset !important;
+
+        .pi-chevron-down {
+          background-image: url('~src/assets/images/dataAssetManage/assetQUery/tree-close.png');
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          width: 12px;
+          height: 12px;
+
+          &::before {
+            content: '' !important;
+          }
+        }
+
+        .pi-chevron-right {
+          background-image: url('~src/assets/images/dataAssetManage/assetQUery/tree-open.png');
+          background-size: 100% 100%;
+          background-repeat: no-repeat;
+          width: 12px;
+          height: 12px;
+
+          &::before {
+            content: '' !important;
+          }
+        }
+      }
+    }
+
+    .ant-tree-list-holder-inner {
+      background: #F7F9FD;
+    }
+
+    .ant-tree-show-line .ant-tree-switcher {
+      background: #F7F9FD;
+    }
+  }
+}

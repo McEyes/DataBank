@@ -1,0 +1,48 @@
+<div style="height:100%;">
+  <level-one-panel>
+    <p-multiSelect
+      [showToggleAll]="false"
+      [options]="userList"
+      [(ngModel)]="queryParams.id"
+      [virtualScroll]="true"
+      [virtualScrollItemSize]="38"
+      optionLabel="name"
+      optionValue="id"
+      (onPanelHide)="onPanelHide($event)"
+      (onClick)="onPanelHide($event)"
+      (onChange)="onChangeUser($event)"
+      class="input-text"
+      appendTo="body"
+      panelStyleClass="smallWidth"
+      [placeholder]="'input.select.user.name' | translate"></p-multiSelect>
+  </level-one-panel>
+  <level-one-panel class="p-tree" style="margin-top: 10px; height: calc(100% - 140px); overflow: hidden">
+    <input
+      type="text"
+      style="background-color: #fff;width: 100%;"
+      nz-input
+      [placeholder]="'input.keyword' | translate"
+      (input)="onSearchTree($event)"
+      (keyup.enter)="onSearchTree($event)"
+      [(ngModel)]="treeSearchValue" />
+    <div style="height: calc(100% - 45px); overflow-y: auto; margin-top: 10px; position: relative">
+      <nz-tree
+        [nzExpandAll]="isSearch"
+        nzShowLine
+        [nzData]="searchResult"
+        nzCheckable
+        [nzCheckedKeys]="defaultCheckedKeys"
+        [nzExpandedKeys]="defaultExpandedKeys"
+        (nzCheckBoxChange)="nzEvent($event)"></nz-tree>
+        <jabil-loading [hidden]="!(loading)"></jabil-loading>
+    </div>
+  </level-one-panel>
+  <div class="bottom-btn" style="width: 100%; padding: 10px 0px">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="onSumbit()">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+</div>
+<jabil-loading [hidden]="!(loading)"></jabil-loading>
+<p-toast></p-toast>

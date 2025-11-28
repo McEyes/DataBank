@@ -1,0 +1,11 @@
+POST http://localhost:6010/services/v1.0.0/masterdata/organization/sqlQuery
+x-token: 441db60a2cf505290b379fb99ca231ac
+Content-Type: application/json
+
+{
+  "pageNum": "1",
+  "pageSize": "100",
+  "sqlText": "select * from s_organization",
+  "total": 0,
+  "to_excel": "1"
+}

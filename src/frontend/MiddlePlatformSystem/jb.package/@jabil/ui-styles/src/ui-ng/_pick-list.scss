@@ -1,0 +1,106 @@
+@use 'sass:selector';
+
+body .p-picklist {
+	.p-picklist-list {
+		padding: 0;
+		border: 1px solid $border-color;
+
+		.p-picklist-item {
+			padding: 0.5rem 0.75rem;
+
+			&:focus {
+				outline: none;
+			}
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			&.p-highlight:hover {
+				background-color: $header-dark-bg;
+			}
+		}
+	}
+
+	.p-picklist-buttons button {
+		margin-bottom: 1rem;
+	}
+
+	.p-picklist-header {
+		margin-top: 0.357em;
+		margin-bottom: 0;
+		padding: 0;
+		color: $gray-600;
+		font-weight: 700;
+		font-size: 14px;
+		background-color: $lighter-gray-background-color;
+		border: 1px solid $border-color;
+		border-bottom: none;
+	}
+
+	.p-picklist-title {
+		padding: 0.95rem 1.25rem;
+		color: $gray-600;
+		font-weight: 400;
+		font-size: 1rem;
+		outline: 0 none;
+	}
+
+	.p-picklist-filter-container {
+		padding: 0.5rem;
+		border: 1px solid $border-color;
+		border-bottom: 0;
+
+		.p-picklist-filter-input:enabled:focus {
+			border: 1px solid $focus-border-color;
+			box-shadow: $auto-complete-box-shadow;
+		}
+
+		.p-picklist-filter-icon {
+			right: 10px;
+		}
+	}
+
+	@include icon-convert(
+		selector.unify('.p-button-icon', '.pi-angle-right'),
+		$fa-var-angle-right
+	);
+
+	@include icon-convert(
+		selector.unify('.p-button-icon', '.pi-angle-up'),
+		$fa-var-angle-up
+	);
+
+	@include icon-convert(
+		selector.unify('.p-button-icon', '.pi-angle-down'),
+		$fa-var-angle-down
+	);
+
+	@include icon-convert(
+		selector.unify('.p-button-icon', '.pi-angle-double-right'),
+		$fa-var-angle-double-right
+	);
+
+	@include icon-convert(
+		selector.unify('.p-button-icon', '.pi-angle-left'),
+		$fa-var-angle-left
+	);
+
+	@include icon-convert(
+		selector.unify('.p-button-icon', '.pi-angle-double-left'),
+		$fa-var-angle-double-left
+	);
+}
+
+@media screen and (max-width: 960px) {
+	.p-picklist[pr_id_2] {
+		.p-picklist-buttons .p-button {
+			width: auto;
+			margin-right: 1rem !important;
+		}
+
+		.p-picklist-list {
+			margin: 1rem;
+		}
+	}
+}

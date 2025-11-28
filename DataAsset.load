@@ -1,0 +1,25 @@
+LOAD DATABASE
+  FROM mysql://jabil:jabil123@cnhuam0itlake20/dataxaccess
+  INTO postgresql://jabilbus:jabilbus1991@cnhuam0itstg82/DataAsset
+
+WITH include drop, create tables, create indexes, reset sequences,foreign keys
+
+SET maintenance_work_mem to '128MB', work_mem to '12MB', search_path to 'public';
+
+
+
+LOAD DATABASE
+  FROM mysql://[mysql_user]:[mysql_password]@[mysql_host]/[mysql_db]
+  INTO postgresql://[postgres_user]:[postgres_password]@[postgres_host]/[postgres_db]
+  
+WITH include drop, create tables, create indexes, reset sequences, foreign keys
+
+SET search_path TO 'public';
+
+
+
+pgloader --with "schema only" mysql://jabil:jabil@10.114.17.125/dataxaccess postgresql://jabilbus:jabilbus1991@cnhuam0itstg82/DataAsset_Prd
+
+pgloader mysql://jabil:jabil123@cnhuam0itlake20/dataxaccess  postgresql://jabilbus:jabilbus1991@cnhuam0itstg82/DataAsset?options='-c search_path=public'
+
+pgloader mysql://[mysql_username]:[mysql_password]@[mysql_host]/[mysql_database_name] postgresql://[postgres_username]:[postgres_password]@[postgres_host]/[postgres_database_name]?options=-csearch_path%3Dpublic    

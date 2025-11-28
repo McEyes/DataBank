@@ -1,0 +1,954 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITPortal.Flow.Application</name>
+    </assembly>
+    <members>
+        <member name="M:ITPortal.Flow.Application.Common.FlowExtensions.GetStartAct(System.Collections.Generic.List{ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity})">
+            <summary>
+            获取开始节点，以Start名称开始
+            </summary>
+            <param name="actDtos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.Common.FlowExtensions.GetEndAct(System.Collections.Generic.List{ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity})">
+            <summary>
+            流程结束节点，以End名称结束
+            </summary>
+            <param name="actDtos"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.Common.FlowExtensions.GetStartNextAct(System.Collections.Generic.List{ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActDto},System.String)">
+            <summary>
+            获取下一个节点，默认开始节点的下一个节点
+            </summary>
+            <param name="actDtos"></param>
+            <param name="currentActName"></param>
+            <returns></returns>
+            <exception cref="T:Furion.FriendlyException.AppFriendlyException"></exception>
+        </member>
+        <member name="M:ITPortal.Flow.Application.Common.FlowExtensions.GetNextActName(System.Collections.Generic.List{ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActDto},System.String,ITPortal.Flow.Core.FlowAction)">
+            <summary>
+            获取下一个节点，根据审批动作和路径
+            </summary>
+            <param name="actDtos"></param>
+            <param name="currentActName"></param>
+            <param name="approvalAction"></param>
+            <returns></returns>
+            <exception cref="T:Furion.FriendlyException.AppFriendlyException"></exception>
+        </member>
+        <member name="P:ITPortal.Flow.Application.EmailSendRecord.Dtos.EmailSendRecordDto.Status">
+            <summary>
+            发送成功与失败：1成功，0没发送，-1失败，-99结束发送
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.EmailSendRecord.Dtos.EmailSendRecordEntity.Status">
+            <summary>
+            发送成功与失败：1成功，0没发送，-1失败，-99结束发送
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.EmailSendRecord.EmailSendRecordAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.EmailSendRecord.EmailSendRecordAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.EmailSendRecord.EmailSendRecordAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.Flow.Application.EmailTemplate.EmailTemplateAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.EmailTemplate.EmailTemplateAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.EmailTemplate.EmailTemplateAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.GetSysVerUrl(System.Collections.Generic.IList{System.Object},System.String,System.String)">
+            <summary>
+             "Sys_STG_EMailUrl"
+            </summary>
+            <param name="paramData"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.GetSysVerData(System.Collections.Generic.IList{System.Object},System.String,System.String)">
+            <summary>
+             "Sys_STG_EMailUrl"
+            </summary>
+            <param name="paramData"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.GetVerData(System.Collections.Generic.IList{System.Object},System.String,System.String)">
+            <summary>
+             "Sys_STG_EMailUrl"
+            </summary>
+            <param name="paramData"></param>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.FillTemplate2(System.String,System.Object,System.Collections.Generic.IList{System.Object})">
+            <summary>
+            替换模板字符串中的占位符，支持从动态对象和参数列表中提取数据进行替换。
+            </summary>
+            <param name="tmpeStr">待替换的模板字符串，格式中包含类似${Name}的占位符。</param>
+            <param name="data">动态数据对象，用于替换模板中的占位符。</param>
+            <param name="paramData">额外的参数列表，用于替换模板中的占位符。</param>
+            <returns>替换完成后的字符串。</returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.MargeData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            替换模板字符串中的占位符，支持从动态对象和参数列表中提取数据进行替换。
+            </summary>
+            <param name="data">动态数据对象，用于替换模板中的占位符。</param>
+            <param name="paramData">额外的参数列表，用于替换模板中的占位符。</param>
+            <returns>替换完成后的字符串。</returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.MargeData(Newtonsoft.Json.Linq.JObject,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            替换模板字符串中的占位符，支持从动态对象和参数列表中提取数据进行替换。
+            </summary>
+            <param name="data">动态数据对象，用于替换模板中的占位符。</param>
+            <param name="paramData">额外的参数列表，用于替换模板中的占位符。</param>
+            <returns>替换完成后的字符串。</returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.FillTemplateByJson(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            替换模板字符串中的占位符，支持从动态对象和参数列表中提取数据进行替换。
+            </summary>
+            <param name="tmpeStr">待替换的模板字符串，格式中包含类似${Name}的占位符。</param>
+            <param name="jsonData">动态数据对象，用于替换模板中的占位符。</param>
+            <param name="paramData">额外的参数列表，用于替换模板中的占位符。</param>
+            <returns>替换完成后的字符串。</returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.ApiEmailHelper.FillTemplate(System.String,Newtonsoft.Json.Linq.JObject,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            替换模板字符串中的占位符，支持从动态对象和参数列表中提取数据进行替换。
+            </summary>
+            <param name="tmpeStr">待替换的模板字符串，格式中包含类似${Name}的占位符。</param>
+            <param name="data">动态数据对象，用于替换模板中的占位符。</param>
+            <param name="paramData">额外的参数列表，用于替换模板中的占位符。</param>
+            <returns>替换完成后的字符串。</returns>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstDto.ActType">
+            <summary>
+            节点类型：Start，End, Normal, Notify,EmailNotify,SMSNotify,Http,
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstDto.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstDto.NoticeUser">
+            <summary>
+            抄送通知人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity.ActType">
+            <summary>
+            节点类型：Start，End, Normal, Notify,EmailNotify,SMSNotify,Http,
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity.NoticeUser">
+            <summary>
+            抄送通知人
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowActInst.FlowActInstAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowActInst.FlowActInstAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowActInst.FlowActInstAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAttachments.Dtos.FlowAttachmentDto.IsNeed">
+            <summary>
+            是否必填
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAttachments.Dtos.FlowAttachmentEntity.IsNeed">
+            <summary>
+            是否必填
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAttachments.Dtos.FlowAttachmentEntity.NeedActName">
+            <summary>
+            必填上传节点,为空时表示开始节点必填
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAttachments.Dtos.FlowAttachmentInfo.IsNeed">
+            <summary>
+            是否必填
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowAttachment.FlowAttachmentAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowAttachment.FlowAttachmentAppService.GetTempAttachList(System.Guid)">
+            <summary>
+            获取流程模板配置的必填附件
+            </summary>
+            <param name="tampName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowAttachment.FlowAttachmentAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowAttachment.FlowAttachmentAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto.Id">
+            <summary>
+            待办id，待办id和流程id二选一，不需要有一个
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto.FlowInstId">
+            <summary>
+            流程id，待办id和流程id二选一，不需要有一个
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto.ActOperate">
+            <summary>
+            审批动作: Submit 提交，Approval 审批(同意，通过等)，Reject 驳回，RejectStart 驳回到开始，RejectEnd 拒绝（流程直接结束）
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto.AuditContent">
+            <summary>
+            审批内容
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto.FlowActs">
+            <summary>
+            审批人配置，只能配置之后的节点，非必填
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowTransferAuditDto.Transferor">
+            <summary>
+            转办人
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowGotToActAuditDto">
+            <summary>
+            重启流程跳转到指定节点
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowGotToActAuditDto.ActName">
+            <summary>
+            启动到指定节点
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowAuditRecord.FlowAuditRecordAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowAuditRecord.FlowAuditRecordAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowAuditRecord.FlowAuditRecordAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowInstActRoute.FlowInstActRouteAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInstActRoute.FlowInstActRouteAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInstActRoute.FlowInstActRouteAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowEntity.CreateTime">
+            <summary>
+            createTime
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowEntity.CreateBy">
+            <summary>
+            createBy
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowEntity.FormUrl">
+            <summary>
+            流程表单url
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstDto.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstDto.EndNoticeUser">
+            <summary>
+            抄送通知人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity.EmailTempID">
+            <summary>
+            代办邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity.FinishEmailTempID">
+            <summary>
+            流程结束完成邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity.EndNoticeUser">
+            <summary>
+            流程结束通知人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity.FormUrl">
+            <summary>
+            流程表单url
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.CreateTime">
+            <summary>
+            createTime
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.CreateBy">
+            <summary>
+            createBy
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.FormUrl">
+            <summary>
+            流程表单url
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.EndNoticeUser">
+            <summary>
+            抄送通知人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.FlowActs">
+            <summary>
+            审批节点信息
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.AuditRecords">
+            <summary>
+            审批记录
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.FlowInstInfo.Attacchments">
+            <summary>
+            流程附件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.FlowTempId">
+            <summary>
+            流程模板id，指定具体模板时，即使该模板非有效状态也可以创建
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.FlowTempName">
+            <summary>
+            模板名称，自动获取最新的有效模板创建流程实例
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.FormId">
+            <summary>
+            表单数据id，也会作为flowid
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.FormNo">
+            <summary>
+            为空时，根据template规则自动生成
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.FormData">
+            <summary>
+            表单数据，用来构建邮件模板和标题模板
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.Applicant">
+            <summary>
+            申请人ID
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.ApplicantName">
+            <summary>
+            申请人名称
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.ActApprovers">
+            <summary>
+            指定节点审批人
+            只需要指定具体节点名称和审批人即可
+            </summary> 
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto.Attacchments">
+            <summary>
+            流程附件，统一管理
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowInst.FlowAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.GetConfig(System.String)">
+            <summary>
+            检查config参数
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.PageSelfTodo(ITPortal.Flow.Application.FlowTodo.Dtos.FlowTodoDto)">
+            <summary>
+            获取未处理的待办清单
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.PageDealTodo(ITPortal.Flow.Application.FlowTodo.Dtos.FlowTodoDto)">
+            <summary>
+            获取已处理的待办清单
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.PageSelfTodoQuery(ITPortal.Flow.Application.FlowTodo.Dtos.FlowTodoDto)">
+            <summary>
+            获取自己的待办清单
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.PageTodoQuery(ITPortal.Flow.Application.FlowTodo.Dtos.FlowTodoDto)">
+            <summary>
+            获取待办清单
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.PageMyRequests(ITPortal.Flow.Application.FlowInst.Dtos.FlowInstDto)">
+            <summary>
+            申请清单
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.PageQuery(ITPortal.Flow.Application.FlowInst.Dtos.FlowInstDto)">
+            <summary>
+            获取所有发起流程
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.GetFlowInstInfo(System.Guid)">
+            <summary>
+            获取流程实例信息
+            包含审批节点信息
+            </summary>
+            <param name="flowId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.GetFormFlowInfo(System.Guid)">
+            <summary>
+            获取流程实例和表单信息
+            包含审批节点信息，审批记录，附件等
+            </summary>
+            <param name="flowId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.GetFormFlowInfoByTodoId(System.Guid)">
+            <summary>
+            获取流程实例和表单信息
+            包含审批节点信息，审批记录，附件等
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.StartFlowInst(ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto)">
+            <summary>
+            发起流程
+            </summary>
+            <param name="flowData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.SaveDraft(ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto)">
+            <summary>
+            保存草稿
+            </summary>
+            <param name="flowData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.Approval(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            流程审批
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.Reject(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            流程驳回
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.RejectStart(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            流程驳回到开始节点
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.RejectEnd(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            拒绝结束流程
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.Cancel(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            拒绝结束流程
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.Transfer(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowTransferAuditDto)">
+            <summary>
+            转办
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.TransferTodo(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowTransferAuditDto)">
+            <summary>
+            转办待办，
+            只支持待办id转办
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.GotToAct(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowGotToActAuditDto)">
+            <summary>
+            跳转到指定节点
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.Submit(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto,ITPortal.Flow.Core.FlowAction)">
+            <summary>
+            流程流转审批，驳回等操作
+            </summary>
+            <param name="info"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.Delete(System.Guid)">
+            <summary>
+            流程流转审批，驳回等操作
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowAppService.DeleteByNo(System.String)">
+            <summary>
+            流程流转审批，驳回等操作
+            </summary>
+            <param name="flowNo"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowInst.FlowInstAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowInstAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.FlowInstAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.GetFormFlowInfo(System.Guid)">
+            <summary>
+            流程表单信息，包含表单数据，流程节点，审批记录，附件等
+            </summary>
+            <param name="flowId"></param>
+            <returns></returns>
+            <exception cref="T:Furion.FriendlyException.AppFriendlyException"></exception>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.GetFormFlowInfoByTaskId(System.Guid)">
+            <summary>
+            流程表单信息，包含表单数据，流程节点，审批记录，附件等
+            </summary>
+            <param name="taskId"></param>
+            <returns></returns>
+            <exception cref="T:Furion.FriendlyException.AppFriendlyException"></exception>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.PageMyRequests(ITPortal.Flow.Application.FlowInst.Dtos.FlowInstDto)">
+            <summary>
+            申请清单
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.WorkListPageQuery(ITPortal.Flow.Application.FlowInst.Dtos.FlowInstDto)">
+            <summary>
+            申请清单
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.StartFlowInst(ITPortal.Flow.Application.FlowInst.Dtos.StartFlowDto,ITPortal.Flow.Core.FlowAction)">
+            <summary>
+            根据流程模板创建流程实例
+            </summary>
+            <param name="flowData"></param>
+            <param name="action">默认启动，传保存草稿是，表示保存</param>
+            <returns></returns>
+            <exception cref="T:Furion.FriendlyException.AppFriendlyException"></exception>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.SendNotice(ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity,ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity,System.Object)">
+            <summary>
+            发送待办通知
+            </summary>
+            <param name="flowInst"></param>
+            <param name="nextActInst"></param>
+            <param name="formData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.SendTodoNotice(ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity,ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity,Newtonsoft.Json.Linq.JObject,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            发送待办通知
+            </summary>
+            <param name="flowInst"></param>
+            <param name="nxtActInst"></param>
+            <param name="formData"></param>
+            <param name="paramData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.SendEmailNotice(ITPortal.Flow.Application.FlowInst.Dtos.FlowInstEntity,ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity,System.Collections.Generic.List{ITPortal.Flow.Application.FlowTodo.Dtos.FlowTodoEntity},System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            发送待办通知
+            </summary>
+            <param name="flowInst"></param>
+            <param name="nextActInst"></param>
+            <param name="todo"></param>
+            <param name="formData"></param>
+            <param name="paramData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.Approval(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            审批
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.Reject(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            驳回
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.RejectStart(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            驳回到开始节点
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.RejectEnd(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto)">
+            <summary>
+            流程拒绝，审批结束
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.Transfer(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowTransferAuditDto)">
+            <summary>
+            转办
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.GotToAct(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowGotToActAuditDto)">
+            <summary>
+            跳转到指定节点
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.TransferSubmit(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowTransferAuditDto,ITPortal.Flow.Core.FlowAction)">
+            <summary>
+            转办，
+            </summary>
+            <param name="info"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.Submit(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowAuditDto,ITPortal.Flow.Core.FlowAction)">
+            <summary>
+            审批
+            update by 25/07/17 扩展支持多人审批
+            </summary>
+            <param name="info"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.GotToActName(ITPortal.Flow.Application.FlowAuditRecord.Dtos.FlowGotToActAuditDto)">
+            <summary>
+            审批
+            update by 25/07/17 扩展支持多人审批
+            </summary>
+            <param name="info"></param>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowInst.Services.FlowInstService.CheckHit(ITPortal.Flow.Application.FlowActInst.Dtos.FlowActInstEntity,System.Int32)">
+            <summary>
+            会签检查审批次数:
+            </summary>
+            <param name="currentAct"></param>
+            <param name="total"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowTempActRoute.FlowTempActRouteAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTempActRoute.FlowTempActRouteAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTempActRoute.FlowTempActRouteAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActDto.HitTimes">
+            <summary>
+            几人通过
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActDto.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActDto.NoticeUser">
+            <summary>
+            抄送通知人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.StaffInfo.Ntid">
+            <summary>
+            Ntid
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.StaffInfo.Name">
+            <summary>
+            显示名称：
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.StaffInfo.Department">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActEntity.ActType">
+            <summary>
+            节点类型：Start，End, Normal, Notify,EmailNotify,SMSNotify,Http,
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActEntity.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTempAct.Dtos.FlowTempActEntity.NoticeUser">
+            <summary>
+            抄送通知人
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowTempAct.FlowTempActAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTempAct.FlowTempActAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTempAct.FlowTempActAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTemplate.Dtos.FlowTemplateDto.FlowNo">
+            <summary>
+            流程编号模板
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTemplate.Dtos.FlowTemplateEntity.FlowNo">
+            <summary>
+            编码规则，前缀
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTemplate.Dtos.FlowTemplateEntity.RejectEmailTempID">
+            <summary>
+            拒绝邮件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Flow.Application.FlowTemplate.Dtos.FlowTemplateEntity.EndNoticeUser">
+            <summary>
+            抄送通知人
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowTemplate.FlowTemplateAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTemplate.FlowTemplateAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTemplate.FlowTemplateAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTemplate.Services.FlowTemplateService.CheckTempRoute(System.Guid)">
+            <summary>
+            检查模板路由情况
+            </summary>
+            <param name="tempId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.Flow.Application.FlowTodo.FlowTodoAppService">
+            <summary>
+            流程节点实例
+            </summary>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTodo.FlowTodoAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Flow.Application.FlowTodo.FlowTodoAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.Flow.Application.Jobs.SendTodoEmailJob">
+            <summary>
+            发送待办邮件服务
+            </summary>
+        </member>
+    </members>
+</doc>

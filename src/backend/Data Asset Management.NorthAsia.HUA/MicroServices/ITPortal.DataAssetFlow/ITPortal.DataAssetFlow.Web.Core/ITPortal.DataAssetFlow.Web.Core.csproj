@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.DataAssetFlow.Web.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Handlers\**" />
+	  <EmbeddedResource Remove="Handlers\**" />
+	  <None Remove="Handlers\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="ITPortal.DataAssetFlow.Web.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.DataAssetFlow.Application\ITPortal.DataAssetFlow.Application.csproj" />
+	</ItemGroup>
+
+</Project>

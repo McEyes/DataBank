@@ -1,0 +1,54 @@
+<div style="width: 100%; height: 100%; padding: 0px 0px 10px">
+  <div style="display: flex; width: 100%; overflow: hidden;margin-bottom: 10px;">
+    <div class="da-button da-button-success" style="margin-right: 10px" (click)="onAddMultiLevelApprovers()">
+      {{'operate.add' | translate}}
+    </div>
+    <div class="da-button" (click)="onSlotMultiLevelApprovers()">{{'operate.slot' | translate}}</div>
+  </div>
+  <p-table [value]="tableData" dataKey="sort" [tableStyle]="{'max-width': '100%'}" styleClass="sys-table">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 200px;">
+          {{'field.approval.level' | translate}}
+        </th>
+        <th>
+          {{'field.approved.by' | translate}}
+        </th>
+        <th style="width: 150px;">
+          {{'label.operate' | translate}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+      <tr>
+        <td style="width: 200px;padding: 5px !important">
+          <input pInputText type="number" [min]="1" [(ngModel)]="item.sort" [placeholder]="'input.please' | translate"
+            [ngClass]="{ 'ng-invalid':item.multiLevelInvalid && !item.sort }"
+            style="max-width: 150px; background-color: #fff !important; border: 1px solid #eee; width: 100%"
+            (blur)="onBlurSort($event,item)" />
+        </td>
+        <td style="padding: 5px !important;">
+          <p-multiSelect panelStyleClass="bodyOffset" pInputText [showToggleAll]="false" [options]="userList"
+            [(ngModel)]="item.idList" [virtualScroll]="true" [virtualScrollItemSize]="38" optionLabel="name"
+            optionValue="id" appendTo="body" (onPanelHide)="onPanelHide(item)" (onClick)="onPanelHide(item)"
+            class="multiSelect-text" [placeholder]="'input.select.please' | translate"
+            [ngClass]="{ 'ng-invalid':item.multiLevelInvalid && item.idList.length==0 }"></p-multiSelect>
+        </td>
+        <td style="width: 150px; padding: 5px 10px !important">
+          <div class="table-button" style="margin-top: 8px; width: auto;"
+            (click)="ondeleteMultiLevelApprovers($event,item)">
+            {{'operate.delete' | translate}}
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmPopup></p-confirmPopup>
+<p-toast></p-toast>

@@ -1,0 +1,7 @@
+apiurl,req_method,sql_text
+/services/v1.0.0/HR/Base/tp_employee_base_info/query,,
+/services/v1.0.0/IOT/DB/88/tp_airconditioningwindcabinet_dys/query,,
+/services/v1.0.0/IOT/DB/88/tp_EquipmentInformation_luxmeter/query,,
+/services/v1.0.0/IOT/DB/88/tp_EquipmentInformation_particlecounter/query,,
+/services/v1.0.0/IOT/DB/88/tp_EquipmentInformation_thermohygrometer/query,,
+/services/v1.0.0/Trace/eBuyoff/tp_check_list_and_Acceptance_info/query,,

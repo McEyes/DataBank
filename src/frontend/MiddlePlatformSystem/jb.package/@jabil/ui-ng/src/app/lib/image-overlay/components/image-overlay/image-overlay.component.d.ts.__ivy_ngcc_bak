@@ -1,0 +1,26 @@
+declare type ImgAnimation = 'zoom-in' | 'rotate-l' | 'rotate-r' | null;
+declare type ImgOverlayAnimation = 'slide-top' | 'slide-right' | 'slide-down' | 'slide-left' | 'zoom-in' | 'zoom-out' | null;
+declare type ImgOverlayBgColor = 'black' | 'white' | 'primary-dark';
+export declare class ImageOverlayComponent {
+    /**
+     * Image Name
+     */
+    imgName: string;
+    /**
+     * Image Source
+     */
+    imgSrc: string;
+    /**
+     * Image Animation Name
+     */
+    imgAnimation: ImgAnimation;
+    /**
+     * Image Overlay Animation Name
+     */
+    imgOverlayAnimation: ImgOverlayAnimation;
+    /**
+     * Image Overlay Background Color
+     */
+    imgOverlayBgColor: ImgOverlayBgColor;
+}
+export {};

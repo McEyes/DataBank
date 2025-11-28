@@ -1,0 +1,15 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://cnhuam0itds01:55001",
+    "Service": "apigateway",
+    "ServicePort": 55001,
+    "ServiceDiscoveryProvider": {
+      "Host": "cnhuam0itds02",
+      "Port": 8500,
+      "Type": "Consul",
+      "Token": "=******",
+      "PollingInterval": 10000,
+      "ConfigurationKey": "ITPortalGateway"
+    }
+  }
+}

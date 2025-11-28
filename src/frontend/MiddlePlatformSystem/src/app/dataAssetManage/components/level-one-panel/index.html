@@ -1,0 +1,9 @@
+<div class="l1-box" [style]="{'height':height}">
+  <div class="l1-title" *ngIf="titleName != 'defult'">{{titleName}}</div>
+  <div class="l1-inner" [style]="{'height':innerHeight}">
+    <ng-content></ng-content>
+  </div>
+  <div class="l1-bottom" *ngIf="isBottom">
+    <ng-content select="bottom"> </ng-content>
+  </div>
+</div>

@@ -1,0 +1,613 @@
+{
+  "statusCode": 200,
+  "data": {
+    "graph": [
+      {
+        "id": "job:datatopicstore:topic20251014002",
+        "type": "JOB",
+        "data": {
+          "id": {
+            "namespace": "datatopicstore",
+            "name": "topic20251014002",
+            "description": "cte project test"
+          },
+          "type": "BATCH",
+          "name": "topic20251014002",
+          "description": null,
+          "namespace": "datatopicstore",
+          "inputs": [
+            {
+              "namespace": "datatopicstore",
+              "name": "trace_ehs.ehs_project_class",
+              "description": "项目审批信息"
+            },
+            {
+              "namespace": "datatopicstore",
+              "name": "trace_ehs.ehs_project_company",
+              "description": "项目施工单位"
+            },
+            {
+              "namespace": "datatopicstore",
+              "name": "trace_ehs.ehs_project",
+              "description": "项目信息"
+            }
+          ],
+          "outputs": [
+            {
+              "namespace": "datatopicstore",
+              "name": "_default_.topic20251014002",
+              "description": null
+            }
+          ],
+          "fields": null
+        }
+      }
+    ],
+    "datasets": [
+      {
+        "namespace": "datatopicstore",
+        "sourceName": null,
+        "type": "DB_TABLE",
+        "name": "_default_.topic20251014002",
+        "description": null,
+        "fields": [
+          {
+            "name": "building_name",
+            "type": "VARCHAR",
+            "tags": [],
+            "description": "building_name"
+          },
+          {
+            "name": "building_no",
+            "type": "VARCHAR",
+            "tags": [],
+            "description": "building_no"
+          },
+          {
+            "name": "id",
+            "type": "VARCHAR",
+            "tags": [],
+            "description": "id"
+          },
+          {
+            "name": "project_code",
+            "type": "VARCHAR",
+            "tags": [],
+            "description": "project_code"
+          },
+          {
+            "name": "project_name",
+            "type": "VARCHAR",
+            "tags": [],
+            "description": "project_name"
+          }
+        ]
+      },
+      {
+        "namespace": "datatopicstore",
+        "sourceName": null,
+        "type": "DB_TABLE",
+        "name": "demo.demo_project",
+        "description": null,
+        "fields": []
+      },
+      {
+        "namespace": "datatopicstore",
+        "sourceName": null,
+        "type": "DB_TABLE",
+        "name": "demo.demo_project2",
+        "description": null,
+        "fields": []
+      },
+      {
+        "namespace": "datatopicstore",
+        "sourceName": null,
+        "type": "DB_TABLE",
+        "name": "trace_ehs.ehs_project",
+        "description": "项目信息",
+        "fields": [
+          {
+            "name": "sync_update_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "数据同步时间"
+          },
+          {
+            "name": "delete_reason",
+            "type": "varchar",
+            "tags": [],
+            "description": "删除理由"
+          },
+          {
+            "name": "cancellation_reason",
+            "type": "varchar",
+            "tags": [],
+            "description": "取消理由"
+          },
+          {
+            "name": "cancellation_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "取消时间"
+          },
+          {
+            "name": "cancellation_content",
+            "type": "varchar",
+            "tags": [],
+            "description": "取消人签名"
+          },
+          {
+            "name": "cancellation_by",
+            "type": "varchar",
+            "tags": [],
+            "description": "取消人工号"
+          },
+          {
+            "name": "high_risk_content",
+            "type": "varchar",
+            "tags": [],
+            "description": "高风险内容，暂时先直接保存json字符串"
+          },
+          {
+            "name": "moc_option",
+            "type": "varchar",
+            "tags": [],
+            "description": "MOC选项"
+          },
+          {
+            "name": "project_po",
+            "type": "varchar",
+            "tags": [],
+            "description": "项目PO"
+          },
+          {
+            "name": "delete_flag",
+            "type": "smallint",
+            "tags": [],
+            "description": "是否删除，1删除，0表示未删除。"
+          },
+          {
+            "name": "update_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "[NULL]"
+          },
+          {
+            "name": "update_by",
+            "type": "varchar",
+            "tags": [],
+            "description": "[NULL]"
+          },
+          {
+            "name": "create_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "创建人姓名"
+          },
+          {
+            "name": "create_by",
+            "type": "varchar",
+            "tags": [],
+            "description": "创建人"
+          },
+          {
+            "name": "project_status",
+            "type": "smallint",
+            "tags": [],
+            "description": "项目状态，1正常，2是延期冻结中"
+          },
+          {
+            "name": "remark",
+            "type": "varchar",
+            "tags": [],
+            "description": "其它描述"
+          },
+          {
+            "name": "evaluation_results",
+            "type": "varchar",
+            "tags": [],
+            "description": "分析评估结果"
+          },
+          {
+            "name": "finish_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "完工时间"
+          },
+          {
+            "name": "start_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "工程开工时间"
+          },
+          {
+            "name": "jabile_ehs_leading_phone",
+            "type": "varchar",
+            "tags": [],
+            "description": "捷普工程负责人手机号码"
+          },
+          {
+            "name": "jabile_ehs_leading_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "捷普工程负责人姓名"
+          },
+          {
+            "name": "jabile_ehs_leading",
+            "type": "varchar",
+            "tags": [],
+            "description": "捷普工程负责人旧工号"
+          },
+          {
+            "name": "is_high_risk",
+            "type": "smallint",
+            "tags": [],
+            "description": "是否高风险，1是，0否"
+          },
+          {
+            "name": "building_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "楼栋名称"
+          },
+          {
+            "name": "building_no",
+            "type": "varchar",
+            "tags": [],
+            "description": "楼栋编号"
+          },
+          {
+            "name": "project_code",
+            "type": "varchar",
+            "tags": [],
+            "description": "项目编号"
+          },
+          {
+            "name": "project_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "项目名称"
+          },
+          {
+            "name": "id",
+            "type": "bigint",
+            "tags": [],
+            "description": "系统id"
+          }
+        ]
+      },
+      {
+        "namespace": "datatopicstore",
+        "sourceName": null,
+        "type": "DB_TABLE",
+        "name": "trace_ehs.ehs_project_class",
+        "description": "项目审批信息",
+        "fields": [
+          {
+            "name": "sync_update_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "数据同步时间"
+          },
+          {
+            "name": "delete_flag",
+            "type": "smallint",
+            "tags": [],
+            "description": "是否删除，1删除，0表示未删除。"
+          },
+          {
+            "name": "update_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "更新时间"
+          },
+          {
+            "name": "update_by",
+            "type": "varchar",
+            "tags": [],
+            "description": "更新人"
+          },
+          {
+            "name": "create_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "创建人姓名"
+          },
+          {
+            "name": "create_by",
+            "type": "varchar",
+            "tags": [],
+            "description": "创建人"
+          },
+          {
+            "name": "apply_content",
+            "type": "varchar",
+            "tags": [],
+            "description": "申请人签名内容"
+          },
+          {
+            "name": "apply_phone",
+            "type": "varchar",
+            "tags": [],
+            "description": "申请人姓名"
+          },
+          {
+            "name": "apply_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "申请人姓名"
+          },
+          {
+            "name": "apply_by",
+            "type": "varchar",
+            "tags": [],
+            "description": "申请人旧工号"
+          },
+          {
+            "name": "site_ehs_content",
+            "type": "varchar",
+            "tags": [],
+            "description": "Site EHS审批的内容"
+          },
+          {
+            "name": "site_ehs_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "Site EHS审批的时间"
+          },
+          {
+            "name": "site_ehs_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "Site EHS审批的姓名"
+          },
+          {
+            "name": "site_ehs_employee_no",
+            "type": "varchar",
+            "tags": [],
+            "description": "Site EHS审批的旧工号"
+          },
+          {
+            "name": "possessions_content",
+            "type": "varchar",
+            "tags": [],
+            "description": "属地/相关方审批备注"
+          },
+          {
+            "name": "possessions_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "属地/相关方审批的时间"
+          },
+          {
+            "name": "possessions_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "属地/相关方审批的姓名"
+          },
+          {
+            "name": "possessions_employee_id",
+            "type": "varchar",
+            "tags": [],
+            "description": "属地/相关方审批的旧工号"
+          },
+          {
+            "name": "pm_content",
+            "type": "varchar",
+            "tags": [],
+            "description": "pm审批内容"
+          },
+          {
+            "name": "pm_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "审批时间"
+          },
+          {
+            "name": "pm_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "PM审批的人姓名"
+          },
+          {
+            "name": "pm_employee_no",
+            "type": "varchar",
+            "tags": [],
+            "description": "PM审批的旧工号"
+          },
+          {
+            "name": "delay_remark",
+            "type": "varchar",
+            "tags": [],
+            "description": "申请延期原因"
+          },
+          {
+            "name": "project_delay",
+            "type": "datetime",
+            "tags": [],
+            "description": "项目延期到时间"
+          },
+          {
+            "name": "project_status",
+            "type": "smallint",
+            "tags": [],
+            "description": "项目状态，1正常，2是延期的"
+          },
+          {
+            "name": "flow_status",
+            "type": "smallint",
+            "tags": [],
+            "description": "流程状态，1表示未开始，2表示进行中，3表示挂起，4完成等"
+          },
+          {
+            "name": "flow_sort",
+            "type": "smallint",
+            "tags": [],
+            "description": "流程状态，对应流程定义的sort"
+          },
+          {
+            "name": "project_id",
+            "type": "bigint",
+            "tags": [],
+            "description": "项目id"
+          },
+          {
+            "name": "id",
+            "type": "bigint",
+            "tags": [],
+            "description": "系统id"
+          }
+        ]
+      },
+      {
+        "namespace": "datatopicstore",
+        "sourceName": null,
+        "type": "DB_TABLE",
+        "name": "trace_ehs.ehs_project_company",
+        "description": "项目施工单位",
+        "fields": [
+          {
+            "name": "sync_update_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "数据同步时间"
+          },
+          {
+            "name": "company_type",
+            "type": "varchar",
+            "tags": [],
+            "description": "捷普 承包商/供应商"
+          },
+          {
+            "name": "delete_flag",
+            "type": "smallint",
+            "tags": [],
+            "description": "是否删除，1删除，0表示未删除。"
+          },
+          {
+            "name": "update_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "更新时间"
+          },
+          {
+            "name": "update_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "更新人"
+          },
+          {
+            "name": "create_time",
+            "type": "datetime",
+            "tags": [],
+            "description": "创建人姓名"
+          },
+          {
+            "name": "create_by",
+            "type": "varchar",
+            "tags": [],
+            "description": "创建人"
+          },
+          {
+            "name": "construction_unit_leading_phone",
+            "type": "varchar",
+            "tags": [],
+            "description": "施工单位负责人手机"
+          },
+          {
+            "name": "construction_unit_leading_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "施工单位负责人姓名"
+          },
+          {
+            "name": "construction_unit_leading",
+            "type": "varchar",
+            "tags": [],
+            "description": "施工单位负责人旧工号"
+          },
+          {
+            "name": "construction_unit_name",
+            "type": "varchar",
+            "tags": [],
+            "description": "施工单位名称"
+          },
+          {
+            "name": "construction_unit",
+            "type": "varchar",
+            "tags": [],
+            "description": "施工单位"
+          },
+          {
+            "name": "project_id",
+            "type": "bigint",
+            "tags": [],
+            "description": "项目id"
+          },
+          {
+            "name": "id",
+            "type": "bigint",
+            "tags": [],
+            "description": "系统id"
+          }
+        ]
+      }
+    ],
+    "columnlineages": [
+      {
+        "name": "building_name",
+        "inputFields": [
+          {
+            "namespace": "datatopicstore",
+            "dataset": "trace_ehs.ehs_project",
+            "field": "building_name"
+          }
+        ]
+      },
+      {
+        "name": "building_no",
+        "inputFields": [
+          {
+            "namespace": "datatopicstore",
+            "dataset": "trace_ehs.ehs_project",
+            "field": "building_no"
+          }
+        ]
+      },
+      {
+        "name": "id",
+        "inputFields": [
+          {
+            "namespace": "datatopicstore",
+            "dataset": "trace_ehs.ehs_project",
+            "field": "id"
+          }
+        ]
+      },
+      {
+        "name": "project_code",
+        "inputFields": [
+          {
+            "namespace": "datatopicstore",
+            "dataset": "trace_ehs.ehs_project",
+            "field": "project_code"
+          }
+        ]
+      },
+      {
+        "name": "project_name",
+        "inputFields": [
+          {
+            "namespace": "datatopicstore",
+            "dataset": "trace_ehs.ehs_project",
+            "field": "project_name"
+          }
+        ]
+      }
+    ]
+  },
+  "succeeded": true,
+  "errors": null,
+  "extras": null,
+  "timestamp": "1761816757"
+}

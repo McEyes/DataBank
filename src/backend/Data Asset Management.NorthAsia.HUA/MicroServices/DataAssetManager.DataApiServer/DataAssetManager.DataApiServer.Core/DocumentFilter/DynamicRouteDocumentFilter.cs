@@ -1,0 +1,181 @@
+using Azure;
+
+using DataAssetManager.Core;
+using DataAssetManager.Core.Services;
+
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
+
+namespace DataAssetManager.DataApiServer.Core
+{
+    public class DynamicRouteDocumentFilter : IDocumentFilter
+    {
+        private readonly RedisCacheService _cache;
+        public DynamicRouteDocumentFilter(RedisCacheService cache)
+        {
+            _cache = cache;
+        }
+        public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
+        {
+            //_cache.HashGet("");
+            var routeList = _cache.HashGetAll<RouteInfo>(DataAssetManagerConst.RouteRedisKey);
+            foreach (var route in routeList)
+            {
+                var path = route.ApiServiceUrl;
+                var config = route;
+
+                // 添加路径到 Swagger 文档
+                swaggerDoc.Paths.Add(path, new OpenApiPathItem
+                {
+                    Operations = new Dictionary<OperationType, OpenApiOperation>
+                    {
+                        [config.ReqType] = new OpenApiOperation
+                        {
+                            Summary = config.ApiName,//文档简介
+                            Description = config.Remark,//文档详细描述
+                            Parameters = new List<OpenApiParameter>()
+                        }
+                    }
+                });
+
+                var operation = swaggerDoc.Paths[path].Operations[config.ReqType];
+                // 添加参数到 Swagger 文档
+                //添加 tags
+                if (operation.Tags == null)
+                {
+                    operation.Tags = new List<OpenApiTag>();
+                }
+                if (config.ExecuteConfig != null)
+                    operation.Tags.Add(new OpenApiTag() { Name = config.ExecuteConfig?.TableName });
+                //if (config.ExecuteConfig != null)
+                //{
+                //    var apiNames = config.ApiName.Split('-');
+                //    var index = 0;
+                //    foreach (var tag in apiNames)
+                //    {
+                //        operation.Tags.Add(new OpenApiTag() { Name = tag });
+                //        if (index++ > 2) break;
+                //    }
+                //}
+                if (config.ReqType == OperationType.Get)
+                {
+
+                    operation.Parameters.Add(
+                        new OpenApiParameter
+                        {
+                            Name = "pageSize",
+                            In = ParameterLocation.Query,
+                            Required = false,
+                            Schema = new OpenApiSchema { Type = "int" },
+                            Description = "分页大小",
+                            AllowEmptyValue = true,
+                            Example = new OpenApiInteger(1000)
+                        }
+                    );
+                    operation.Parameters.Add(
+                        new OpenApiParameter
+                        {
+                            Name = "pageNum",
+                            In = ParameterLocation.Query,
+                            Required = false,
+                            Schema = new OpenApiSchema { Type = "int" },
+                            Description = "第几页",
+                            AllowEmptyValue = true,
+                            Example = new OpenApiInteger(1)
+                        }
+                    );
+                    if (config.ReqParams == null || config.ReqParams.Count == 0)
+                    {
+                        if (path.EndsWith("sqlQuery"))
+                        {
+                            operation.Parameters.Add(
+                                new OpenApiParameter
+                                {
+                                    Name = "sqlText",
+                                    In = ParameterLocation.Query,
+                                    Required = false,
+                                    Schema = new OpenApiSchema { Type = "string" },
+                                    Description = "sql查询语句"
+                                }
+                            );
+                        }
+                        continue;
+                    }
+                    foreach (var param in config.ReqParams)
+                    {
+                        operation.Parameters.Add(
+                            new OpenApiParameter
+                            {
+                                Name = param.ParamName,
+                                In = ParameterLocation.Query,
+                                Required = param.Nullable == "0",
+                                Schema = new OpenApiSchema { Type = MapParamTypeToSwaggerType(param.ParamType) },
+                                Description = param.ParamComment
+                            }
+                        );
+                    }
+                }
+                else
+                {
+                    operation.RequestBody = new OpenApiRequestBody()
+                    {
+                        Content = new Dictionary<string, OpenApiMediaType>()
+                    {
+                        {
+                            "application/json",
+                            new OpenApiMediaType()
+                            {
+                                Schema = new OpenApiSchema()
+                                {
+                                    Type = "object",
+                                    Properties = new Dictionary<string, OpenApiSchema>()
+                                }
+                            }
+                        }
+                    },
+                        Required = true
+                    };
+                }
+            }
+
+            //Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(paramTypeDict));
+        }
+        //private static ConcurrentDictionary<string, string> paramTypeDict = new ConcurrentDictionary<string, string>();
+        private string MapParamTypeToSwaggerType(string paramType)
+        {
+            // 将数据库类型映射为 Swagger 类型
+            //if (paramType != null) paramTypeDict.TryAdd(paramType, paramType);
+            return paramType?.ToLower() switch
+            {
+                "varchar" => "string",
+                "nvarchar" => "string",
+                "ntext" => "string",
+                "text" => "string",
+                "json" => "string",
+                "int" => "integer",
+                "bigint" => "integer",
+                "tinyint" => "integer",
+                "smallint" => "integer",
+                "numeric" => "integer",
+                "int4" => "integer",
+                "bit" => "bool",
+                "datetime" => "date", // Swagger 中日期时间通常用字符串表示
+                "timestamp without time zone" => "date", // Swagger 中日期时间通常用字符串表示
+                "timestamp(0)" => "date", // Swagger 中日期时间通常用字符串表示
+                "VARCHAR(50)" => "string", // Swagger 中日期时间通常用字符串表示
+                _ => "string"
+            };
+        }
+    }
+    public static class DynamicRouteConfigurations
+    {
+        public static readonly Dictionary<string, RouteInfo> Routes = new Dictionary<string, RouteInfo>();
+    }
+}

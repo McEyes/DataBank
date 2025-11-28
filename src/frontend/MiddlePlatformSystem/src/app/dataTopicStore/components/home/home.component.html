@@ -1,0 +1,245 @@
+<div *ngIf="!currMorePanel" class="top">
+  <div class="l1">Save time and money.</div>
+  <div class="l2">Explore a multitude of benefits <br />
+    meticulously tailored to meet the unique needs of business.
+  </div>
+  <div class="l3">Optimize,</div>
+  <div class="l4">Outperform</div>
+</div>
+
+<div class="bottom" [ngClass]="!currMorePanel ? '' : 'h-100'">
+  <div class="home-panel">
+    <div *ngIf="currMorePanel === 'new' || !currMorePanel" class="l" [ngClass]="currMorePanel === 'new' ? 'more' : ''">
+      <div class="lt">
+        <span>{{'label.new.released.data.topic' | translate}}</span>
+        <span *ngIf="!currMorePanel" onkeypress="" class="more circle" (click)="showMore('new')"></span>
+        <!-- <span *ngIf="currMorePanel" onkeypress="" class="more" (click)="goBack()">{{'back' | translate}}</span> -->
+      </div>
+      <div class="lc">
+        <div *ngFor="let item of newList" class="t-item" (click)="openDetail(item)">
+          <div class="it">
+            <div class="img-bg">
+              <img *ngIf="!item.cover" alt="cover" src="./assets/images/dataTopicStore/icon-item-cover.png">
+              <img *ngIf="item.cover" alt="cover"
+                [src]="fileHost+'/api/file/download/' + item.cover + '?category=DataTopicStore'">
+            </div>
+
+            <div class="r-content">
+              <div class="r-name">
+                <div class="rc-title">{{item.name}}</div>
+                <button nz-button nz-popover [nzPopoverContent]="authorTemplate"
+                  nzPopoverTrigger="click" [nzPopoverVisible]="item.authorVisible"
+                  (nzPopoverVisibleChange)="authorVisibleChange($event, item)" nzPopoverPlacement="bottom" class="rc-author"
+                  (click)="permissionEvent($event)">{{item.owner}}
+                </button>
+
+                <ng-template #authorTemplate>
+                  <div id="business-model-permission-confirm" class="business-model-permission-confirm">
+                    <div *ngIf="permissionVisible" class="cont">
+                      <div class="l1">
+                        <div>
+                          <img src="./assets/images/dataTopicStore/icon_email.png">
+                        </div>
+                      </div>
+                      <div class="l2">
+                        {{item.owner_email}}
+                      </div>
+                      <div class="l3">
+                        {{'info.are.you.sure' | translate}}
+                      </div>
+                      <div class="l4">
+                        {{'info.send.email' | translate}}
+                      </div>
+                      <div class="l5">
+                        <div (click)="closeAuthor(item)">{{'no' | translate}}</div>
+                        <div class="yes" (click)=sentEmail(item)>{{'yes' | translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="ib">
+            <div class="rc-content">
+              {{item.description}}
+            </div>
+            <div class="arrow"></div>
+          </div>
+        </div>
+
+        <div *ngIf="newList.length === 0">{{'nodata' | translate}}</div>
+      </div>
+    </div>
+
+    <div *ngIf="currMorePanel === 'favorite' || !currMorePanel" class="m"
+      [ngClass]="currMorePanel === 'favorite' ? 'more' : ''">
+      <div class="lt">
+
+        <span>{{'label.most.favorite.data.topic' | translate}}</span>
+        <span *ngIf="!currMorePanel" onkeypress="" class="more circle" (click)="showMore('favorite')"></span>
+        <!-- <span *ngIf="currMorePanel" onkeypress="" class="more" (click)="currMorePanel = ''">{{'back' | -->
+          <!-- translate}}</span> -->
+      </div>
+      <div class="lc">
+        <div *ngFor="let item of favoriteList" class="t-item" (click)="openDetail(item)">
+          <div class="it">
+            <div class="img-bg">
+              <img *ngIf="!item.cover" alt="cover" src="./assets/images/dataTopicStore/icon-item-cover.png">
+              <img *ngIf="item.cover" alt="cover"
+                [src]="fileHost+'/api/file/download/' + item.cover + '?category=DataTopicStore'">
+            </div>
+
+            <div class="r-content">
+              <div class="r-name">
+                <div class="rc-title">{{item.name}}</div>
+                <button nz-button nz-popover [nzPopoverContent]="authorTemplate"
+                  nzPopoverTrigger="click" [nzPopoverVisible]="item.authorVisible"
+                  (nzPopoverVisibleChange)="authorVisibleChange($event, item)" nzPopoverPlacement="bottom" class="rc-author"
+                  (click)="permissionEvent($event)">{{item.owner}}
+                </button>
+
+                <ng-template #authorTemplate>
+                  <div id="business-model-permission-confirm" class="business-model-permission-confirm">
+                    <div *ngIf="permissionVisible" class="cont">
+                      <div class="l1">
+                        <div>
+                          <img src="./assets/images/dataTopicStore/icon_email.png">
+                        </div>
+                      </div>
+                      <div class="l2">
+                        {{item.owner_email}}
+                      </div>
+                      <div class="l3">
+                        {{'info.are.you.sure' | translate}}
+                      </div>
+                      <div class="l4">
+                        {{'info.send.email' | translate}}
+                      </div>
+                      <div class="l5">
+                        <div (click)="closeAuthor(item)">{{'no' | translate}}</div>
+                        <div class="yes" (click)=sentEmail(item)>{{'yes' | translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+
+              </div>
+
+              <!-- <button nz-button nz-popover [nzPopoverContent]="langTemplate"
+                nzPopoverTrigger="click" [nzPopoverVisible]="item.permissionVisible"
+                (nzPopoverVisibleChange)="visibleChange($event, item)" nzPopoverPlacement="bottom" class="permission"
+                (click)="permissionEvent($event)">{{'label.apply' |
+                translate}}
+              </button>
+
+              <ng-template #langTemplate>
+                <div id="business-model-permission-confirm" class="business-model-permission-confirm">
+                  <div *ngIf="permissionVisible" class="cont">
+                    <div class="l1">
+                      <div>
+                        <img src="./assets/images/dataTopicStore/icon-bell-notification.png">
+                      </div>
+                    </div>
+                    <div class="l2">
+                      {{item.name}}
+                    </div>
+                    <div class="l3">
+                      {{'info.are.you.sure' | translate}}
+                    </div>
+                    <div class="l4">
+                      {{'info.want.permisson' | translate}}
+                    </div>
+                    <div class="l5">
+                      <div (click)="closePermission(item)">{{'no' | translate}}</div>
+                      <div class="yes" (click)=applyPermission(item)>{{'yes' | translate}}</div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template> -->
+            </div>
+          </div>
+          <div class="ib">
+            <div class="rc-content">
+              {{item.description}}
+            </div>
+            <div class="arrow"></div>
+          </div>
+        </div>
+
+        <div *ngIf="favoriteList.length === 0">{{'nodata' | translate}}</div>
+      </div>
+    </div>
+
+    <div *ngIf="currMorePanel === 'fastest' || !currMorePanel" class="r"
+      [ngClass]="currMorePanel === 'fastest' ? 'more' : ''">
+      <div class="lt">
+        <span>{{'label.fastest.growth.data.topic' | translate}}</span>
+        <span *ngIf="!currMorePanel" onkeypress="" class="more circle" (click)="showMore('fastest')"></span>
+        <!-- <span *ngIf="currMorePanel" onkeypress="" class="more" (click)="currMorePanel = ''">{{'back' | -->
+          <!-- translate}}</span> -->
+      </div>
+      <div class="lc">
+        <div *ngFor="let item of fastList" class="t-item" (click)="openDetail(item)">
+          <div class="it">
+            <div class="img-bg">
+              <img *ngIf="!item.cover" alt="cover" src="./assets/images/dataTopicStore/icon-item-cover.png">
+              <img *ngIf="item.cover" alt="cover"
+                [src]="fileHost+'/api/file/download/' + item.cover + '?category=DataTopicStore'">
+            </div>
+
+            <div class="r-content">
+              <div class="r-name">
+                <div class="rc-title">{{item.name}}</div>
+                <button nz-button nz-popover [nzPopoverContent]="authorTemplate"
+                  nzPopoverTrigger="click" [nzPopoverVisible]="item.authorVisible"
+                  (nzPopoverVisibleChange)="authorVisibleChange($event, item)" nzPopoverPlacement="bottom" class="rc-author"
+                  (click)="permissionEvent($event)">{{item.owner}}
+                </button>
+
+                <ng-template #authorTemplate>
+                  <div id="business-model-permission-confirm" class="business-model-permission-confirm">
+                    <div *ngIf="permissionVisible" class="cont">
+                      <div class="l1">
+                        <div>
+                          <img src="./assets/images/dataTopicStore/icon_email.png">
+                        </div>
+                      </div>
+                      <div class="l2">
+                        {{item.owner_email}}
+                      </div>
+                      <div class="l3">
+                        {{'info.are.you.sure' | translate}}
+                      </div>
+                      <div class="l4">
+                        {{'info.send.email' | translate}}
+                      </div>
+                      <div class="l5">
+                        <div (click)="closeAuthor(item)">{{'no' | translate}}</div>
+                        <div class="yes" (click)=sentEmail(item)>{{'yes' | translate}}</div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+
+
+              </div>
+            </div>
+          </div>
+          <div class="ib">
+            <div class="rc-content">
+              {{item.description}}
+            </div>
+            <div class="arrow"></div>
+          </div>
+        </div>
+
+        <div *ngIf="fastList.length === 0">{{'nodata' | translate}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
+<!-- <p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog> -->

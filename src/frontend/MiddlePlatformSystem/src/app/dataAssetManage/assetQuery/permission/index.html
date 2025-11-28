@@ -1,0 +1,139 @@
+<div class="datatable-details-container" style="padding: 10px">
+  <level-one-panel [titleName]="('label.permission.apply' | translate)+'  '+(flowData.flowNo??'')">
+    <level-two-panel [titleName]="'label.basic.information'| translate">
+      <div class="datatable-form sys-form">
+        <div class="form-item" style=" width:100%">
+          <label><span class="valid-pre">*</span>{{'field.apply.type' | translate}}</label>
+          <div class="radio-text">
+            <p-radioButton name="status" [value]="2" [(ngModel)]="formData.applyType" [disabled]="this.field.flowTempName"
+              [label]="'label.application' | translate"></p-radioButton>
+            <p-radioButton name="status" [value]="1" [(ngModel)]="formData.applyType" [disabled]="this.field.flowTempName"
+              [label]="'label.individual' | translate"></p-radioButton>
+          </div>
+        </div>
+
+
+        <div [hidden]="formData.applyType !== 2" class="form-item" style="width: 100%">
+          <label><span class="valid-pre">*</span>{{'field.application' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="appList"  [disabled]="this.field.flowTempName"
+            [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.appId" optionLabel="clientName"
+            optionValue="clientId" (onChange)="selectApp()" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.appId }"></p-dropdown>
+        </div>
+
+        <div  class="form-item" style="width: calc(50% - 10px)">
+          <label><span class="valid-pre">*</span>{{'field.apply.useType' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="useTypeList"  [disabled]="this.field.flowTempName"
+            [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.useType" optionLabel="itemText"
+            optionValue="itemValue" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.useType }"></p-dropdown>
+        </div>
+        <div class="form-item" style="width: calc(50% - 10px)">
+          <label>{{'field.apply.user' | translate}}</label>
+          <input readonly type="text" pInputText [value]="formData.userName" class="input-text" [disabled]="this.field.flowTempName"
+            [placeholder]="'input.please' | translate" />
+        </div>
+
+
+
+        <div class="form-item" style="width: calc(50% - 10px)">
+          <label>{{'field.data.owner' | translate}}</label>
+          <input readonly type="text" pInputText [value]="field.ownerName??formData.smeName" class="input-text" [disabled]="this.field.flowTempName"
+            [placeholder]="'input.please' | translate" />
+        </div>
+
+        <div class="form-item" style="width: calc(50% - 10px)">
+          <label>{{'field.department' | translate}}</label>
+          <input readonly type="text" pInputText [value]="field.ownerDepart??formData.smeDept" class="input-text" [disabled]="this.field.flowTempName"
+            [placeholder]="'input.please' | translate" />
+        </div>
+
+        <div class="form-item" style="width: 100%">
+          <label>{{'field.topic.domain' | translate}}</label>
+          <input readonly type="text" pInputText [value]="field.ctlCode??formData.ctlCode" class="input-text" [disabled]="this.field.flowTempName"
+            [placeholder]="'input.please' | translate" />
+        </div>
+
+        <div class="form-item" style="width: 100%">
+          <label>{{'field.business.description' | translate}}</label>
+          <input readonly type="text" pInputText [value]="field.tableComment??formData.tableComment" class="input-text" [disabled]="this.field.flowTempName"
+            [placeholder]="'input.please' | translate" />
+        </div>
+
+        <div class="form-item" style="width: 100%; align-items: flex-start">
+          <label><span class="valid-pre">*</span>{{'field.apply.reason' | translate}}</label>
+          <textarea rows="5" cols="30" class="input-text" pInputTextarea [placeholder]="'input.please' | translate"  [disabled]="this.field.flowTempName"
+            [(ngModel)]="formData.reason" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.reason }"></textarea>
+        </div>
+
+        <div class="form-item" style="width: 100%; align-items: flex-start" *ngIf="flowData.flowStatus==1 && formData.id">
+            <label><span class="valid-pre" >*</span>{{'field.comment' | translate}}</label>
+              <textarea rows="5" cols="30" class="input-text"  [disabled]="flowData.flowStatus!=1"
+                [placeholder]="'please.input' | translate"
+                [placeholder]="flowData.flowStatus==1 ?('please.input' | translate):''" pInputTextarea
+                [(ngModel)]="remarkValue"></textarea>
+        </div>
+
+        <div class="form-item" style="width: 100%; align-items: flex-start" >
+            <span class="valid-pre" >* Tips： {{'info.apply.tips' | translate}}</span>
+        </div>
+      </div>
+    </level-two-panel>
+
+    <level-two-panel [titleName]="'label.select.permission.fields'| translate">
+      <app-asset-query-data-info *ngIf="detailData" #dataInfo [detailData]="detailData"
+        [titleName]="titleName"></app-asset-query-data-info>
+    </level-two-panel>
+
+    <level-two-panel [titleName]="'label.approval.history'| translate" *ngIf="flowData.id">
+        <p-table class="tableClass" [scrollable]="true" scrollHeight="flex" [columns]="historyHeader"
+          [value]="historyData" [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th [ngStyle]="{'max-width': col.width}" *ngFor="let col of columns">
+                {{col.header | translate}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td class="text-overflow inline-block" [title]="rowData[col.field]" [ngStyle]="{'max-width': col.width}"
+                *ngFor="let col of columns">
+                {{rowData[col.field]}}
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+    </level-two-panel>
+
+
+  </level-one-panel>
+
+
+
+  <div ngProjectAs="bottom" class="bottom-btn">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div *ngIf="!flowData.id&&titleName != 'look'" class="da-button save" (click)="submit()">
+      {{'operate.apply' | translate}}
+    </div>
+    <div *ngIf="flowData.flowStatus==1 && flowData.id && userInfo.id==formData.userId" class="da-button" (click)="sendApprove('cancel')">{{'cancel' |
+      translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && flowData.id " class="da-button submit"
+      (click)="sendApprove('agree')">{{'agree' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && flowData.id " class="da-button sendApprove"
+      (click)="sendApprove('reject')">{{'reject' | translate}}</div>
+    <!-- <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="sendApprove('return')">{{'return' | translate}}</div>-->
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="sendApprove('transfer')">{{'transfer' | translate}}</div>
+
+  </div>
+
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }" key="tipDialog"></p-confirmDialog>
+<p-toast></p-toast>
+<jabil-loading [hidden]="!loading"></jabil-loading>

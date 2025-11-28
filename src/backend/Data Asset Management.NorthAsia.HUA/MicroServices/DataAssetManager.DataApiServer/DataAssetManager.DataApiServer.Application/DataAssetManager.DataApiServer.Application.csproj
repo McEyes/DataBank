@@ -1,0 +1,82 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>DataAssetManager.DataApiServer.Application.xml</DocumentationFile>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="DataCatalogTableMapping\**" />
+	  <Compile Remove="Workflow\**" />
+	  <EmbeddedResource Remove="DataCatalogTableMapping\**" />
+	  <EmbeddedResource Remove="Workflow\**" />
+	  <None Remove="DataCatalogTableMapping\**" />
+	  <None Remove="Workflow\**" />
+	</ItemGroup>
+
+
+  <ItemGroup>
+    <Compile Remove="DataApi\ApiMappingEngine.cs" />
+    <Compile Remove="DataApi\Dtos\ExecuteConfig.cs" />
+    <Compile Remove="DataApi\Dtos\FieldParam.cs" />
+    <Compile Remove="DataApi\Dtos\FieldRule.cs" />
+    <Compile Remove="DataApi\Dtos\RateLimit.cs" />
+    <Compile Remove="DataApi\Dtos\ReqParam.cs" />
+    <Compile Remove="DataApi\Dtos\ResParam.cs" />
+    <Compile Remove="DataAuthApply\Dtos\DataAuthApplyEntity_bak.cs" />
+    <Compile Remove="DataTable\Dtos\DataAuthorizeUserEntity.cs" />
+    <Compile Remove="DataTable\Dtos\MetaDataUserEntity.cs" />
+    <Compile Remove="EmployeeInfo\EmployeeAppService.cs" />
+    <Compile Remove="EventSub\SearchDocumentEventSubscriber.cs" />
+    <Compile Remove="FlowAttacchments\Dtos\FlowAttacchmentDto.cs" />
+    <Compile Remove="FlowDataSourceApplys\Dtos\DataSourceAppCfgOutputDto.cs" />
+    <Compile Remove="FlowDataSourceApplys\Dtos\FlowDataSourceAppCfgCreateInputDto.cs" />
+    <Compile Remove="FlowDataSourceApplys\Dtos\FlowDataSourceAppCfgDto.cs" />
+    <Compile Remove="FlowDataSourceApplys\Dtos\FlowDataSourceApplyCreateInputDto.cs" />
+    <Compile Remove="FlowDataSourceApplys\Dtos\FlowDataSourceSMEDto.cs" />
+    <Compile Remove="Jobs\JobTemp.cs" />
+    <Compile Remove="Jobs\ReDataAuthApplyFlow.cs" />
+    <Compile Remove="Jobs\RefreshCacheJob.cs" />
+    <Compile Remove="Services\ApiHandler - 复制.cs" />
+    <Compile Remove="AssetClients\Services\IThirdAppInfoService.cs" />
+    <Compile Remove="AssetClients\Services\ThirdAppInfoService.cs" />
+    <Compile Remove="AssetClients\ThirdAppInfoAppService.cs" />
+  </ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="applicationsettings.json" />
+		<None Remove="DataAssetManager.DataApiServer.Application.xml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Compile Include="DataCatalogTableMapping\Services\DataCatalogTableMappingService.cs" />
+	  <Compile Include="DataCatalogTableMapping\Services\IDataCatalogTableMappingService.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="applicationsettings.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Shared\ITPortal.Core\ITPortal.Core.csproj" />
+		<ProjectReference Include="..\..\..\Shared\ITPortal.Extension\ITPortal.Extension.csproj" />
+		<ProjectReference Include="..\DataAssetManager.DataApiServer.Core\DataAssetManager.DataApiServer.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="AssetClients\Services\" />
+	  <Folder Include="FlowAttacchments\Dtos\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Furion.Extras.Logging.Serilog" Version="4.9.7.21" />
+	</ItemGroup>
+
+</Project>

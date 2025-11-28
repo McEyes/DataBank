@@ -1,0 +1,538 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITPortal.Search.Application</name>
+    </assembly>
+    <members>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.GetRecommendByTag(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32)">
+            <summary>
+            获取推荐文章
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.GetCandidateWords(System.String,System.String,System.Int32)">
+            <summary>
+            获取候选词列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.GroupByQueryTopicDocuments(ITPortal.Search.Core.Models.Search.GroupByTopicDocumentQueryModel,System.String)">
+            <summary>
+            分组获取主题文档
+            </summary>
+            <param name="query"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.QueryTopicDocuments(ITPortal.Search.Core.Models.Search.TopicDocumentQueryModel,System.String)">
+            <summary>
+            查询主题文档
+            </summary>
+            <param name="query"></param>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.GetTopicDocumentById(System.String)">
+            <summary>
+            使用ID查询记录
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.CreateTopicDocument(ITPortal.Search.Core.Models.Search.TopicDocumentModel)">
+            <summary>
+            创建主题文档
+            </summary>
+            <param name="document"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.UpdateTopicDocument(ITPortal.Search.Core.Models.Search.TopicDocumentModel)">
+            <summary>
+            更新主题文档
+            </summary>
+            <param name="document"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.ElasticManager.SearchManager.DeleteTopicDocument(System.Collections.Generic.List{System.String})">
+            <summary>
+            删除主题文档
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.OpenSearch.OpenSearchAppService.GetConfig(System.String)">
+            <summary>
+            检查config参数
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.OpenSearch.OpenSearchAppService.GetCandidateWords(ITPortal.Search.Application.OpenSearch.Dtos.CandidateWordQueryDto)">
+            <summary>
+            获取搜索候选词
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.OpenSearch.OpenSearchAppService.GetRecommendByTag(ITPortal.Search.Application.OpenSearch.Dtos.TagRecommendQueryDto)">
+            <summary>
+            根据标签获取推荐主题文档
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.OpenSearch.OpenSearchAppService.OpenSearchByTopicGroup(ITPortal.Search.Application.OpenSearch.Dtos.GroupByTopicDocumentQueryDto)">
+            <summary>
+            开放搜索-主题分组模式
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.OpenSearch.OpenSearchAppService.OpenSearch(ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentQueryDto)">
+            <summary>
+            开放搜索
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.Search.Application.SearchTopicGrants.Dtos.SearchTopicGrantsResultDto.IsGrant">
+            <summary>
+            已授权
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.SearchTopic.Dtos.SearchTopicDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.SearchTopic.Dtos.SearchTopicDto.Topic">
+            <summary>
+            Topic
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.SearchTopic.Dtos.SearchTopicDto.IsPublic">
+            <summary>
+            是否为公开主题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.SearchTopic.Dtos.SearchTopicDto.IsEnable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="T:ITPortal.Search.Application.SearchTopic.Services.SearchTopicAppService">
+            <summary>
+            问题反馈api集合
+            </summary>
+        </member>
+        <member name="M:ITPortal.Search.Application.SearchTopic.Services.SearchTopicAppService.Create(ITPortal.Search.Application.SearchTopic.Dtos.SearchTopicDto)">
+            <summary>
+            创建主题
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.SearchTopic.Services.SearchTopicAppService.Delete(System.Guid)">
+            <summary>
+            删除主题
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.SearchTopic.Services.SearchTopicAppService.GetListByPage(System.String,System.Int32,System.Int32)">
+            <summary>
+            分页查询
+            </summary>
+            <param name="keyword"></param>
+            <param name="pageIndex"></param>
+            <param name="pageSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.SearchTopic.Services.SearchTopicAppService.Update(ITPortal.Search.Application.SearchTopic.Dtos.SearchTopicDto)">
+            <summary>
+            更新主题
+            </summary>
+            <param name="topic"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.SearchTopic.Services.SearchTopicAppService.Grants(ITPortal.Search.Application.SearchTopicGrants.Dtos.SearchTopicGrantsDto)">
+            <summary>
+            授权角色主题
+            </summary>
+            <param name="grants"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.SearchTopic.Services.SearchTopicAppService.GetGrantsByRoleId(System.String)">
+            <summary>
+            根据角色ID获取所有主题
+            </summary>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.Text">
+            <summary>
+            文字
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.Background">
+            <summary>
+            背景颜色
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.TextColor">
+            <summary>
+            文字颜色
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.BorderColor">
+            <summary>
+            边框颜色
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.LinkType">
+            <summary>
+            链接类型
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.LinkUrl">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.CellItems">
+            <summary>
+            单元列信息
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.ConfirmModalParams">
+            <summary>
+            确认窗口参数
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.FormId">
+            <summary>
+            表单ID
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.CallbackUrl">
+            <summary>
+            回调链接
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.CallbackMethod">
+            <summary>
+            回调方法
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.Parameters">
+            <summary>
+            默认参数
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.HasPermissionUserIds">
+            <summary>
+            拥有权限的用户
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentButtonCreateDto.HasPermissionWorkcells">
+            <summary>
+            所在workcell用户有权限
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Id">
+            <summary>
+            业务ID
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Classify">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Payload">
+            <summary>
+            额外数据
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.linkUrl">
+            <summary>
+            关联URL
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.AttachmentList">
+            <summary>
+            附件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.Operator">
+            <summary>
+            操作人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto.EnableDataSovereignty">
+            <summary>
+            开启数据主权
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Classify">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Payload">
+            <summary>
+            按钮组
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.AttachmentList">
+            <summary>
+            附件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Creator">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Updater">
+            <summary>
+            更新人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.EnableDataSovereignty">
+            <summary>
+            开启数据主权
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.linkUrl">
+            <summary>
+            关联URL
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentDto.Highlight">
+            <summary>
+            高亮字典
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Id">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Classify">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Payload">
+            <summary>
+            额外数据
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.linkUrl">
+            <summary>
+            关联URL
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.AttachmentList">
+            <summary>
+            附件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.Operator">
+            <summary>
+            操作人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto.EnableDataSovereignty">
+            <summary>
+            开启数据主权
+            </summary>
+        </member>
+        <member name="M:ITPortal.Search.Application.TopicDocument.TopicDocumentAppService.Query(ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentQueryDto)">
+            <summary>
+            查询主题文档
+            </summary>
+            <param name="query"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.TopicDocument.TopicDocumentAppService.GetTopicDocumentsById(System.String)">
+            <summary>
+            根据ID获取主题文档
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.TopicDocument.TopicDocumentAppService.Create(ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentCreateDto)">
+            <summary>
+            创建主题文档 - 存在ID记录则更新文档
+            </summary>
+            <param name="document"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.TopicDocument.TopicDocumentAppService.Update(ITPortal.Search.Application.TopicDocument.Dtos.TopicDocumentUpdateDto)">
+            <summary>
+            更新主题文档
+            </summary>
+            <param name="document"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.TopicDocument.TopicDocumentAppService.Delete(System.String)">
+            <summary>
+            删除主题文档
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.TopicDocument.TopicDocumentAppService.DeleteTopicDocumentMandy(System.Collections.Generic.List{System.String})">
+            <summary>
+            批量删除主题文档
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ITPortal.Search.Application.UserSearchHistory.Services.UserSearchHistoryAppService">
+            <summary>
+            用户搜索历史
+            </summary>
+        </member>
+        <member name="M:ITPortal.Search.Application.UserSearchHistory.Services.UserSearchHistoryAppService.Get">
+            <summary>
+            获取用户搜索历史
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.UserSearchHistory.Services.UserSearchHistoryAppService.Delete(System.Guid)">
+            <summary>
+            删除搜索记录
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.UserSearchHistory.Services.UserSearchHistoryAppService.Get(System.Guid)">
+            <summary>
+            获取详细信息
+            根据url的id来获取详细信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Application.UserSearchHistory.Services.UserSearchHistoryAppService.Batch(System.String[])">
+            <summary>
+            批量删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

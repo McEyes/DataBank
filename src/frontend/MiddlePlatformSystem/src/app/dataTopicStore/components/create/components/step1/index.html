@@ -1,0 +1,18 @@
+<div class="editor-container">
+  <p-editor placeholder="
+示例  
+主题名：报废率
+英文名：Scrap%
+KPI Owner：XXX@Jabil.com
+责任部门：MFG
+业务描述：报废产品金额占生产成本的百分比。
+结果展示：百分比
+单位：100%
+展示维度：Workcell、日
+计算公式：报废率=报废金额/生产成本
+数据源：Global MRB Tool、MES系统、SAP系统
+取数逻辑：
+1.分子=报废金额=报废数量*单价，即每个报废部件的数量*标准价的汇总金额，报废数据来自Global MRB Tool，标准价来自SAP系统；
+2.分母=生产成本=产品数据*单价，即打包后的产品数量*标准成本的汇总金额，打包的产品数量来自MES系统，标准成本来自SAP系统中的成品的标准成本。" [readonly]="readonly"
+    [(ngModel)]="editorValue" [style]="{ height: 'calc(100% - 42px)' }"></p-editor>
+</div>

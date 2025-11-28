@@ -1,0 +1,19 @@
+//
+// Ckeditor Editor
+//
+// Overwrite/Extend styles
+// --------------------------------------------------
+
+.cke_chrome {
+	border-color: $body-bg-dark !important;
+}
+
+.cke_top {
+	background: $body-bg-light !important;
+	border-bottom-color: $body-bg-dark !important;
+}
+
+.cke_bottom {
+	background: $body-bg-light !important;
+	border-top-color: $body-bg-dark !important;
+}

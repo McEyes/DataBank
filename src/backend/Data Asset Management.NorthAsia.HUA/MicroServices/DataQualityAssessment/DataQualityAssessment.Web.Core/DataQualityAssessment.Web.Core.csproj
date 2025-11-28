@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>DataQualityAssessment.Web.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<None Remove="DataQualityAssessment.Web.Core.xml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <PackageReference Include="Consul" Version="1.7.14.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DataQualityAssessment.Application\DataQualityAssessment.Application.csproj" />
+		<ProjectReference Include="..\DataQualityAssessment.Database.Migrations\DataQualityAssessment.Database.Migrations.csproj" />
+	</ItemGroup>
+
+</Project>

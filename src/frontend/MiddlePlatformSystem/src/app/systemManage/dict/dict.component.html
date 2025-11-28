@@ -1,0 +1,117 @@
+<div *ngIf="currPanel==='list'" class="template">
+  <div class="leftBox">
+      <div class="header">
+        <div class="title ">
+          <p>
+            {{'label.dict.type' | translate}}
+          </p>
+        </div>
+      </div>
+    <p-tree [loading]="treeLoaing" scrollHeight="flex" [value]="dictList" selectionMode="single"
+      [(selection)]="selectedFile" (onNodeSelect)="nodeSelect($event)" >
+      <ng-template let-node pTemplate="default">
+        <div class="node-label-class">
+          <div style="white-space: nowrap !important">{{node.dictName}}</div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="empty"> {{'nodata' | translate}} </ng-template>
+    </p-tree>
+  </div>
+  <div class="rightBox">
+    <div class="content">
+      <p-table [value]="tableData" scrollHeight="flex" [scrollable]="true" [loading]="loading" styleClass="sys-table">
+        <ng-template pTemplate="caption">
+          <div class="t-caption ">
+            <div class="formgroup-inline justify-content-between w-100 sys-search-form">
+              <div class="form-item">
+                <label>{{'search' | translate}}</label>
+                <input type="text" pInputText class="p-inputtext" [placeholder]="'input.keyword'| translate"
+                  [(ngModel)]="searchData.keyword" />
+              </div>
+              <div class="form-item" >
+                <label style="width: 120px;">{{'label.dict.type' | translate}}</label>
+                <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="dictList"
+                   (onChange)="search()"  [showClear]="true"  [filter]="true"
+                  [placeholder]="'input.select.dict.type' | translate" [(ngModel)]="searchData.dictId" optionLabel="dictName"
+                  optionValue="id"></p-dropdown>
+                   <label>{{searchData.dictCode}}</label>
+              </div>
+              <div class="field form-item" style="justify-content: flex-end;column-gap: 15px;">
+                <div class="da-button" (click)="search(true)">{{'reset' | translate}}</div>
+                <div class="da-button search" (click)="search()">
+                  {{'search' | translate}}
+                </div>
+                <div class="da-button add" (click)="editData(formData,'additem')">
+                  {{'add'|translate}}
+                </div>
+                <!-- <div class="da-button add" (click)="editData(formData,'add')">
+                  {{'add Dict'|translate}}
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width: 120px;max-width: 250px;">{{'field.itemText'|translate}}</th>
+            <th style="min-width: 120px;max-width: 250px;">{{'field.itemValue'|translate}}</th>
+            <th style="max-width: 120px;min-width: 250px;">{{'field.dictName'|translate}}</th>
+            <th style="max-width: 80px;min-width: 80px;">{{'status'|translate}}</th>
+            <th style="min-width: 100px;max-width: 250px;">{{'field.itemData'|translate}}</th>
+            <th style="max-width:80px;min-width: 80px;">{{'field.sort'|translate}}</th>
+            <th pFrozenColumn alignFrozen="right" style="justify-content: right" id="operation">
+              {{'operation'|translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-ri="rowIndex">
+          <tr>
+            <td style="min-width: 120px;max-width: 250px;" class="text-overflow inline-block" [title]="item.itemText">
+              {{ item.itemText }}
+            </td>
+            <td style="min-width: 120px;max-width: 250px;" class="text-overflow inline-block">{{ item.itemValue }}</td>
+            <td style="min-width: 120px;max-width: 250px;" class="text-overflow inline-block">{{ item.dictName }}</td>
+            <td style="max-width: 80px;min-width: 80px;" class="text-overflow inline-block">
+              <p-tag *ngIf="!item.status" severity="danger" [value]="'label.deactivate' | translate"></p-tag>
+              <p-tag *ngIf="item.status" severity="success" [value]="'label.enable' | translate"></p-tag>
+            </td>
+            <td style="min-width: 100px;max-width: 250px;" class="text-overflow inline-block" [title]="item.itemData">
+              {{item.itemData}}
+            </td>
+            <td style="max-width: 80px;min-width: 80px;" class="text-overflow inline-block">{{ item.itemSort }}</td>
+            <td pFrozenColumn alignFrozen="right" style="justify-content: right">
+              <div class="table-button-box justify-content-right" style="justify-content: right">
+                <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="editData(item,'additem')">
+                  {{'edit'|translate}}
+                </div>
+                <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="deleteItemData(item)">
+                  {{'delete'|translate}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="6" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <div class="sub-item" *ngIf="tableData.length > 0">
+        <p-paginator [first]="searchData.first" [rows]="searchData.pageSize" [totalRecords]="recordCount"
+          [showJumpToPageDropdown]="true" [rowsPerPageOptions]="[10, 15, 20]"
+          (onPageChange)="paginate($event)"></p-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-system-dict-details [field]="selectedFile" (goBack)="goBack()" *ngIf="currPanel === 'edit'"></app-system-dict-details>
+<app-system-dict-item-details [field]="currRow" [dictList]="dictList" (goBack)="goBack()" *ngIf="currPanel === 'edititem'"></app-system-dict-item-details>
+
+<jabil-loading style="height: 100%" *ngIf="submitLoading"></jabil-loading>
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

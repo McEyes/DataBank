@@ -1,0 +1,134 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  #app {
+    width: 100%;
+    height: 100%;
+
+    .bg-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-color: #dff0d8;
+      overflow: hidden;
+  
+      .toolkit_group {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        z-index: 9;
+  
+        button {
+          font-size: 22px;
+          padding: 3px 12px;
+  
+          i {
+            position: relative;
+            top: -3px;
+            font-size: 16px;
+          }
+        }
+      }
+  
+      #bg {
+        height: 200%;
+        width: 200%;
+        position: absolute;
+        padding: 20px;
+        background-color: #dff0d8;
+        top: -200px;
+        left: -300px;
+    
+        ::ng-deep {
+          .pa {
+            position: absolute;
+          }
+    
+          .col-group {
+            padding-left: 0;
+            margin-bottom: 0;
+            line-height: 1.2;
+          }
+    
+          .col-group-item {
+            border: 1px solid #ddd;
+            position: relative;
+            display: block;
+          }
+    
+          .panel-node {
+            width: auto;
+            display: inline-block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
+    
+          .panel-node-origin {
+            // border: 1px solid #91c051;
+            // background-color: #91c051;
+            .table-header { 
+              padding: 10px;
+              border-radius: 10px;
+              letter-spacing: 1px;
+              font-weight: bold;
+            }
+          }
+    
+          .panel-node-middle {
+            border: 1px solid #b24b78;
+            // background-color: #b24b78;
+          }
+    
+          .panel-node-union {
+            border: 1px solid #66ccff;
+            // background-color: #66ccff;
+          }
+    
+          .panel-node-rs {
+            border: 1px solid #ff9900;
+            background-color: #ff9900;
+          }
+    
+          .table-header {
+            text-align: center;
+            padding: 1px 15px;
+            background-color: #91c051;
+            color: white;
+            font-size: 12px;
+            min-width: 170px;
+            max-width: 170px;
+            word-break: break-all;
+            white-space: break-spaces;
+          }
+    
+    
+          .panel-node-list {
+            background-color: #fff;
+            padding: 1px 10px;
+            font-size: smaller;
+            max-width: 170px;
+            min-width: 170px;
+            word-break: break-all;
+            white-space: break-spaces;
+
+            &.desc, &.owner {
+              background: #ddd !important;
+              color: #000;
+            }
+          }
+    
+          .panel-node-list:hover {
+            background-color: #faebd7
+          }
+        }
+      }
+    }
+  }
+
+}

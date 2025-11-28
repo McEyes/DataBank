@@ -1,0 +1,42 @@
+{
+  "id": "8258a7a1-4872-4928-83eb-8b263c5a1067",
+  "template": "app-nolayers",
+  "versions": {
+    "AbpFramework": "9.0.4",
+    "AbpStudio": "0.9.23",
+    "TargetDotnetFramework": "net9.0"
+  },
+  "modules": {
+    "DataAssetManager.NorthAsia.HUA": {
+      "path": "DataAssetManager.NorthAsia.HUA.abpmdl"
+    }
+  },
+  "runProfiles": {
+    "Default": {
+      "path": "etc/run-profiles/Default.abprun.json"
+    }
+  },
+  "options": {
+    "httpRequests": {
+      "ignoredUrls": [
+        "^/metrics$"
+      ]
+    }
+  },
+  "creatingStudioConfiguration": {
+    "template": "app-nolayers",
+    "createdAbpStudioVersion": "0.9.23",
+    "multiTenancy": "true",
+    "runInstallLibs": "true",
+    "useLocalReferences": "false",
+    "uiFramework": "mvc",
+    "databaseProvider": "ef",
+    "runDbMigrator": "true",
+    "databaseManagementSystem": "postgresql",
+    "createInitialMigration": "true",
+    "theme": "basic",
+    "themeStyle": "",
+    "publicWebsite": "",
+    "socialLogin": ""
+  }
+}

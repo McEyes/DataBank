@@ -1,0 +1,118 @@
+<div class="content">
+  <level-one-panel [titleName]="'label.application.config' | translate">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+          <div class="form-item" style="display: none;">
+            <label>{{'ID' | translate}}</label>
+            <input readonly type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.clientId" />
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.application.name' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.clientName" [ngClass]="{ 'ng-invalid': invalid && !formData.clientName }" />
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.abbreviation' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.nickName" [ngClass]="{ 'ng-invalid': invalid && !formData.nickName }" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.application.name.en' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.clientNameEn" [ngClass]="{ 'ng-invalid': invalid && !formData.clientNameEn }" />
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'type' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="typeList"
+              [(ngModel)]="formData.belongArea" [placeholder]="'input.select.please' | translate"
+              [ngClass]="{'ng-invalid': invalid && !formData.belongArea}" [filter]="true" filterBy="name"
+              appendTo="body" class="w-100" optionLabel="name" optionValue="id"></p-dropdown>
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'BSA' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+              [(ngModel)]="formData.owner" [placeholder]="'input.select.please' | translate" [virtualScroll]="true"
+              [virtualScrollItemSize]="38" [ngClass]="{'ng-invalid': invalid && !formData.owner}" [filter]="true"
+              (onChange)="changeBSA()"
+              filterBy="name" appendTo="body" class="w-100" optionLabel="name" optionValue="id"
+              panelStyleClass="smallWidth"></p-dropdown>
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.bsa.department' | translate}}</label>
+            <input readonly type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.ownerDept" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'SME' | translate}}</label>
+            <p-multiSelect [showToggleAll]="false" [options]="userList" [(ngModel)]="formData.smeIdList"
+              [virtualScroll]="true" [virtualScrollItemSize]="38" optionLabel="name" optionValue="id"
+              class="input-text" appendTo="body" [placeholder]="'input.select.please' | translate"
+              [maxSelectedLabels]="2" [displaySelectedLabel]="true"
+              [ngClass]="{'ng-invalid': invalid && (!formData.smeIdList || formData.smeIdList?.length === 0)}"
+              [selectedItemsLabel]="('label.selected' | translate) + (formData.smeIdList?.length + 1) + ('label.items' | translate)"
+              panelStyleClass="smallWidth"></p-multiSelect>
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.master.data.type' | translate}}
+            </label>
+            <p-multiSelect [showToggleAll]="false" [options]="masterDataTypeList"
+              optionLabel="name" optionValue="name" class="input-text" appendTo="body"
+              [(ngModel)]="formData.masterDataTypes"
+              [maxSelectedLabels]="3" [displaySelectedLabel]="true"
+              [selectedItemsLabel]="('label.selected' | translate) + (formData.masterDataTypes?.length + 1) + ('label.items' | translate)"
+              [ngClass]="{'ng-invalid': invalid && (!formData.masterDataTypes || formData.masterDataTypes?.length === 0)}"
+              [placeholder]="'input.select.please' | translate">
+              <ng-template pTemplate="item" let-item>
+                {{currLang === 'en' ? item.en_name : item.zh_name}}
+              </ng-template>
+            </p-multiSelect>
+          </div>
+
+          <div style="width: calc(25% - 14px);" class="form-item">
+            <label>{{'field.useType' | translate}}</label>
+            <p-dropdown  [options]="useTypeList"
+              optionLabel="name" optionValue="name" class="input-text" appendTo="body"
+              [(ngModel)]="formData.useType"  appendTo="body" class="w-100"  [autoDisplayFirst]="true"
+              [ngClass]="{'ng-invalid': invalid && (!formData.useType || formData.useType?.length === 0)}"
+              [placeholder]="'input.select.please' | translate" optionLabel="itemText" optionValue="itemValue">
+            </p-dropdown>
+          </div>
+
+          <div style="width: calc(25% - 14px);" class="form-item">
+            <label><span class="valid-pre">*</span>{{'status' | translate}}</label>
+            <p-inputSwitch [(ngModel)]="formData.enabled"></p-inputSwitch>
+          </div>
+          <div style="width: calc(50% - 14px);" class="form-item">
+            <label>{{'field.link' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.clientUrl" [ngClass]="{ 'ng-invalid': invalid && !formData.clientUrl }" />
+          </div>
+
+          <div class="form-item w-100" style="align-items: flex-start;">
+            <label>{{'field.application.introduction' | translate}}</label>
+            <textarea style="height: 150px;" type="text" class="input-text" pInputText
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.description"></textarea>
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="saveClick()">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>

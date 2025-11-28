@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjabil_ui_project=self.webpackChunkjabil_ui_project||[]).push([[83100],{83100:(s,e,u)=>{u.r(e),u.d(e,{default:()=>n});const a=void 0,n=[[["tengah malam","tengah hari","pagi","siang","sore","malam"],a,a],a,["00:00","12:00",["00:00","10:00"],["10:00","15:00"],["15:00","18:00"],["18:00","24:00"]]]}}]);

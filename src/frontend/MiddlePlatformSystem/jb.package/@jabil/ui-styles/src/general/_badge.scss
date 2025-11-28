@@ -1,0 +1,7 @@
+//
+// Badge
+// --------------------------------------------------
+
+.badge-secondary {
+	@include badge-variant($general-badge-secondary-variant-color);
+}

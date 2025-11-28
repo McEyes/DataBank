@@ -1,0 +1,101 @@
+<div class="contents">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <label>{{'label.keyword.search' | translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="defualtParams.keyword" />
+    </div>
+    <div class="form-item btn">
+      <div class="da-button search" (click)="search()">{{'operate.search' | translate}}</div>
+      <div class="da-button" (click)="search('reset')">{{'operate.reset' | translate}}</div>
+    </div>
+    <div class="form-item">
+      <span style="color: #0d89ec;">{{'info.userPermission.help' | translate}}</span>
+    </div>
+  </div>
+  <div class="xd-grey-box" style="height: calc(100% - 50px)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <div class="tableCard">
+        <p-table [loading]="loading" [columns]="tableHeader" [scrollable]="true" scrollHeight="flex" [value]="tableData"
+          dataKey="code" styleClass="sys-table" [tableStyle]="{ 'min-width': '100%' }">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th class="xd-theader-white" [ngStyle]="{'min-width': col.width,'max-width':col.width}"
+                *ngFor="let col of columns">
+                {{ col.header | translate}}
+              </th>
+              <th pFrozenColumn alignFrozen="right" class="xd-theader-white"
+                [ngStyle]="{'min-width': langType == 'en' ? '130px':'100px','max-width':langType == 'en' ? '130px':'100px'}">
+                {{ 'field.apply.type' | translate}}
+              </th>
+              <th pFrozenColumn alignFrozen="right" class="xd-theader-white"
+                [ngStyle]="{'min-width': langType == 'en' ? '130px':'100px','max-width':langType == 'en' ? '130px':'100px'}">
+                {{ 'status' | translate}}
+              </th>
+              <!-- <th class="xd-theader-white" pFrozenColumn alignFrozen="right"
+                [ngStyle]="{'min-width': langType == 'en' ? '100px':'100px','max-width': langType == 'en' ? '100px':'100px'}">
+                {{'label.operate' | translate}}
+              </th> -->
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+              <td (click)="onCopy(col.field,rowData[col.field],rowData)"
+                [ngClass]="{'isHover': (col.field == 'secrets' || col.field == 'apiList') && rowData[col.field]}"
+                class="text-overflow inline-block" [ngStyle]="{'min-width': col.width,'max-width':col.width}"
+                *ngFor="let col of columns"
+                [title]="!tableTitleShow.includes(col.field)&&rowData[col.field] ?rowData[col.field]:''"  [innerHTML]="convertHtml(rowData[col.field] || '',col.field)">
+              </td>
+              <td pFrozenColumn alignFrozen="right" class="text-overflow inline-block"
+                [ngStyle]="{'min-width': langType == 'en' ? '130px':'100px','max-width':langType == 'en' ? '130px':'100px'}">
+              {{typeLabel[rowData['clientType']]}}
+              </td>
+              <td pFrozenColumn alignFrozen="right" class="text-overflow inline-block"
+                [ngStyle]="{'min-width': langType == 'en' ? '130px':'100px','max-width':langType == 'en' ? '130px':'100px'}">
+                <p-tag [severity]="tagColor[rowData['enabled']]" [value]="tagLabel[rowData['enabled']]"></p-tag>
+              </td>
+              <!-- <td class="text-overflow inline-block" pFrozenColumn alignFrozen="right"
+                [ngStyle]="{'min-width': langType == 'en' ? '100px':'100px','max-width': langType == 'en' ? '100px':'100px'}">
+                <div class="table-button-box">
+                  <div *ngIf="rowData['status'] == -1 || rowData['status'] == -2" class="table-button"
+                    (click)="onRevocation('-5',rowData)">
+                    {{'operate.revocation' | translate}}
+                  </div>
+                </div>
+              </td> -->
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div style="width: 100%" [hidden]="!(totalRecords > 0)">
+      <nz-pagination class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum" [nzTotal]="totalRecords"
+        nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+        (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+      <ng-template #rangeTemplate let-range="range" let-total>
+        {{ (queryParams.pageNum - 1) * queryParams.pageSize + 1 }}-{{ queryParams.pageNum *
+        queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ totalRecords }}
+      </ng-template>
+    </div>
+  </div>
+</div>
+<p-dialog (onHide)="onCloseAPIDialog()" [header]="'operate.view.api' | translate " [(visible)]="dialogviewApiValue"
+  [modal]="true" [style]="{ width: '50vw' }">
+  <div class="m-0 viewapiclass">
+    <div *ngFor="let item of viewApiList" class="viewapiclass-item">
+      <div class="viewapiclass-item-url" [innerHTML]="convertHtml(item,'apiList')"></div>
+      <div class="viewapiclass-item-btn">
+        <div class="da-button viewapiclass-copy" (click)="copyText(item)">
+          {{'operate.copy' | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+<p-toast></p-toast>
+<p-confirmDialog [header]="tip" [style]="{ width: '450px' }"></p-confirmDialog>

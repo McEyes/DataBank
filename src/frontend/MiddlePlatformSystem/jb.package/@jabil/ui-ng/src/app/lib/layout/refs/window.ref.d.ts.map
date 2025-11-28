@@ -1,0 +1,1 @@
+{"version":3,"file":"window.ref.d.ts","sources":["window.ref.d.ts"],"names":[],"mappings":";AAAA;AACA;AACA;AACA;AACA;;AACA","sourcesContent":["export declare class WindowRef {\n    /**\n     * Returns a reference to the window\n     */\n    getWindow(): Window;\n}\n"]}

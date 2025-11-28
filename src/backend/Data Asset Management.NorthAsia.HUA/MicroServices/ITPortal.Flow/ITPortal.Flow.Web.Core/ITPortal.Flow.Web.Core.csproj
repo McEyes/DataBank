@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.Flow.Web.Core.xml</DocumentationFile>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Handlers\**" />
+	  <EmbeddedResource Remove="Handlers\**" />
+	  <None Remove="Handlers\**" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="ITPortal.Flow.Web.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.Flow.Application\ITPortal.Flow.Application.csproj" />
+	</ItemGroup>
+
+</Project>

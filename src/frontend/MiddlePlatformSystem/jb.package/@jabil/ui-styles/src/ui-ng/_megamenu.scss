@@ -1,0 +1,130 @@
+body {
+	.p-megamenu {
+		padding: 0;
+		background-color: $lighter-gray-background-color;
+		border: 1px solid $border-color;
+		border-radius: 4px;
+		&.p-megamenu-white {
+			background-color: $white;
+			.p-menuitem {
+				&.p-menuitem-active {
+					& > .p-menuitem-link {
+						background-color: $body-bg;
+					}
+				}
+			}
+		}
+		.p-menuitem-link {
+			padding: 0.5rem 0.75rem;
+			color: $body-color;
+			font-weight: normal;
+			border-radius: 0;
+			transition: box-shadow 0.2s;
+			user-select: none;
+			.p-submenu-icon {
+				width: 1.2rem;
+				margin-left: 0.25em;
+				text-align: center;
+				vertical-align: middle;
+
+				&.pi-angle-right {
+					position: absolute;
+					top: 50%;
+					right: 0;
+					margin-top: -0.5em;
+				}
+			}
+			.p-menuitem-text {
+				color: $body-color;
+				line-height: 1.5;
+			}
+			.p-menuitem-icon {
+				min-width: 20px;
+				margin-right: 0.5rem;
+				color: $body-color;
+				vertical-align: middle;
+			}
+			&:not(.p-disabled):hover {
+				color: $body-color;
+				text-decoration: none;
+				background-color: $body-bg;
+				.p-menuitem-text {
+					color: $body-color;
+				}
+				.p-menuitem-icon {
+					color: $body-color;
+				}
+			}
+			&:focus {
+				color: $body-color;
+				text-decoration: none;
+				background-color: $lighter-gray-background-color;
+				outline: 0 none;
+				outline-offset: 0;
+			}
+			&.p-menuitem-link-active {
+				.p-menuitem-text {
+					color: $white;
+				}
+				.p-menuitem-icon {
+					color: $white;
+				}
+			}
+		}
+		.p-megamenu-panel {
+			background-color: $white;
+			background-clip: padding-box;
+			border: 1px solid $border-color;
+			border-radius: 0;
+			box-shadow: $menu-box-shadow;
+			.p-menuitem-link {
+				&:not(.p-disabled):active {
+					color: $white;
+					text-decoration: none;
+					background-color: $primary;
+					.p-menuitem-text {
+						color: $white;
+					}
+					.p-menuitem-icon {
+						color: $white;
+					}
+				}
+				&.p-menuitem-link-active {
+					color: $white;
+					text-decoration: none;
+					background-color: $primary;
+				}
+			}
+			.p-megamenu-submenu {
+				width: 12.5em;
+			}
+		}
+		.p-megamenu-submenu-header {
+			margin: 0;
+			padding: 0.5rem 1.2rem;
+			font-weight: 700;
+			background-color: $body-bg-dark;
+			border: 0 none;
+			border-radius: 0;
+		}
+		.p-menuitem {
+			margin: 0;
+			.p-menuitem-link {
+				.p-submenu-icon {
+					right: 0.5rem;
+				}
+			}
+			&.p-menuitem-active {
+				& > .p-menuitem-link {
+					background-color: $body-bg-dark;
+					.p-menuitem-text {
+						color: $body-color;
+					}
+				}
+			}
+		}
+		&.p-megamenu-vertical {
+			width: 12.5em;
+		}
+	}
+}

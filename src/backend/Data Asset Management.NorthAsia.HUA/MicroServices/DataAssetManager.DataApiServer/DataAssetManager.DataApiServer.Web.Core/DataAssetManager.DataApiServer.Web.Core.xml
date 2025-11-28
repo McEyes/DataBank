@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataAssetManager.DataApiServer.Web.Core</name>
+    </assembly>
+    <members>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.Extensions.InitExtensions.AddUnifyProvider``1(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            添加规范化提供器
+            </summary>
+            <typeparam name="TUnifyResultProvider"></typeparam>
+            <param name="services"></param>
+            <param name="providerName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.ExceptionFilter.OnExceptionAsync(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            异常拦截
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.ExceptionFilter.PrintToMiniProfiler(System.Exception)">
+            <summary>
+            打印错误到 MiniProfiler 中
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.ExceptionFilter.GetValidationData(System.Object)">
+            <summary>
+            获取验证错误信息
+            </summary>
+            <param name="errors"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DataAssetManager.DataApiServer.Web.Core.ValidationData">
+            <summary>
+            验证信息元数据
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.ValidationResult">
+            <summary>
+            验证结果
+            </summary>
+            <remarks>返回字典或字符串类型</remarks>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.Message">
+            <summary>
+            异常消息
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.ModelState">
+            <summary>
+            验证状态
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.ErrorCode">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.OriginErrorCode">
+            <summary>
+            错误码（没被复写过的 ErrorCode ）
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.StatusCode">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.FirstErrorProperty">
+            <summary>
+            首个错误属性
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.FirstErrorMessage">
+            <summary>
+            首个错误消息
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.Data">
+            <summary>
+            额外数据
+            </summary>
+        </member>
+        <member name="P:DataAssetManager.DataApiServer.Web.Core.ValidationData.SingleValidationErrorDisplay">
+            <summary>
+            默认只显示验证错误的首个消息
+            </summary>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.AuthorizeMiddleware.CheckAuthorzie(Microsoft.AspNetCore.Http.HttpContext,ITPortal.Core.RouteInfo)">
+            <summary>
+            检查权限
+            </summary>
+            <param name="httpContext"></param>
+            <param name="apiInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.AuthorizeMiddleware.GetJwtBearerToken(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String)">
+            <summary>
+            获取 JWT Bearer Token
+            </summary>
+            <param name="httpContext"></param>
+            <param name="headerKey"></param>
+            <param name="tokenPrefix"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.AuthorizeMiddleware.SecurityReadJwtToken(System.String)">
+            <summary>
+            读取 Token，不含验证
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataAssetManager.DataApiServer.Web.Core.AuthorizeMiddleware.Validate(System.String)">
+            <summary>
+            验证 Token
+            </summary>
+            <param name="accessToken"></param>
+            <returns></returns>
+        </member>
+        <member name="F:DataAssetManager.DataApiServer.Web.Core.DynamicRouteMiddleware.EnableTableColumnType">
+            <summary>
+            启用table配置的类型解析
+            </summary>
+        </member>
+        <member name="T:Furion.DynamicApiController.Penetrates">
+            <summary>
+            常量、公共方法配置类
+            </summary>
+        </member>
+        <member name="F:Furion.DynamicApiController.Penetrates.GroupSeparator">
+            <summary>
+            分组分隔符
+            </summary>
+        </member>
+        <member name="P:Furion.DynamicApiController.Penetrates.VerbToHttpMethods">
+            <summary>
+            请求动词映射字典
+            </summary>
+        </member>
+        <member name="P:Furion.DynamicApiController.Penetrates.ControllerOrderCollection">
+            <summary>
+            控制器排序集合
+            </summary>
+        </member>
+        <member name="M:Furion.DynamicApiController.Penetrates.#cctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="F:Furion.DynamicApiController.Penetrates.IsApiControllerCached">
+            <summary>
+            <see cref="M:Furion.DynamicApiController.Penetrates.IsApiController(System.Type)"/> 缓存集合
+            </summary>
+        </member>
+        <member name="M:Furion.DynamicApiController.Penetrates.IsApiController(System.Type)">
+            <summary>
+            是否是Api控制器
+            </summary>
+            <param name="type">type</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

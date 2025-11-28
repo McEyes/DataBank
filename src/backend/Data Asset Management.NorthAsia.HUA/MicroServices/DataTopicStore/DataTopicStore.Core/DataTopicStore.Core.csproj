@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>DataTopicStore.Core.xml</DocumentationFile>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<None Remove="DataTopicStore.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.9.7.107" />
+		<PackageReference Include="Furion.Extras.DatabaseAccessor.Dapper" Version="4.9.7.108" />
+		<PackageReference Include="Furion.Extras.ObjectMapper.Mapster" Version="4.9.7.107" />
+		<PackageReference Include="Furion.Extras.Logging.Serilog" Version="4.9.7.21" />
+		<PackageReference Include="Furion.Pure" Version="4.9.7.107" />
+		<PackageReference Include="MySql.Data" Version="9.4.0" />
+		<PackageReference Include="SqlSugarCore" Version="5.1.4.199" />
+		
+	</ItemGroup>
+
+</Project>

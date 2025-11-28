@@ -1,0 +1,57 @@
+body {
+	.p-tabmenu {
+		margin-bottom: 1.75rem;
+		padding: 0;
+		color: $body-color;
+		font-size: $font-size-base;
+		line-height: 1.5;
+		background-color: $white;
+		border: none;
+		border-radius: 0;
+		box-shadow: $tab-menu-box-shadow;
+
+		.p-tabmenu-nav {
+			padding: 0;
+			line-height: 1.5;
+			background-color: $lighter-gray-background-color;
+			border: none;
+			border-radius: 0;
+
+			.p-tabmenuitem {
+				top: 0;
+				margin: 0;
+				border-radius: 0;
+
+				.p-menuitem-link {
+					padding: $tab-padding-y $tab-padding-x;
+					color: $body-color;
+					font-weight: $font-weight-bold;
+					border: 1px solid transparent;
+
+					.p-menuitem-icon {
+						margin-right: 0.5rem;
+					}
+					&:focus {
+						outline: none;
+					}
+				}
+				&:not(.p-highlight) {
+					&:not(.p-disabled) {
+						&:hover {
+							.p-menuitem-link {
+								color: $primary;
+							}
+						}
+					}
+				}
+			}
+			.p-tabmenuitem.p-highlight {
+				background-color: $white;
+			}
+
+			.p-menuitem-text {
+				line-height: 1.5;
+			}
+		}
+	}
+}

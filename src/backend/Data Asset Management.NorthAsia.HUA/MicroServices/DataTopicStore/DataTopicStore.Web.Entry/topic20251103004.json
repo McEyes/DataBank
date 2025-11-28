@@ -1,0 +1,174 @@
+{
+  "eventType": "COMPLETE",
+  "eventTime": "2025-10-11T09:00:00Z",
+  "run": {
+    "runId": "4cb239ac-a45d-4100-8827-f229d9fc169b",
+    "facets": null
+  },
+  "job": {
+    "namespace": "datatopicstore",
+    "name": "topic20251103004",
+    "facets": null
+  },
+  "inputs": [
+    {
+      "namespace": "datatopicstore",
+      "name": "trace_mes.tp_shipping_record",
+      "inputFacets": null,
+      "outputFacets": null
+    },
+    {
+      "namespace": "datatopicstore",
+      "name": "trace_kpi.mes_mrb_workcell_customer_mapping",
+      "inputFacets": null,
+      "outputFacets": null
+    },
+    {
+      "namespace": "datatopicstore",
+      "name": "trace_emrb.tp_material_scrap_report",
+      "inputFacets": null,
+      "outputFacets": null
+    },
+    {
+      "namespace": "datatopicstore",
+      "name": "trace_kpi.rr_std_price_by_model",
+      "inputFacets": null,
+      "outputFacets": null
+    }
+  ],
+  "outputs": [
+    {
+      "namespace": "datatopicstore",
+      "name": "_default_.topic20251103004",
+      "facets": {
+        "documentation": null,
+        "schema": {
+          "_producer": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "fields": [
+            {
+              "name": "date",
+              "type": "DATETIME",
+              "description": "date"
+            },
+            {
+              "name": "customer",
+              "type": "VARCHAR",
+              "description": "customer"
+            },
+            {
+              "name": "division",
+              "type": "VARCHAR",
+              "description": "division"
+            },
+            {
+              "name": "amount_scrap",
+              "type": "DECIMAL",
+              "description": "amount_scrap"
+            },
+            {
+              "name": "bom_cost",
+              "type": "DECIMAL",
+              "description": "bom_cost"
+            },
+            {
+              "name": "scrap",
+              "type": "DECIMAL",
+              "description": "scrap"
+            }
+          ]
+        },
+        "dataSource": null,
+        "description": null,
+        "lifecycleStateChange": null,
+        "columnLineage": {
+          "_producer": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "fields": {
+            "date": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_material_scrap_report",
+                  "field": "submit_date"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "customer": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_material_scrap_report",
+                  "field": "work_cell"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "division": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_material_scrap_report",
+                  "field": "division"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "amount_scrap": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_material_scrap_report",
+                  "field": "quantity"
+                },
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_material_scrap_report",
+                  "field": "unit_price"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "bom_cost": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_kpi.rr_std_price_by_model",
+                  "field": "standard_cost"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "scrap": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_material_scrap_report",
+                  "field": "quantity"
+                },
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_material_scrap_report",
+                  "field": "unit_price"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            }
+          }
+        },
+        "symlinks": null
+      },
+      "inputFacets": null,
+      "outputFacets": null
+    }
+  ],
+  "producer": "http://cnhuam0webstg85:6002/#/home/page",
+  "schemaURL": "http://cnhuam0webstg85:6002/#/home/page"
+}

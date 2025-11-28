@@ -1,0 +1,277 @@
+@use 'sass:selector';
+
+@import '~@fortawesome/fontawesome-free/scss/variables';
+@import './mixins';
+
+$indent: calc(1rem + 14px);
+body {
+	.p-tree {
+		width: 100%;
+		padding: 0.5rem 1rem;
+		color: $body-color;
+		background-color: $white;
+		border: 1px solid $border-color;
+		&.tree-white {
+			&.no-border {
+				padding: 0.5rem 0;
+				.p-tree-container {
+					.p-treenode {
+						border: none;
+					}
+				}
+				.p-tree-filter-container {
+					padding: 0 1rem 1rem;
+					.p-tree-filter-icon {
+						right: 1.8rem;
+					}
+				}
+			}
+		}
+		.p-tree-container {
+			margin: 0;
+			padding: 0;
+
+			.p-checkbox {
+				width: 20px;
+				.p-checkbox-box {
+					width: 20px;
+					height: 20px;
+					text-align: center;
+					background-color: $white;
+					border: 1px solid $light-grey;
+					border-radius: 2px;
+					transition: border-color 0.3s, background-color 0.3s,
+						box-shadow 0.3s;
+				}
+			}
+
+			& > p-treenode:not(:last-child) {
+				.p-treenode {
+					border-bottom: none;
+				}
+			}
+			.p-treenode {
+				padding: 0;
+				border: 1px solid $border-color;
+				.p-treenode {
+					margin-left: $indent;
+					border-right: 0;
+					border-bottom: 0;
+				}
+				.p-treenode-content {
+					padding: 0.5rem 0;
+					padding-left: 0 !important;
+					@include icon-convert(
+						selector.unify('.p-tree-toggler', '.pi-caret-right'),
+						$fa-var-chevron-down
+					);
+					@include icon-convert(
+						selector.unify('.p-tree-toggler', '.pi-caret-down'),
+						$fa-var-chevron-up
+					);
+					.p-tree-toggler {
+						display: inline-block;
+						float: none;
+						width: $indent;
+						margin: 0;
+						padding: 3px 5px;
+						color: $tree-toggler-color;
+						text-align: center;
+						vertical-align: middle;
+						outline: none;
+					}
+					.p-treenode-icon {
+						display: inline-block;
+						margin: 0 0.1rem 0 0;
+						vertical-align: middle;
+					}
+					.p-treenode-label {
+						display: inline-block;
+						margin: 0;
+						padding: 0.25rem;
+						vertical-align: middle;
+
+						&.p-highlight {
+							background-color: transparent;
+						}
+					}
+					.p-checkbox {
+						margin: 0 0.5rem 0 0;
+						.p-checkbox-icon {
+							margin: 1px 0 0 0;
+							font-size: 14px;
+						}
+					}
+					& > span {
+						line-height: inherit;
+					}
+					&.p-treenode-dragover {
+						color: $body-color;
+						background-color: $body-bg-dark;
+					}
+					&:focus {
+						outline: 0 none;
+						outline-offset: 0;
+					}
+				}
+				&.p-treenode-leaf {
+					.p-treenode-content {
+						padding-left: $indent !important;
+					}
+				}
+				.p-treenode-selectable.p-highlight {
+					.p-checkbox {
+						.p-checkbox-box {
+							background-color: $primary;
+							border: 1px solid $primary;
+						}
+						.p-checkbox-icon {
+							color: $white;
+						}
+					}
+					&:hover {
+						.p-checkbox {
+							.p-checkbox-box {
+								background-color: $primary-button-hover-bg-color;
+								border: 1px solid
+									$primary-button-hover-border-color;
+							}
+						}
+					}
+				}
+			}
+			.p-treenode-droppoint {
+				&.p-treenode-droppoint-active {
+					background-color: $tree-node-active-color;
+				}
+			}
+		}
+		&:not(.p-tree-selectable) {
+			.p-tree-container {
+				padding: 0.2rem;
+				.p-treenode {
+					.p-treenode-content {
+						&:focus {
+							border-radius: 3px;
+							outline: 0 none;
+							outline-offset: 0;
+							box-shadow: 0 0 0 0.2em
+								$tree-node-content-box-shadow-color;
+						}
+					}
+				}
+			}
+			.p-tree-filter-container {
+				padding: 0 0.2rem 1rem;
+				.p-tree-filter-icon {
+					right: 1rem;
+				}
+			}
+		}
+		&:not(.tree-white) {
+			.p-tree-container {
+				.p-treenode {
+					background: $tree-node-background-color;
+					border: $tree-node-border;
+					.p-treenode {
+						border-right: 0;
+						border-bottom: 0;
+					}
+					.p-treenode-selectable.p-highlight {
+						background-color: $tree-mode-selected-background-color;
+						.p-treenode-label {
+							color: $white;
+						}
+						& + .p-treenode-children {
+							background-color: $tree-mode-selected-background-color;
+							.p-tree-toggler,
+							.p-treenode-icon,
+							.p-treenode-label {
+								color: $white;
+							}
+							.p-treenode-selectable.p-highlight {
+								background: $tree-node-highlight-background-color;
+								& + .p-treenode-children {
+									background: $tree-node-highlight-background-color;
+								}
+							}
+						}
+						.p-tree-toggler {
+							color: $white;
+						}
+						.p-treenode-icon {
+							color: $white;
+						}
+					}
+				}
+			}
+		}
+		&.p-tree-horizontal {
+			padding-right: 0;
+			padding-left: 0;
+			.p-treenode {
+				.p-treenode-content {
+					padding: 0.55rem 1rem;
+					color: $body-color;
+					background-color: $white;
+					border: 1px solid $border-color;
+					border-radius: 4px;
+					transition: background-color 0.2s, box-shadow 0.2s;
+					&.p-highlight {
+						color: $white;
+						background-color: $tree-node-active-color;
+					}
+					.p-chkbox {
+						.p-icon {
+							color: $tree-node-active-color;
+						}
+					}
+					.p-treenode-label {
+						&:not(.p-highlight):hover {
+							color: inherit;
+							background-color: inherit;
+						}
+					}
+					&.p-treenode-selectable {
+						&:not(.p-highlight):hover {
+							color: $body-color;
+							background-color: $body-bg-dark;
+						}
+					}
+					&:focus {
+						outline: 0 none;
+						outline-offset: 0;
+					}
+				}
+			}
+		}
+		.p-tree-filter-container {
+			padding: 0 0 1rem;
+			.p-tree-filter {
+				width: 100%;
+				padding-right: 2rem;
+				&.p-inputtext {
+					font-size: 13px;
+					border: 1px solid $border-color;
+					border-radius: 4px;
+					&:hover {
+						border: 1px solid $border-color;
+					}
+					&:focus {
+						border-color: $tree-filter-focus-border-color;
+						outline: 0;
+						box-shadow: $tree-filter-input-focus-box-shadow-inset,
+							$tree-filter-input-focus-box-shadow;
+					}
+				}
+			}
+			.p-tree-filter-icon {
+				top: 50%;
+				right: 0.8rem;
+				left: auto;
+				margin-top: -1rem;
+				color: $tree-toggler-color;
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+@Sqllineage_HostAddress = http://localhost:5022
+
+GET {{Sqllineage_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+###
+POST {{Sqllineage_HostAddress}}/weatherforecast
+Accept application/json
+

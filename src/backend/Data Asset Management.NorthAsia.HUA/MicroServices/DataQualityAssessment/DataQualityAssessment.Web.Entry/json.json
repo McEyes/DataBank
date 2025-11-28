@@ -1,0 +1,14 @@
+{
+  "ID": 0,
+  "User_account": null,
+  "User_password": null,
+  "RememberMe": false,
+  "Validated": false,
+  "User_NTID": null,
+  "User_dept": null,
+  "User_Name": null,
+  "User_tell": null,
+  "User_mail": null,
+  "Status": 0,
+  "Menus": null
+}

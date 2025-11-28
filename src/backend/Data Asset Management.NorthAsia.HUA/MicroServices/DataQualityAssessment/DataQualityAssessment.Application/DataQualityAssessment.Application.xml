@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataQualityAssessment.Application</name>
+    </assembly>
+    <members>
+        <member name="P:DataQualityAssessment.Application.Assessments.Dtos.AssessmentResultDto.Id">
+            <summary>
+            table id
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.DataInformationIntegrityVerificationRule">
+            <summary>
+            数据信息完整性
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.DataInterpretabilityVerificationRule">
+            <summary>
+            数据可解释性_数据字典完整性规则
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.DataTypeDateTypeVerificationRule">
+            <summary>
+            数据类型验证_日期类型规则
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.DataTypeEnumTypeVerificationRule">
+            <summary>
+            数据类型验证_枚举类型规则
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.DataTypeVarcharTypeVerificationRule">
+            <summary>
+            数据类型验证_VARCHAR类型规则
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.EmailVerificationRule">
+            <summary>
+            邮箱验证规则
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.ExtraColumnsVerificationRule">
+            <summary>
+            多余字段占比规则
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.NullValueRatioVerificationRule">
+            <summary>
+            空值比例规则
+            </summary>
+        </member>
+        <member name="T:DataQualityAssessment.Application.RuleEngines.Rules.PhoneNumberVerificationRule">
+            <summary>
+            手机号验证规则
+            </summary>
+        </member>
+    </members>
+</doc>

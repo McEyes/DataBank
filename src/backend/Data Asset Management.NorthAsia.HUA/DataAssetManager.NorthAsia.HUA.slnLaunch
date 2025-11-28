@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "新建配置文件",
+    "Projects": [
+      {
+        "Path": "MicroServices\\DataAssetManager.DataApiServer\\DataAssetManager.DataApiServer.Web.Entry\\DataAssetManager.DataApiServer.Web.Entry.csproj",
+        "Action": "Start",
+        "DebugTarget": "DataApiServer.Web.Entry"
+      },
+      {
+        "Path": "MicroServices\\ITPortal.Flow\\ITPortal.Flow.Web.Entry\\ITPortal.Flow.Web.Entry.csproj",
+        "Action": "Start",
+        "DebugTarget": "ITPortal.Flow.Web.Entry"
+      },
+      {
+        "Path": "AuthServer\\ITPortal.AuthServer\\ITPortal.AuthServer.Web.Entry\\ITPortal.AuthServer.Web.Entry.csproj",
+        "Action": "Start",
+        "DebugTarget": "ITPortal.AuthServer.Web.Entry"
+      }
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITPortal.AuthServer.Web.Core</name>
+    </assembly>
+    <members>
+        <member name="M:ITPortal.AuthServer.Web.Core.Startup.AddAdAuth(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            添加身份验证服务
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

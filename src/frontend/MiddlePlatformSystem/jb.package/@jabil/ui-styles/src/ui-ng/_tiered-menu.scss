@@ -1,0 +1,109 @@
+body {
+	.p-tieredmenu {
+		width: 12.5rem;
+		min-width: 11.25rem;
+		margin: 0.125rem 0 0;
+		padding: 0.5rem 0;
+		color: $body-color;
+		font-size: 1rem;
+		text-align: left;
+		list-style: none;
+		background-color: $white;
+		background-clip: padding-box;
+		border: 1px solid $border-color;
+		border-radius: 0;
+		box-shadow: $menu-box-shadow;
+		.p-menuitem-link {
+			display: flex;
+			clear: both;
+			width: 100%;
+			padding: 0.5rem 0.75rem;
+			color: $body-color;
+			font-weight: 400;
+			white-space: nowrap;
+			text-align: inherit;
+			background-color: transparent;
+			border: 0;
+			.p-menuitem-text {
+				color: $body-color;
+				line-height: 1.5;
+			}
+			.p-menuitem-icon {
+				margin-right: 0.5em;
+				color: $body-color;
+			}
+			&.p-disabled {
+				color: $gray-600;
+				background-color: transparent;
+				pointer-events: none;
+			}
+			&:not(.p-disabled):hover {
+				color: $body-color;
+				text-decoration: none;
+				background-color: $body-bg;
+				.p-menuitem-text {
+					color: $body-color;
+				}
+				.p-menuitem-icon {
+					color: $body-color;
+				}
+			}
+			&:focus {
+				color: $body-color;
+				text-decoration: none;
+				background-color: $body-bg;
+				outline: 0 none;
+				outline-offset: 0;
+			}
+			&.p-menuitem-link-active {
+				color: $white;
+				text-decoration: none;
+				background-color: $primary;
+				.p-menuitem-text {
+					color: $white;
+				}
+				.p-menuitem-icon {
+					color: $white;
+				}
+			}
+		}
+		.p-submenu-list {
+			padding: 0;
+			background-color: $white;
+			border: 1px solid $border-color;
+			box-shadow: $tired-menu-sub-list-box-shadow;
+		}
+		.p-menuitem {
+			margin: 0;
+			.p-menuitem-link {
+				.p-submenu-icon {
+					right: 0.4rem;
+				}
+			}
+			&.p-menuitem-active {
+				& > .p-menuitem-link {
+					background-color: $body-bg;
+					.p-menuitem-text {
+						color: $body-color;
+					}
+				}
+			}
+		}
+		.p-menu-separator {
+			border: 1px solid $border-color;
+			border-width: 1px 0 0 0;
+		}
+	}
+}
+body
+	.p-tieredmenu
+	.p-menuitem.p-menuitem-active
+	> .p-menuitem-link
+	.p-menuitem-icon,
+body
+	.p-tieredmenu
+	.p-menuitem.p-menuitem-active
+	> .p-menuitem-link
+	.p-submenu-icon {
+	color: $body-color;
+}

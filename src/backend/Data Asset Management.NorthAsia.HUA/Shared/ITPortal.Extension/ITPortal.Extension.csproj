@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Configurations>Debug;Release;Stg</Configurations>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="System\DateFormatExtensions\**" />
+    <EmbeddedResource Remove="System\DateFormatExtensions\**" />
+    <None Remove="System\DateFormatExtensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="System\DateFormatExtensions\CustomDateTimeConverter.cs" />
+    <Compile Include="System\DateFormatExtensions\DefaultDateConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="System\Excel\" />
+  </ItemGroup>
+
+</Project>

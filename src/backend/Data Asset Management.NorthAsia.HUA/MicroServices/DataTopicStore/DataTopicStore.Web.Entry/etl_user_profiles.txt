@@ -1,0 +1,1 @@
+﻿假设有一个SQL作业：从source_db.users表读取数据，处理后写入target_db.user_profiles表。

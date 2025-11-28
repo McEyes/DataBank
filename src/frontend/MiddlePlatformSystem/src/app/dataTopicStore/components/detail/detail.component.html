@@ -1,0 +1,380 @@
+<div *ngIf="currPanel === 'detail'" class="edit-content">
+    <div class="header">
+        <div class="flex">
+            <div class="cover">
+                <img *ngIf="!formData.cover" alt="cover" src="./assets/images/dataTopicStore/icon-item-cover.png">
+                <img *ngIf="formData.cover" alt="cover"
+                    [src]="fileHost+'/api/file/download/' + formData.cover + '?category=DataTopicStore'">
+            </div>
+            <div class="brife">
+                <div class="base">
+                    <div class="name">{{formData.name}}</div>
+                </div>
+                <div class="info">
+                    {{'field.version' | translate }}: {{formData.version}}
+                </div>
+            </div>
+        </div>
+
+        <div class="operate">
+            <div class="con">
+                <button nz-button nz-popover nzPopoverOverlayClassName="h-lang" [nzPopoverContent]="langTemplate"
+                    nzPopoverTrigger="click" [nzPopoverVisible]="permissionVisible"
+                    (nzPopoverVisibleChange)="visibleChange($event)" nzPopoverPlacement="bottom"
+                    class="permission">{{'operate.apply.for.the.permission' |
+                    translate}}
+                </button>
+
+                <ng-template #langTemplate>
+                    <div id="business-model-permission-confirm" class="business-model-permission-confirm">
+                        <div *ngIf="permissionVisible" class="cont">
+                            <div class="l1">
+                                <div>
+                                    <img src="./assets/images/dataTopicStore/icon-bell-notification.png">
+                                </div>
+                            </div>
+                            <div class="l2">
+                                {{formData.name}}
+                            </div>
+                            <div class="l3">
+                                {{'info.are.you.sure' | translate}}
+                            </div>
+                            <div class="l4">
+                                {{'info.want.permisson' | translate}}
+                            </div>
+                            <div class="l5">
+                                <div (click)="closePermission()">{{'no' | translate}}</div>
+                                <div class="yes" (click)=applyPermission()>{{'yes' | translate}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="da-button" (click)="dataPreview()">
+                    {{'operate.data.preview' | translate}}</div>
+                <div class="copy" (click)="copyText(localhost + '/gateway/datatopicstore/api/topic/' + formData.id)">
+                    <img alt="copy" src="./assets/images/dataTopicStore/icon-copy.png">
+                    {{localhost}}/gateway/datatopicstore/api/topic/{{formData.id}}
+                </div>
+            </div>
+
+            <button nz-button nz-popover [nzPopoverContent]="favTemplate" nzPopoverTrigger="hover" class="favorite"
+                (click)="setFavorite()" [ngClass]="formData.is_favorite ? 'active':''"
+                (nzPopoverVisibleChange)="ratingsVisibleChange($event)" nzPopoverPlacement="bottom">
+            </button>
+
+            <ng-template #favTemplate>
+                <div id="business-model-permission-confirm" class="ratings business-model-permission-confirm">
+                    <div class="cont fav">
+                        <div class="f-t">
+                            {{"label.FAVORITE" | translate }}
+                        </div>
+                        <div class="line"></div>
+                        <div class="f-c">
+                            <div *ngFor="let item of favoriteList" (click)="changeDetail(item)" class="it">
+                                <div class="img-bg">
+                                    <img *ngIf="!item.cover" alt="cover"
+                                        src="./assets/images/dataTopicStore/icon-item-cover.png">
+                                    <img *ngIf="item.cover" alt="cover"
+                                        [src]="fileHost+'/api/file/download/' + item.cover + '?category=DataTopicStore'">
+                                </div>
+                                <div class="rc-title">{{item.name}}</div>
+                            </div>
+
+                            <div style="display: flex;justify-content: center;" *ngIf="!favoriteList?.length">
+                                {{'nodata' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="statistics">
+
+        <div class="function">
+            <div class="t">FUNCTION</div>
+            <div class="m">
+                {{formData.department}}
+            </div>
+        </div>
+        <div class="author">
+            <div class="t">
+                {{'field.OWNER' | translate}}
+            </div>
+            <div class="m">
+                {{formData.owner}}
+            </div>
+        </div>
+        <div class="tag">
+            <div class="t">
+                {{'field.TAGS' | translate}}
+            </div>
+
+            <div class="m">
+                <p-tag *ngFor="let item of formData.tags" [value]="item"></p-tag>
+                <!-- <p-tag *ngIf="formData.tags?.includes('Plant')" severity="success" value="Plant"></p-tag>
+                <p-tag *ngIf="formData.tags?.includes('Realtime')" severity="info" value="Realtime"></p-tag> -->
+            </div>
+        </div>
+        <div class="reference">
+            <div class="t">
+                {{'label.referenced.times' | translate}}
+            </div>
+            <div class="m">
+                <span>{{formData.referenced_times || 0}}</span>
+            </div>
+        </div>
+
+        <div class="rating">
+            <div class="t">
+                {{'label.RATINGS' | translate}}
+            </div>
+            <div class="m flex">
+                <button nz-button nz-popover [nzPopoverContent]="ratingsTemplate" nzPopoverTrigger="hover"
+                    (nzPopoverVisibleChange)="ratingsVisibleChange($event)" nzPopoverPlacement="bottom">
+                    <span>{{formData.ratings || 0}}</span>
+
+                    <p-rating [readonly]="true" [(ngModel)]="formData.ratingsInt" [cancel]="false"></p-rating>
+                </button>
+
+
+
+                <ng-template #ratingsTemplate>
+                    <div id="business-model-permission-confirm" class="ratings business-model-permission-confirm">
+                        <div class="cont author">
+                            <div class="ratings">
+                                <div class="r-content">
+                                    <div class="p-title">{{'label.RATINGS' | translate}}</div>
+                                    <div class="e-content">
+                                        <p-rating class="op" (onRate)="userEvaluate()" [(ngModel)]="evaluate"
+                                            [cancel]="false"></p-rating>
+                                    </div>
+
+                                    <div class="line"></div>
+                                    <div class="l">
+                                        <div class="l-t">{{'label.historical.rating' | translate}}</div>
+                                        <div class="flex">
+                                            <div class="num">
+                                                {{'label.ratings' | translate}} : {{formData.ratings_count || 0}}
+                                            </div>
+                                            <div class="l-n">
+                                                <span class="score">{{formData.ratings || 0}}</span>
+                                                <span class="all">/ 5</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="r">
+                                        <div>
+                                            <p-rating [readonly]="true" [(ngModel)]="five" [cancel]="false"></p-rating>
+
+                                            <p-progressBar class="w-100" [value]="formData.star_ratio['5']"
+                                                [showValue]="false"></p-progressBar>
+
+                                            <span>{{formData.star_ratio['5']}}%</span>
+                                        </div>
+                                        <div>
+                                            <p-rating [readonly]="true" [(ngModel)]="four" [cancel]="false"></p-rating>
+
+                                            <p-progressBar class="w-100" [value]="formData.star_ratio['4']"
+                                                [showValue]="false"></p-progressBar>
+
+                                            <span>{{formData.star_ratio['4']}}%</span>
+                                        </div>
+                                        <div>
+                                            <p-rating [readonly]="true" [(ngModel)]="three" [cancel]="false"></p-rating>
+
+                                            <p-progressBar class="w-100" [value]="formData.star_ratio['3']"
+                                                [showValue]="false"></p-progressBar>
+
+                                            <span>{{formData.star_ratio['3']}}%</span>
+                                        </div>
+                                        <div>
+                                            <p-rating [readonly]="true" [(ngModel)]="two" [cancel]="false"></p-rating>
+
+                                            <p-progressBar class="w-100" [value]="formData.star_ratio['2']"
+                                                [showValue]="false"></p-progressBar>
+
+                                            <span>{{formData.star_ratio['2']}}%</span>
+                                        </div>
+                                        <div>
+                                            <p-rating [readonly]="true" [(ngModel)]="one" [cancel]="false"></p-rating>
+
+                                            <p-progressBar class="w-100" [value]="formData.star_ratio['1']"
+                                                [showValue]="false"></p-progressBar>
+
+                                            <span>{{formData.star_ratio['1']}}%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="favorite noborder">
+            <div class="t">
+                {{'label.favorite' | translate}}
+            </div>
+
+            <div class="m">
+
+                <div class="l">
+                    <div class="fav" [ngClass]="formData.is_liked === true ? 'active' : ''" (click)="selectPrase(true)">
+                        <div></div>
+                    </div>
+                </div>
+
+                <div class="r">
+                    <div class="fav un" [ngClass]="formData.is_liked === false ? 'active' : ''"
+                        (click)="selectPrase(false)">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- <div class="flow">
+
+        <div class="l" (click)="switchPic(1)">
+            <img src="./assets/images/common/arrow.png">
+        </div>
+        <div class="r" (click)="switchPic(-1)">
+            <img src="./assets/images/common/arrow.png">
+        </div>
+        <swiper-container init="false" id="case-info-swiper" class="case-info-swiper" loop="true"
+            watch-slides-progress="true" slides-per-view="2" initialSlide="1">
+            <swiper-slide id="1" class="brief" >
+                <img src="./assets/images/common/detail-desc.jpg">
+            </swiper-slide>
+            <swiper-slide id="2" class="brief">
+                <img src="./assets/images/common/detail-desc.jpg">
+            </swiper-slide>
+            <swiper-slide id="3" class="brief">
+                <img src="./assets/images/common/detail-desc.jpg">
+            </swiper-slide>
+            <swiper-slide id="4" class="brief">
+                <img src="./assets/images/common/detail-desc.jpg">
+            </swiper-slide>
+            <swiper-slide id="5" class="brief">
+                <img src="./assets/images/common/detail-desc.jpg">
+            </swiper-slide>
+        </swiper-container>
+    </div> -->
+
+    <div class="info" [innerHTML]="formData.content"></div>
+
+    <div class="lineage">
+        <div class="p-title">{{'label.data.lineage' | translate}}</div>
+        <div class="l-content">
+            <div class="flow" (click)="dataLineage()">
+                <app-data-lineage *ngIf="!hidde && formData.id" [field]="formData"></app-data-lineage>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="formData.tags?.includes('KPI')" class="formula">
+        <div class="p-title">{{'label.formula' | translate}}</div>
+        <div class="f-content">
+            <span *ngFor="let item of jsonFormulaArray" [class]="item.type">
+                {{item.value}}
+            </span>
+        </div>
+    </div>
+
+    <!-- <div *ngIf="formData.tags?.includes('KPI')" class="goal">
+        <div class="p-title">{{'label.goal' | translate}}</div>
+        <div class="num">0.58%</div>    
+    </div> -->
+
+    <div *ngIf="goalData" class="goal">
+        <div class="p-title">{{'label.goal' | translate}}</div>
+        <p-table styleClass="sys-table" [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="goalData"
+            [tableStyle]="{ 'min-width': '100%' }">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th class="xd-theader-white">
+                        {{'date' | translate}}
+                    </th>
+                    <th class="xd-theader-white">
+                        {{'label.goal' | translate}}
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    <td class="xd-tbody text-overflow inline-block">
+                        {{ item.month }}
+                    </td>
+                    <td class="xd-tbody text-overflow inline-block">
+                        {{ (item.goal* 100).toFixed(4) + '%' }}
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+
+    <div class="comments">
+        <div class="p-title">{{'label.comments' | translate}}</div>
+        <div class="c-content">
+            <textarea [(ngModel)]="commentContent" [placeholder]="'info.comment.placeholder' | translate"></textarea>
+
+            <div class="footer">
+                <!-- <div class="da-button">cancel</div> -->
+                <div class="da-button publish" (click)="createComment()">{{'operate.publish' | translate}}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-content">
+
+        <div *ngFor="let item of commentList" class="c-item">
+            <div class="t">
+                <img alt="user" src="./assets/images/dataTopicStore/user.png">
+                <span>{{item.reviewer}}</span>
+            </div>
+            <div class="m">
+                {{item.content}}
+            </div>
+            <div class="b">
+                <div class="date">{{item.created_time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+                <div class="operate">
+                    <div [class]="item.is_liked === true ? 'active' : ''">
+                        <i class="fav" (click)="setCommentLike(item, true)"></i>
+                        <span>{{item.liked_count}}</span>
+                    </div>
+                    <div [class]="item.is_liked === false ? 'active' : ''">
+                        <i class="unfav" (click)="setCommentLike(item, false)"></i>
+                        <span>{{item.disliked_count}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="h-100" *ngIf="currPanel === 'preview'">
+    <app-data-topic-preview *ngIf="formData?.id" [field]="formData" class="h-100"
+        (goBack)="goDetail()"></app-data-topic-preview>
+</div>
+
+<div class="h-100" *ngIf="currPanel === 'dataLineage'">
+    <div style="height: calc(100% - 0px);">
+        <app-data-lineage *ngIf="formData.id" [field]="formData"></app-data-lineage>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

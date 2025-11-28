@@ -1,0 +1,695 @@
+.query-contents {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+
+  .header {
+    width: 100%;
+    height: 60px;
+    background-color: #F7F9FD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .btns-list {
+      width: 340px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 2px;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+
+      .btns-list-item {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        color: #414042;
+        font-family: Noto Sans SC;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+
+      .btns-list-item-active {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #414042;
+        color: #fff;
+        font-family: Noto Sans SC;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+  }
+
+  .mian {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    // background-color: #fff;
+    padding: 10px;
+
+    .leftBox {
+      width: 22%;
+      height: 100%;
+      border-radius: 20px;
+      background-color: #F7F9FD;
+      box-sizing: border-box;
+      padding: 1px 0px;
+      overflow: hidden;
+
+      .header {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0px 1px;
+
+        .title {
+          width: 50%;
+          height: 50px;
+          color: #414042;
+          font-family: Noto Sans SC;
+          font-size: 14px;
+          font-weight: 500;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          position: relative;
+
+          p {
+            width: 100%;
+            position: absolute;
+            left: 14px;
+            right: 0;
+            margin: 0 auto;
+            top: 14px;
+            z-index: 9;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+          }
+        }
+
+        .title-left-active {
+          background: url('~src/assets/images/dataAssetManage/assetQuery/tree-title-left.png') no-repeat center;
+          background-size: 100% 100%;
+          width: 60%;
+          padding-right: 10px;
+        }
+
+        .title-right-active {
+          background: url('~src/assets/images/dataAssetManage/assetQuery/tree-title-right.png') no-repeat center;
+          background-size: 100% 100%;
+          width: 60%;
+          padding-left: 10px;
+        }
+      }
+
+      .treebox {
+        width: 100%;
+        overflow-x: auto;
+
+        .node-label-class {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          flex-wrap: nowrap;
+          column-gap: 5px;
+
+          .node-label-num {
+            padding: 0px 10px;
+            background-color: #669933;
+            border-radius: 20px;
+            color: #fff;
+            font-size: 10px;
+          }
+        }
+
+        h4 {
+          width: 100%;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          color: #414042;
+          font-size: 14px;
+        }
+
+        .menuFormBtns {
+          width: 100%;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          column-gap: 10px;
+          margin-top: 20px;
+
+          .menuFormBtns-btns {
+            display: flex;
+            width: 68px;
+            height: 40px;
+            padding: 5px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+
+          .btn-blue {
+            background-color: #003865;
+            color: #fff;
+          }
+
+          .btn-white {
+            background-color: #fff;
+            color: #414042;
+          }
+        }
+      }
+
+      .addBtns-box {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+
+        .addBtnds {
+          width: 120px;
+          height: 40px;
+          border-radius: 20px;
+          background-color: #fff;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #F7F9FD;
+          cursor: pointer;
+
+          .addBtnds-iocns {
+            width: 20px;
+            height: 20px;
+            // background: url('../../../../../../assets/images/map/allocationCase/add.png') no-repeat
+            //   center;
+            background-size: 100% 100%;
+          }
+        }
+      }
+    }
+
+    .rightBox {
+      width: 78%;
+      height: 100%;
+      border-radius: 20px;
+      background: #F7F9FD;
+
+      .rightBox-main {
+        width: 100%;
+        height: 100%;
+        // background-color: #fff;
+        border-radius: 20px;
+        padding: 15px;
+        overflow: hidden;
+
+        .query-table-class {
+          width: 100%;
+          height: calc(100% - 85px);
+          overflow: hidden;
+
+          .table-title {
+            width: 100%;
+            height: 34px;
+            color: #414042;
+            font-family: Noto Sans SC;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
+        }
+      }
+    }
+  }
+}
+
+.viewapiclass {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+
+  .viewapiclass-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    line-height: auto;
+    padding: 10px 20px 10px 20px;
+
+    &:nth-child(odd) {
+      background-color: #f5f5f5;
+    }
+
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+
+    .viewapiclass-item-url {
+      width: 89%;
+      word-wrap: break-word;
+    }
+
+    .viewapiclass-item-btn {
+      width: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .viewapiclass-copy {
+        cursor: pointer;
+        height: 25px;
+        line-height: 25px;
+        padding: 0px 10px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.isHover {
+  cursor: pointer;
+
+  &:hover {
+    color: #147ad9 !important;
+    text-decoration: underline;
+  }
+}
+
+:host ::ng-deep .p-datatable>.p-datatable-wrapper {
+  &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #fff;
+    background-color: #fff !important;
+    border-radius: 3px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px !important;
+    -webkit-box-shadow: inset 0 0 6px #999 !important;
+    background-color: #999 !important;
+  }
+}
+
+:host ::ng-deep .p-tree-wrapper {
+  &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #F7F9FD;
+    background-color: #F7F9FD !important;
+    border-radius: 3px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px !important;
+    -webkit-box-shadow: inset 0 0 6px #999 !important;
+    background-color: #999 !important;
+  }
+}
+
+:host ::ng-deep {
+
+
+  .p-dialog .p-dialog-header {
+    padding: 10px !important;
+  }
+
+  .p-tree {
+    width: 100% !important;
+    background: none !important;
+    border: none;
+    color: #414042 !important;
+  }
+
+  .p-tree-container {
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .p-treenode {
+    width: 100% !important;
+  }
+
+  .p-tree .p-tree-container .p-treenode .p-treenode-content {
+    padding: 5px !important;
+    // width: 100% !important;
+  }
+
+  .p-tree .p-tree-container .p-treenode .p-treenode-content.p-highlight {
+    min-width: 100% !important;
+    background-color: #0990cf !important;
+    color: #fff !important;
+    display: inline-flex !important;
+  }
+
+  // .p-datatable-scrollable .p-datatable-tbody tr:nth-child(2n + 1) {
+  //   background-color: #f5f5f5;
+  // }
+
+  .p-ripple {
+    background-color: #fff !important;
+    color: #003865;
+  }
+
+  .p-dialog-draggable .p-dialog-header {
+    border-bottom: 1px solid #eee !important;
+  }
+
+  .p-dialog .p-dialog-content {
+    padding: 0 0 20px 0;
+  }
+
+  button.p-tree-toggler {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: unset !important;
+
+    .pi-chevron-down {
+      background-image: url('~src/assets/images/dataAssetManage/assetQuery/tree-close.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 12px;
+      height: 12px;
+
+      &::before {
+        content: '' !important;
+      }
+    }
+
+    .pi-chevron-right {
+      background-image: url('~src/assets/images/dataAssetManage/assetQuery/tree-open.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 12px;
+      height: 12px;
+
+      &::before {
+        content: '' !important;
+      }
+    }
+  }
+
+  .p-treenode-leaf>.p-treenode-content .p-tree-toggler {
+    visibility: visible !important;
+
+    .pi-chevron-right {
+      background-image: url('~src/assets/images/dataAssetManage/assetQuery/tree-close.png');
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      width: 12px;
+      height: 12px;
+
+      &::before {
+        content: '' !important;
+      }
+    }
+  }
+
+  .p-treenode-children {
+    padding: 0 !important;
+  }
+
+  .p-tree {
+    padding: 0;
+  }
+
+  .p-tree-container {
+    .p-treenode {
+      button {
+        margin-right: 1rem;
+        margin-left: 1rem;
+      }
+    }
+  }
+
+  .p-tree .p-treenode-children {
+    .p-treenode-children {
+      button {
+        margin-right: 1rem;
+        margin-left: 3rem;
+      }
+
+      .p-treenode-children {
+        .p-treenode-children {
+          button {
+            margin-right: 1rem;
+            margin-left: 5rem;
+          }
+        }
+
+        button {
+          margin-right: 1rem;
+          margin-left: 4rem;
+        }
+      }
+    }
+
+    button {
+      margin-right: 1rem;
+      margin-left: 2rem;
+    }
+  }
+
+  .p-treenode {
+    padding: 0 !important;
+  }
+
+  .p-dialog .p-dialog-footer {
+    border: none !important;
+    margin-top: -2px !important;
+  }
+
+  .p-dialog-draggable .p-dialog-header {
+    border-bottom: 1px solid #eee !important;
+  }
+
+  .contents-form .contents-form-item label {
+    min-width: 130px;
+  }
+
+  /* 为需要添加POST前缀的元素设置样式 */
+  .post-item:before {
+    /* 添加POST文本内容 */
+    content: "POST";
+
+    /* 设置背景色 */
+    background-color: #49cc90;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+
+  /* 为需要添加POST前缀的元素设置样式 */
+  .get-item:before {
+    /* 添加POST文本内容 */
+    content: "GET";
+
+    /* 设置背景色 */
+    background-color: #61affe;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+
+
+  /* 为需要添加POST前缀的元素设置样式 */
+  .put-item:before {
+    /* 添加POST文本内容 */
+    content: "PUT";
+
+    /* 设置背景色 */
+    background-color: #fca130;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+
+  /* 为需要添加POST前缀的元素设置样式 */
+  .delete-item:before {
+    /* 添加POST文本内容 */
+    content: "DELETE";
+
+    /* 设置背景色 */
+    background-color: #f93e3e;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+
+
+}
+
+:host ::ng-deep {
+  .ant-tabs>.ant-tabs-nav .ant-tabs-nav-wrap {
+    width: 100% !important;
+  }
+
+  // .ant-tabs>.ant-tabs-nav .ant-tabs-nav-list {
+  //   width: 100% !important;
+  //   justify-content: space-around;
+  //   align-items: center;
+  // }
+
+  .ant-tag-checkable {
+    background-color: #00386588;
+    color: #fff;
+  }
+
+  .ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+    color: #fff;
+  }
+
+  .ant-tag-checkable-checked {
+    // background-color: #a9d6ff;
+    background-color: #003865;
+  }
+
+  .ant-tabs {
+    height: 100%;
+
+    .ant-tabs-tab {
+      background-color: #ffffff;
+
+      &.ant-tabs-tab-active {
+        font-weight: bold;
+        background-color: #EEF1F5;
+      }
+    }
+  }
+
+  .ant-tabs-content-holder {
+    height: 100%;
+  }
+
+  .ant-tabs-content {
+    height: 100%;
+  }
+
+  .p-tree-selectable {
+    position: relative;
+
+    .p-tree-empty-message {
+      text-align: center;
+      position: absolute;
+      top: 200px;
+      width: 100%;
+    }
+  }
+
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #003865;
+    text-shadow: 0 0 .25px currentcolor;
+  }
+
+}
+
+:host {
+  .da-button2 {
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid #EEF1F5;
+    padding: 3px 8px;
+    border-radius: 4px;
+    // color: #464F60;
+  }
+
+  .master-bg {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    width: calc(100% - 20px);
+    cursor: pointer;
+    max-height: 185px;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .yellow {
+    color: rgb(244, 171, 15);
+  }
+
+  .green {
+    color: #05bb05;
+  }
+}

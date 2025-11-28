@@ -1,0 +1,99 @@
+<div class="content">
+  <level-one-panel [titleName]="(titleType[titleName] | translate) +' '+ ('field.source.name' | translate)">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.source.name' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.sourceName" [ngClass]="{ 'ng-invalid': invalid && !formData.sourceName }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.source.code' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.sourceCode" [ngClass]="{ 'ng-invalid': invalid && !formData.sourceCode }" maxlength="3" minlength="3" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.database' | translate}}</label>
+            <input [placeholder]="'input.please' | translate" type="text" class="input-text" pInputText
+              [(ngModel)]="formData.dbSchema.dbName"
+              [ngClass]="{ 'ng-invalid': invalid && !formData.dbSchema.dbName }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.source.type' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="typeList"
+              [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.dbType" optionLabel="itemValue"
+              optionValue="itemText" [ngClass]="{ 'ng-invalid': invalid && !formData.dbType }"></p-dropdown>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.host' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.dbSchema.host" [ngClass]="{ 'ng-invalid': invalid && !formData.dbSchema.host }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.port' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.dbSchema.port" [ngClass]="{ 'ng-invalid': invalid && !formData.dbSchema.port }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.user.name' | translate}}</label>
+            <input type="text" class="input-text" autocomplete="off" autocomplete="off" pInputText
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.dbSchema.username"
+              [ngClass]="{ 'ng-invalid': invalid && !formData.dbSchema.username }" />
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.password' | translate}}</label>
+            <input type="password" hidden autocomplete="new-password">
+            <p-password class="input-text" autocomplete="new-password" autocomplete="off"
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.dbSchema.password"
+              [ngClass]="{ 'ng-invalid': invalid && !formData.dbSchema.password }" [toggleMask]="true"></p-password>
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.source.system.name' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="systemNameList" [filter]="true"
+              [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.systemName" optionLabel="clientName"
+              optionValue="nickName" [ngClass]="{ 'ng-invalid': invalid && !formData.systemName }"></p-dropdown>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.status' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="statusList"
+              [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.status" optionLabel="label"
+              optionValue="value"></p-dropdown>
+          </div>
+
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+            <label>{{'field.remark' | translate}}</label>
+            <textarea style="height: 100px" rows="5" cols="30" class="input-text" pInputTextarea
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.remark"></textarea>
+          </div>
+
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+          </div>
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+          </div>
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+          </div>
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+          </div>
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+          </div>
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="pushClick()" *ngIf="!noEdit && titleName != 'look'">
+      {{'operate.save' | translate}}
+    </div>
+    <div class="da-button operate" (click)="testClick()">
+      {{'operate.test.connection' | translate}}
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>

@@ -1,0 +1,40 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  .editor-container {
+    height: 100%;
+    width: 100%;
+  }
+
+  p-editor {
+    height: 100%;
+
+    ::ng-deep {
+      .p-editor-container .p-editor-content .ql-editor {
+        &::before {
+          color: rgba(0,0,0,0.3);
+        }
+      }
+    }
+
+    &[ng-reflect-readonly="true"] {
+      ::ng-deep {
+        .p-editor-toolbar {
+          display: none;
+        }
+
+        .p-editor-content {
+          height: 100% !important;
+        }
+      }
+    }
+
+    ::ng-deep {
+      .p-editor-container {
+        height: 100%;
+      }
+    }
+  }
+}

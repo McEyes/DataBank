@@ -1,0 +1,127 @@
+<div class="sql-box">
+  <div style="width: 100%; overflow: hidden">
+    <level-one-panel style="position: relative;" [titleName]="'label.call.data.api' | translate">
+      <div class="da-button header-btn" (click)="backClick()">{{'operate.back' | translate}}</div>
+      <div class="sql-copy-class-main-form" style="padding: 10px 0px">
+        <div class="sql-copy-class-item">
+          <label>{{ 'field.api.name' | translate }}</label>
+          <input tooltipPosition="top" placeholder="Top" [pTooltip]="formData.apiName" [disabled]="true" type="text"
+            class="input-text" pInputText [placeholder]="'input.please' | translate" [(ngModel)]="formData.apiName" />
+        </div>
+        <div class="sql-copy-class-item">
+          <label>{{ 'field.api.version' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.apiVersion" />
+        </div>
+
+        <div class="sql-copy-class-item">
+          <label>{{ 'field.request.type' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.reqMethod" />
+        </div>
+        <div class="sql-copy-class-item">
+          <label>{{ 'field.return.format' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.resType" />
+        </div>
+        <div class="sql-copy-class-item" style="width: 100%">
+          <label>{{ 'field.api.url' | translate }}</label>
+          <input tooltipPosition="top" placeholder="Top" [pTooltip]="formData.apiUrl" type="text" [disabled]="true"
+            class="input-text" pInputText [placeholder]="'input.please' | translate" [(ngModel)]="formData.apiUrl" />
+        </div>
+
+        <div class="sql-copy-class-item">
+          <label>{{ 'field.data.source' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.sourceName" />
+        </div>
+        <div class="sql-copy-class-item">
+          <label>{{ 'field.database.table' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.tableName" />
+        </div>
+      </div>
+    </level-one-panel>
+  </div>
+
+  <div style="height: calc(100% - 300px); padding: 10px">
+    <div class="sql-form-item" style="
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        column-gap: 10px;
+        margin-bottom: 10px;
+      ">
+      <div class="sql-form-item" style="width: 50%">
+        <div class="da-button" (click)="executeQuery()">{{'operate.sql.run' | translate}}</div>
+        <div class="da-button" (click)="exportExcel()">{{'operate.sql.export.excel' | translate}}</div>
+        <div class="da-button" (click)="SQLFormat()">{{'operate.sql.format' | translate}}</div>
+        <div class="da-button" (click)="resetEditor()">{{'operate.reset' | translate}}</div>
+      </div>
+    </div>
+    <div style="
+        width: 100%;
+        height: calc(100% - 10px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        border: 1px solid #eee;
+      ">
+      <div class="sql-edit-box" style="width: 50%; height: calc(100%); border-right: 1px solid #eee">
+        <div id="mysql-edit" style="width: 100%; height: 100%; font-size: 16px; font-family: '新宋体', serif"></div>
+      </div>
+      <div class="sql-massage-box" style="width: 50%; height:100%; " *ngIf="isRun">
+        <div class="sql-massage-box" style="width: 100%; height:calc(100% - 40px);padding: 0px 5px">
+          <p-table [columns]="resualtTableInfo.columnList" [value]="resualtTableInfo.dataList"
+            [tableStyle]="{'min-width': '100%'}" [scrollable]="true" scrollHeight="flex">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th style="min-width: 100px; max-width: 200px" class="xd-theader-white" *ngFor="let col of columns">
+                  {{col.header}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr>
+                <td style="min-width: 100px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+                  [title]="rowData[col.field]" *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div style="width: 100%" [hidden]="!(sqlResultTotal > 0)">
+          <nz-pagination style="margin-top: 5px" class="flex justify-content-center"
+            [nzPageIndex]="sqlResultForm.pageNum" [nzTotal]="sqlResultTotal" nzShowSizeChanger
+            [nzPageSize]="sqlResultForm.pageSize" [nzShowTotal]="rangeTemplate"
+            (nzPageIndexChange)="nzPageIndexChange($event)"
+            (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+          <ng-template #rangeTemplate let-range="range" let-total>
+            {{ (sqlResultForm.pageNum - 1) * sqlResultForm.pageSize + 1 }}-{{ sqlResultForm.pageNum *
+            sqlResultForm.pageSize }} {{'label.pagination.of' | translate}} {{ sqlResultTotal }}
+          </ng-template>
+        </div>
+      </div>
+      <div style="
+          width: 50%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #ededed;
+          font-size: 16px;
+        " *ngIf="!isRun">
+        {{'label.run.sql' | translate}}
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

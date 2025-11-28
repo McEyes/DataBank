@@ -1,0 +1,179 @@
+<div class="breadcrumbs">
+  <div class="left">
+    <span>
+      <i class="pi pi-home"></i>
+      {{'menu.data.bank' | translate}}
+    </span>
+
+    <span>
+      <i class="pi pi-angle-right"></i>
+      <span>
+        {{'menu.data.topic.store' | translate}}
+      </span>
+    </span>
+
+    <span>
+      <i class="pi pi-angle-right"></i>
+      <span>{{'menu.application.record' | translate}}</span>
+    </span>
+  </div>
+
+  <div class="right">
+    <div *ngIf="currPanel === 'create' || currPanel === 'edit'" class="back" (click)="goBack()">
+      <img [alt]="'back' | translate" src="./assets/images/dataTopicStore/icon_back.png">
+      {{'back' | translate}}
+    </div>
+  </div>
+</div>
+<div class="query-contents">
+  <div class="mian">
+    <div class="leftBox">
+      <!-- 树形查询 -->
+      <div class="treebox" style="position: relative; height: 100%)">
+        <input style="width: 100%; height: 40px; background-color: #fff;width: calc(100% -  20px);margin: 10px;"
+          type="text" pInputText [placeholder]="'input.keyword' | translate" (input)="searchTree()"
+          [(ngModel)]="treeQuery" />
+        <div style="height: calc(100% - 60px); width: 100%">
+          <p-tree [loading]="treeLoaing" scrollHeight="flex" [value]="treeData" selectionMode="single"
+            [(selection)]="selectedFile" (onNodeSelect)="nodeSelect($event)">
+            <ng-template let-node pTemplate="default">
+              <div class="node-label-class">
+                <div style="white-space: nowrap !important">{{node.label}}</div>
+                <div class="node-label-num" [hidden]="!node.count">
+                  {{node.count}}
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="empty"> {{'nodata' | translate}} </ng-template>
+          </p-tree>
+        </div>
+        <div style="width: 100%; overflow-y: auto"></div>
+      </div>
+    </div>
+    <div class="rightBox">
+
+      <div *ngIf="currPanel === 'list'" class="tableBox">
+        <div class="sys-search-form">
+          <div class="form-item">
+            <label>{{'field.topic.name'| translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="listForm.topicName" />
+          </div>
+          <div class="form-item btn">
+            <div class="da-button search" (click)="onQuery()">{{'operate.search' | translate}}</div>
+            <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+          </div>
+        </div>
+        <div class="tableCard" style="height: calc(100% - 120px)">
+          <p-table [loading]="loading" [scrollable]="true" styleClass="sys-table" scrollHeight="flex"
+            [value]="tableData" [resizableColumns]="true" columnResizeMode="expand" dataKey="id"
+            [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="min-width: 200px;" id="code">
+                  {{'field.code' | translate}}
+                </th>
+                <th style="min-width: 200px;" id="name">
+                  {{'field.name' | translate}}
+                </th>
+                <th style="min-width: 200px;" id="name">
+                  {{'create.time' | translate}}
+                </th>
+                <th style="min-width: 200px;" id="name">
+                  {{'status' | translate}}
+                </th>
+                <th style="min-width: 300px;max-width: 300px;" id="desc">
+                  {{'field.desc' | translate}}
+                </th>
+                <th id="owner">
+                  {{'field.owner' | translate}}
+                </th>
+                <!-- <th id="function">
+                  {{'field.function' | translate}}
+                </th>
+                <th id="score">
+                  {{'field.score' | translate}}
+                </th> -->
+                <th id="version">
+                  {{'field.version' | translate}}
+                </th>
+                <th style="min-width: 350px;" pFrozenColumn alignFrozen="right">
+                  {{'label.operate' | translate}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+              <tr>
+                <td style="min-width: 200px;" [title]="item.id" class="xd-tbody text-overflow inline-block">
+                  {{ item.id }}
+                </td>
+                <td style="min-width: 200px;" [title]="item.name" class="xd-tbody text-overflow inline-block">
+                  {{ item.name }}
+                </td>
+                <td style="min-width: 200px;" class="xd-tbody text-overflow inline-block">
+                  {{ item.created_time | date:'yyyy-MM-dd HH:mm:ss' }}
+                </td>
+                <td style="min-width: 200px;" class="xd-tbody text-overflow inline-block">
+                  {{ item.is_released ? ('label.have.released' | translate):('label.to.be.released' | translate) }}
+                </td>
+                <td style="min-width: 300px;max-width: 300px;" [title]="item.description"
+                  class="xd-tbody text-overflow inline-block">
+                  {{ item.description}}
+                </td>
+                <td class="xd-tbody text-overflow inline-block">
+                  {{ item.author }}
+                </td>
+                <!-- <td class="xd-tbody text-overflow inline-block">
+                  {{ '--' }}
+                </td>
+                <td class="xd-tbody text-overflow inline-block" [title]="item.remark || ''">
+                  {{ '--' }}
+                </td> -->
+                <td class="xd-tbody text-overflow inline-block">
+                  {{ item.version }}
+                </td>
+                <td style="min-width: 350px;" class="xd-tbody text-overflow inline-block" pFrozenColumn
+                  alignFrozen="right">
+                  <div class="table-button-box">
+                    <div class="table-button" (click)="openDetail(item, 'view')">
+                      {{'view' | translate}}
+                    </div>
+                    <div class="table-button" (click)="editData(item)">
+                      {{'operate.edit.basic.info' | translate}}
+                    </div>
+                    <div class="table-button" (click)="openDetail(item, 'edit')">
+                      {{'operate.edit.business.info' | translate}}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div style="width: 100%" [hidden]="!(total > 0)">
+          <nz-pagination style="margin-top: 5px" class="flex justify-content-center" [nzPageIndex]="listForm.pageNum"
+            [nzTotal]="total" nzShowSizeChanger [nzPageSize]="listForm.pageSize" [nzShowTotal]="rangeTemplate"
+            (nzPageIndexChange)="nzPageIndexChange($event)"
+            (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+          <ng-template #rangeTemplate let-range="range" let-total>
+            {{ (listForm.pageNum - 1) * listForm.pageSize + 1 }}-{{ listForm.pageNum * listForm.pageSize
+            }} {{'label.pagination.of' | translate}} {{ total }}
+          </ng-template>
+        </div>
+      </div>
+
+      <app-data-topic-edit (goBack)="backEvent()" [field]="currRow" *ngIf="currPanel === 'edit'"></app-data-topic-edit>
+
+      <app-data-topic-create *ngIf="currPanel === 'create'" [status]="currStatus" [field]="currRow"
+        (goBack)="backEvent()"></app-data-topic-create>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

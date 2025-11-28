@@ -1,0 +1,187 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITPortal.Search.Core</name>
+    </assembly>
+    <members>
+        <member name="T:ITPortal.Search.Core.DbContext">
+            <summary>
+            数据库上下文对象
+            </summary>
+        </member>
+        <member name="F:ITPortal.Search.Core.DbContext.Instance">
+            <summary>
+            SqlSugar 数据库实例
+            </summary>
+        </member>
+        <member name="F:ITPortal.Search.Core.Enums.LinkTypeEnums.LinkUrl">
+            <summary>
+            链接
+            </summary>
+        </member>
+        <member name="F:ITPortal.Search.Core.Enums.LinkTypeEnums.Content">
+            <summary>
+            HTML内容
+            </summary>
+        </member>
+        <member name="F:ITPortal.Search.Core.Enums.LinkTypeEnums.CellItems">
+            <summary>
+            单元列
+            </summary>
+        </member>
+        <member name="F:ITPortal.Search.Core.Enums.LinkTypeEnums.Form">
+            <summary>
+            表单提交
+            </summary>
+        </member>
+        <member name="F:ITPortal.Search.Core.Enums.LinkTypeEnums.Callback">
+            <summary>
+            回调
+            </summary>
+        </member>
+        <member name="F:ITPortal.Search.Core.Enums.LinkTypeEnums.ConfirmModal">
+            <summary>
+            确认模态窗口
+            </summary>
+        </member>
+        <member name="M:ITPortal.Search.Core.LightElasticSearch.Providers.LightElasticsearchService.InsertManyAsync``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            write multiple pieces of data
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Core.LightElasticSearch.Providers.LightElasticsearchService.InsertAsync``1(``0)">
+            <summary>
+            Write a single piece of data
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ITPortal.Search.Core.LightElasticSearch.Providers.LightElasticsearchService.GetIndexAliasName``1">
+            <summary>
+            Get the index name
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.SearchTopicEntity.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.SearchTopicEntity.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.SearchTopicEntity.Topic">
+            <summary>
+            Topic
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.SearchTopicEntity.IsEnable">
+            <summary>
+            启用
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.SearchTopicEntity.IsPublic">
+            <summary>
+            是否为公开主题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.SearchTopicGrantsEntity.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Topic">
+            <summary>
+            主题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Keyword">
+            <summary>
+            关键字
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Classify">
+            <summary>
+            分类
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Tags">
+            <summary>
+            标签
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Content">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.PayloadStr">
+            <summary>
+            额外数据
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.linkUrl">
+            <summary>
+            关联URL
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Attachments">
+            <summary>
+            附件
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Creator">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Updater">
+            <summary>
+            更新人
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.EnableDataSovereignty">
+            <summary>
+            开启数据主权
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.Search.TopicDocumentModel.Highlight">
+            <summary>
+            高亮字典
+            </summary>
+        </member>
+        <member name="P:ITPortal.Search.Core.Models.UserSearchHistoryEntity.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,134 @@
+{
+  "eventType": "COMPLETE",
+  "eventTime": "2025-09-18T09:00:00Z",
+  "run": {
+    "runId": "a1b2c3d4-5679-90ef-ghij-klmnopqrstuv",
+    "facets": {
+      "nominalTime": {
+        "_producer": "https://my-test-job",
+        "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+        "nominalStartTime": "2025-09-18T09:00:00Z",
+        "nominalEndTime": "2025-09-18T09:10:00Z"
+      },
+      "parent": null
+    }
+  },
+  "job": {
+    "namespace": "data_warehouse",
+    "name": "etl_user_profiles",
+    "facets": null
+  },
+  "inputs": [
+    {
+      "namespace": "source_db",
+      "name": "users",
+      "facets": {
+        "documentation": null,
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "user_id",
+              "type": "INTEGER",
+              "description": "用户ID"
+            },
+            {
+              "name": "username",
+              "type": "VARCHAR",
+              "description": "用户名字"
+            },
+            {
+              "name": "email",
+              "type": "VARCHAR",
+              "description": "电子邮箱"
+            }
+          ]
+        },
+        "dataSource": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "name": "source_db",
+          "uri": "jdbc:postgresql://source_db:5432/source_db"
+        },
+        "description": null,
+        "lifecycleStateChange": null,
+        "columnLineage": null,
+        "symlinks": null
+      },
+      "inputFacets": null,
+      "outputFacets": null
+    }
+  ],
+  "outputs": [
+    {
+      "namespace": "target_db",
+      "name": "user_profiles",
+      "facets": {
+        "documentation": null,
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "user_id",
+              "type": "INTEGER",
+              "description": "用户ID"
+            },
+            {
+              "name": "username",
+              "type": "VARCHAR",
+              "description": "用户名"
+            },
+            {
+              "name": "email_md5",
+              "type": "VARCHAR",
+              "description": "加密后的邮箱地址"
+            }
+          ]
+        },
+        "dataSource": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "name": "target_db",
+          "uri": "jdbc:postgresql://target_db:5432/target_db"
+        },
+        "description": null,
+        "lifecycleStateChange": null,
+        "columnLineage": null,
+        "symlinks": null
+      },
+      "inputFacets": null,
+      "outputFacets": null
+    }
+  ],
+  "producer": "datatopic",
+  "schemaURL": null,
+  "facets": {
+    "columnLineage": {
+      "email_md5": {
+        "inputFields": [
+          {
+            "field": "email",
+            "name": "users",
+            "namespace": "source_db"
+          }
+        ],
+        "transformationDescription": "MD5哈希转换"
+      },
+      "user_id": {
+        "inputFields": [
+          {
+            "field": "user_id",
+            "name": "users",
+            "namespace": "source_db"
+          }
+        ],
+        "transformationDescription": "直接映射"
+      }
+    },
+    "sql": {
+      "query": "INSERT INTO target_db.user_profiles SELECT user_id, username, md5(email) AS email_md5 FROM source_db.users"
+    }
+  }
+}

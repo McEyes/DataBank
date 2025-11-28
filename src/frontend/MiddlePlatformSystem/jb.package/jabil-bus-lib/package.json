@@ -1,0 +1,31 @@
+{
+  "name": "jabil-bus-lib-project",
+  "version": "0.2.116",
+  "private": false,
+  "module": "fesm2015/jabil-bus-lib-project.mjs",
+  "es2020": "fesm2020/jabil-bus-lib-project.mjs",
+  "esm2020": "esm2020/jabil-bus-lib-project.mjs",
+  "fesm2020": "fesm2020/jabil-bus-lib-project.mjs",
+  "fesm2015": "fesm2015/jabil-bus-lib-project.mjs",
+  "typings": "index.d.ts",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/jabil-bus-lib-project.mjs",
+      "es2020": "./fesm2020/jabil-bus-lib-project.mjs",
+      "es2015": "./fesm2015/jabil-bus-lib-project.mjs",
+      "node": "./fesm2015/jabil-bus-lib-project.mjs",
+      "default": "./fesm2020/jabil-bus-lib-project.mjs"
+    }
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
+  }
+}

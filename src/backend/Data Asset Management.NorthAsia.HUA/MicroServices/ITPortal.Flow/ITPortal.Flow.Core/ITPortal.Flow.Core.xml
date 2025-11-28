@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITPortal.Flow.Core</name>
+    </assembly>
+    <members>
+        <member name="T:ITPortal.Flow.Core.Enums.ActType">
+            <summary>
+            ActType
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.Enums.ActType.Start">
+            <summary>
+            start
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.Enums.ActType.End">
+            <summary>
+            end
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.Enums.ActType.Normal">
+            <summary>
+            normal
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.Enums.ActType.Switch">
+            <summary>
+            normal
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.FlowStatus">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowStatus.Draft">
+            <summary>
+            草稿
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowStatus.Running">
+            <summary>
+            运行中
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowStatus.Cancel">
+            <summary>
+            取消，申请人取消，废弃状态，流程结束
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowStatus.Reject">
+            <summary>
+            流程被拒绝结束
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowStatus.Stop">
+            <summary>
+            异常终止
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowStatus.Delete">
+            <summary>
+            删除流程
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowStatus.Completed">
+            <summary>
+            正常结束
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.ActivityStatus">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            活动状态
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.None">
+            <summary>
+            未到达
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.Running">
+            <summary>
+            已到达待审批
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.Approval">
+            <summary>
+            已审批
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.Transfer">
+            <summary>
+            已经转办
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.Reject">
+            <summary>
+            拒绝，驳回
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.Cancel">
+            <summary>
+            已取消，申请人取消
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.RejectStart">
+            <summary>
+            驳回到开始
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.ActivityStatus.Stop">
+            <summary>
+            异常终止
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.FlowAction">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.Start">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.Draft">
+            <summary>
+            保存草稿
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.Submit">
+            <summary>
+            提交
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.Approval">
+            <summary>
+            审批
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.Transfer">
+            <summary>
+            转办运行中
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.Reject">
+            <summary>
+            拒绝，驳回
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.RejectStart">
+            <summary>
+            RejectStart
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.RejectEnd">
+            <summary>
+            RejectEnd，流程结束
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.Cancel">
+            <summary>
+            Cancel
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowAction.End">
+            <summary>
+            正常结束
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.TodoStatus">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.TodoStatus.Todo">
+            <summary>
+            待审批
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.TodoStatus.Audit">
+            <summary>
+            已审批
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.TodoStatus.Transfer">
+            <summary>
+            已转办
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.TodoStatus.Reject">
+            <summary>
+            已驳回
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.TodoStatus.Cancel">
+            <summary>
+            已取消，申请人取消
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.TodoStatus.RejectStart">
+            <summary>
+            已驳回到开始节点
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.TodoStatus.Error">
+            <summary>
+            异常停止
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.FlowNoticeType">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowNoticeType.Todo">
+            <summary>
+            Todo 待办
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowNoticeType.Email">
+            <summary>
+            Email邮件
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowNoticeType.SMS">
+            <summary>
+            短信SMS
+            </summary>
+        </member>
+        <member name="F:ITPortal.Flow.Core.FlowNoticeType.Mobile">
+            <summary>
+            Mobile移动端
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.HttpAuthType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.HttpBodyType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ITPortal.Flow.Core.HttpHeaderType">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

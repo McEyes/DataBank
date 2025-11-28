@@ -1,0 +1,204 @@
+<div *ngIf="currPanel === 'list'" class="datatable-box">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <label>{{'field.source.name'| translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="sourceList"
+        [placeholder]="'input.select.please' | translate" [(ngModel)]="queryParams.sourceId" optionLabel="sourceName"
+        [filter]="true" filterBy="sourceName" optionValue="id"></p-dropdown>
+    </div>
+    <div class="form-item">
+      <label>{{'field.table.name'| translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="queryParams.tableName" />
+    </div>
+      <div class="form-item"  style="width:250px;">
+        <label style="width: 100px;">{{'field.data.dept'| translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="deptList" [showClear]="true"
+          [placeholder]="'input.select.dept' | translate" [(ngModel)]="queryParams.ownerDept" optionLabel="name"
+          [filter]="true" filterBy="name" optionValue="id" [showClear]="true"></p-dropdown>
+      </div>
+    <div class="form-item">
+      <label style="width: 100px;">{{'field.owner.name'| translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+          [(ngModel)]="queryParams.owner" [placeholder]="'input.select.owner' | translate" [virtualScroll]="true"
+          [virtualScrollItemSize]="38" [filter]="true" filterBy="name" class="w-100" optionLabel="name" [showClear]="true"
+          optionValue="id"></p-dropdown>
+    </div>
+    <div class="form-item" style="line-height: 40px;">
+      <label>{{'label.table.isOwner'| translate}}</label>
+      <nz-switch [(ngModel)]="queryParams.isowner" nzSize="small" (ngModelChange)="onQuery()"></nz-switch>
+    </div>
+    <div class="form-item btn">
+      <div class="da-button search" (click)="onQuery()">{{'operate.search' | translate}}</div>
+      <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+      <div class="da-button add" (click)="goPage('detail', null)">
+        {{'operate.add' | translate}}
+      </div>
+    </div>
+  </div>
+  <div class="xd-grey-box" style="height: calc(100% - 50px)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <p-table styleClass="sys-table" [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="pageData" [resizableColumns]="true"  columnResizeMode="expand"
+        dataKey="code" [tableStyle]="{ 'min-width': '100%' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="min-width: 280px; max-width: 280px" class="xd-theader-white" pResizableColumn>
+              {{'field.table.alias' | translate}}
+            </th>
+            <th style="min-width: 250px; max-width: 250px" class="xd-theader-white" pResizableColumn>
+              {{'field.table.name' | translate}}
+            </th>
+            <th style="min-width: 250px; max-width: 250px" class="xd-theader-white" pResizableColumn>
+              {{'field.table.comment' | translate}}
+            </th>
+            <th style="min-width: 150px; max-width: 250px" class="xd-theader-white">
+              {{'field.source.system' | translate}}
+            </th>
+            <th style="min-width: 120px; max-width: 200px" class="xd-theader-white">
+              {{'field.data.dept' | translate}}
+            </th>
+            <th style="min-width: 180px; max-width: 180px" class="xd-theader-white">
+              {{'field.security.level' | translate}}
+            </th>
+            <th style="min-width: 200px; max-width: 200px" class="xd-theader-white">
+              {{'field.update.frequency' | translate}}
+            </th>
+            <th style="min-width: 200px; max-width: 200px" class="xd-theader-white" pResizableColumn>
+              {{'field.time.range' | translate}}
+            </th>
+            <th style="min-width: 100px; max-width: 200px" class="xd-theader-white">
+              {{'field.update.method' | translate}}
+            </th>
+            <th style="min-width: 100px; max-width: 200px" class="xd-theader-white">
+              {{'field.data.category' | translate}}
+            </th>
+            <th style="min-width: 100px; max-width: 200px" class="xd-theader-white">
+              {{'field.update.category' | translate}}
+            </th>
+            <th style="min-width: 200px; max-width: 200px" class="xd-theader-white">
+              {{'field.owner' | translate}}
+            </th>
+            <th style="min-width: 200px; max-width: 200px" class="xd-theader-white">
+              {{'create.person' | translate}}
+            </th>
+            <th style="min-width: 180px; max-width: 180px" class="xd-theader-white">
+              {{'create.time' | translate}}
+            </th>
+            <th class="xd-theader-white" pFrozenColumn alignFrozen="right"
+              [ngStyle]="{'min-width': langType == 'en' ? '400px':'350px','max-width': langType == 'en' ? '400px':'350px'}">
+              {{'label.operate' | translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td style="min-width: 280px; max-width: 280px" class="xd-tbody text-overflow inline-block"
+              [title]="item.alias">
+              {{ item.alias }}
+            </td>
+            <td style="min-width: 250px; max-width: 250px" class="xd-tbody text-overflow inline-block"
+              [title]="item.tableName">
+              {{ item.tableName }}
+            </td>
+            <td style="min-width: 250px; max-width: 250px" class="xd-tbody text-overflow inline-block"
+              [title]="item.tableComment">
+              {{ item.tableComment }}
+            </td>
+            <td style="min-width: 150px; max-width: 250px" class="xd-tbody text-overflow inline-block"
+              [title]="item.sourceName">
+              {{ item.sourceName }}
+            </td>
+            <td style="min-width: 120px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="item.ownerDepart">
+              {{ item.ownerDepart }}
+            </td>
+            <td style="min-width: 180px; max-width: 180px" class="xd-tbody text-overflow inline-block">
+              {{levelInfo[item.levelId] }}
+            </td>
+            <td style="min-width: 200px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="item.updateFrequency">
+              {{ item.updateFrequency }}
+            </td>
+            <td style="min-width: 200px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="item.dataTimeRange">
+              {{ item.dataTimeRange }}
+            </td>
+            <td style="min-width: 100px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="updateMethodObj[item.updateMethod]">
+              {{ updateMethodObj[item.updateMethod] }}
+            </td>
+            <td style="min-width: 100px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="item.dataCategory|translate">
+              {{ ("dict.data_category."+(item.dataCategory||"none"))|translate }}
+            </td>
+            <td style="min-width: 100px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="item.updateCategory|translate">
+              {{ ("dict.update_category."+(item.updateCategory||"none"))|translate }}
+            </td>
+            <td style="min-width: 200px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="item.ownerName">
+              {{ item.ownerName }}
+            </td>
+            <!-- <td style="min-width: 180px; max-width: 180px" class="xd-tbody text-overflow inline-block"
+              [title]="item.createTime">
+              {{ item.createTime | date:'yyyy-MM-dd HH:mm:ss' }}
+            </td> -->
+            <td style="min-width: 200px; max-width: 200px" class="xd-tbody text-overflow inline-block"
+              [title]="item.createBy">
+              {{ item.createBy }}
+            </td>
+            <td style="min-width: 180px; max-width: 180px" class="xd-tbody text-overflow inline-block"
+              [title]="item.createTime">
+              {{ item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}
+            </td>
+
+            <td class="xd-tbody" pFrozenColumn alignFrozen="right"
+              [ngStyle]="{'min-width': langType == 'en' ? '400px':'350px','max-width': langType == 'en' ? '400px':'350px'}">
+              <div class="table-button-box">
+                <div
+                  [ngStyle]="{'color': item.reviewable ==1 ?'':'#dedede','cursor': item.reviewable ==1?'pointer':'no-drop'}"
+                  class="table-button" (click)="goPage('preview', item)">
+                  {{'operate.data.preview' | translate}}
+                </div>
+
+                <div class="table-button" (click)="goPage('field', item)">
+                  {{'operate.define.data.field' | translate}}
+                </div>
+
+                <div class="table-button" (click)="goPage('detail',item)">
+                  {{'operate.edit' | translate}}
+                </div>
+
+                <div class="table-button" (click)="ondelete($event,item)">
+                  {{'operate.delete' | translate}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div style="width: 100%" [hidden]="!(total > 0)">
+      <nz-pagination class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum" [nzTotal]="total"
+        nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+        (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+      <ng-template #rangeTemplate let-range="range" let-total>
+        {{ queryParams.pageNum + (queryParams.pageNum - 1) * queryParams.pageSize }}-{{
+        queryParams.pageNum * queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ total }}
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<app-data-preview *ngIf="currPanel === 'preview'" [field]="params" (goBack)="goBack($event)"></app-data-preview>
+<app-datatable-details *ngIf="currPanel === 'detail'" [field]="params"
+  (goBack)="goBack($event)"></app-datatable-details>
+<app-datatable-field *ngIf="currPanel === 'field'" [field]="params" (goBack)="goBack($event)"></app-datatable-field>
+
+<p-confirmPopup></p-confirmPopup>
+<p-toast></p-toast>

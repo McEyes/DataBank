@@ -1,0 +1,7 @@
+@use 'sass:selector';
+
+@mixin icon-convert($class-name, $fa-icon-code) {
+	#{selector.unify($class-name, ':before')} {
+		content: fa-content($fa-icon-code);
+	}
+}

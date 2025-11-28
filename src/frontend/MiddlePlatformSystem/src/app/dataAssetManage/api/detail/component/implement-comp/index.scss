@@ -1,0 +1,126 @@
+* {
+  font-family: Roboto;
+}
+.implementForm-main-form {
+  border-radius: 10px;
+  width: 100%;
+
+  .form-item {
+    width: 100%;
+    label {
+      width: 120px;
+      text-align: right;
+      color: #414042;
+      font-family: Noto Sans SC;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+    }
+    .valid-pre {
+      color: red;
+    }
+    .dropdown-text {
+      width: calc(100% - 120px) !important;
+    }
+    .input-text {
+      width: calc(100% - 120px);
+      background-color: #fff;
+      border: 1px solid #e6e6e6;
+    }
+    .field-radiobutton {
+      width: 115px;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      column-gap: 10px;
+      label {
+        text-align: left;
+      }
+    }
+    .remark-text {
+      width: calc(100% - 150px);
+      height: 80px;
+    }
+    .number-box {
+      width: calc(100% - 150px);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      column-gap: 10px;
+    }
+  }
+}
+
+.implementForm-table {
+  width: 100%;
+  // padding: 0px 20px 0px;
+  .implementForm-table-title {
+    padding: 10px;
+    font-size: 14px;
+  }
+  .implementForm-table-box {
+    width: 100%;
+    margin: 10px 0px 5px;
+  }
+  .implementForm-table-box-text {
+    width: 100%;
+    height: 200px;
+    padding: 0px 20px;
+  }
+}
+.index-text-class {
+  width: 100% !important;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+}
+
+:host ::ng-deep {
+  .p-datatable-thead {
+    z-index: 999 !important;
+  }
+  .p-datatable-scrollable .p-datatable-tbody tr:nth-child(2n + 1) {
+    background-color: #f5f5f5 !important;
+  }
+  .p-inputtext {
+    height: auto;
+  }
+  // .p-ripple {
+  //   background-color: #fff !important;
+  // }
+
+  .p-dropdown {
+    width: 100% !important;
+    background-color: #fff !important;
+    border: 1px solid #e6e6e6 !important;
+  }
+  // .p-dropdown .p-dropdown-label {
+  //   border-bottom: 1px solid #e6e6e6 !important;
+  // }
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #e3f2fd !important;
+    border-color: #e3f2fd !important;
+  }
+}
+
+:host ::ng-deep .p-datatable > .p-datatable-wrapper {
+   &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #f1f2f2;
+    background-color: #f1f2f2 !important;
+    border-radius: 3px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px !important;
+    -webkit-box-shadow: inset 0 0 6px #999 !important;
+    background-color: #999 !important;
+  }
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr:nth-child(2n + 1) {
+  background-color: #f5f5f5 !important;
+}

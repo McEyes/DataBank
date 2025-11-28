@@ -1,0 +1,152 @@
+<div *ngIf="currPanel === 'list'" class="api-box">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <label>{{'label.keyword.search' | translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.api.keyword' | translate"
+        [(ngModel)]="defaultParams.apiName" [disabled]="isEdit" />
+    </div>
+    <div class="form-item">
+      <label>{{'field.collocation.method' | translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="reqMethodTypeList"
+        [placeholder]="'input.select.please' | translate" [(ngModel)]="defaultParams.configType" optionLabel="label"
+        optionValue="value"></p-dropdown>
+    </div>
+    <div class="form-item">
+      <label>{{'status' | translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="statusList"
+        [placeholder]="'input.select.please' | translate" [(ngModel)]="defaultParams.status" optionLabel="label"
+        optionValue="value"></p-dropdown>
+    </div>
+
+    <div class="form-item btn">
+      <div class="da-button search" (click)="queryBtn()">{{'operate.search' | translate}}</div>
+      <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+      <div class="da-button add" (click)="allTableBtn('add')">
+        {{'operate.add' | translate}}
+      </div>
+    </div>
+  </div>
+  <div style="height: calc(100% - 55px)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <p-table [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="columns"
+        [(selection)]="selectedColumns" dataKey="id" (sortFunction)="customSort($event)" [customSort]="true"
+        [tableStyle]="{ 'min-width': '100%' }" styleClass="sys-table">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="xd-theader-white" style="min-width: 55px; max-width: 55px">
+              {{'field.number' | translate}}
+            </th>
+            <th class="xd-theader-white" style="max-width: 250px;">
+              {{'field.api.name' | translate}}
+            </th>
+            <th class="xd-theader-white" style="min-width: 100px; max-width: 100px">
+              {{'field.api.version' | translate}}
+            </th>
+            <th class="xd-theader-white">
+              {{'field.api.url' | translate}}
+            </th>
+            <th class="xd-theader-white" style="min-width: 180px; max-width: 180px">
+              {{'field.collocation.method' | translate}}
+            </th>
+            <th class="xd-theader-white" style="min-width: 180px; max-width: 180px">
+              {{'field.request.type' | translate}}
+            </th>
+            <th class="xd-theader-white" style="min-width: 180px; max-width: 180px">
+              {{'field.return.format' | translate}}
+            </th>
+            <th class="xd-theader-white" style="min-width: 150px; max-width: 150px">
+              {{'status' | translate}}
+            </th>
+            <th class="xd-theader-white" style="min-width: 180px; max-width: 180px" pSortableColumn="create_time">
+              {{'field.create.time' | translate}}<p-sortIcon field="createTime"></p-sortIcon>
+            </th>
+            <th class="xd-theader-white" pFrozenColumn alignFrozen="right"
+              [ngStyle]="{'min-width': langType == 'en' ? '340px':'320px','max-width': langType == 'en' ? '340px':'320px'}">
+              {{'label.operate' | translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-column>
+          <tr>
+            <td style="min-width: 55px; max-width: 55px">{{ column.index }}</td>
+            <td [title]="column.apiName" class="text-overflow inline-block"
+              style="max-width: 250px;">
+              {{ column.apiName }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 100px; max-width: 100px">
+              {{ column.apiVersion }}
+            </td>
+            <td [title]="column.apiUrl" class="text-overflow inline-block">
+              {{ column.apiUrl }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 180px; max-width: 180px">
+              {{ reqMethodType[column.executeConfig.configType] }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 180px; max-width: 180px">
+              {{ column.reqMethod }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 180px; max-width: 180px">
+              {{ column.resType }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 150px; max-width: 150px">
+              <div *ngFor="let item of statusList">
+                <p-tag *ngIf="item.value == column.status" [value]="apiStateObj[column.status]"
+                  [severity]="statusColor[column.status]"></p-tag>
+              </div>
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 180px; max-width: 180px">
+              {{ column.createTime | date:'yyyy-MM-dd HH:mm:ss' }}
+            </td>
+            <td class="text-overflow inline-block" pFrozenColumn alignFrozen="right"
+              [ngStyle]="{'min-width': langType == 'en' ? '340px':'320px','max-width': langType == 'en' ? '340px':'320px'}">
+              <div class="table-button-box">
+                <div class="table-button" (click)="onApi(column)">
+                  {{'operate.call' | translate}}
+                </div>
+
+                <div class="table-button" (click)="apiOperation($event,'release', column)">
+                  {{'operate.publish' | translate}}
+                </div>
+
+                <div
+                  [ngStyle]="{'color': column.status == 3?'#ddd':'#464F60','cursor':column.status == 3?'no-drop':'pointer'}"
+                  class="table-button" (click)="apiOperation($event,'cancel', column)">
+                  {{'operate.api.cancel' | translate}}
+                </div>
+
+                <div class="table-button" (click)="allTableBtn('edit',column)">
+                  {{'operate.edit' | translate}}
+                </div>
+
+                <div class="table-button" (click)="ondelete($event,column.id)">
+                  {{'operate.delete' | translate}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div style="width: 100%" [hidden]="!(totalRecords > 0)">
+      <nz-pagination style="margin-top: 5px" class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum"
+        [nzTotal]="totalRecords" nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+        (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+      <ng-template #rangeTemplate let-range="range" let-total>
+        {{ (queryParams.pageNum - 1) * queryParams.pageSize + 1 }}-{{ queryParams.pageNum *
+        queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ totalRecords }}
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<app-api-detail *ngIf="currPanel === 'detail'" [field]="params" (goBack)="backEvent($event)"></app-api-detail>
+<app-dataapi-api *ngIf="currPanel === 'api'" [field]="params" (goBack)="currPanel = 'list'"></app-dataapi-api>
+<app-dataapi-sql *ngIf="currPanel === 'sql'" [field]="params" (goBack)="currPanel = 'list'"></app-dataapi-sql>
+
+<p-confirmPopup></p-confirmPopup>
+<p-toast></p-toast>

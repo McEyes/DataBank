@@ -1,0 +1,69 @@
+<div class="content" *ngIf="currPanel === 'edit'">
+  <level-one-panel [titleName]="'label.dict.item.title' | translate">
+    <level-two-panel>
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.itemText' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.itemText" [ngClass]="{ 'ng-invalid': invalid && !formData.itemText }" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'label.dict.type' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="dictList" [showClear]="true"
+              [placeholder]="'input.select.dict.type' | translate" [(ngModel)]="formData.dictId" optionLabel="dictName"
+              [filter]="true" [ngClass]="{ 'ng-invalid': invalid && !formData.dictId }"
+              (onChange)="dictChange($event)"
+              optionValue="id"></p-dropdown>
+              <button class="add-btn da-button" (click)="currPanel='editDict'"><i class="pi pi-plus"></i></button>
+              <label>{{formData.dictCode}}</label>
+          </div>
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.itemValue' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.itemValue" [ngClass]="{ 'ng-invalid': invalid && !formData.itemValue }" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.itemText.english' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.itemTextEn" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.itemData' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.itemData" />
+          </div>
+          <div class="form-item">
+            <label>{{'field.sort' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.itemSort" />
+          </div>
+
+          <div class="form-item">
+            <label>{{'field.remark' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.remark" />
+          </div>
+          <div class="form-item">
+            <label>{{'status' | translate}}</label>
+            <p-inputSwitch [(ngModel)]="formData.status2"></p-inputSwitch>
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="saveClick()">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>
+
+<app-system-dict-details [field]="currentDictItem" (goBack)="goBackDict()" *ngIf="currPanel === 'editDict'"></app-system-dict-details>

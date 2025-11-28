@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.AuthServer.Web.Core.xml</DocumentationFile>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Handlers\**" />
+	  <EmbeddedResource Remove="Handlers\**" />
+	  <None Remove="Handlers\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="AppApplicationBuilderExtensions.cs" />
+	  <Compile Remove="SqlsugarSetup.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="ITPortal.AuthServer.Web.Core.xml" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ITPortal.AuthServer.Application\ITPortal.AuthServer.Application.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,149 @@
+* {
+  font-family: Roboto;
+}
+
+:host {
+
+  p-dropdown {
+    width: 100%;
+
+    ::ng-deep {
+      .p-dropdown {
+        width: 100%;
+
+        .p-dropdown-label {
+          color: rgba(0,0,0,.85);
+        }
+      }
+    }
+  }
+
+  p-treeselect {
+    width: 100%;
+
+    ::ng-deep {
+      .p-treeselect {
+        width: 100%;
+      }
+    }
+  }
+
+  p-editor {
+    width: 100%;
+    height: 200px;
+
+    ::ng-deep {
+      .p-editor-content {
+        height: 155px;
+
+        .ql-editor {
+          background: #F7F9FD;
+        }
+
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fff;
+    padding: 10px;
+
+    .rightBox {
+      width: 100%;
+      height: 100%;
+
+      .form {
+        width: 100%;
+
+
+        .form-item {
+          width: calc(50% - 10px);
+
+          label {
+            width: 130px;
+          }
+
+          .input-text {
+            width: calc(100% - 130px);
+            font-size: 14px !important;
+          }
+        }
+
+        &.zh {
+          .form-item {
+
+            label {
+              width: 120px;
+            }
+
+            .input-text {
+              width: calc(100% - 100px);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  p-image {
+    ::ng-deep {
+
+      .p-image,
+      img {
+        width: 108px;
+        height: 108px;
+      }
+
+      .p-image-mask {
+        img {
+          width: auto;
+          height: auto;
+        }
+      }
+    }
+  }
+
+
+  p-fileUpload {
+    width: 120px;
+    height: 40px;
+    background: #008651 !important;
+    border-radius: 4px;
+
+    ::ng-deep {
+      .p-fileupload .p-button {
+        margin-right: 10px;
+        width: 120px;
+        height: 40px;
+        border-radius: 4px;
+        opacity: 1;
+        font-weight: normal;
+        font-size: 14px;
+        background: #008651 !important;
+        border: 1px solid #008651 !important;
+        color: #fff !important;
+
+        &:focus {
+          border: 1px solid #008651 !important;
+        }
+
+      }
+
+      .p-button.p-fileupload-choose .p-button-label {
+        justify-content: center;
+      }
+    }
+  }
+
+  p-multiSelect {
+    ::ng-deep {
+      .p-multiselect {
+        width: 100%;
+      }
+    }
+  }
+}

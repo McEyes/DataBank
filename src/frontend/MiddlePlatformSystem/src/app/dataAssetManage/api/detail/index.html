@@ -1,0 +1,85 @@
+<div class="addmodeldetails-container">
+  <div class="addmodeldetails-main-step">
+    <div class="step-box">
+      <div
+        class="step-card-box"
+        [ngClass]="{'status-soild-type-one':stepActiveIndex == 0,'status-soild-type-two':stepActiveIndex == 1,'status-soild-type-three':stepActiveIndex == 2}"
+        style="width: 50%"
+        *ngFor="let item of stepList; let i=index">
+        <div class="step-soild"></div>
+        <div
+          [ngClass]="{'step-card': stepActiveIndex != i,'step-card-blue': stepActiveIndex == i}"
+          [ngStyle]="{'width': langType == 'en'?'100%':'40%'}">
+          <div class="step-card-index" [ngStyle]="{'font-size': langType == 'en'?'14px':'16px'}">
+            {{item.value}}
+          </div>
+          <div class="step-card-title" [ngStyle]="{'font-size': langType == 'en'?'14px':'16px'}">
+            {{item.label | translate}}
+          </div>
+        </div>
+      </div>
+      <div class="step-other-soild" [ngStyle]="{'width': langType == 'en'?'15%':'20%'}"></div>
+    </div>
+  </div>
+  <level-one-panel
+    [titleName]="(titleType[titleName]| translate)+(langType == 'en'?' ':'')+('label.data.api'| translate)"
+    height="calc(100% - 100px)">
+    <level-two-panel>
+      <div class="addmodeldetails-main">
+        <attributeComp
+          #attributeCompId
+          [formData]="formData"
+          [stepActiveIndex]="stepActiveIndex"
+          *ngIf="stepActiveIndex == 0"
+          [formType]="titleName"></attributeComp>
+        <implementComp
+          #implementCompId
+          [formType]="titleName"
+          [formData]="formData"
+          [stepActiveIndex]="stepActiveIndex"
+          *ngIf="stepActiveIndex == 1"
+          (isShowSqlBtn)="isShowSqlBtn($event)"
+          (changeSelectValue)="onChangeSelectValue($event)"></implementComp>
+        <parameterComp
+          #parameterCompId
+          [formType]="titleName"
+          [formData]="formData"
+          [stepActiveIndex]="stepActiveIndex"
+          *ngIf="stepActiveIndex == 2"></parameterComp>
+      </div>
+    </level-two-panel>
+    
+  </level-one-panel>
+
+  <div ngProjectAs="bottom">
+    <div class="bottom-btn">
+      <div class="da-button" (click)="goback()">{{'operate.cancel' | translate}}</div>
+      <div class="da-button" *ngIf="stepActiveIndex >0 " (click)="backClick()">
+        {{'operate.previous' | translate}}
+      </div>
+      <div class="da-button next" (click)="nextClick()" *ngIf="stepActiveIndex==0 ">
+        {{'operate.next' | translate}}
+      </div>
+      <div
+        class="da-button next"
+        (click)="nextClick()"
+        *ngIf="(stepActiveIndex == 1 && isSqlOver && formData.executeConfig.configType == 2)||(stepActiveIndex == 1 && formData.executeConfig.configType == 1)">
+        {{'operate.next' | translate}}
+      </div>
+      <div
+        class="da-button submit"
+        (click)="SQLQuery()"
+        *ngIf="titleName != 'look'&& stepActiveIndex == 1 && formData.executeConfig.configType == 2 ">
+        {{'operate.sql.analysis' | translate}}
+      </div>
+      <div
+        class="da-button save"
+        (click)="onSumit()"
+        *ngIf="!noEdit && ((formData.executeConfig.configType == 4&&stepActiveIndex == 1) || stepActiveIndex == 2 || (formData.executeConfig.configType == 3&&stepActiveIndex == 1))">
+        {{'operate.save' | translate}}
+      </div>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading || sqlloading"></jabil-loading>

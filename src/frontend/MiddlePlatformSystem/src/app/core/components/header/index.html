@@ -1,0 +1,164 @@
+﻿<div class="nav">
+  <div class="logo">
+    <img (click)="goHome()" src="./assets/images/header/logo.png">
+  </div>
+
+  <div *ngIf="this.userInfo" class="tab">
+    <div class="level1" [ngClass]="curTab === '/home/page' ? 'active':''">
+      <span style="cursor: pointer;" (click)="switchMenu('/home/page')">
+        <img class="home" src="./assets/images/header/icon_home.png">
+        {{'menu.home' | translate}}
+      </span>
+    </div>
+
+    <div class="level1" [ngClass]="dataAssetMenu.includes(curTab)? 'active':''">
+      <span>
+        <img src="./assets/images/header/icon_data.png">
+        {{'menu.data.service' | translate}}</span>
+      <div class="panel">
+        <div class="p-item">
+          <div class="p-title">{{'menu.data.asset.catalog' | translate}}</div>
+          <div class="p-content">
+
+            <ng-container *ngFor="let item of dataAssetMenuList">
+              <div *ngIf="hasPermission(item.role)" [class]="curTab === item.route ? 'active':''"
+              (click)="switchMenu(item.route)">{{item.title | translate}}</div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="hasPermission(['ADMIN','BSAROLE'])" class="level1" [ngClass]="dataTopicMenu.includes(curTab)? 'active':''">
+      <span>
+        <img class="home" src="./assets/images/header/icon_data_topic_store.png">
+        {{'menu.data.topic.store' | translate}}
+      </span>
+
+      <div class="panel">
+        <div class="p-item">
+          <div class="p-title">{{'menu.data.topic.store.library' | translate}}</div>
+          <div class="p-content">
+
+            <ng-container *ngFor="let item of dataTopicMenuList">
+              <div *ngIf="hasPermission(item.role)" [class]="curTab === item.route ? 'active':''"
+              (click)="switchMenu(item.route)">{{item.title | translate}}</div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="hasPermission(['ADMIN'])" class="level1" [ngClass]="dataQualityMenu.includes(curTab)? 'active':''">
+      <span>
+        <img src="./assets/images/header/icon_dataquality.png" alt="admin">
+        {{'menu.data.quality' | translate}}</span>
+      <div class="panel">
+        <div class="p-item">
+          <div class="p-title">{{'menu.data.quality.management' | translate}}</div>
+          <div class="p-content">
+
+            <ng-container *ngFor="let item of dataQualityMenuList">
+              <div onKeyPress="" *ngIf="hasPermission(item.role)" [class]="curTab === item.route ? 'active':''"
+              (click)="switchMenu(item.route)">{{item.title | translate}}</div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="hasPermission(['ADMIN','DASHBOARD'])" class="level1" [ngClass]="dashboardMenuList.includes(curTab)? 'active':''">
+      <span>
+        <img class="home" src="./assets/images/header/icon_business.png">
+        {{'menu.data.dashboard' | translate}}
+      </span>
+
+      <div class="panel">
+        <div class="p-item">
+          <div class="p-title">{{'menu.data.dashboard' | translate}}</div>
+          <div class="p-content">
+
+            <ng-container *ngFor="let item of dashboardMenuList">
+              <div *ngIf="hasPermission(item.role)" [class]="curTab === item.route ? 'active':''"
+              (click)="switchMenu(item.route)">{{item.title | translate}}</div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="hasPermission(['ADMIN'])" class="level1" [ngClass]="adminMenu.includes(curTab)? 'active':''">
+      <span>
+        <img src="./assets/images/header/icon_admin.png">
+        {{'menu.administration' | translate}}</span>
+      <div class="panel">
+        <div class="p-item">
+          <div class="p-title">{{'menu.system' | translate}}</div>
+          <div class="p-content">
+
+            <ng-container *ngFor="let item of adminMenuList">
+              <div *ngIf="hasPermission(item.role)" [class]="curTab === item.route ? 'active':''"
+              (click)="switchMenu(item.route)">{{item.title | translate}}</div>
+            </ng-container>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="search">
+    <ng-container>
+      <input [placeholder]="'input.keyword' | translate" [(ngModel)]="keyword" (keyup.enter)="search()" />
+      <img *ngIf="!searchLoading" src="./assets/images/header/icon_search_btn.png" (click)="search()">
+    </ng-container>
+  </div>
+
+  <div class="help">
+    <button nz-button nzPopoverOverlayClassName="h-lang" (click)="help()">
+      <span></span>
+    </button>
+  </div>
+
+  <div class="lang">
+    <button nz-button nz-popover nzPopoverOverlayClassName="h-lang" [nzPopoverContent]="langTemplate"
+      nzPopoverTrigger="click" nzPopoverPlacement="bottom">
+      <span></span>
+    </button>
+    <ng-template #langTemplate>
+      <div class="popover">
+        <p [class]="currLang === 'en' ? 'active' : ''" (click)="switchLang()">{{'EN' | translate}}</p>
+        <p [class]="currLang === 'zh' ? 'active' : ''" (click)="switchLang()">{{'CN' | translate}}</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="user">
+    <button nz-button nz-popover nzPopoverOverlayClassName="h-user" [nzPopoverContent]="userTemplate"
+      nzPopoverTrigger="click" nzPopoverPlacement="bottom">
+      <span tooltipPosition="bottom" [pTooltip]=" userInfo?.name || userInfo?.ntId"
+        class="userName">{{shortName(userInfo?.name
+        || userInfo?.ntId) }}</span>
+    </button>
+    <ng-template #userTemplate>
+      <div class="popover">
+        <p (click)="logout()">{{'operate.logout' | translate}}</p>
+      </div>
+    </ng-template>
+  </div>
+
+  <div class="screen" [ngClass]="isFull? 'full': ''">
+    <button *ngIf="isFull" nz-button nzPopoverOverlayClassName="h-lang" (click)="screenOperate()">
+      <span tooltipPosition="bottom"></span>
+    </button>
+
+    <button *ngIf="!isFull" nz-button nzPopoverOverlayClassName="h-lang" (click)="screenOperate()">
+      <span tooltipPosition="bottom"></span>
+    </button>
+  </div>
+</div>

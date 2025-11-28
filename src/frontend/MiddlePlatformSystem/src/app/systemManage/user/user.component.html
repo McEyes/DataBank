@@ -1,0 +1,100 @@
+<div *ngIf="currPanel==='list'" class="template">
+  <div class="content">
+    <p-table [value]="tableData" [(selection)]="selectedRows" scrollHeight="flex" [scrollable]="true"
+      [loading]="loading" styleClass="sys-table">
+      <ng-template pTemplate="caption">
+        <div class="t-caption ">
+          <div class="formgroup-inline justify-content-between w-100 sys-search-form">
+            <div class="field form-item">
+              <label>{{'search' | translate}}</label>
+              <input type="text" pInputText class="p-inputtext" [placeholder]="'input.keyword'| translate"
+                [(ngModel)]="searchData.keyword" />
+            </div>
+            <!-- <div class="field form-item">
+              <label>{{'status' | translate}}</label>
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [showClear]="true"
+                [options]="workflowStatusList" [(ngModel)]="searchData.applyStatus" [placeholder]="'status' | translate"
+                class="w-100" optionLabel="key" optionValue="id">
+                <ng-template pTemplate="item" let-item> {{item.key | translate}} </ng-template>
+
+                <ng-template pTemplate="selectedItem" let-item>
+                  <span>{{ item.key | translate }}</span>
+                </ng-template>
+              </p-dropdown>
+            </div> -->
+            <div class="field form-item" style="justify-content: flex-end;column-gap: 15px;">
+              <div class="da-button" (click)="search(true)">{{'reset' | translate}}</div>
+              <div class="da-button search" (click)="search()">
+                {{'search' | translate}}
+              </div>
+              <div class="da-button add" (click)="editData(null,'add')">
+                {{'add'|translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{'label.user.id'|translate}}</th>
+          <th>{{'label.user.name'|translate}}</th>
+          <th>{{'label.user.email'|translate}}</th>
+          <th>{{'label.user.department'|translate}}</th>
+          <!-- <th>{{'status'|translate}}</th> -->
+          <th>{{'label.user.role'|translate}}</th>
+          <th style="max-width: 250px; justify-content: center">{{'operation'|translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-ri="rowIndex">
+        <tr>
+          <td class="text-overflow inline-block">{{ item.id }}</td>
+          <td class="text-overflow inline-block">{{ item.name }}</td>
+          <td class="text-overflow inline-block">{{ item.email }}</td>
+          <td class="text-overflow inline-block">{{ item.department }}</td>
+          <!-- <td>
+            <span class="status" [ngClass]="item.flowStatusName">
+              {{ (
+              applyStatusI18NKey[item.flowStatusName]?applyStatusI18NKey[item.flowStatusName]:applyStatusI18NKey['Start'])
+              | translate }}
+            </span>
+
+          </td> -->
+          <td>{{item.roleName}}</td>
+          <!-- <td>{{ item.createTime | date:'yyyy-MM-dd HH:mm:ss' }}</td> -->
+          <td style="max-width: 250px; justify-content: center">
+            <div class="table-button-box justify-content-center">
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="editData(item,'edit')">
+
+                  {{'edit'|translate}}
+              </div>
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="deleteData(item)">
+                {{'delete'|translate}}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" class="no-data">{{'nodata' | translate}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="sub-item" *ngIf="tableData.length > 0">
+      <p-paginator [first]="searchData.first" [rows]="searchData.pageSize" [totalRecords]="recordCount"
+        [showJumpToPageDropdown]="true" [rowsPerPageOptions]="[10, 15, 20]"
+        (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+  </div>
+</div>
+
+<app-data-user-details [field]="currRow" (goBack)="goBack()"
+    *ngIf="currPanel === 'edit'"></app-data-user-details>
+
+<jabil-loading style="height: 100%" *ngIf="submitLoading"></jabil-loading>
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

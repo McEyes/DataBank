@@ -1,0 +1,5 @@
+apiurl,req_method,sql_text
+/services/v1.0.0/Trace/eWIP/a_meswip_allstep/sqlQuery,POST,SELECT * FROM a_meswip_allstep where mesmodel = 'W11132068' and routesteptime >= '2025-05-29 04:32:00' and route_step_name = 'LINK'  and upper(bay) in ('BAY29')
+/services/v1.0.0/Trace/eWIP/a_meswip_allstep/sqlQuery,POST,SELECT * FROM a_meswip_allstep where mesmodel = 'W11653369' and routesteptime >= '2025-05-29 22:39:00' and route_step_name = 'PACKOUT'  
+/services/v1.0.0/Trace/eWIP/a_meswip_allstep/sqlQuery,POST,SELECT * FROM a_meswip_allstep where mesmodel = 'W11741921' and routesteptime >= '2025-05-29 23:29:00' and route_step_name = 'PACKOUT'  and upper(bay) in ('BAY013R')
+/services/v1.0.0/Trace/eWIP/a_meswip_allstep/sqlQuery,POST,SELECT * FROM a_meswip_allstep where mesmodel = 'W11132065' and routesteptime >= '2025-05-28 23:29:00' and route_step_name = 'LINK'  and upper(bay) in ('BAY0131')

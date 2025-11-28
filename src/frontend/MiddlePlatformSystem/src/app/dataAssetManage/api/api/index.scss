@@ -1,0 +1,238 @@
+* {
+  font-family: Roboto;
+}
+
+.addmodeldetails-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+
+  .addmodeldetails-header {
+    padding: 20px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 900;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .addmodeldetails-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    //   overflow: hidden;
+    padding: 0 20px;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+
+    .addmodeldetails-main-step {
+      width: 100%;
+    }
+
+    .addmodeldetails-main-form {
+      width: 100%;
+
+      .addmodeldetails-item {
+        float: left;
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        column-gap: 10px;
+        margin-bottom: 10px;
+
+        label {
+          width: 120px;
+          text-align: right;
+          color: #414042;
+          font-family: Noto Sans SC;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+
+        .valid-pre {
+          color: red;
+        }
+
+        .dropdown-text {
+          width: calc(100% - 150px) !important;
+        }
+
+        .input-text {
+          width: calc(100% - 150px);
+          background-color: #fff;
+          border: 1px solid #e6e6e6;
+          font-size: 14px !important;
+        }
+
+        .field-radiobutton {
+          width: 115px;
+          display: flex;
+          align-items: center;
+          justify-content: left;
+          column-gap: 10px;
+
+          label {
+            text-align: left;
+          }
+        }
+
+        .remark-text {
+          width: calc(100% - 150px);
+          height: 80px;
+        }
+
+        .number-box {
+          width: calc(100% - 150px);
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          column-gap: 10px;
+        }
+      }
+    }
+
+    .addmodeldetails-main-soild-box {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+
+      .addmodeldetails-main-soild-title {
+        font-size: 15px;
+        font-weight: 900;
+        padding: 20px;
+        background-color: #fff;
+        z-index: 10;
+      }
+
+      .addmodeldetails-main-soild {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+        background-color: #959595;
+        z-index: 1;
+      }
+    }
+
+    .addmodeldetails-next {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      column-gap: 10px;
+    }
+  }
+
+  .dataapi-api-massage-box {
+    width: 100%;
+    border: #f3f8fd 1px solid;
+    border-top: none;
+
+    .dataapi-api-massage-tab {
+      // background-color: #f3f8fd;
+      background-color: #ebebeb;
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      column-gap: 10px;
+      padding: 0 20px;
+      overflow: hidden;
+
+      .dataapi-api-massage-tab-card {
+        cursor: pointer;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        padding: 0px 30px;
+        font-weight: 900;
+        transition: transform 0.2s;
+      }
+
+      .dataapi-api-massage-tab-card-active {
+        cursor: pointer;
+        height: 45px;
+        display: flex;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        transition: transform 0.2s;
+        padding: 0px 30px;
+        color: #000;
+        position: relative;
+        font-weight: 900;
+        background-color: #fff;
+        border-radius: 10px 10px 0px 0px;
+      }
+
+      // .dataapi-api-massage-tab-card-active::after{
+      //   cursor: pointer;
+      //   content: '';
+      //   position: absolute;
+      //   bottom: 0;
+      //   left: 0;
+      //   width: 100%;
+      //   height: 2px;
+      //   background-color: #409eff;
+      //   transition: all 0.3s ease;
+      //   transition:transform .2s;
+      // }
+    }
+
+    .dataapi-api-massage-main {
+      padding: 20px;
+    }
+  }
+}
+
+.custom-header {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.custom-body {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+
+:host {
+  input {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .header-btn {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+
+    .da-button {
+      background: #fff;
+    }
+
+
+  }
+}

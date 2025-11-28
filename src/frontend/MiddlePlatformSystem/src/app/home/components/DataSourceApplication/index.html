@@ -1,0 +1,165 @@
+<div class="nav-bar">
+  <div class="nav">
+    <span>{{workflowType | translate}}</span>
+    <!-- <span>{{'label.data.source.apply' | translate}}</span> -->
+
+    <ng-container *ngIf="currPanel==='edit' && workflowName">
+      <img src="./assets/images/home/icon_arrow_rt.png">
+      <span>{{workflowName}}</span>
+    </ng-container>
+  </div>
+
+  <button pButton pRipple type="button" class="p-button-outlined cancel" (click)="goHome()">
+    <img src="./assets/images/home/icon_back.png">
+    {{ 'back' | translate }}
+  </button>
+</div>
+
+<div *ngIf="currPanel==='list'" class="template">
+  <div class="content">
+    <p-table [value]="tableData" [(selection)]="selectedRows" scrollHeight="flex" [scrollable]="true"
+      [loading]="loading" styleClass="sys-table">
+      <ng-template pTemplate="caption">
+        <div class="t-caption ">
+          <div class="formgroup-inline justify-content-between w-100 sys-search-form">
+            <div class="field form-item">
+              <label>{{'workflow.no' | translate}}</label>
+              <input type="text" pInputText class="p-inputtext" [placeholder]="'workflow.no'| translate"
+                [(ngModel)]="searchData.flowNo" />
+            </div>
+            <div class="field form-item">
+              <label>{{'status' | translate}}</label>
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [showClear]="true"
+                [options]="workflowStatusList" [(ngModel)]="searchData.applyStatus" [placeholder]="'status' | translate"
+                class="w-100" optionLabel="key" optionValue="id">
+                <ng-template pTemplate="item" let-item> {{item.key | translate}} </ng-template>
+
+                <ng-template pTemplate="selectedItem" let-item>
+                  <span>{{ item.key | translate }}</span>
+                </ng-template>
+              </p-dropdown>
+            </div>
+            <div class="field form-item" *ngIf="!urlParams['flowtempname']">
+              <label>{{'label.flow.template' | translate}}</label>
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [showClear]="true"
+                [options]="flowTempList" [(ngModel)]="searchData.flowTempId" [placeholder]="'label.flow.template' | translate"
+                class="w-100" optionLabel="flowName" optionValue="id"  (onChange)="onchangeFlowTemp($event)" >
+                <ng-template pTemplate="item" let-item> {{item.flowName | translate}} </ng-template>
+                <ng-template pTemplate="selectedItem" let-item>
+                  <span>{{ item.flowName | translate }}</span>
+                </ng-template>
+              </p-dropdown>
+            </div>
+            <div class="field form-item" style="justify-content: flex-end;column-gap: 15px;">
+              <div class="da-button" (click)="search(true)">{{'reset' | translate}}</div>
+              <div class="da-button search" (click)="search()">
+                {{'search' | translate}}
+              </div>
+              <div class="da-button add" (click)="editData()">
+                {{'add'|translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{'workflow.no'|translate}}</th>
+          <th>{{'label.workflow.title'|translate}}</th>
+          <th>{{'field.applicant'|translate}}</th>
+          <th>{{'label.workflow.actName'|translate}}</th>
+          <th>{{'label.workflow.approver'|translate}}</th>
+          <th>{{'status'|translate}}</th>
+          <th>{{'apply.date'|translate}}</th>
+          <th style="max-width: 250px; justify-content: center">{{'operation'|translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-ri="rowIndex">
+        <tr>
+          <td class="text-overflow inline-block">{{ item.flowNo }}</td>
+          <td class="text-overflow inline-block">{{ item.taskSubject }}</td>
+          <td class="text-overflow inline-block">{{ item.applicantName }}</td>
+          <td class="text-overflow inline-block">{{ item.flowStepTitle }}</td>
+          <td class="text-overflow inline-block">{{ item.approverName }}</td>
+          <td>
+            <span class="status" [ngClass]="item.flowStatusName">
+              {{ (
+              applyStatusI18NKey[item.flowStatusName]?applyStatusI18NKey[item.flowStatusName]:applyStatusI18NKey['Start'])
+              | translate }}
+            </span>
+
+          </td>
+          <td>{{ item.createTime | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td style="max-width: 250px; justify-content: center">
+            <div class="table-button-box justify-content-center">
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+              padding-bottom: 6px;
+              padding-top: 0;" class="table-button" (click)="editData(item)">
+                ...
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" class="no-data">{{'nodata' | translate}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="sub-item" *ngIf="tableData.length > 0">
+      <p-paginator [first]="searchData.first" [rows]="searchData.pageSize" [totalRecords]="recordCount"
+        [showJumpToPageDropdown]="true" [rowsPerPageOptions]="[10, 15, 20]"
+        (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="currPanel==='edit'" class="template-panel" [class]="currentLanguage">
+  <div class="content" [class]="''" [ngStyle]="{'height':'calc(100% - 80px)',
+    'border-radius': '12px 12px 0px 0px'}">
+    <it-portal-datasource-apply *ngIf="workflowType === 'ITPortal_LakeEntryApplication' " (closePanel)="closePanel($event)" [fields]="currRow"></it-portal-datasource-apply>
+    <app-asset-query-permission *ngIf="workflowType === 'ITPortal_DataAuthApplication'" (goBack)="closePanel($event)" [field]="currRow"></app-asset-query-permission>
+    <dataBank-dataDown-apply *ngIf="workflowType === 'ITPortal_DataOffline'" (closePanel)="closePanel($event)" [fields]="currRow"></dataBank-dataDown-apply>
+  </div>
+  <div class="btn-group" style="
+      width: 100%;
+      background-color: #fff;
+      padding: 10px 20px;
+      border-radius: 0px 0px 12px 12px;
+    ">
+    <!-- <button pButton class="outline-none" (click)="closePanel('list')">
+      {{'return' | translate}}
+    </button> -->
+  </div>
+</div>
+
+<p-dialog #dialog [(visible)]="dialogDisplay" [style]="{ width: '550px' }" [modal]="true" [draggable]="false"
+  [resizable]="false" [closable]="false" position="top" styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h3 class="text-center w-100">JABIL Bus {{'login' | translate}}</h3>
+  </ng-template>
+  <div class="card p-fluid">
+    <div class="p-formgrid grid">
+      <div class="field col">
+        <label class="block"> <span class="valid-pre">*</span>{{'user.name' | translate}} </label>
+        <input class="dialog-input" pInputText [(ngModel)]="formData.name" />
+      </div>
+    </div>
+    <div class="p-formgrid grid">
+      <div class="field col">
+        <label class="block"> <span class="valid-pre">*</span>{{'password' | translate}} </label>
+        <input class="dialog-input" type="password" autocomplete="off" pInputText [(ngModel)]="formData.password" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div style="display: flex; float: right">
+      <p-button (click)="login()">{{'submit' | translate}}</p-button>
+    </div>
+  </p-footer>
+</p-dialog>
+
+<jabil-loading style="height: 100%" *ngIf="submitLoading"></jabil-loading>
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

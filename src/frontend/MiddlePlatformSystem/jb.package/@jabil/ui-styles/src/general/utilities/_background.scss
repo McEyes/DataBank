@@ -1,0 +1,158 @@
+//
+// Background
+// --------------------------------------------------
+
+// Black/White with opacity
+.bg-black {
+	&-5 {
+		background-color: $general-background-black-5 !important;
+	}
+	&-10 {
+		background-color: $general-background-black-10 !important;
+	}
+	&-25 {
+		background-color: $general-background-black-25 !important;
+	}
+	&-50 {
+		background-color: $general-background-black-50 !important;
+	}
+	&-75 {
+		background-color: $general-background-black-75 !important;
+	}
+	&-90 {
+		background-color: $general-background-black-90 !important;
+	}
+	&-95 {
+		background-color: $general-background-black-95 !important;
+	}
+}
+
+.bg-white {
+	&-5 {
+		background-color: $general-background-white-5 !important;
+	}
+	&-10 {
+		background-color: $general-background-white-10 !important;
+	}
+	&-25 {
+		background-color: $general-background-white-25 !important;
+	}
+	&-50 {
+		background-color: $general-background-white-50 !important;
+	}
+	&-75 {
+		background-color: $general-background-white-75 !important;
+	}
+	&-90 {
+		background-color: $general-background-white-90 !important;
+	}
+	&-95 {
+		background-color: $general-background-white-95 !important;
+	}
+}
+
+// Image Background
+.bg-image {
+	background-position: 0% 50%;
+	background-size: cover;
+
+	&-top {
+		background-position-y: 0%;
+	}
+	&-bottom {
+		background-position-y: 100%;
+	}
+
+	@include media-breakpoint-up(xl) {
+		&-fixed {
+			background-attachment: fixed;
+		}
+	}
+}
+
+// Pattern Image
+.bg-pattern {
+	background-repeat: repeat;
+}
+
+// Video Background
+.bg-video {
+	width: 100%;
+	transform: translateZ(0);
+}
+
+// Contextual colors
+@include bg-variant('.bg-primary-op', rgba(theme-color('primary'), 0.75), true);
+@include bg-variant('.bg-primary-dark', theme-color('primary-dark'), true);
+@include bg-variant(
+	'.bg-primary-dark-op',
+	rgba(theme-color('primary-dark'), 0.8),
+	true
+);
+@include bg-variant('.bg-primary-darker', theme-color('primary-darker'), true);
+@include bg-variant('.bg-primary-light', theme-color('primary-light'), true);
+@include bg-variant(
+	'.bg-primary-lighter',
+	theme-color('primary-lighter'),
+	true
+);
+
+@include bg-variant('.bg-success-light', theme-color('success-light'), true);
+@include bg-variant('.bg-warning-light', theme-color('warning-light'), true);
+@include bg-variant('.bg-info-light', theme-color('info-light'), true);
+@include bg-variant('.bg-danger-light', theme-color('danger-light'), true);
+
+@include bg-variant(
+	'.bg-success-op',
+	rgba(theme-color('success-light'), 0.95),
+	true
+);
+@include bg-variant(
+	'.bg-warning-op',
+	rgba(theme-color('warning-light'), 0.95),
+	true
+);
+@include bg-variant('.bg-info-op', rgba(theme-color('info-light'), 0.95), true);
+@include bg-variant(
+	'.bg-danger-op ',
+	rgba(theme-color('danger-light'), 0.95),
+	true
+);
+
+@include bg-variant('.bg-body', $body-bg, true);
+@include bg-variant('.bg-body-light', $body-bg-light, true);
+@include bg-variant('.bg-body-dark', $body-bg-dark, true);
+@include bg-variant('.bg-muted', gray('600'), true);
+
+@include bg-variant('.bg-white', $white, true);
+@include bg-variant('.bg-black', $black, true);
+
+@include bg-variant('.bg-gray', gray('400'), true);
+@include bg-variant('.bg-gray-dark', gray('600'), true);
+@include bg-variant('.bg-gray-darker', gray('800'), true);
+@include bg-variant('.bg-gray-light', gray('200'), true);
+@include bg-variant('.bg-gray-lighter', gray('100'), true);
+
+// Elements
+@include bg-variant('.bg-header-light', $header-bg, true);
+@include bg-variant('.bg-header-dark', $header-dark-bg, true);
+
+@include bg-variant('.bg-sidebar-light', $sidebar-bg, true);
+@include bg-variant('.bg-sidebar-dark', $sidebar-dark-bg, true);
+
+// Default Color Theme
+@include bg-variant('.bg-default', theme-color('primary'), true);
+@include bg-variant('.bg-default-op', rgba(theme-color('primary'), 0.75), true);
+@include bg-variant('.bg-default-dark', theme-color('primary-dark'), true);
+@include bg-variant(
+	'.bg-default-dark-op',
+	rgba(theme-color('primary-dark'), 0.8),
+	true
+);
+@include bg-variant('.bg-default-darker', theme-color('primary-darker'), true);
+@include bg-variant('.bg-default-light', theme-color('primary-light'), true);
+@include bg-variant(
+	'.bg-default-lighter',
+	theme-color('primary-lighter'),
+	true
+);

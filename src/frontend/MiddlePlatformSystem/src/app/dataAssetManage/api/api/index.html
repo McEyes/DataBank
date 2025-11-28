@@ -1,0 +1,109 @@
+<div class="addmodeldetails-container">
+  <div class="addmodeldetails-main">
+    <level-one-panel style="position: relative;" [titleName]="'label.call.data.api' | translate">
+      <div class="header-btn">
+        <div class="da-button" (click)="goback()">{{'operate.back' | translate}}</div>
+        <div class="da-button" (click)="onSumit()">
+          {{'operate.call' | translate}}
+        </div>
+      </div>
+      <div class="addmodeldetails-main-form">
+        <div class="addmodeldetails-item">
+          <label>{{ 'field.api.name' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText tooltipPosition="top" placeholder="Top"
+            [pTooltip]="formData.apiName" [placeholder]="'input.please' | translate" [(ngModel)]="formData.apiName" />
+        </div>
+        <div class="addmodeldetails-item">
+          <label>{{ 'field.api.version' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.apiVersion" />
+        </div>
+
+        <div class="addmodeldetails-item">
+          <label>{{ 'field.request.type' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.reqMethod" />
+        </div>
+        <div class="addmodeldetails-item">
+          <label>{{ 'field.return.format' | translate }}</label>
+          <input [disabled]="true" type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.resType" />
+        </div>
+        <div class="addmodeldetails-item" style="width: 100%">
+          <label>{{ 'field.api.url' | translate }}</label>
+          <input tooltipPosition="top" placeholder="Top" [pTooltip]="formData.apiUrl" type="text" [disabled]="true"
+            class="input-text" pInputText [placeholder]="'input.please' | translate" [(ngModel)]="formData.apiUrl"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.apiUrl }" />
+        </div>
+      </div>
+    </level-one-panel>
+    <div class="addmodeldetails-main-soild-box">
+      <div class="addmodeldetails-main-soild-title">{{'label.request.data'| translate }}</div>
+      <div class="addmodeldetails-main-soild"></div>
+    </div>
+
+    <div class="dataapi-api-massage-box">
+      <div class="dataapi-api-massage-tab">
+        <div style="cursor: pointer" *ngFor="let item of tabMenuList; let index=index" (click)="tabClick(index,item)"
+          [ngClass]="{'dataapi-api-massage-tab-card': tabActive != index,
+          'dataapi-api-massage-tab-card-active': tabActive == index}">
+          {{item.label | translate}}
+        </div>
+      </div>
+      <div class="dataapi-api-massage-main">
+        <div class="dataapi-api-massage-main-message" [hidden]="!(tabActive == 0)">
+          <header-params-table [headerParams]="headerTableString"
+            (getHeaderParamsValue)="getHeaderParamsValue($event)"></header-params-table>
+        </div>
+        <div class="dataapi-api-massage-main-message" [hidden]="!(tabActive == 1)">
+          <headerTableComp [products]="formData.reqParams" (headerTable)="getHeaderValue($event)"></headerTableComp>
+        </div>
+        <div class="dataapi-api-massage-main-reault" [hidden]="!(tabActive == 2)">
+          <paramsTableComp [products]="formData.resParams" (paramsTable)="getParamsTable($event)"></paramsTableComp>
+        </div>
+      </div>
+    </div>
+
+    <div class="addmodeldetails-main-soild-box" [hidden]="!isShowNodata">
+      <div class="addmodeldetails-main-soild-title">{{'label.response.data'| translate }}</div>
+      <div class="addmodeldetails-main-soild"></div>
+    </div>
+    <div style="
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      " *ngIf="isShowNodata&&backTableData.length== 0">
+      {{'nodata' | translate}}
+    </div>
+
+    <div class="back-table-class" [hidden]="!(backTableData.length > 0)">
+      <p-table [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+        [columns]="backHeaderData" [loading]="loading" [value]="backTableData" [tableStyle]="{'min-width': '100%'}"
+        [scrollable]="true" scrollHeight="400px" styleClass="sys-table">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th class="xd-theader-white" *ngFor="let col of columns" style="min-width: 250px;max-width: 250px;">
+              {{col.header}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td style="min-width: 250px;max-width: 250px;" class="xd-tbody text-overflow inline-block"
+              [title]="rowData[col.field]" *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

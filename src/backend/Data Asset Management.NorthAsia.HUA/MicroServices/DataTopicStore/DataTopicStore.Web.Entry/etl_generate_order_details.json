@@ -1,0 +1,119 @@
+{
+  "eventType": "COMPLETE",
+  "eventTime": "2025-09-18T09:00:00Z",
+  "run": {
+    "runId": "d7f1bd88-047e-44d8-870d-66007c150d93"
+  },
+  "job": {
+    "namespace": "etl_pipeline",
+    "name": "etl_generate_order_details"
+  },
+  "inputs": [
+    {
+      "namespace": "postgresql://prod_db",
+      "name": "orders",
+      "facets": {
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "order_id",
+              "type": "INTEGER",
+              "description": "订单ID"
+            },
+            {
+              "name": "customer_id",
+              "type": "INTEGER",
+              "description": "客户ID"
+            },
+            {
+              "name": "order_date",
+              "type": "TIMESTAMP",
+              "description": "下单日期"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "namespace": "postgresql://prod_db",
+      "name": "customers",
+      "facets": {
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "customer_id",
+              "type": "INTEGER",
+              "description": "客户ID"
+            },
+            {
+              "name": "customer_name",
+              "type": "VARCHAR",
+              "description": "客户名称"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "namespace": "postgresql://analytics_db",
+      "name": "order_details",
+      "facets": {
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "order_id",
+              "type": "INTEGER",
+              "description": "订单ID"
+            },
+            {
+              "name": "customer_name",
+              "type": "VARCHAR",
+              "description": "客户名称"
+            },
+            {
+              "name": "order_date",
+              "type": "TIMESTAMP",
+              "description": "下单日期"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "facets": {
+    "sql": {
+      "query": "INSERT INTO analytics_db.order_details SELECT o.order_id, c.customer_name, o.order_date FROM prod_db.orders o JOIN prod_db.customers c ON o.customer_id = c.customer_id"
+    },
+    "columnLineage": {
+      "customer_name": {
+        "inputFields": [
+          {
+            "namespace": "postgresql://prod_db",
+            "name": "customers",
+            "field": "customer_name",
+            "description": "客户名称"
+          }
+        ]
+      },
+      "order_id": {
+        "inputFields": [
+          {
+            "namespace": "postgresql://prod_db",
+            "name": "orders",
+            "field": "order_id",
+            "description": "订单ID"
+          }
+        ]
+      }
+    }
+  },
+  "producer": "datatopic"
+}

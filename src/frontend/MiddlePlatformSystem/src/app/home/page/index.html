@@ -1,0 +1,204 @@
+<div class="wrap" >
+
+  <div class="top">
+    <div class="l">
+      <div class="p-title">
+        <img src="./assets/images/home/icon_p1.png">
+        {{'label.home.api.access.report' |translate}}
+        <a href="#/dataAsset/dashboard/functionApiReport" style="float: right;" >{{'label.home.api.access.quality.report' |translate}}</a>
+      </div>
+      <div class="p-content">
+        <div id="chart"></div>
+      </div>
+    </div>
+    <div class="m">
+      <div class="p-title">
+        <img src="./assets/images/home/icon_p2.png">
+        {{'label.home.MyRequests'|translate}}
+      </div>
+      <div class="p-content">
+        <div class="search-bar">
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="reqStatusList"
+            [placeholder]="'input.select.please' | translate" (onChange)="onChangeResData($event)"
+            [(ngModel)]="resSearchData.flowStatus" optionLabel="name" optionValue="value"></p-dropdown>
+          <span class="split"></span>
+          <input [(ngModel)]="resSearchData.taskSubject" [placeholder]="'input.flow.name' | translate"
+            (keyup.enter)="onChangeResData($event)" />
+        </div>
+        <div class="search-content">
+          <div class="c-item" *ngFor="let item of myRequestList" (click)="goWorkFlowDetail(item)">
+            <div class="t">
+              <div class="name">{{item.taskSubject}}</div>
+              <div class="date">{{item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+            </div>
+            <div class="b">
+              <div class="type">{{item.flowTempName| translate}}</div>
+              <div class="status">{{applyStatusI18NKey[item.flowStatusName]| translate}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="r">
+      <div class="p-title">
+        <img src="./assets/images/home/icon_p3.png">
+        {{'label.home.MyTasks'|translate}}
+      </div>
+      <div class="p-content">
+        <div class="search-bar">
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="taskStatusList"
+            [placeholder]="'input.select.please' | translate" (onChange)="onChangeTaskData($event)"
+            [(ngModel)]="taskSearchData.status" optionLabel="name" optionValue="value"></p-dropdown>
+          <span class="split"></span>
+          <input [(ngModel)]="taskSearchData.title" [placeholder]="'input.task.name' | translate"
+            (keyup.enter)="onChangeTaskData($event)" />
+        </div>
+        <div class="search-content">
+          <div class="c-item" *ngFor="let item of myTodoList" (click)="goWorkFlowDetail(item,'todo')">
+            <div class="t">
+              <div class="name">{{item.title}}</div>
+              <div class="date">{{item.createTime | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+            </div>
+            <div class="b">
+              <div class="type">{{item.flowTempName| translate}}</div>
+              <div class="status">{{taskStatusI18NKey[item.statusName] | translate}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mid-wrap">
+    <div class="asset-query" (click)="goAssetQuery()">
+      <img src="./assets/images/home/icon_data_asset.png">
+      {{'label.data.asset.query' | translate}}
+    </div>
+    <div class="mid">
+
+      <div class="m-title" (click)="goWorkFlow()">
+        <img src="./assets/images/home/icon_applysum.png">
+        {{'label.data.source.apply' | translate}}
+      </div>
+      <div class="m-title" style="padding-left: 30px;" (click)="goWorkFlow('ITPortal_DataOffline')">
+        <img src="./assets/images/home/icon_changeapply.png">
+        {{'label.data.down.apply' | translate}}
+      </div>
+      <div class="m-content">
+        <div class="m-item">
+          <div class="val">{{numberToThousands(statsObj?.topicCount)}}</div>
+          <div class="name"> {{'label.data.topic.domains' | translate}}</div>
+        </div>
+
+        <div class="m-item">
+          <div class="val">{{numberToThousands(statsObj?.dataSourceCount)}}</div>
+          <div class="name">{{'label.data.source' | translate}}</div>
+        </div>
+
+        <div class="m-item">
+          <div class="val">{{numberToThousands(statsObj?.tableCount)}}</div>
+          <div class="name">{{'label.data.table' | translate}}</div>
+        </div>
+
+        <div class="m-item">
+          <div class="val">{{numberToThousands(statsObj?.columnCount)}}</div>
+          <div class="name">{{'label.data.columns' | translate}}</div>
+        </div>
+
+        <div class="m-item">
+          <div class="val">{{numberToThousands(statsObj?.apiCount)}}</div>
+          <div class="name">APIs</div>
+        </div>
+
+        <div class="m-item">
+          <div class="val">{{numberToThousands(statsObj?.apiVisited)}}</div>
+          <div class="name">{{'label.api.provide.service.quantity' | translate}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="l" style="width: 500px;">
+      <div class="p-title">
+        <img src="./assets/images/home/icon_p4.png">
+        {{'label.data.standardization.statistics' | translate}}
+
+        <div class="da-button" (click)="downloadStandardizationStats()">{{'label.export.excel' | translate}}</div>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="departmentList"
+          [placeholder]="'input.select.please' | translate" (onChange)="getStandardizationStats()"
+          [(ngModel)]="department" optionLabel="name" optionValue="id"></p-dropdown>
+      </div>
+      <div class="p-content">
+
+        <p-table [value]="standardList" [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'min-width': '50rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{'field.department' | translate}}</th>
+              <th>{{'field.data.tables.quantity' | translate}}</th>
+              <th>{{'field.fields.quantity' | translate}}</th>
+              <th>{{'field.master.data.fields.quantity' | translate}}</th>
+              <th>{{'field.standardization' | translate}}</th>
+              <th>{{'field.standardization.rate' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td [title]="product.dept">{{ product.dept }}</td>
+              <td [title]="product.tableCount">{{ product.tableCount }}</td>
+              <td [title]="product.columnCount">{{ product.columnCount }}</td>
+              <td [title]="product.masterColumnCount">{{ product.masterColumnCount }}</td>
+              <td [title]="product.standardizedCount">{{ product.standardizedCount }}</td>
+              <td [title]="product.standardizedRate + '%'">{{ product.standardizedRate + '%' }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="m">
+      <div class="p-title">
+        <img src="./assets/images/home/icon_p5.png">
+        {{'label.data.call.statistics' | translate}}
+        <div class="da-button" (click)="downloadTableStats()">{{'label.export.excel' | translate}}</div>
+      </div>
+      <div class="p-content">
+        <p-table [value]="callList" [scrollable]="true" scrollHeight="flex">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="min-width: 12px;max-width: 120px;">{{'field.department' | translate}}</th>
+              <th style="width: 200px;">{{'field.data.table' | translate}}</th>
+              <th
+                [style]="{'min-width': currentLanguage === 'en' ? '120px' : '80px','max-width': currentLanguage === 'en' ? '120px' : '80px'}">
+                {{'field.number.of.calls' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td style="min-width: 12px;max-width: 120px;" [title]="product.dept">{{ product.dept }}</td>
+              <td style="width: 200px;" [title]="product.tableName">{{ product.tableName }}</td>
+              <td
+                [style]="{'min-width': currentLanguage === 'en' ? '120px' : '80px','max-width': currentLanguage === 'en' ? '120px' : '80px'}"
+                [title]="product.visited">{{ product.count }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="r">
+      <div class="p-title">
+        <img src="./assets/images/home/icon_p6.png">
+        {{'label.document' | translate}}
+      </div>
+      <div class="p-content">
+
+        <div class="p-item"  *ngFor="let item of documentList" (click)="downDoc(item)">
+          <img [src]="docIcon(item.docIconUrl)" error="assets/images/home/icon_doc_zh.png">
+          <div class="ellipsis" [title]="item.displayName">{{item.displayName}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<jabil-loading style="position: absolute; z-index: 998" *ngIf="loading"></jabil-loading>
+<p-toast position="top-center" [ngStyle]="{'z-index': '999'}"></p-toast>
+<p-confirmDialog [header]="tip" [style]="{ width: '450px' }"></p-confirmDialog>

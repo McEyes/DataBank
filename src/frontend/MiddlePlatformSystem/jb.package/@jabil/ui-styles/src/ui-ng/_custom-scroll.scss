@@ -1,0 +1,33 @@
+.custom-scrollbar-light {
+	scrollbar-width: thin;
+	scrollbar-color: $scroll-handle-light $white;
+
+	&::-webkit-scrollbar {
+		width: 11px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $white;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $scroll-handle-light;
+		border: 2px solid $white;
+		border-radius: 7px;
+	}
+}
+
+.custom-scrollbar-dark {
+	@extend .custom-scrollbar-light;
+
+	scrollbar-color: $scroll-handle-dark $primary-dark;
+
+	&::-webkit-scrollbar-track {
+		background: $primary-dark;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $scroll-handle-dark;
+		border-color: $primary-dark;
+	}
+}

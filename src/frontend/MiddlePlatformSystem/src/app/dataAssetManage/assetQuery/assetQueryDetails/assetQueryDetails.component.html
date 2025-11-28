@@ -1,0 +1,139 @@
+<div class="xd-all-box" style="height:100%;">
+  <div class="xd-grey-box" style="height: calc(100%)">
+    <div style="color: #414042;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    padding: 10px 20px;">
+      {{field?.tableComment}}
+    </div>
+    <div class="tableBox" style="height: calc(100% - 110px);background: unset;">
+      <div class="tableCard">
+        <p-table [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="tableData" dataKey="code"
+          [paginator]="tableData.length>0 ?true:false" [rows]="20" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10,20,50]" styleClass="sys-table" [tableStyle]="{ 'min-width': '100%' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="xd-theader-white" style="max-width: 220px">{{'field.number' | translate}}</th>
+              <th class="xd-theader-white" style="min-width: 300px;">
+                {{'field.field.name' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 300px;">
+                {{'field.field.comment' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 200px;">
+                {{'field.master.data.type' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 120px;">
+                {{'field.standardized' | translate}}
+              </th>
+              <th style="min-width: 120px">{{'field.app.source' | translate}}</th>
+              <th style="min-width: 150px">{{'field.indicator.code' | translate}}</th>
+              <th style="min-width: 120px">{{'field.quality.score' | translate}}</th>
+              <th class="xd-theader-white" style="min-width: 120px;">
+                {{'field.primary.key' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 120px;">
+                {{'field.null' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 200px;">
+                {{'field.data.type' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 120px;">
+                {{'field.data.length' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 120px;">
+                {{'field.data.accuracy' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 120px;">
+                {{'field.decimal.places' | translate}}
+              </th>
+              <th class="xd-theader-white" style="min-width: 200px;">
+                {{'field.default.value' | translate}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-customer>
+            <tr>
+              <td [title]="customer.id" class="xd-tbody text-overflow inline-block"
+                style="max-width: 120px; max-width: 120px">
+                {{ customer.colPosition??customer.id }}
+              </td>
+              <td [title]="customer.colName" class="xd-tbody text-overflow inline-block"
+                style="min-width: 300px; max-width: 300px" [title]="customer.colName">
+                {{ customer.colName }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 300px; max-width: 300px"
+                [title]="customer.colComment">
+                {{ customer.colComment }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 200px;" [title]="customer.dataDefault">
+                {{ customer.masterdataType }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;" [title]="customer.dataDefault">
+                {{ customer.standardized ? ('label.yes' | translate): ('label.no' | translate) }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;" [title]="customer.appSource">
+                {{ customer.appSource }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 150px;" [title]="customer.indicatorCode">
+                {{ customer.indicatorCode }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;" [title]="customer.qualityScore">
+                {{ customer.qualityScore }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;">
+                {{ customer.colKey ==1? ('label.yes' | translate): ('label.no' | translate)}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;">
+                {{ customer.colNullable ==1? ('label.yes' | translate): ('label.no' | translate)}}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 200px;" [title]="customer.dataType">
+                {{ customer.dataType }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;" [title]="customer.dataLength">
+                {{ customer.dataLength }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;"
+                [title]="customer.dataPrecision">
+                {{ customer.dataPrecision }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 120px;" [title]="customer.dataScale">
+                {{ customer.dataScale }}
+              </td>
+              <td class="xd-tbody text-overflow inline-block" style="min-width: 200px;" [title]="customer.dataDefault">
+                {{ customer.dataDefault }}
+              </td>
+
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <!-- <div style="width: 100%" [hidden]="!(total > 0)">
+      <nz-pagination style="margin: 5px 0px" class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum"
+        [nzTotal]="total" nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+        (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+      <ng-template #rangeTemplate let-range="range" let-total>
+        {{ queryParams.pageNum + (queryParams.pageNum - 1) * queryParams.pageSize }}-{{
+        queryParams.pageNum * queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ total }}
+      </ng-template>
+    </div> -->
+    <div class="flex" style="justify-content: center;margin-top: 10px;">
+      <div style="display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 83px;
+      height: 40px;
+      background: #F7F9FD;
+      border-radius: 4px 4px 4px 4px;" class="da-button" (click)="goback()">{{'operate.back' | translate}}</div>
+    </div>
+  </div>
+</div>

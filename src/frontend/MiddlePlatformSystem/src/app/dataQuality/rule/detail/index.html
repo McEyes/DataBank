@@ -1,0 +1,199 @@
+<div class="content">
+  <div class="c-title">
+    新建规则质量
+  </div>
+  <div class="wrap">
+    <div class="form contents-form sys-form" [ngClass]="currLang">
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.rule.name' | translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+      </div>
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.verification.type' | translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="typeList"
+          [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.configType"
+          [ngClass]="{ 'ng-invalid': invalid && !formData.code }" class="w-100" appendTo="body" optionLabel="label"
+          optionValue="value"></p-dropdown>
+      </div>
+
+      <div class="form-item" style="margin-bottom: 0;">
+        <label><span class="valid-pre">*</span>{{'field.monitoring.level' | translate}}</label>
+
+        <div class="flex align-items-center">
+          <p-radioButton name="pizza" value="Cheese" [(ngModel)]="formData.ingredient"
+            inputId="ingredient1"></p-radioButton>
+          <label for="ingredient1" class="ml-2 no-bg">
+            {{'label.table.level' | translate}}
+          </label>
+        </div>
+
+        <div class="flex align-items-center">
+          <p-radioButton name="pizza" value="Mushroom" [(ngModel)]="formData.ingredient"
+            inputId="ingredient2"></p-radioButton>
+          <label for="ingredient2" class="ml-2 no-bg">
+            {{'label.field.level' | translate}}
+          </label>
+        </div>
+
+      </div>
+
+      <div class="setting">
+        <div *ngIf="0" style="display: flex;column-gap: 10px;">
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.required.fields.completeness.check' | translate"
+              name="pizza" value="Cheese"></p-checkbox>
+          </div>
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.primary.key.uniqueness.check' | translate"
+              name="pizza" value="Mushroom"></p-checkbox>
+          </div>
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.duplicate.value.check' | translate" name="pizza"
+              value="Pepper"></p-checkbox>
+          </div>
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.data.timeliness.check' | translate" name="pizza"
+              value="Onion"></p-checkbox>
+          </div>
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.data.redundancy.check' | translate" name="pizza"
+              value="Onion"></p-checkbox>
+          </div>
+        </div>
+
+        <div *ngIf="1" class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.field.type' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="levelList"
+            [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.configType"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.code }" class="w-100" appendTo="body" optionLabel="label"
+            optionValue="value"></p-dropdown>
+        </div>
+
+        <div *ngIf="1">
+          <div style="display: flex;column-gap: 10px;margin: 20px;">
+            <div class="flex align-items-center">
+              <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.range.check' | translate" name="pizza"
+                value="Cheese"></p-checkbox>
+            </div>
+            <div class="flex align-items-center">
+              <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.null.value.checking' | translate" name="pizza"
+                value="Mushroom"></p-checkbox>
+            </div>
+          </div>
+
+          <div style="display: flex;column-gap: 20px;">
+            <div class="form-item">
+              <label><span class="valid-pre">*</span>{{'label.minimum' | translate}}</label>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+                [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+            </div>
+            <div class="form-item">
+              <label><span class="valid-pre">*</span>{{'label.maximum' | translate}}</label>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+                [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+            </div>
+            <div class="form-item">
+              <label><span class="valid-pre">*</span>{{'label.step.length' | translate}}</label>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+                [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="0" style="display: flex;column-gap: 10px;">
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.length.check' | translate" name="pizza"
+              value="Cheese"></p-checkbox>
+          </div>
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.blank.string.check' | translate" name="pizza"
+              value="Mushroom"></p-checkbox>
+          </div>
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.null.value.checking' | translate" name="pizza"
+              value="Mushroom"></p-checkbox>
+          </div>
+          <div class="flex align-items-center">
+            <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.allow.special.characters'| translate" name="pizza"
+              value="Mushroom"></p-checkbox>
+          </div>
+        </div>
+
+        <div *ngIf="0">
+          <div style="display: flex;column-gap: 10px;">
+            <div class="flex align-items-center" style="white-space: nowrap;">
+              <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.accuracy.check'| translate" name="pizza" value="Cheese"></p-checkbox>
+
+              <div class="form-item" style="width: 100%;">
+                <label><span class="valid-pre">*</span>{{'label.accuracy' | translate}}</label>
+                <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+                  [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+              </div>
+            </div>
+            <div class="flex align-items-center">
+              <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.value.checking' | translate" name="pizza" value="Mushroom"></p-checkbox>
+            </div>
+            <div class="flex align-items-center">
+              <p-checkbox [(ngModel)]="formData.pizza" [label]="'label.range.check' | translate" name="pizza" value="Mushroom"></p-checkbox>
+            </div>
+
+          </div>
+
+          <div style="display: flex;column-gap: 20px;">
+            <div class="form-item">
+              <label><span class="valid-pre">*</span>{{'label.minimum' | translate}}</label>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+                [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+            </div>
+            <div class="form-item">
+              <label><span class="valid-pre">*</span>{{'label.maximum' | translate}}</label>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+                [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+            </div>
+            <div class="form-item">
+              <label><span class="valid-pre">*</span>{{'label.step.length' | translate}}</label>
+              <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+                [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.sampling.rules' |
+          translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="formData.code" [ngClass]="{ 'ng-invalid': invalid && !formData.code }" />
+      </div>
+
+      <div class="form-item">
+        <label style="height: 125px;line-height: 125px;"><span class="valid-pre">*</span>{{'field.rule.description' |
+          translate}}</label>
+        <textarea class="remark-text w-100" pInputTextarea [ngClass]="{ 'ng-invalid': invalid && !formData.code }"
+          [placeholder]="'input.please' | translate" [(ngModel)]="formData.deny"></textarea>
+      </div>
+
+
+
+    </div>
+  </div>
+  <div class="bottom-btn" ngProjectAs="bottom">
+
+    <div class="checkbox">
+      <p-checkbox [(ngModel)]="formData.rememberPwd" [binary]="true" inputId="binary"></p-checkbox>
+      <label for="binary">{{'label.save.publish' | translate}}</label>
+    </div>
+    <div class="flex">
+      <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+      <div class="da-button save" (click)="saveClick()" *ngIf="!noEdit && titleName != 'look'">
+        {{'operate.save' | translate}}
+      </div>
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>

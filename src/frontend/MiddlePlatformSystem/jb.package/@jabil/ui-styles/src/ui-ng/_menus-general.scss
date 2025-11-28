@@ -1,0 +1,74 @@
+body {
+	.p-menu .p-menuitem-link,
+	.p-menubar .p-menuitem-link,
+	.p-tieredmenu .p-menuitem-link,
+	.p-contextmenu .p-menuitem-link,
+	.p-megamenu .p-menuitem-link,
+	.p-slidemenu .p-menuitem-link {
+		display: block;
+		padding: 8px 20px;
+		color: $body-color;
+		border-radius: 0;
+	}
+	.p-menu .p-menuitem-link:hover,
+	.p-menubar .p-menuitem-link:hover,
+	.p-tieredmenu .p-menuitem-link:hover,
+	.p-contextmenu .p-menuitem-link:hover,
+	.p-megamenu .p-menuitem-link:hover,
+	.p-slidemenu .p-menuitem-link:hover,
+	.p-menu .p-menuitem-link:focus,
+	.p-menubar .p-menuitem-link:focus,
+	.p-tieredmenu .p-menuitem-link:focus,
+	.p-contextmenu .p-menuitem-link:focus,
+	.p-megamenu .p-menuitem-link:focus,
+	.p-slidemenu .p-menuitem-link:focus {
+		color: $body-color;
+		background-color: $body-bg;
+	}
+	.p-menu .p-menuitem-link .p-menuitem-text,
+	.p-menubar .p-menuitem-link .p-menuitem-text,
+	.p-tieredmenu .p-menuitem-link .p-menuitem-text,
+	.p-contextmenu .p-menuitem-link .p-menuitem-text,
+	.p-megamenu .p-menuitem-link .p-menuitem-text,
+	.p-slidemenu .p-menuitem-link .p-menuitem-text {
+		vertical-align: middle;
+	}
+	.p-menu .p-menuitem-link .p-submenu-icon,
+	.p-menubar .p-menuitem-link .p-submenu-icon,
+	.p-tieredmenu .p-menuitem-link .p-submenu-icon,
+	.p-contextmenu .p-menuitem-link .p-menuitem-icon,
+	.p-megamenu .p-menuitem-link .p-submenu-icon,
+	.p-slidemenu .p-menuitem-link .p-submenu-icon {
+		right: 1.5rem;
+		margin-right: 0.25em;
+	}
+	.p-menubar .p-submenu-list,
+	.p-contextmenu .p-submenu-list,
+	.p-slidemenu .p-submenu-list,
+	.p-tieredmenu .p-submenu-list {
+		padding: 0;
+		border: 1px solid $light-grey;
+	}
+	.p-menubar .p-submenu-list .p-menuitem,
+	.p-contextmenu .p-submenu-list .p-menuitem,
+	.p-slidemenu .p-submenu-list .p-menuitem,
+	.p-tieredmenu .p-submenu-list .p-menuitem {
+		margin: 0;
+	}
+
+	.p-contextmenu,
+	.p-tieredmenu {
+		padding: 0.4rem 0;
+
+		.p-menuitem {
+			.p-menuitem-link .p-menuitem-icon {
+				vertical-align: middle;
+			}
+
+			&.p-menuitem-active > .p-menuitem-link {
+				color: $body-color;
+				background-color: $body-bg;
+			}
+		}
+	}
+}

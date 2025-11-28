@@ -1,0 +1,82 @@
+* {
+  font-family: Roboto;
+}
+
+.tableBox {
+  width: 100%;
+  height: calc(100% - 100px);
+  border-radius: 20px;
+  padding: 5px;
+  position: relative;
+  .toolbar {
+    position: absolute;
+    top: -60px;
+    right: 20px;
+    width: auto;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    flex-wrap: nowrap;
+    // row-gap: 10px;
+    column-gap: 10px;
+  }
+
+  .tableCard {
+    width: 100%;
+    height: 100%;
+
+    table,
+    tbody {
+      display: block;
+      height: 40px !important;
+    }
+
+    tbody {
+      overflow-y: scroll;
+    }
+
+    table thead,
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+  }
+}
+
+.datatable-form {
+  width: 100%;
+  // overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  padding: 20px;
+
+  .form-item {
+    width: calc(33.33% - 15px);
+
+    label {
+      width: 150px;
+    }
+
+    .input-text, nz-input-number {
+      width: calc(100% - 160px);
+      font-size: 14px !important;
+      background: #F7F9FD;
+      border: none;
+    }
+  }
+}
+
+:host {
+  ::ng-deep {
+    .p-dialog div.p-dialog-footer {
+      padding-top: 33px;
+      position: relative;
+      top: -1px;
+    }
+  }
+}

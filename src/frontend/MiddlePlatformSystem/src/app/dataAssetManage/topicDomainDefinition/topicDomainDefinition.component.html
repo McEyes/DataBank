@@ -1,0 +1,250 @@
+<div *ngIf="currPanel === 'list'" class="topiccategory-box">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <label>{{'field.name'| translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="queryParams.name" />
+    </div>
+    <div class="form-item">
+      <label>{{'field.english.name'| translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="queryParams.code" />
+    </div>
+    <div class="form-item">
+      <label>{{'status'| translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="dropdownList"
+        [placeholder]="'input.select.please' | translate" [(ngModel)]="queryParams.status" optionLabel="name"
+        optionValue="key"></p-dropdown>
+    </div>
+    <div class="form-item btn">
+      <div class="da-button search" (click)="onQuyery()">{{'Search' | translate}}</div>
+      <div class="da-button" (click)="onReset()">{{'Reset' | translate}}</div>
+      <div class="da-button add" (click)="goDetail('add')">
+        {{'Add' | translate}}
+      </div>
+    </div>
+  </div>
+  <div style="height: calc(100% - 55px)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <p-table [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="tableData" dataKey="code"
+        styleClass="sys-table" [tableStyle]="{ 'min-width': '100%' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{'field.name' | translate}}</th>
+            <th>{{'field.english.name' | translate}}</th>
+            <th style="min-width: 100px; max-width: 100px">
+              {{'status' | translate}}
+            </th>
+            <th>{{'field.parent.subject' | translate}}</th>
+            <th>{{'remark' | translate}}</th>
+            <th style="min-width: 180px">
+              {{'field.operation.time' | translate}}
+            </th>
+            <th style="min-width: 200px; max-width: 200px">
+              {{'field.creator' | translate}}
+            </th>
+            <th style="min-width: 180px; max-width: 180px">
+              {{'field.create.time' | translate}}
+            </th>
+            <th style="min-width: 200px; max-width: 200px">
+              {{'field.updated.by' | translate}}
+            </th>
+            <th style="min-width: 180px; max-width: 180px">
+              {{'field.update.time' | translate}}
+            </th>
+            <th pFrozenColumn alignFrozen="right"
+              [ngStyle]="{'min-width': langType == 'en' ? '320px':'220px','max-width': langType == 'en' ? '320px':'220px'}">
+              {{'label.operate' | translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td class="text-overflow inline-block" [title]="item.name">
+              {{ item.name }}
+            </td>
+            <td class="text-overflow inline-block" [title]="item.code">
+              {{ item.code }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 100px; max-width: 100px">
+              <p-tag [severity]="item.status == 0?'danger':'success'" [value]="dropdownInfo[item.status]"></p-tag>
+            </td>
+            <td class="text-overflow inline-block">{{ item.parentName }}</td>
+            <td class="text-overflow inline-block" [title]="item.remark">
+              {{ item.remark }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 180px">
+              {{ item.updateTime == null ?item.createTime:item.updateTime | date:'yyyy-MM-dd HH:mm:ss'}}
+            </td>
+            <td class="text-overflow inline-block" [title]="item.createBy" style="min-width: 200px; max-width: 200px">
+              {{ item.createBy }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 180px; max-width: 180px">
+              {{ item.createTime | date:'yyyy-MM-dd HH:mm:ss' }}
+            </td>
+            <td class="text-overflow inline-block" [title]="item.updateBy" style="min-width: 200px; max-width: 200px">
+              {{ item.updateBy }}
+            </td>
+            <td class="text-overflow inline-block" style="min-width: 180px; max-width: 180px">
+              {{ item.updateTime | date:'yyyy-MM-dd HH:mm:ss' }}
+            </td>
+            <td class="text-overflow inline-block" pFrozenColumn alignFrozen="right"
+              [ngStyle]="{'min-width': langType == 'en' ? '320px':'220px','max-width': langType == 'en' ? '320px':'220px'}">
+              <div class="table-button-box">
+                <div class="table-button" (click)="openDialog(item)">
+                  {{'operate.associated.data.table' | translate}}
+                </div>
+                <div class="table-button" (click)="goDetail('edit',item)">
+                  {{'operate.edit' | translate}}
+                </div>
+                <div class="table-button" (click)="ondelete($event,item)">
+                  {{'operate.delete' | translate}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div style="width: 100%" [hidden]="!(total > 0)">
+      <nz-pagination class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum" [nzTotal]="total"
+        nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+        (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+      <ng-template #rangeTemplate let-range="range" let-total>
+        {{ queryParams.pageNum + (queryParams.pageNum - 1) * queryParams.pageSize }}-{{
+        queryParams.pageNum * queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ total }}
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="currPanel === 'detail'">
+  <app-topicdomaindefinition-detail (goBack)="goBack($event)" [field]="params"></app-topicdomaindefinition-detail>
+</ng-container>
+
+<p-dialog (onHide)="allClose()" [header]="'operate.associated.data.table' | translate" [(visible)]="dataDialog"
+  [modal]="true" [style]="{ width: '95vw' }">
+  <div class="m-0" style="
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      column-gap: 10px;
+      width: 100%;
+      overflow: hidden;
+    ">
+    <level-one-panel style="width: 50%">
+      <div style="width: 100%; font-size: 16px; font-weight: 900; padding-bottom: 5px">
+        {{'info.unchecked.data.table' | translate}}
+      </div>
+      <div class="sys-search-form">
+        <div class="form-item">
+          <input style="background: #fff;" type="text" class="input-text" pInputText [placeholder]="'input.table.name' | translate"
+            [(ngModel)]="saveTableParams.tableName"/>
+        </div>
+        <div class="form-item btn">
+          <div class="da-button search" (click)="onQuyeryTableAll()">{{'operate.search' | translate}}</div>
+          <div class="da-button" style="background: #fff;" (click)="onResetDialog()">{{'operate.reset' | translate}}</div>
+        </div>
+      </div>
+      <div style="border-radius: 0px; height: calc(100vh - 290px)">
+        <p-table (selectionChange)="onSelectionChange($event)" [selectionPageOnly]="true" [loading]="dataLoading"
+          [scrollable]="true" scrollHeight="flex" [value]="dataTableData" [(selection)]="dataTableSelects" dataKey="id"
+          [tableStyle]="{'min-width': '50rem'}" styleClass="sys-table">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="max-width: 55px">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th>{{'field.table.name' | translate}}</th>
+              <th>{{'field.table.comment' | translate}}</th>
+              <th>{{'field.source.system' | translate}}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td style="max-width: 55px">
+                <p-tableCheckbox [value]="product"></p-tableCheckbox>
+              </td>
+              <td class="text-overflow inline-block">{{product.tableName}}</td>
+              <td class="text-overflow inline-block">{{product.tableComment}}</td>
+              <td class="text-overflow inline-block">{{product.sourceName}}</td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      <div class="topiccategory-paginator">
+        <p-paginator *ngIf="tableTotal>0" (onPageChange)="ontableChange($event)" [first]="tablefirst"
+          [rows]="tableParams.pageSize" [totalRecords]="tableTotal" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+      </div>
+    </level-one-panel>
+    <level-one-panel style="width: 50%">
+      <div style="width: 100%; font-size: 16px; font-weight: 900; padding-bottom: 5px">
+        {{'info.selected.data.table' | translate}}
+      </div>
+      <div class="sys-search-form">
+        <div class="form-item">
+          <input style="background: #fff;" type="text" class="input-text" pInputText [(ngModel)]="selectValueName"
+            [placeholder]="'input.table.name' | translate" />
+        </div>
+        <div class="form-item btn">
+          <div class="da-button search" (click)="onBlurSelectList()">{{'operate.search' | translate}}</div>
+          <div class="da-button" style="background: #fff;" (click)="onResetSelectList()">{{'operate.reset' | translate}}</div>
+        </div>
+      </div>
+      <div style="border-radius: 0px; height: calc(100vh - 250px)">
+        <p-table [paginator]="checkDataTableSelects.length>0?true:false" [rows]="20" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10,20,30]" [loading]="dataLoading" [scrollable]="true" scrollHeight="flex"
+          [value]="checkDataTableSelects" dataKey="id" [tableStyle]="{'min-width': '50rem'}" styleClass="sys-table">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>{{'field.table.name' | translate}}</th>
+              <th>{{'field.table.comment' | translate}}</th>
+              <th>{{'field.source.system' | translate}}</th>
+              <th style="min-width: 100px; max-width: 100px" pFrozenColumn alignFrozen="right">
+                {{'label.operate' | translate}}
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product>
+            <tr>
+              <td class="text-overflow inline-block">{{product.tableName}}</td>
+              <td class="text-overflow inline-block">{{product.tableComment}}</td>
+              <td class="text-overflow inline-block">{{product.sourceName}}</td>
+              <td style="min-width: 100px; max-width: 100px" pFrozenColumn alignFrozen="right" class="text-overflow inline-block">
+                <div class="table-button-box">
+                  <div class="table-button" (click)="onDeleteAssociated($event,product)">
+                    {{'operate.delete' | translate}}
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </level-one-panel>
+  </div>
+  <ng-template pTemplate="footer">
+    <div style="display: flex;justify-content: center;width: 100%;">
+      <div class="da-button" (click)="allClose()" style="margin-right: 10px">
+        {{'operate.cancel' | translate}}
+      </div>
+      <div class="da-button save" (click)="onDataDialogSumit()">{{'operate.save' | translate}}</div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-confirmPopup></p-confirmPopup>
+<p-confirmDialog key="positionDialog" [style]="{width: '50vw'}" [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+
+<p-toast></p-toast>

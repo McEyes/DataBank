@@ -1,0 +1,35 @@
+.p-checkbox {
+	width: 1.25rem;
+	height: 1.25rem;
+
+	&:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+		border-color: $primary;
+		outline: 0 none;
+		outline-offset: 0;
+		box-shadow: 0 0 0 0.2rem $checkbox-focus-box-shadow-color;
+	}
+
+	.p-checkbox-box {
+		width: 1.25rem;
+		height: 1.25rem;
+		background: $light-100-gray;
+		border: 1px solid $border-color;
+		border-radius: 0.25rem;
+		transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+			box-shadow 0.2s;
+
+		&.p-highlight {
+			color: $white;
+			background: $primary;
+			border-color: $primary;
+		}
+	}
+	.p-checkbox-icon {
+		color: $white;
+		font-size: 10px;
+		transition-duration: 0.2s;
+	}
+}
+p-checkbox.ng-dirty.ng-invalid > .p-checkbox > .p-checkbox-box {
+	border-color: $danger;
+}

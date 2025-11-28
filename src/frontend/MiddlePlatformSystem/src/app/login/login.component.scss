@@ -1,0 +1,302 @@
+.main {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #FAFBFF;
+  min-height: 620px;
+
+  .bg-image {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 66% !important;
+
+    img {
+      width: 100%;
+      height: 66vh;
+      object-fit: cover;
+    }
+  }
+
+  .l-container {
+    display: flex;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    // min-width: 900px;
+    box-shadow: 0 30px 50px 0 rgba(20, 122, 217, 0.1);
+
+    .left-content {
+      position: relative;
+      width: 50%;
+      height: 100%;
+
+      .left-img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .left-img-logo {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        width: 161.4px;
+        height: 40px;
+      }
+    }
+
+    .right-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      padding: 0 12vw;
+      width: calc(100% - 420px);
+      min-width: 460px;
+      background: #F7F9FD;
+
+      .card {
+        position: relative;
+        top: -5vh;
+        width: 100%;
+
+        h5 {
+          img {
+            width: 375px;
+            height: 120px;
+            margin-left: -50px;
+          }
+
+          div {
+            font-size: 14px;
+            color: #003865;
+            letter-spacing: 1px;
+            margin-top: 15px;
+          }
+        }
+
+        button {
+          width: 100%;
+          border: none;
+        }
+      }
+
+      h5 {
+        font-size: 32px;
+        font-weight: bold;
+        color: #147AD9;
+        // margin-top: 52px;
+        text-align: center;
+      }
+
+      .language {
+        position: relative;
+        //position: absolute;
+        //right: 0;
+        //top: 0;
+        text-align: right;
+
+        img {
+          width: 32px;
+          height: 32px;
+          margin-top: 24px;
+          margin-bottom: 32px;
+          cursor: pointer;
+        }
+
+        ::ng-deep {
+          .p-menuitem-icon {
+            width: 32px;
+            height: 32px;
+            background-size: contain;
+            margin-right: 16px;
+          }
+
+          .p-menuitem-icon.usa {
+            // background-image: url("~src/assets/images/login/usa.png");
+          }
+
+          .p-menuitem-icon.cn {
+            // background-image: url("~src/assets/images/login/cn.png");
+          }
+
+          .p-tieredmenu-overlay {
+            top: 25px !important;
+            left: -100px !important;
+          }
+
+          .p-menuitem-text {
+            font-size: 16px;
+          }
+        }
+      }
+
+      button {
+        height: 50px;
+        background: #0990CF;
+        justify-content: center;
+        border-radius: 8px 8px 8px 8px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+
+        ::ng-deep {
+          .p-button-label {
+            display: none
+          }
+        }
+      }
+
+      .user,
+      .pwd {
+        display: flex;
+        position: relative;
+        margin-bottom: 24px;
+
+        .line {
+          width: 1px;
+          height: 50px;
+          background: #F7F9FD;
+          position: relative;
+          left: 60px;
+        }
+
+        img {
+          position: absolute;
+          top: 9px;
+          left: 14px;
+          width: 32px;
+
+          &.eye {
+            left: calc(100% - 46px);
+            cursor: pointer;
+          }
+        }
+
+        input {
+          width: 100%;
+          height: 50px;
+          font-size: 16px;
+          padding-left: 75px;
+          border-radius: 4px;
+          border: none;
+          background: #fff;
+        }
+
+        input::-webkit-input-placeholder {
+          /* 使用webkit内核的浏览器 */
+          font-size: 16px;
+          font-weight: 500;
+          color: #B6BCD1;
+        }
+
+        input:-moz-placeholder {
+          /* Firefox版本4-18 */
+          font-size: 16px;
+          font-weight: 500;
+          color: #B6BCD1;
+        }
+
+        input::-moz-placeholder {
+          /* Firefox版本19+ */
+          font-size: 16px;
+          font-weight: 500;
+          color: #B6BCD1;
+        }
+
+        input:-ms-input-placeholder {
+          /* IE浏览器 */
+          font-size: 16px;
+          font-weight: 500;
+          color: #B6BCD1;
+        }
+      }
+
+      .field {
+        margin-top: 40px;
+      }
+
+      .operator {
+        margin-bottom: 80px;
+        margin-top: -10px;
+
+        label {
+          position: relative;
+          top: 6px;
+          left: 8px;
+          font-size: 16px;
+          font-weight: 400;
+          color: #333;
+          cursor: pointer;
+        }
+
+        a {
+          float: right;
+          margin-top: 6px;
+          font-size: 16px;
+          text-decoration: underline;
+          font-weight: 400;
+          color: #147AD9;
+        }
+      }
+    }
+  }
+
+  .tab {
+    position: relative;
+    margin-bottom: 24px;
+    margin-top: -20px;
+    border-bottom: 1px solid #f0f0f0;
+
+    span {
+      display: inline-block;
+      text-align: center;
+      padding: 15px 25px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #999;
+      cursor: pointer;
+
+      &.active {
+        font-weight: bold;
+        color: #147ad9;
+        border-bottom: 4px solid #147ad9;
+      }
+    }
+  }
+
+  .okta {
+    margin-top: 30px;
+    height: calc(100% - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .field {
+      width: 100%;
+    }
+  }
+
+  .footer {
+    position: absolute;
+  }
+}
+
+.inputs {
+  width: 100%;
+  font-size: 1rem;
+  height: 3rem;
+  padding: 0.2em;
+  text-indent: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5%;
+  box-shadow: none;
+}
+
+:host ::ng-deep .p-button .pi {
+  padding: 0rem 0.5rem !important;
+}

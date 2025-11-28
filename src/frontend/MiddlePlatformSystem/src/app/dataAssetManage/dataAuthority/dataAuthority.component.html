@@ -1,0 +1,82 @@
+<div class="contents">
+  <ng-container *ngIf="currPanel === 'list'">
+    <div class="sys-search-form">
+      <div class="form-item">
+        <label> {{'field.user.name' | translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="queryParams.keyword" />
+      </div>
+      <div class="form-item btn">
+        <div class="da-button search" (click)="search()">{{'operate.search' | translate}}</div>
+        <div class="da-button" (click)="search('reset')">{{'operate.reset' | translate}}</div>
+        <div class="da-button add" (click)="allTableBtn('add')">
+          {{'operate.add' | translate}}
+        </div>
+      </div>
+    </div>
+    <div class="xd-grey-box" style="height: calc(100% - 50px)">
+      <div style="height: calc(100% - 40px)">
+        <div class="tableCard h-100">
+          <p-table [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="tableData"
+            styleClass="sys-table" dataKey="code" [tableStyle]="{ 'min-width': '100%' }">
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="xd-theader-white" style="min-width: 250px; max-width: 250px">
+                  {{'field.user.name' | translate}}
+                </th>
+                <th>
+                  {{'field.authorization.management.name' | translate}}
+                </th>
+                <th pFrozenColumn alignFrozen="right" style="min-width: 180px; max-width: 180px"
+                  class="xd-theader-white">
+                  {{'label.operate' | translate}}
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-customer>
+              <tr>
+                <td class="text-overflow inline-block" style="min-width: 250px; max-width: 250px">
+                  {{ customer.userName }}
+                </td>
+                <td class="text-overflow inline-block" style="width: 200px;" [title]="customer.tableName">
+                  {{ customer.tableName }}
+                </td>
+                <td style="min-width: 180px; max-width: 180px" pFrozenColumn alignFrozen="right"
+                  class="text-overflow inline-block">
+                  <div class="table-button-box">
+                    <div class="table-button" (click)="allTableBtn('edit',customer)">
+                      {{'operate.edit' | translate}}
+                    </div>
+                    <div class="table-button" (click)="ondelete($event,customer)">
+                      {{'operate.delete' | translate}}
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div style="width: 100%" [hidden]="!(total > 0)">
+          <nz-pagination style="margin-top: 5px" class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum"
+            [nzTotal]="total" nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+            (nzPageIndexChange)="nzPageIndexChange($event)"
+            (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+          <ng-template #rangeTemplate let-range="range" let-total>
+            {{ (queryParams.pageNum - 1) * queryParams.pageSize + 1 }}-{{ queryParams.pageNum *
+            queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ total }}
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <app-data-authority-detail *ngIf="currPanel === 'detail'" [field]="params"
+    (goBack)="goBack($event)"></app-data-authority-detail>
+</div>
+<p-confirmPopup></p-confirmPopup>
+<p-toast></p-toast>

@@ -1,0 +1,312 @@
+<div class="timeline-content" style="padding: 0;">
+  <ng-container *ngIf="isView">
+    <div class="t-item active">
+      <div class="date">{{formData?.dataSourceDefinition?.process_time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      <div class="circle">
+        <div class="s1"></div>
+      </div>
+      <div class="step">
+        <div class="name">{{'label.data.source.definition' | translate}}</div>
+        <div class="tag">
+          <span class="pic">PIC</span>
+          <span class="pic-name">{{formData.dataSourceDefinition?.pic}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-item active">
+      <div class="date">{{formData.dataSourceIngestion.process_time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      <div class="circle">
+        <div class="s2"></div>
+      </div>
+      <div class="step">
+        <div class="name">{{'label.data.source.ingestion' | translate}}</div>
+        <div class="tag">
+          <span class="pic">PIC</span>
+          <span class="pic-name">{{formData.dataSourceIngestion?.pic}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-item active" >
+      <div class="date">{{formData.physicalModeling.process_time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      <div class="circle">
+        <div class="s3"></div>
+      </div>
+      <div class="step">
+        <div class="name">{{'label.physical.modeling' | translate}}</div>
+        <div class="tag">
+          <span class="pic">PIC</span>
+          <span class="pic-name">{{formData.physicalModeling?.pic}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-item active">
+      <div class="date">{{formData.tScriptGeneration.process_time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      <div class="circle">
+        <div class="s4"></div>
+      </div>
+      <div class="step">
+        <div class="name">{{'label.tscript.generation' | translate}}</div>
+        <div class="tag">
+          <span class="pic">PIC</span>
+          <span class="pic-name">{{formData.tScriptGeneration?.pic}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-item active">
+      <div class="date">{{formData.apiGeneration.process_time | date:'yyyy-MM-dd HH:mm:ss'}}</div>
+      <div class="circle noline">
+        <div class="s5"></div>
+      </div>
+      <div class="step">
+        <div class="name">{{'label.api.generation' | translate}}</div>
+        <div class="tag">
+          <span class="pic">PIC</span>
+          <span class="pic-name">{{formData?.apiGeneration?.pic}}</span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!isView">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="rightBox">
+        <div class="item-title">{{'label.data.source.definition' | translate}}</div>
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'date' | translate}}</label>
+            <p-calendar name="date" appendTo="body" dateFormat="yy-mm-dd" class="input-text" [placeholder]="'input.select.please' | translate"
+              [(ngModel)]="formData.dataSourceDefinition.process_time" [showTime]="true" hourFormat="24"></p-calendar>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'PIC' | translate}}</label>
+            <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+              [options]="userList" [(ngModel)]="formData.dataSourceDefinition.pic_ntid"
+              [placeholder]="'input.select.please' | translate" [virtualScroll]="userList.length > 38"
+              [virtualScrollItemSize]="38" [filter]="true" filterBy="name" optionLabel="name" [showClear]="true"
+              optionValue="id" appendTo="body" (onChange)="changePIC($event, formData.dataSourceDefinition)"
+              panelStyleClass="smallWidth"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="item-title">{{'label.data.source.ingestion' | translate}}</div>
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'date' | translate}}</label>
+            <p-calendar name="date" appendTo="body" dateFormat="yy-mm-dd" class="input-text" [placeholder]="'input.select.please' | translate"
+              [(ngModel)]="formData.dataSourceIngestion.process_time" [showTime]="true" hourFormat="24"></p-calendar>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'PIC' | translate}}</label>
+            <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+              [options]="userList" [(ngModel)]="formData.dataSourceIngestion.pic_ntid"
+              [placeholder]="'input.select.please' | translate" [virtualScroll]="userList.length > 38"
+              [virtualScrollItemSize]="38" [filter]="true" filterBy="name" optionLabel="name" [showClear]="true"
+              optionValue="id" appendTo="body" (onChange)="changePIC($event, formData.dataSourceIngestion)"
+              panelStyleClass="smallWidth"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="item-title">{{'label.physical.modeling' | translate}}</div>
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'date' | translate}}</label>
+            <p-calendar name="date" appendTo="body" dateFormat="yy-mm-dd" class="input-text" [placeholder]="'input.select.please' | translate"
+              [(ngModel)]="formData.physicalModeling.process_time" [showTime]="true" hourFormat="24"></p-calendar>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'PIC' | translate}}</label>
+            <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+              [options]="userList" [(ngModel)]="formData.physicalModeling.pic_ntid"
+              [placeholder]="'input.select.please' | translate" [virtualScroll]="userList.length > 38"
+              [virtualScrollItemSize]="38" [filter]="true" filterBy="name" optionLabel="name" [showClear]="true"
+              optionValue="id" appendTo="body" (onChange)="changePIC($event, formData.physicalModeling)"
+              panelStyleClass="smallWidth"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="item-title">{{'label.tscript.generation' | translate}}</div>
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'date' | translate}}</label>
+            <p-calendar name="date" appendTo="body" dateFormat="yy-mm-dd" class="input-text" [placeholder]="'input.select.please' | translate"
+              [(ngModel)]="formData.tScriptGeneration.process_time" [showTime]="true" hourFormat="24"></p-calendar>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'PIC' | translate}}</label>
+            <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+              [options]="userList" [(ngModel)]="formData.tScriptGeneration.pic_ntid"
+              [placeholder]="'input.select.please' | translate" [virtualScroll]="userList.length > 38"
+              [virtualScrollItemSize]="38" [filter]="true" filterBy="name" optionLabel="name" [showClear]="true"
+              optionValue="id" appendTo="body" (onChange)="changePIC($event, formData.tScriptGeneration)"
+              panelStyleClass="smallWidth"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="item-title">{{'label.api.generation' | translate}}</div>
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'date' | translate}}</label>
+            <p-calendar name="date" appendTo="body" dateFormat="yy-mm-dd" class="input-text" [placeholder]="'input.select.please' | translate"
+              [(ngModel)]="formData.apiGeneration.process_time" [showTime]="true" hourFormat="24"></p-calendar>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'PIC' | translate}}</label>
+            <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+              [options]="userList" [(ngModel)]="formData.apiGeneration.pic_ntid"
+              [placeholder]="'input.select.please' | translate" [virtualScroll]="userList.length > 38"
+              [virtualScrollItemSize]="38" [filter]="true" filterBy="name" optionLabel="name" [showClear]="true"
+              optionValue="id" appendTo="body" (onChange)="changePIC($event, formData.apiGeneration)"
+              panelStyleClass="smallWidth"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+
+    <level-two-panel [titleName]="'label.input.parameters'| translate">
+      <p-table class="tableClass" [scrollable]="true" scrollHeight="flex" [value]="inputSetting.parameters"
+        [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <div class="da-button add" (click)="addInputData()">
+              <i class="pi pi-plus"></i>
+              {{'operate.add' | translate}}
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{'name' | translate}}</th>
+            <th>{{'field.required' | translate}}</th>
+            <th>{{'field.data.type' | translate}}</th>
+            <th>{{'field.format' | translate}}</th>
+            <th>{{'field.default.value' | translate}}</th>
+            <th>{{'field.description' | translate}}</th>
+            <th>{{'label.operate' | translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <tr>
+            <td>
+              <input name="name" [(ngModel)]="rowData.name">
+            </td>
+            <td>
+              <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="isList" [(ngModel)]="rowData.required" [placeholder]="'input.select.please' | translate"
+                optionLabel="name" optionValue="id" appendTo="body" panelStyleClass="smallWidth"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="dataTypeList" [(ngModel)]="rowData.dataType"
+                [placeholder]="'input.select.please' | translate" optionLabel="name" optionValue="id" appendTo="body"
+                panelStyleClass="smallWidth" (onChange)="changeDataType(rowData)"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="formatObj[rowData.dataType] || []" [(ngModel)]="rowData.format"
+                [placeholder]="'input.select.please' | translate" optionLabel="name" optionValue="id" appendTo="body"
+                panelStyleClass="smallWidth"></p-dropdown>
+            </td>
+            <td>
+              <input name="name" [(ngModel)]="rowData.defaultValue">
+            </td>
+            <td>
+              <input name="description" [(ngModel)]="rowData.description">
+            </td>
+            <td>
+              <div class="table-button" (click)="deleteInputData(rowIndex)">
+                {{'operate.delete' | translate}}
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </level-two-panel>
+
+    <level-two-panel [titleName]="'label.output.parameters'| translate">
+      <div class="form contents-form sys-form" style="margin-bottom: 20px;" [ngClass]="currLang">
+
+        <div class="form-item">
+          <label>{{'type' | translate}}</label>
+          <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+            [options]="outTypeList" [(ngModel)]="outputSetting.type" [placeholder]="'input.select.please' | translate"
+            optionLabel="name" optionValue="id" appendTo="body" panelStyleClass="smallWidth"></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label>{{'isPaged' | translate}}</label>
+          <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+            [options]="isList" [(ngModel)]="outputSetting.isPaged" [placeholder]="'input.select.please' | translate"
+            optionLabel="name" optionValue="id" appendTo="body" panelStyleClass="smallWidth"></p-dropdown>
+        </div>
+      </div>
+      <p-table class="tableClass" [scrollable]="true" scrollHeight="flex" [value]="outputSetting.parameters"
+        [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <div class="da-button add" (click)="addOutputData()">
+              <i class="pi pi-plus"></i>
+              {{'operate.add' | translate}}
+            </div>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{'name' | translate}}</th>
+            <th>{{'field.data.type' | translate}}</th>
+            <th>{{'field.format' | translate}}</th>
+            <th>{{'field.description' | translate}}</th>
+            <th>{{'label.operate' | translate}}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+          <tr>
+            <td>
+              <input name="name" [(ngModel)]="rowData.name">
+            </td>
+            <td>
+              <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="dataTypeList" [(ngModel)]="rowData.dataType"
+                [placeholder]="'input.select.please' | translate" optionLabel="name" optionValue="id" appendTo="body"
+                panelStyleClass="smallWidth" (onChange)="changeDataType(rowData)"></p-dropdown>
+            </td>
+            <td>
+              <p-dropdown name="pic" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                [options]="formatObj[rowData.dataType] || []" [(ngModel)]="rowData.format"
+                [placeholder]="'input.select.please' | translate" optionLabel="name" optionValue="id" appendTo="body"
+                panelStyleClass="smallWidth"></p-dropdown>
+            </td>
+            <td>
+              <input name="description" [(ngModel)]="rowData.description">
+            </td>
+            <td>
+              <div class="table-button" (click)="deleteOutputData(rowIndex)">
+                {{'operate.delete' | translate}}
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </level-two-panel>
+  </ng-container>
+</div>
+<p-toast></p-toast>

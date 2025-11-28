@@ -1,0 +1,110 @@
+{
+  "MenuTree": {
+    "data": [
+      {
+        "menuInfo": {
+          "id": "1",
+          "title": "demo",
+          "path": "/",
+          "icon": "",
+          "component": "",
+          "sort": 1
+        },
+        "menuChildren": [
+          {
+            "menuInfo": {
+              "id": "2",
+              "title": "page1",
+              "path": "/dataasset/assetquery",
+              "component": "Page1Component",
+              "icon": "",
+              "sort": 2
+            },
+            "menuChildren": []
+          },
+          {
+            "menuInfo": {
+              "id": "2",
+              "title": "page12",
+              "path": "/demo/page12",
+              "component": "Page1Component",
+              "icon": "",
+              "sort": 2
+            },
+            "menuChildren": []
+          },
+          {
+            "menuInfo": {
+              "id": "2",
+              "title": "page1",
+              "path": "/",
+              "component": "Page1Component",
+              "icon": "",
+              "sort": 2
+            },
+            "menuChildren": [
+              {
+                "menuInfo": {
+                  "id": "2",
+                  "title": "page1",
+                  "path": "/",
+                  "component": "Page1Component",
+                  "icon": "",
+                  "sort": 2
+                },
+                "menuChildren": [
+                  {
+                    "menuInfo": {
+                      "id": "2",
+                      "title": "page1",
+                      "path": "/demo/form",
+                      "component": "Page1Component",
+                      "icon": "",
+                      "sort": 2
+                    },
+                    "menuChildren": [
+                      
+                    ]
+                  },
+                  {
+                    "menuInfo": {
+                      "id": "2",
+                      "title": "page1",
+                      "path": "/demo/table",
+                      "component": "Page1Component",
+                      "icon": "",
+                      "sort": 2
+                    },
+                    "menuChildren": [
+                      
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  "MenuTreeKeys": {
+    "data": [
+      { "menuInfoId": "1" },
+      { "menuInfoId": "2" },
+      { "menuInfoId": "3" },
+      { "menuInfoId": "4" },
+      { "menuInfoId": "5" },
+      { "menuInfoId": "6" },
+      { "menuInfoId": "11" },
+      { "menuInfoId": "22" },
+      { "menuInfoId": "33" },
+      { "menuInfoId": "44" },
+      { "menuInfoId": "55" },
+      { "menuInfoId": "66" },
+      { "menuInfoId": "77" },
+      { "menuInfoId": "88" }
+
+    ]
+  }
+}

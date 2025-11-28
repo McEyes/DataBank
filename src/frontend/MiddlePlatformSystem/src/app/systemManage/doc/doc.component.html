@@ -1,0 +1,97 @@
+<div *ngIf="currPanel==='list'" class="template">
+  <div class="content">
+    <p-table [value]="tableData" scrollHeight="flex" [scrollable]="true" [loading]="loading" styleClass="sys-table">
+      <ng-template pTemplate="caption">
+        <div class="t-caption ">
+          <div class="formgroup-inline justify-content-between w-100 sys-search-form">
+            <div class="form-item"  style="width:300px;">
+              <!-- <label>{{'search' | translate}}</label> -->
+              <input type="text" pInputText class="p-inputtext" [placeholder]="'input.keyword'| translate"
+                [(ngModel)]="searchData.keyword" />
+            </div>
+            <!-- <div class="form-item" style="width:200px;">
+              <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="statusList"
+                [placeholder]="'input.select.status' | translate" [(ngModel)]="searchData.enabled" optionLabel="label"
+                optionValue="value"></p-dropdown>
+            </div> -->
+            <div class="field form-item" style="justify-content: flex-end;column-gap: 15px;">
+              <div class="da-button" (click)="search(true)">{{'reset' | translate}}</div>
+              <div class="da-button search" (click)="search()">
+                {{'search' | translate}}
+              </div>
+              <div class="da-button add" (click)="editData(formData,'add')">
+                {{'add'|translate}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="min-width: 250px;max-width: 180px;">{{'field.name'|translate}}</th>
+          <th style="min-width: 250px;">{{'field.displayNameCn'|translate}}</th>
+          <th style="min-width: 250px;">{{'field.displayNameEn'|translate}}</th>
+          <th style="max-width: 80px;min-width: 120px;">{{'field.catalog'|translate}}</th>
+          <th style="max-width: 80px;min-width: 80px;">{{'status'|translate}}</th>
+          <th style="min-width: 100px;max-width: 100px;">{{'field.docver'|translate}}</th>
+          <th style="max-width:80px;min-width: 80px;">{{'field.sort'|translate}}</th>
+          <th pFrozenColumn alignFrozen="right" style="justify-content: right" id="operation">{{'operation'|translate}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item let-ri="rowIndex">
+        <tr>
+          <td style="min-width: 250px;max-width: 180px;" class="text-overflow inline-block" [title]="item.name">
+            <a [href]="envir.FileServer + '/api/file/download/'+item.url+'?category=Document&downName='+item.name" target="_blank"> {{ item.name }}</a>
+          </td>
+          <td style="min-width: 250px;" class="text-overflow inline-block">{{ item.displayNameCn }}</td>
+          <td style="min-width: 250px;" class="text-overflow inline-block">{{ item.displayNameEn }}</td>
+          <td style="max-width:120px;min-width: 120px;" class="text-overflow inline-block">{{ item.catalog }}</td>
+          <td style="max-width: 80px;min-width: 80px;" class="text-overflow inline-block">
+            <p-tag *ngIf="!item.status" severity="danger" [value]="'label.deactivate' | translate"></p-tag>
+            <p-tag *ngIf="item.status" severity="success" [value]="'label.enable' | translate"></p-tag>
+          </td>
+          <td style="min-width: 100px;max-width: 100px;"  class="text-overflow inline-block" [title]="item.docVer">
+            V{{item.docVer}}
+          </td>
+          <td style="max-width: 80px;min-width: 80px;" class="text-overflow inline-block">{{ item.sort }}</td>
+          <td pFrozenColumn alignFrozen="right" style="justify-content: right">
+            <div class="table-button-box justify-content-right" style="justify-content: right">
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="download(item)">
+                {{'download'|translate}}
+              </div>
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="editData(item,'edit')">
+                {{'edit'|translate}}
+              </div>
+              <div style="font-weight: bold;letter-spacing: 3px;line-height: 14px;
+                padding-bottom: 6px;
+                padding-top: 0;" class="table-button" (click)="deleteData(item)">
+                {{'delete'|translate}}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" class="no-data">{{'nodata' | translate}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div class="sub-item" *ngIf="tableData.length > 0">
+      <p-paginator [first]="searchData.first" [rows]="searchData.pageSize" [totalRecords]="recordCount"
+        [showJumpToPageDropdown]="true" [rowsPerPageOptions]="[10, 15, 20]"
+        (onPageChange)="paginate($event)"></p-paginator>
+    </div>
+  </div>
+</div>
+
+<app-system-doc-details [field]="currRow" (goBack)="goBack()"
+  *ngIf="currPanel === 'edit'"></app-system-doc-details>
+
+<jabil-loading style="height: 100%" *ngIf="submitLoading"></jabil-loading>
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

@@ -1,0 +1,59 @@
+*{
+  font-family: Roboto;
+}
+.addmodeldetails-main-form {
+  width: 100%;
+  // padding: 20px;
+  .main-form-title {
+    width: 100%;
+    padding: 10px;
+  }
+  .main-form-table {
+    width: 100%;
+  }
+}
+.input-text {
+  width: 100% !important;
+  background-color: #fff !important;
+  border: 1px solid #e6e6e6 !important;
+}
+
+:host ::ng-deep {
+  .addmodeldetails-main-content textarea[disabled],
+  .addmodeldetails-main-content .p-disabled,
+  .addmodeldetails-main-content nz-select-top-control[ng-reflect-disabled='true'] {
+    background: transparent !important;
+  }
+
+  .p-inputtext {
+    height: auto;
+  }
+  .p-ripple {
+    background-color: #fff !important;
+  }
+  .p-inputtext {
+    height: auto !important;
+    background-color: #fff;
+  }
+  .p-dropdown {
+    width: 100% !important;
+    background-color: #fff !important;
+    border: 1px solid #e6e6e6 !important;
+  }
+  .p-calendar{
+    width: 100% !important;
+    border: 1px solid #e6e6e6 !important;
+
+  }
+  .p-calendar .p-inputtext{
+    border: none!important;
+
+  }
+  // .p-dropdown .p-dropdown-label {
+  //   border-bottom: 1px solid #e6e6e6 !important;
+  // }
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #e3f2fd !important;
+    border-color: #e3f2fd !important;
+  }
+}

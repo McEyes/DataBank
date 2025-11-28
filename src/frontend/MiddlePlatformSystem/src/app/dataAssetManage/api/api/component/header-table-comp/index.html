@@ -1,0 +1,107 @@
+<p-table [value]="tableData" [tableStyle]="{'min-width': '100%'}" [scrollable]="true" [(selection)]="selectedColumns"
+  scrollHeight="400px" styleClass="sys-table">
+  <ng-template pTemplate="header">
+    <tr>
+      <th class="custom-header" pFrozenColumn alignFrozen="left"
+        style="min-width: 55px; max-width: 55px; z-index: 999 !important">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th class="custom-header" pFrozenColumn alignFrozen="left"
+        style="min-width: 160px; max-width: 160px; z-index: 999 !important">
+        {{'field.parameter.name' | translate}}
+      </th>
+      <th class="custom-header" style="min-width: 160px; max-width: 160px">
+        {{'field.null' | translate}}
+      </th>
+      <th class="custom-header" style="min-width: 160px; max-width: 160px">
+        {{'remark' | translate}}
+      </th>
+      <th class="custom-header" style="min-width: 160px; max-width: 160px">
+        {{'field.parameter.type' | translate}}
+      </th>
+      <th class="custom-header" style="min-width: 160px; max-width: 160px">
+        {{'field.operator' | translate}}
+      </th>
+      <th class="custom-header">{{'field.default.value' | translate}}</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td class="custom-body" pFrozenColumn alignFrozen="left"
+        style="min-width: 55px; max-width: 55px; z-index: 1 !important">
+        <p-tableCheckbox [value]="item"></p-tableCheckbox>
+      </td>
+      <td class="custom-body" pFrozenColumn alignFrozen="left"
+        style="min-width: 160px; max-width: 160px; z-index: 1 !important">
+        {{item.paramName}}
+      </td>
+      <td class="custom-body" style="min-width: 160px; max-width: 160px" [pEditableColumn]="item.nullable"
+        pEditableColumnField="code">
+        {{item.nullable == 1 ? ('yes' | translate) : ('no' | translate)}}
+      </td>
+      <td class="custom-body" style="min-width: 160px; max-width: 160px" [pEditableColumn]="item.paramComment"
+        pEditableColumnField="code">
+        {{item.paramComment}}
+      </td>
+      <td class="custom-body" style="min-width: 160px; max-width: 160px">
+        {{paramsObj[item.paramType]}}
+      </td>
+      <td class="custom-body" style="min-width: 160px; max-width: 160px" [pEditableColumn]="item.whereType"
+        pEditableColumnField="code">
+        {{operatorObj[item.whereType]}}
+      </td>
+      <td class="custom-body">
+        <div *ngIf="item.whereType != 'between'">
+          <!-- string -->
+          <input
+            *ngIf="item.whereType != 'between'&& item.paramType != 'datetime'&&item.paramType != 'date'&&item.paramType != 'year'&&item.paramType != 'time'"
+            class="index-text" pInputText [type]="inputType[item.paramType]" [(ngModel)]="item.defaultValue"
+            (blur)="onBlur($event)" />
+          <!-- datetime -->
+          <div *ngIf="item.paramType == 'datetime' ">
+            <p-calendar appendTo="body" dateFormat="yy-mm-dd" [showTime]="true" [showSeconds]="true"
+              [(ngModel)]="item.defaultValue" (onSelect)="onChangeDefaultDateTime($event,item)"></p-calendar>
+          </div>
+          <!-- date -->
+          <div *ngIf="item.paramType == 'date' ">
+            <p-calendar appendTo="body" dateFormat="yy-mm-dd" [(ngModel)]="item.defaultValue"></p-calendar>
+          </div>
+          <!-- year -->
+          <div *ngIf="item.paramType == 'year' ">
+            <p-calendar appendTo="body" view="year" dateFormat="yy" [(ngModel)]="item.defaultValue"></p-calendar>
+          </div>
+          <!-- time -->
+          <div *ngIf="item.paramType == 'time'">
+            <input class="index-text" pInputText type="number" [(ngModel)]="item.defaultValue"
+              (blur)="onBlur($event)" />
+          </div>
+        </div>
+        <!-- between -->
+        <div *ngIf="item.whereType == 'between'" style="display: flex; align-items: center; column-gap: 10px">
+          <!-- datetime -->
+          <p-calendar [pTooltip]="showDataTime?showDataTime:''" tooltipPosition="top"
+            *ngIf="item.paramType == 'datetime' " appendTo="body" dateFormat="yy-mm-dd" [showTime]="true"
+            [showSeconds]="true" selectionMode="range" [(ngModel)]="item.betweenDate"
+            (onSelect)="onChangeDate($event,item)"></p-calendar>
+          <p-calendar *ngIf="item.paramType == 'date' " appendTo="body" dateFormat="yy-mm-dd" selectionMode="range"
+            [(ngModel)]="item.betweenDate" (onSelect)="onChangeDate($event,item)"></p-calendar>
+          <p-calendar *ngIf="item.paramType == 'year' " appendTo="body" view="year" dateFormat="yy"
+            selectionMode="range" [(ngModel)]="item.betweenDate" (onSelect)="onChangeDate($event,item)"></p-calendar>
+          <div style="display: flex; align-items: center; column-gap: 5px"
+            *ngIf="item.paramType == 'bigint'||item.paramType == 'time'||item.paramType == 'tinyint'||item.paramType == 'int'||item.paramType == 'float'||item.paramType == 'double'">
+            <div style="width: 47.5%">
+              <input id="satrt" class="index-text-de" pInputText type="number" [min]="0"
+                [(ngModel)]="item.betweenStartValue" (blur)="onBlurStart($event,item)" />
+            </div>
+            <div style="width: 5%">{{lange == 'en'?'To':"至"}}</div>
+            <div style="width: 47.5%">
+              <input id="end" class="index-text-de" pInputText type="number" [min]="0"
+                [(ngModel)]="item.betweenEndValue" (blur)="onBlurEnd($event,item)" />
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+<p-toast></p-toast>

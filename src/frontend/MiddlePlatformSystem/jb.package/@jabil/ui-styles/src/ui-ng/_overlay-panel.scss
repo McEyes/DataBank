@@ -1,0 +1,81 @@
+body {
+	.p-overlaypanel {
+		padding: 0;
+		color: $body-color;
+		font-size: 14px;
+		background-color: $white;
+		border: 1px solid $light-grey;
+		border-radius: 0;
+		.p-overlaypanel-content {
+			padding: 0.571em 1em;
+		}
+
+		&.popover {
+			.p-overlaypanel-content {
+				padding: 0;
+
+				.popover-header {
+					margin: 0;
+					padding: 0.75rem 0.625rem;
+					color: $body-color;
+					font-size: 1rem;
+					line-height: 1.25;
+					background-color: $white;
+					border-bottom: 1px solid $light-grey;
+				}
+
+				.popover-body {
+					padding: 0.625rem 0.625rem;
+					color: $body-color;
+				}
+			}
+		}
+		.p-overlaypanel-close {
+			position: absolute;
+			top: -0.6rem;
+			right: -0.6rem;
+			width: 1.2rem;
+			height: 1.2rem;
+			color: $white;
+			line-height: 1.2rem;
+			text-align: center;
+			background-color: $primary-blue;
+			transition: background-color 0.3s;
+			span {
+				display: inline-block;
+				font-size: inherit;
+				line-height: inherit;
+			}
+			.p-overlaypanel-close-icon {
+				line-height: inherit;
+			}
+			&:hover {
+				color: $white;
+				background-color: $primary;
+			}
+			&:focus {
+				outline: 0 none;
+				outline-offset: 0;
+				box-shadow: $overlay-panel-close-focus-box-shadow;
+			}
+		}
+		&:after {
+			border: solid transparent;
+			border-color: transparent transparent $white;
+			border-width: 8px !important;
+		}
+		&:before {
+			border: solid transparent;
+			border-color: transparent transparent $light-grey;
+			border-width: 10px !important;
+		}
+		&.p-overlaypanel-flipped {
+			&:after {
+				border-top-color: $white;
+			}
+			&:before {
+				border-top-color: $light-grey;
+			}
+		}
+	}
+}

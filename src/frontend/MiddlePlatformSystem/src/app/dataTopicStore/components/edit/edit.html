@@ -1,0 +1,91 @@
+<div class="content">
+  <level-one-panel [titleName]="('edit' | translate) +' '+ field.name">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'name' | translate}}</label>
+            <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+              [(ngModel)]="formData.name" [ngClass]="{ 'ng-invalid': invalid && !formData.name }" />
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.version' | translate}}</label>
+            <input [placeholder]="'input.please' | translate" type="text" class="input-text" pInputText
+              [(ngModel)]="formData.version" [ngClass]="{ 'ng-invalid': invalid && !formData.version }" />
+          </div>
+          <div class="form-item" style="align-items: flex-start;">
+            <label [style]="{width: currLang === 'en' ? '161px' : '141px'}"><span class="valid-pre">*</span>{{'field.data.category' | translate}}</label>
+            <p-treeSelect appendTo="body" [(ngModel)]="categoryItem"
+            [ngClass]="{ 'ng-invalid': invalid && !categoryItem.key }"
+            [options]="categoryData" [placeholder]="'input.select.please' | translate"></p-treeSelect>
+          </div>
+          <div class="form-item" style="align-items: flex-start;">
+            <label [style]="{width: currLang === 'en' ? '161px' : '141px'}"><span class="valid-pre">*</span>{{'field.tag' | translate}}</label>
+            <p-multiSelect pInputText [showToggleAll]="false" [options]="tagList" [(ngModel)]="formData.tags"
+              optionLabel="itemText" class="w-100" optionValue="itemValue" [placeholder]="'input.select.please' | translate"
+              [ngClass]="{ 'ng-invalid': invalid && formData.tags && formData.tags.length==0 }"></p-multiSelect>
+          </div>
+          <div class="form-item" style="align-items: flex-start;">
+            <label [style]="{width: currLang === 'en' ? '161px' : '141px'}">{{'field.cover' | translate}}</label>
+            <nz-upload class="avatar-uploader" 
+              [nzAction]="fileHost+'/api/file/upload?category=DataTopicStore'"
+              [nzHeaders]="{ authorization: 'Bearer ' + token}" nzName="file" nzListType="picture-card"
+              [nzAccept]="'image/jpeg,image/png'" [nzShowUploadList]="false" [nzBeforeUpload]="beforePicUpload"
+              (nzChange)="handlePicChange($event)">
+              <span *ngIf="!formData.cover && !avatarUrl" style="font-size: 30px;">+</span>
+
+              <p-image class="w-100" *ngIf="formData.cover"
+              [src]="fileHost+'/api/file/download/' + formData.cover + '?category=DataTopicStore'"
+              [preview]="false"></p-image>
+            </nz-upload>
+          </div>
+
+          <div class="form-item" style="align-items: flex-start;">
+            <label [style]="{width: currLang === 'en' ? '161px' : '141px'}"><span class="valid-pre">*</span>{{'field.owner' | translate}}</label>
+            <p-dropdown
+                [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+                [(ngModel)]="formData.owner_id" [placeholder]="'input.select.please' | translate" [virtualScroll]="true" [virtualScrollItemSize]="38"
+                [ngClass]="{'ng-invalid': invalid && !formData.owner_id}" [filter]="true" filterBy="name"
+                appendTo="body" class="w-100" optionLabel="name" panelStyleClass="smallWidth" 
+                optionValue="id"></p-dropdown>
+          </div>
+
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+            <label>{{'field.description' | translate}}</label>
+            <textarea style="height: 100px" rows="5" cols="30" class="input-text" pInputTextarea
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.description"></textarea>
+          </div>
+          <div class="form-item" style="align-items: flex-start; width: 100%;">
+            <label [style]="{width: currLang === 'en' ? '142px' : '130px'}">{{'field.content' | translate}}</label>
+            <p-editor [(ngModel)]="formData.content"></p-editor>
+          </div>
+          <!-- <div class="form-item" style="align-items: flex-start; width: 100%">
+            <label>{{'field.json.data.lineage' | translate}}</label>
+            <textarea style="height: 100px" rows="5" cols="30" class="input-text" pInputTextarea
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.json_data_lineage"></textarea>
+          </div> -->
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+            <label>{{'field.json.formula' | translate}}</label>
+            <textarea style="height: 100px" rows="5" cols="30" class="input-text" pInputTextarea
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.json_formula"></textarea>
+          </div>
+          <div class="form-item" style="align-items: flex-start; width: 100%">
+            <label>{{'field.sql.scripts' | translate}}</label>
+            <!-- <div id="mysql-edit" style="width: 100%; height: 300px; font-size: 12px;font-family: '新宋体',serif"></div> -->
+
+            <textarea style="height: 100px" rows="5" cols="30" class="input-text" pInputTextarea
+              [placeholder]="'input.please' | translate" [(ngModel)]="formData.sql_scripts"></textarea>
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <!-- <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div> -->
+    <div class="da-button save" (click)="pushClick()">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>
+<p-toast></p-toast>

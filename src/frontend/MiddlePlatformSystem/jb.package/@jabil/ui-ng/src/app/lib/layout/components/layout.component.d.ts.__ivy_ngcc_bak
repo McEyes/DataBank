@@ -1,0 +1,114 @@
+import { ChangeDetectorRef, TemplateRef } from '@angular/core';
+import { LayoutConfig } from '../models';
+import { WindowRef } from '../refs/window.ref';
+export declare class LayoutComponent {
+    private changeDetectorRef;
+    private windowRef;
+    private static readonly DEFAULT_CONFIG;
+    /**
+     * Top template
+     */
+    topTemplate: TemplateRef<void> | null;
+    /**
+     * Left template
+     */
+    leftTemplate: TemplateRef<void> | null;
+    /**
+     * Right template
+     */
+    rightTemplate: TemplateRef<void> | null;
+    /**
+     * Bottom Template
+     */
+    bottomTemplate: TemplateRef<void> | null;
+    /**
+     * SimpleBar Options
+     */
+    scrollBarOptions: {
+        autoHide: boolean;
+        scrollbarMinSize: number;
+    };
+    /**
+     * open left container if fixed
+     */
+    isLeftOpened: boolean;
+    /**
+     * open right container if fixed
+     */
+    isRightOpened: boolean;
+    /**
+     * open right container if less than 991.98px
+     */
+    isRightXsOpened: boolean;
+    /**
+     * open left container if less than 991.98px
+     */
+    isLeftXsOpened: boolean;
+    /**
+     * Show Overlay: boolean
+     */
+    showOverlay: boolean;
+    /**
+     * Left container hovered
+     */
+    leftContainerHovered: boolean;
+    /**
+     * Right container hovered
+     */
+    rightContainerHovered: boolean;
+    private _config;
+    constructor(changeDetectorRef: ChangeDetectorRef, windowRef: WindowRef);
+    /**
+     * Gets component config
+     */
+    get config(): LayoutConfig;
+    /**
+     * Sets component config
+     * @param value - Component config
+     */
+    set config(value: LayoutConfig);
+    /**
+     * Can minimize left container content when Hover collapsed
+     */
+    get leftHoverMinimizedContent(): boolean;
+    /**
+     * Can minimize right container content when Hover collapsed
+     */
+    get rightHoverMinimizedContent(): boolean;
+    /**
+     * Layout component wrapper classNames
+     */
+    get layoutContainerClass(): {
+        [key: string]: boolean;
+    };
+    /**
+     * Hide overlay
+     */
+    closeContainer(): void;
+    /**
+     * Show right container
+     * @param withOverlay :boolean - show overlay
+     */
+    showRightContainer(withOverlay?: boolean): void;
+    /**
+     * Show left container
+     * @param withOverlay :boolean - show overlay
+     */
+    showLeftContainer(withOverlay?: boolean): void;
+    /**
+     * Left container mouse enter
+     */
+    leftContainerMouseEnter(): void;
+    /**
+     * Left Container mouse leave
+     */
+    leftContainerMouseLeave(): void;
+    /**
+     * Right container mouse enter
+     */
+    rightContainerMouseEnter(): void;
+    /**
+     * Right container mouse leave
+     */
+    rightContainerMouseLeave(): void;
+}

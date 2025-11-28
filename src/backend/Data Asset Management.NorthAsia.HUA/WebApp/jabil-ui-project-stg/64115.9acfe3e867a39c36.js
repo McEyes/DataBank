@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkjabil_ui_project=self.webpackChunkjabil_ui_project||[]).push([[64115],{64115:(n,e,_)=>{_.r(e),_.d(e,{default:()=>c});const u=void 0,c=[[["\u771f\u591c\u4e2d","\u6b63\u5348","\u671d","\u663c","\u5915\u65b9","\u591c","\u591c\u4e2d"],u,u],u,["00:00","12:00",["04:00","12:00"],["12:00","16:00"],["16:00","19:00"],["19:00","23:00"],["23:00","04:00"]]]}}]);

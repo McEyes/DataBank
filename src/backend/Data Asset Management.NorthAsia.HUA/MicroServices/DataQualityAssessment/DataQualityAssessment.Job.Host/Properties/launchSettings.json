@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DataQualityAssessment.Job.Host": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}

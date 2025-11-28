@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataSource\**" />
+    <Compile Remove="Repositorys\**" />
+    <Compile Remove="SqlParser\**" />
+    <EmbeddedResource Remove="DataSource\**" />
+    <EmbeddedResource Remove="Repositorys\**" />
+    <EmbeddedResource Remove="SqlParser\**" />
+    <None Remove="DataSource\**" />
+    <None Remove="Repositorys\**" />
+    <None Remove="SqlParser\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\BaseService.cs" />
+    <Compile Remove="Services\CahceBaseService.cs" />
+    <Compile Remove="Services\DBEventSource.cs" />
+    <Compile Remove="Services\IBaseService.cs" />
+    <Compile Remove="Services\ICahceBaseService.cs" />
+    <Compile Remove="WebApi\DynamicTableTypeGenerator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Consul" Version="1.7.14.7" />
+    <PackageReference Include="dotnet-etcd" Version="7.2.0" />
+    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.18.0" />
+    <PackageReference Include="Furion" Version="4.9.7.107" />
+    <PackageReference Include="Furion.Extras.Authentication.JwtBearer" Version="4.9.7.107" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="9.0.2" />
+    <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.2" />
+    <PackageReference Include="MiniExcel" Version="1.41.3" />
+    <PackageReference Include="Ocelot" Version="24.0.0" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.1.2" />
+    <PackageReference Include="Shapeless" Version="1.0.39" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="8.1.1" />
+    <PackageReference Include="Winton.Extensions.Configuration.Consul" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ITPortal.Extension\ITPortal.Extension.csproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(TargetDir)*.*&quot; &quot;$(OutputPath)..\..\..\..\..\formwork\ITPortal.Core.EF\&quot; /E /Y" />
+  </Target>
+
+</Project>

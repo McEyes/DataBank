@@ -1,0 +1,88 @@
+<div class="sql-box">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="sourceList"
+        [placeholder]="'input.select.data.source' | translate" [(ngModel)]="selectedSource"
+        (ngModelChange)="selectSourceModelChange($event)" optionLabel="name" optionValue="id"></p-dropdown>
+    </div>
+    <div class="form-item btn">
+      <div class="da-button" (click)="executeQuery()">{{'operate.sql.run' | translate}}</div>
+      <!-- <div class="da-button" (click)="executeQueryStop()">{{'Sql.Stop' | translate}}</div> -->
+      <div class="da-button" (click)="SQLFormat()">{{'operate.sql.format' | translate}}</div>
+      <div class="da-button" (click)="resetEditor()">{{'operate.reset' | translate}}</div>
+    </div>
+  </div>
+  <div style="width: 100%; padding: 10px 20px; background-color: #ebebeb; margin: 10px 0px" *ngIf="exampleValue">
+    {{exampleValue}}
+  </div>
+  <div style="
+      margin-top: 10px;
+      width: 100%;
+      height: calc(100% - 115px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      border: 1px solid #eee;
+    ">
+    <div class="sql-edit-box" style="width: 50%;">
+      <div id="mysql-edit" style="width: 100%; height: 100%; font-size: 12px;font-family: '新宋体',serif"></div>
+    </div>
+    <div class="sql-massage-box" style="width: 50%;" *ngIf="tabMenuList.length >0">
+      <div class="sql-massage-tab">
+        <div class="tabCardClass" *ngFor="let item of tabMenuList; let index=index" (click)="tabClick(index,item)"
+          [ngClass]="{'sql-massage-tab-card-active': tabActive == index}">
+          {{item.label}}
+        </div>
+      </div>
+      <div class="sql-massage-main">
+        <div class="sql-massage-main-message" [hidden]="!(tabType == 'message')">
+          <p>{{'label.execute' | translate}} : {{ messageInfo.success ? ('info.run.successfully' | translate ):
+            ('info.run.fail' | translate) }}
+          </p>
+          <p>{{'label.execute.sql' | translate}}: {{ messageInfo.sql }}</p>
+          <p *ngIf="messageInfo.count >=  0">Rows Affected: {{ messageInfo.count }}</p>
+          <p>{{'label.execute.time' | translate}}: {{ messageInfo.time }} ms</p>
+        </div>
+        <div class="sql-massage-main-reault" [hidden]="!(tabType == 'result')">
+          <p-table [columns]="resualtTableInfo.columnList" [value]="resualtTableInfo.dataList"
+            [tableStyle]="{'min-width': '100%'}" [scrollable]="true" scrollHeight="flex"
+            [paginator]="resualtTableInfo.dataList.length>0? true:false" [rows]="20" [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[10,20,50]" styleClass="sys-table">
+            <ng-template pTemplate="header" let-columns>
+              <tr>
+                <th style="min-width: 200px;max-width: 200px;" class="xd-theader-white" *ngFor="let col of columns">
+                  {{col.header}}</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+              <tr>
+                <td style="min-width: 200px;max-width: 200px;" class="xd-tbody text-overflow inline-block"
+                  [title]="rowData[col.field]" *ngFor="let col of columns">
+                  {{rowData[col.field]}}
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </div>
+    </div>
+    <div style="
+        width: 50%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ededed;
+        font-size: 16px;
+      " *ngIf="tabMenuList.length == 0">
+      {{'info.please.run.sql' | translate}}
+    </div>
+  </div>
+</div>
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

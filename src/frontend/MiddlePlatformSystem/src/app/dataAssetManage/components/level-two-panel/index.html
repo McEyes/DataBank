@@ -1,0 +1,8 @@
+<div class="l2-box" [style]="{'height':height}">
+  <div class="l2-title" *ngIf="titleName != 'defult'">
+    {{titleName}}<span *ngIf="isValid" class="valid-pre">*</span><ng-content  select="[slot=header]"></ng-content>
+  </div>
+  <div class="l2-inner">
+    <ng-content></ng-content>
+  </div>
+</div>

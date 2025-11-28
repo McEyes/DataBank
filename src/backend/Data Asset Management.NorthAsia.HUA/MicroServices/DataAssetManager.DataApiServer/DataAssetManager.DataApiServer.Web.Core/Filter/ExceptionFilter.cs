@@ -1,0 +1,303 @@
+using Furion;
+using Furion.DataValidation;
+using Furion.DynamicApiController;
+using Furion.FriendlyException;
+using Furion.UnifyResult;
+
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+using SqlSugar;
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace DataAssetManager.DataApiServer.Web.Core
+{
+    public class ExceptionFilter : IAsyncExceptionFilter
+    {
+        /// <summary>
+        /// 异常拦截
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public async Task OnExceptionAsync(ExceptionContext context)
+        {
+            // 判断是否是验证异常
+            var isValidationException = context.Exception is AppFriendlyException friendlyException && friendlyException.ValidationException;
+
+            // 只有不是验证异常才处理
+            if (!isValidationException)
+            {
+                // 解析异常处理服务，实现自定义异常额外操作，如记录日志等
+                var globalExceptionHandler = context.HttpContext.RequestServices.GetService<IGlobalExceptionHandler>();
+                if (globalExceptionHandler != null)
+                {
+                    await globalExceptionHandler.OnExceptionAsync(context);
+                }
+            }
+
+            // 排除 WebSocket 请求处理
+            if (context.HttpContext.IsWebSocketRequest()) return;
+
+            // 如果异常在其他地方被标记了处理，那么这里不再处理
+            if (context.ExceptionHandled) return;
+
+            // 解析异常信息
+            var exceptionMetadata = UnifyContext.GetExceptionMetadata(context);
+
+            // 判断是否是 Razor Pages
+            var isPageDescriptor = context.ActionDescriptor is CompiledPageActionDescriptor;
+
+            // 判断是否是验证异常，如果是，则不处理
+            if (isValidationException)
+            {
+                var resultHttpContext = context.HttpContext.Items[nameof(DataValidationFilter) + nameof(AppFriendlyException)];
+                // 读取验证执行结果
+                if (resultHttpContext != null)
+                {
+                    var result = isPageDescriptor
+                        ? (resultHttpContext as PageHandlerExecutedContext).Result
+                        : (resultHttpContext as ActionExecutedContext).Result;
+
+                    // 直接将验证结果设置为异常结果
+                    context.Result = result ?? new BadPageResult(StatusCodes.Status400BadRequest)
+                    {
+                        Code = GetValidationData((context.Exception as AppFriendlyException).ErrorMessage).Message
+                    };
+
+                    // 标记验证异常已被处理
+                    context.ExceptionHandled = true;
+                    return;
+                }
+            }
+
+            // 处理 Razor Pages
+            if (isPageDescriptor)
+            {
+                // 返回自定义错误页面
+                context.Result = new BadPageResult(isValidationException ? StatusCodes.Status400BadRequest : exceptionMetadata.StatusCode)
+                {
+                    Title = isValidationException ? "ModelState Invalid" : ("Internal Server: " + exceptionMetadata.Errors.ToString()),
+                    Code = isValidationException
+                        ? GetValidationData((context.Exception as AppFriendlyException).ErrorMessage).Message
+                        : context.Exception.ToString()
+                };
+            }
+            // Mvc/WebApi
+            else
+            {
+                // 获取控制器信息
+                var actionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
+
+                // 判断是否跳过规范化结果，如果是，则只处理为友好异常消息
+                //if (UnifyContext.CheckFailedNonUnify(actionDescriptor.MethodInfo, out var unifyResult))
+                //{
+                // WebAPI 情况
+                if (Penetrates.IsApiController(actionDescriptor.MethodInfo.DeclaringType))
+                {
+                    // 返回 JsonResult
+                    context.Result = new JsonResult(exceptionMetadata.Errors)
+                    {
+                        StatusCode = exceptionMetadata.StatusCode,
+                    };
+                }
+                else
+                {
+                    // 返回自定义错误页面
+                    context.Result = new BadPageResult(exceptionMetadata.StatusCode)
+                    {
+                        Title = "Internal Server: " + exceptionMetadata.Errors.ToString(),
+                        Code = context.Exception.ToString()
+                    };
+                }
+                //}
+                //else
+                //{
+                //    //// 判断是否支持 MVC 规范化处理
+                //    //if (!UnifyContext.CheckSupportMvcController(context.HttpContext, actionDescriptor, out _)
+                //    //    || UnifyContext.CheckHttpContextNonUnify(context.HttpContext)) return;
+
+                //    // 执行规范化异常处理
+                //    context.Result = unifyResult.OnException(context, exceptionMetadata);
+                //}
+            }
+
+            // 读取异常配置
+            var friendlyExceptionSettings = context.HttpContext.RequestServices.GetRequiredService<IOptions<FriendlyExceptionSettingsOptions>>();
+
+            // 判断是否启用异常日志输出
+            if (friendlyExceptionSettings.Value.LogError == true)
+            {
+                // 创建日志记录器
+                var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Furion.FriendlyException.AppFriendlyException>>();
+
+                // 记录拦截日常
+                logger.LogError(context.Exception, context.Exception.Message);
+            }
+
+            // 打印错误消息
+            PrintToMiniProfiler(context.Exception);
+        }
+
+        /// <summary>
+        /// 打印错误到 MiniProfiler 中
+        /// </summary>
+        /// <param name="exception"></param>
+        internal static void PrintToMiniProfiler(Exception exception)
+        {
+            // 判断是否注入 MiniProfiler 组件
+            if (App.Settings.InjectMiniProfiler != true || exception == null) return;
+
+            // 获取异常堆栈
+            var stackTrace = new StackTrace(exception, true);
+            if (stackTrace.FrameCount == 0) return;
+            var traceFrame = stackTrace.GetFrame(0);
+
+            // 获取出错的文件名
+            var exceptionFileName = traceFrame.GetFileName();
+
+            // 获取出错的行号
+            var exceptionFileLineNumber = traceFrame.GetFileLineNumber();
+
+            // 打印错误文件名和行号
+            if (!string.IsNullOrWhiteSpace(exceptionFileName) && exceptionFileLineNumber > 0)
+            {
+                App.PrintToMiniProfiler("errors", "Locator", $"{exceptionFileName}:line {exceptionFileLineNumber}", true);
+            }
+
+            // 打印完整的堆栈信息
+            App.PrintToMiniProfiler("errors", "StackTrace", exception.ToString(), true);
+        }
+
+
+        /// <summary>
+        /// 获取验证错误信息
+        /// </summary>
+        /// <param name="errors"></param>
+        /// <returns></returns>
+        static ValidationData GetValidationData(object errors)
+        {
+            ModelStateDictionary _modelState = null;
+            object validationResults = null;
+            (string message, string firstErrorMessage, string firstErrorProperty) = (default, default, default);
+
+            // 判断是否是集合类型
+            if (errors is IEnumerable && errors is not string)
+            {
+                // 如果是模型验证字典类型
+                if (errors is ModelStateDictionary modelState)
+                {
+                    _modelState = modelState;
+                    // 将验证错误信息转换成字典并序列化成 Json
+                    validationResults = modelState.Where(u => modelState[u.Key].ValidationState == ModelValidationState.Invalid)
+                            .ToDictionary(u => u.Key, u => modelState[u.Key].Errors.Select(c => c.ErrorMessage).ToArray());
+                }
+                // 如果是 ValidationProblemDetails 特殊类型
+                else if (errors is ValidationProblemDetails validation)
+                {
+                    validationResults = validation.Errors
+                        .ToDictionary(u => u.Key, u => u.Value.ToArray());
+                }
+                // 如果是字典类型
+                else if (errors is Dictionary<string, string[]> dicResults)
+                {
+                    validationResults = dicResults;
+                }
+
+                message = JsonSerializer.Serialize(validationResults, new JsonSerializerOptions
+                {
+                    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                    WriteIndented = true
+                });
+                firstErrorMessage = (validationResults as Dictionary<string, string[]>).First().Value[0];
+                firstErrorProperty = (validationResults as Dictionary<string, string[]>).First().Key;
+            }
+            // 其他类型
+            else
+            {
+                validationResults = firstErrorMessage = message = errors?.ToString();
+            }
+
+            return new ValidationData
+            {
+                ValidationResult = validationResults,
+                Message = message,
+                ModelState = _modelState,
+                FirstErrorProperty = firstErrorProperty,
+                FirstErrorMessage = firstErrorMessage
+            };
+        }
+    }
+        
+
+/// <summary>
+/// 验证信息元数据
+/// </summary>
+public sealed class ValidationData
+    {
+        /// <summary>
+        /// 验证结果
+        /// </summary>
+        /// <remarks>返回字典或字符串类型</remarks>
+        public object ValidationResult { get; internal set; }
+
+        /// <summary>
+        /// 异常消息
+        /// </summary>
+        public string Message { get; internal set; }
+
+        /// <summary>
+        /// 验证状态
+        /// </summary>
+        public ModelStateDictionary ModelState { get; internal set; }
+
+        /// <summary>
+        /// 错误码
+        /// </summary>
+        public object ErrorCode { get; internal set; }
+
+        /// <summary>
+        /// 错误码（没被复写过的 ErrorCode ）
+        /// </summary>
+        public object OriginErrorCode { get; internal set; }
+
+        /// <summary>
+        /// 状态码
+        /// </summary>
+        public int? StatusCode { get; internal set; }
+
+        /// <summary>
+        /// 首个错误属性
+        /// </summary>
+        public string FirstErrorProperty { get; internal set; }
+
+        /// <summary>
+        /// 首个错误消息
+        /// </summary>
+        public string FirstErrorMessage { get; internal set; }
+
+        /// <summary>
+        /// 额外数据
+        /// </summary>
+        public object Data { get; internal set; }
+
+        /// <summary>
+        /// 默认只显示验证错误的首个消息
+        /// </summary>
+        public bool SingleValidationErrorDisplay { get; set; }
+    }
+}

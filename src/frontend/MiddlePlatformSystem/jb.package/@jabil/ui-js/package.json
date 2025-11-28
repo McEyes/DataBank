@@ -1,0 +1,151 @@
+{
+  "_from": "@jabil/ui-js",
+  "_id": "@jabil/ui-js@0.1.1",
+  "_inBundle": false,
+  "_integrity": "sha1-LV9JKwNMTngR0dtUmG+LiTzm0QI=",
+  "_location": "/@jabil/ui-js",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@jabil/ui-js",
+    "name": "@jabil/ui-js",
+    "escapedName": "@jabil%2fui-js",
+    "scope": "@jabil",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://pkgs.dev.azure.com/jblinnersource/ab32dfdb-775d-44da-a767-c4e669a46d63/_packaging/uiux-community/npm/registry/@jabil/ui-js/-/ui-js-0.1.1.tgz",
+  "_shasum": "2d5f492b034c4e7811d1db54986f8b893ce6d102",
+  "_spec": "@jabil/ui-js",
+  "_where": "c:\\MyProject\\PBMS-FE",
+  "author": {
+    "name": "Jabil",
+    "url": "https://www.jabil.com"
+  },
+  "browserslist": [
+    "IE 11",
+    "defaults"
+  ],
+  "bundleDependencies": false,
+  "dependencies": {
+    "bootstrap": "~4.5.0",
+    "bootstrap-colorpicker": "^3.0.0",
+    "bootstrap-datepicker": "^1.0.0",
+    "bootstrap-maxlength": "^1.0.0",
+    "bootstrap-notify": "^3.0.0",
+    "ckeditor": "^4.0.0",
+    "easy-pie-chart": "^2.0.0",
+    "highlightjs": "^9.0.0",
+    "ion-rangeslider": "^2.0.0",
+    "jquery-bootstrap-wizard": "^1.0.0",
+    "jquery-countdown": "^2.0.0",
+    "jquery-scroll-lock": "^3.0.0",
+    "jquery-sparkline": "^2.0.0",
+    "jquery-ui-dist": "^1.0.0",
+    "jquery-validation": "^1.0.0",
+    "jquery.appear": "^1.0.0",
+    "jquery.maskedinput": "^1.0.0",
+    "js-cookie": "^2.0.0",
+    "magnific-popup": "^1.0.0",
+    "popper.js": "^1.0.0",
+    "select2": "^4.0.0",
+    "simplebar": "^5.0.0",
+    "simplemde": "^1.0.0",
+    "slick-carousel": "^1.0.0",
+    "summernote": "^0.8.0"
+  },
+  "deprecated": false,
+  "description": "Jabil - UI JavaScript",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "babel-loader": "^8.0.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "husky": "^4.0.0",
+    "jquery": "^3.0.0",
+    "prettier": "^2.0.0",
+    "pretty-quick": "^3.0.0",
+    "standard-version": "^9.0.0",
+    "webpack": "^5.0.0",
+    "webpack-cli": "^4.0.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "airbnb-base",
+      "prettier"
+    ],
+    "globals": {
+      "window": true,
+      "document": true,
+      "jQuery": true,
+      "$": true
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint --edit \"\"",
+      "pre-commit": "pretty-quick --staged --pattern \"**/*.{md,ts,js,scss,html,json,yml}\""
+    },
+    "skipCI": false
+  },
+  "license": "UNLICENSED",
+  "main": "dist/app.js",
+  "name": "@jabil/ui-js",
+  "peerDependencies": {
+    "@jabil/ui-styles": "^0.1.0",
+    "jquery": "^3.0.0"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "overrides": [
+      {
+        "files": [
+          "*.json",
+          "*.md",
+          "*.yml"
+        ],
+        "options": {
+          "tabWidth": 2,
+          "useTabs": false
+        }
+      }
+    ],
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "all",
+    "useTabs": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dev.azure.com/jblinnersource/UIUX%20Community/_git/ui-js"
+  },
+  "scripts": {
+    "build": "webpack --mode production --progress",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint --fix src/**/*.js",
+    "prettier": "prettier --check \"**/*.{md,ts,js,scss,html,json,yml}\" --ignore-path .gitignore",
+    "prettier:fix": "prettier --write \"**/*.{md,ts,js,scss,html,json,yml}\" --ignore-path .gitignore",
+    "release": "standard-version",
+    "start": "webpack --mode development --progress --watch"
+  },
+  "version": "0.1.1"
+}

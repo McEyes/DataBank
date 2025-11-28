@@ -1,0 +1,9 @@
+﻿为每一场比赛（即每一行数据）创建特征，例如：
+home_team_avg_goals_last_5（主队近5场平均进球）
+away_team_avg_goals_conceded_last_5_away（客队近5个客场平均失球）
+h2h_win_rate_home（曼联在主场对维拉的历史胜率）
+current_league_position_home（曼联当前联赛排名）
+key_player_missing_away（维拉是否有核心球员缺阵，1表示是，0表示否）
+avg_odds_home_win（各大公司主胜赔率的平均值）
+
+

@@ -1,0 +1,200 @@
+:host {
+    display: block;
+    height: 100%;
+    width: 100%;
+
+    .timeline-content {
+        height: 100%;
+        width: 100%;
+        padding-top: 40px;
+        overflow-y: auto;
+
+        .t-item {
+            width: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            white-space: nowrap;
+
+            .date {
+                position: relative;
+                top: -20px;
+                font-family: Roboto;
+                font-weight: 400;
+                font-size: 14px;
+                color: #333;
+            }
+
+            .circle {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: #F6F6F6;
+                margin: 0 20px;
+                margin-bottom: 40px;
+
+                &>div {
+                    width: 32px;
+                    height: 32px;
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat;
+                }
+
+                .s1 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline1.png');
+                }
+
+                .s2 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline2.png');
+                }
+
+                .s3 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline3.png');
+                }
+
+                .s4 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline4.png');
+                }
+
+                .s5 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline5.png');
+                }
+
+                &::after {
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    top: 60px;
+                    width: 2px;
+                    height: 40px;
+                    background: #F6F6F6;
+                }
+
+                &.noline::after {
+                    display: none;
+                }
+            }
+
+            .step {
+                position: relative;
+                top: -22px;
+
+                .name {
+                    font-family: Roboto;
+                    font-weight: bold;
+                    font-size: 16px;
+                    color: #333;
+                    margin-bottom: 10px;
+                }
+
+                .tag {
+                    display: flex;
+                    align-items: center;
+                    background: #F6F6F6;
+                    font-family: Roboto;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: #333;
+
+                    .pic {
+                        display: inline-block;
+                        text-align: center;
+                        width: 42px;
+                        height: 100%;
+                        line-height: 26px;
+                        background: #F0F0F0;
+                    }
+
+                    .pic-name {
+                        padding: 0 10px;
+                        height: 100%;
+                    }
+                }
+            }
+
+            &.active {
+                .circle {
+                    background: #7FBA00;
+
+                    &::after {
+                        background: #7FBA00;
+                    }
+                }
+
+                .s1 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline1-active.png');
+                }
+
+                .s2 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline2-active.png');
+                }
+
+                .s3 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline3-active.png');
+                }
+
+                .s4 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline4-active.png');
+                }
+
+                .s5 {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/timeline5-active.png');
+                }
+
+            }
+        }
+    }
+
+    .form-item {
+        width: calc(50% - 12px);
+
+        p-calendar {
+            width: 100%;
+
+            ::ng-deep {
+                .p-calendar {
+                    width: 100%;
+
+                    input {
+                        font-size: 14px;
+                        &::placeholder {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+        p-dropdown {
+            width: 100%;
+
+            ::ng-deep {
+                .p-dropdown {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .item-title {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    p-table {
+        p-dropdown {
+            width: 100%;
+
+            ::ng-deep {
+                .p-dropdown {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

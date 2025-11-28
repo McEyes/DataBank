@@ -1,0 +1,27 @@
+body {
+	.p-contextmenu {
+		width: 12.5em;
+		font-size: 14px;
+		background-color: $white;
+		border: 1px solid $border-color;
+		border-radius: 4px;
+
+		.p-submenu-list {
+			background-color: $white;
+			border-radius: 4px;
+			box-shadow: none;
+		}
+
+		.p-menu-separator {
+			border: 1px solid $body-bg-dark;
+			border-width: 1px 0 0 0;
+		}
+
+		.pi-angle-right {
+			position: absolute;
+			top: 50%;
+			right: 22px;
+			margin-top: -0.5em;
+		}
+	}
+}

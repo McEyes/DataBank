@@ -1,0 +1,140 @@
+<div class="breadcrumbs">
+  <div class="left">
+    <span>
+      <i class="pi pi-home"></i>
+      {{'menu.data.bank' | translate}}
+    </span>
+
+    <span>
+      <i class="pi pi-angle-right"></i>
+      <span>
+        {{'menu.data.topic.store' | translate}}
+      </span>
+    </span>
+    
+
+    <span>
+      <i class="pi pi-angle-right"></i> 
+      <span>{{'menu.permission.approval' | translate}}</span>
+    </span>
+  </div>
+
+  <div class="right"></div>
+</div>
+<div *ngIf="currPanel === 'list'" class="datatable-box">
+  <div class="sys-search-form">
+    <div class="form-item">
+      <label>{{'field.topic.name'| translate}}</label>
+      <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+        [(ngModel)]="queryParams.topicName" />
+    </div>
+    <div class="form-item">
+      <label>{{'status'| translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="statusList"
+        [placeholder]="'input.select.please' | translate" [(ngModel)]="queryParams.status" optionLabel="name"
+        [filter]="true" optionValue="id" [showClear]="true"></p-dropdown>
+    </div>
+    <div class="form-item">
+      <label>{{'field.applicant'| translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+        [(ngModel)]="queryParams.ntid" [placeholder]="'input.select.please' | translate"
+        [virtualScroll]="userList.length > 38" [virtualScrollItemSize]="38" [filter]="true" filterBy="name"
+        optionLabel="name" [showClear]="true" optionValue="id"></p-dropdown>
+    </div>
+
+    <div class="form-item btn">
+      <div class="da-button search" (click)="onQuery()">{{'operate.search' | translate}}</div>
+      <div class="da-button" (click)="onReset()">{{'operate.reset' | translate}}</div>
+    </div>
+  </div>
+  <div class="xd-grey-box" style="height: calc(100% - 50px)">
+    <div class="tableBox" style="height: calc(100% - 40px)">
+      <p-table styleClass="sys-table" [loading]="loading" [scrollable]="true" scrollHeight="flex" [value]="pageData"
+        [resizableColumns]="true" columnResizeMode="expand" dataKey="code" [tableStyle]="{ 'min-width': '100%' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th class="xd-theader-white" pResizableColumn>
+              {{'field.topic.name' | translate}}
+            </th>
+            <th class="xd-theader-white" pResizableColumn>
+              {{'field.status' | translate}}
+            </th>
+            <th class="xd-theader-white" pResizableColumn>
+              {{'field.applicant' | translate}}
+            </th>
+            <th class="xd-theader-white" pResizableColumn>
+              {{'info.audit.content' | translate}}
+            </th>
+            <th style="max-width: 150px;" class="xd-theader-white" pFrozenColumn alignFrozen="right">
+              {{'label.operate' | translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td class="xd-tbody text-overflow inline-block" [title]="item.topicName">
+              {{ item.topicName }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block">
+              <p-tag *ngIf="item.status === 'New'" severity="primary"
+                [value]="statusObj[item.status] | translate"></p-tag>
+              <p-tag *ngIf="item.status === 'Approved'" severity="success"
+                [value]="statusObj[item.status] | translate"></p-tag>
+              <p-tag *ngIf="item.status === 'Rejected'" severity="danger"
+                [value]="statusObj[item.status] | translate"></p-tag>
+            </td>
+            <td class="xd-tbody text-overflow inline-block">
+              {{ item.userDisplayName }}
+            </td>
+            <td class="xd-tbody text-overflow inline-block">
+              {{ item.remark }}
+            </td>
+            <td style="max-width: 150px;" class="xd-tbody" pFrozenColumn alignFrozen="right">
+              <div *ngIf="item.status === 'New'" class="table-button-box">
+                <div class="table-button" (click)="approve(item)">
+                  {{'operate.approve' | translate}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div style="width: 100%" [hidden]="!(total > 0)">
+      <nz-pagination class="flex justify-content-center" [nzPageIndex]="queryParams.pageNum" [nzTotal]="total"
+        nzShowSizeChanger [nzPageSize]="queryParams.pageSize" [nzShowTotal]="rangeTemplate"
+        (nzPageIndexChange)="nzPageIndexChange($event)" (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+      <ng-template #rangeTemplate let-range="range" let-total>
+        {{ queryParams.pageNum + (queryParams.pageNum - 1) * queryParams.pageSize }}-{{
+        queryParams.pageNum * queryParams.pageSize }} {{'label.pagination.of' | translate}} {{ total }}
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog [header]="'label.approval' | translate" [(visible)]="approvalData.dialogVisible" [style]="{ width: '550px' }">
+  <level-one-panel style="height:100%">
+    <div class="contents-form-item" style="display: flex;align-items: flex-start;width: 100%;margin-bottom: 10px;">
+      <textarea [ngClass]="{ 'ng-invalid':  !approvalData.remark }" class="input-text"
+        [ngStyle]="{'background-color': '#F7F9FD', 'height': 'auto', 'width': '100%'}" id="float-input"
+        [placeholder]="'info.audit.content' | translate" rows="5" cols="30" [(ngModel)]="approvalData.remark"
+        pInputTextarea></textarea>
+    </div>
+
+  </level-one-panel>
+  <div class="ui-dialog-buttonpane" style="text-align: center;margin-top: 10px;">
+    <button type="button" pButton (click)="approvalData.dialogVisible=false" [label]="'cancel'|translate"></button>
+    <button style="margin: 0 10px;" type="button" pButton (click)="applyPermission(true)"
+      [label]="'agree'|translate"></button>
+    <button type="button" pButton (click)="applyPermission(false)" [label]="'reject'|translate"></button>
+  </div>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+<p-toast></p-toast>

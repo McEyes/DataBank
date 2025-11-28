@@ -1,0 +1,7 @@
+LOAD DATABASE
+  FROM mysql://jabil:jabil123@cnhuam0itlake20/dataxaccess 
+  INTO postgresql://jabilbus:jabilbus1991@cnhuam0itstg82/DataAsset
+  
+WITH include drop, create tables, create indexes, reset sequences, foreign keys
+
+SET search_path TO 'public';

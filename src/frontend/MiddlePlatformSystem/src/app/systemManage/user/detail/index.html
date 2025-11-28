@@ -1,0 +1,33 @@
+<div class="content">
+  <level-one-panel [titleName]="(titleType[titleName] | translate) +' '+ ('field.source.name' | translate)">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="rightBox">
+        <div class="form contents-form sys-form" [ngClass]="currLang">
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'field.user.name' | translate}}</label>
+            <p-dropdown
+                [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="userList"
+                [(ngModel)]="formData.id" [placeholder]="'input.select.please' | translate" [virtualScroll]="true" [virtualScrollItemSize]="38"
+                [ngClass]="{'ng-invalid': invalid && !formData.id}" [filter]="true" filterBy="name"
+                appendTo="body" class="w-100" optionLabel="name"
+                optionValue="id"></p-dropdown>
+          </div>
+          <div class="form-item">
+            <label><span class="valid-pre">*</span>{{'label.user.role' | translate}}</label>
+            <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="roleList"
+              [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.roleId"
+               appendTo="body" class="w-100" optionLabel="name" optionValue="id" [ngClass]="{ 'ng-invalid': invalid && !formData.roleId }"></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="backClick()">{{'operate.back' | translate}}</div>
+    <div class="da-button save" (click)="saveClick()" *ngIf="!noEdit && titleName != 'look'">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+  <p-toast key="key"></p-toast>
+</div>
+<jabil-loading *ngIf="loading"></jabil-loading>

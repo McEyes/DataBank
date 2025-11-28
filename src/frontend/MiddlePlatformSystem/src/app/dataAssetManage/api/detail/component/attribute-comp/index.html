@@ -1,0 +1,147 @@
+<div class="form sys-form" [ngClass]="currLang">
+  <div class="form-item">
+    <label><span class="valid-pre">*</span>{{ 'field.api.name' | translate }}</label>
+    <input
+      type="text"
+      class="input-text"
+      pInputText
+      [placeholder]="'input.api.name' | translate"
+      [(ngModel)]="attributeForm.apiName"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm.apiName }"
+      (blur)="onInput($event)" />
+  </div>
+  <div class="form-item">
+    <label><span class="valid-pre">*</span>{{ 'field.api.version' | translate }}</label>
+    <input
+      type="text"
+      class="input-text"
+      pInputText
+      [placeholder]="'input.please' | translate"
+      [(ngModel)]="attributeForm.apiVersion"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm.apiVersion }"
+      (blur)="onInput($event)" />
+  </div>
+  <div class="form-item">
+    <label><span class="valid-pre">*</span>{{ 'field.api.url' | translate }}</label>
+    <input
+      type="text"
+      class="input-text"
+      pInputText
+      [placeholder]="'input.api.url' | translate"
+      [(ngModel)]="attributeForm.apiUrl"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm.apiUrl }"
+      (blur)="onInput($event)" />
+  </div>
+  <div class="form-item">
+    <label><span class="valid-pre">*</span>{{ 'field.request.type' | translate }}</label>
+    <p-dropdown
+      (onChange)="onChange($event)"
+      [emptyMessage]="'no.results.found' | translate"
+      appendTo="body"
+      class="dropdown-text"
+      [options]="dict.dataReqMethod"
+      [(ngModel)]="attributeForm.reqMethod"
+      [placeholder]="'input.select.please' | translate"
+      optionLabel="text"
+      optionValue="value"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm.reqMethod }"></p-dropdown>
+  </div>
+  <div class="form-item">
+    <label><span class="valid-pre">*</span>{{ 'field.return.format' | translate }}</label>
+    <p-dropdown
+      (onChange)="onChange($event)"
+      [emptyMessage]="'no.results.found' | translate"
+      appendTo="body"
+      class="dropdown-text"
+      [options]="dict.dataResType"
+      [(ngModel)]="attributeForm.resType"
+      [placeholder]="'input.select.please' | translate"
+      optionLabel="text"
+      optionValue="value"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm.resType }"></p-dropdown>
+  </div>
+  <div class="form-item" style="align-items: flex-start; width: 100%">
+    <label>{{ 'field.ip.black.list' | translate }}</label>
+    <textarea
+      rows="5"
+      cols="30"
+      class="remark-text"
+      pInputTextarea
+      [placeholder]="'input.api.remark' | translate"
+      [(ngModel)]="attributeForm.deny"></textarea>
+  </div>
+  
+  <div class="form-item" style="padding-top: 10px">
+    <label><span class="valid-pre">*</span>{{ 'status' | translate }}</label>
+    <p-inputSwitch
+      (onChange)="onChange($event)"
+      [(ngModel)]="attributeForm.status"
+      trueValue="2"
+      falseValue="1"></p-inputSwitch>
+  </div>
+  <div class="form-item" style="align-items: flex-start; width: 100%">
+    <label><span class="valid-pre">*</span>{{ 'remark' | translate }}</label>
+    <textarea
+      (blur)="onInput($event)"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm?.remark }"
+      rows="5"
+      cols="30"
+      class="remark-text"
+      pInputTextarea
+      [placeholder]="'input.please' | translate"
+      [(ngModel)]="attributeForm.remark"></textarea>
+  </div>
+
+  <!-- API限制 -->
+  <div
+    class="form-item"
+    style="width: 100%; font-size: 18px; padding: 20px 0px 10px 140px">
+    {{'label.api.limitation' | translate}}
+  </div>
+   <!-- pageSizeLimit -->
+   <div class="form-item" >
+    <label>{{ 'field.page.size.limit' | translate }}</label>
+    <nz-input-number
+      style="width: calc(100% - 130px); background-color: #fff !important"
+      [(ngModel)]="attributeForm.executeConfig.pageSizeLimit"
+      [nzMin]="0"
+      [nzStep]="1"
+      [nzDisabled]="formType == 'look'"></nz-input-number>
+  </div>
+  <!-- Times -->
+  <div class="form-item" >
+    <label><span class="valid-pre">*</span>{{ 'field.times' | translate }}</label>
+    <nz-input-number
+      style="width: calc(100% - 130px); background-color: #fff !important"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm.rateLimit.times }"
+      [(ngModel)]="attributeForm.rateLimit.times"
+      [nzMin]="0"
+      [nzStep]="1"
+      [nzDisabled]="formType == 'look'"></nz-input-number>
+  </div>
+  <!-- Seconds -->
+  <div class="form-item" >
+    <label><span class="valid-pre">*</span>{{ 'field.seconds' | translate }}</label>
+    <p-dropdown
+      (onChange)="onChange($event)"
+      [emptyMessage]="'no.results.found' | translate"
+      appendTo="body"
+      class="dropdown-text"
+      [options]="dict.secondsList"
+      [(ngModel)]="attributeForm.rateLimit.seconds"
+      optionLabel="text"
+      optionValue="value"
+      [ngClass]="{ 'ng-invalid': attributeInvalid && !attributeForm.rateLimit.seconds }"></p-dropdown>
+  </div>
+  
+  <!-- Enabled -->
+  <div class="form-item" >
+    <label><span class="valid-pre">*</span>{{ 'field.enabled' | translate }}</label>
+    <p-inputSwitch
+      (onChange)="onChange($event)"
+      [(ngModel)]="attributeForm.rateLimit.enable"
+      trueValue="1"
+      falseValue="0"></p-inputSwitch>
+  </div>
+ 
+</div>

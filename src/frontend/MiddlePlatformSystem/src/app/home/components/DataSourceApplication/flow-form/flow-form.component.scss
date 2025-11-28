@@ -1,0 +1,25 @@
+    button {
+      transition: background-color 0.3s ease;
+    }
+
+    .bg-gray-100 {
+      transition: all 0.5s ease;
+    }
+
+    .bg-gray-100.loading {
+      background-color: #e9ecef;
+    }
+
+    .content {
+      background-color: #e9ecef;
+    }
+
+    .da-button {
+      margin: 0px 5px;
+      padding: 1px 10px;
+    }
+
+    .file-upload-button {
+      margin: 0px 5px;
+      padding: 1px 10px;
+    }

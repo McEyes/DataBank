@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  height: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  --base-color: #147AD9;
+  --grey-color: #f5f5f5;
+  --white-color: #fff;
+  --black-color: #000;
+  --bg-color: #f0f2f5;
+  --red-color: #D32F2F;
+  --success1-color: #e4f8f0;
+  --success2-color: #1ea97c;
+  --danger1-color: #ffe7e6;
+  --danger2-color: #ff5757;
+  --warn1-color: #fff2e2;
+  --warn2-color: #cc8925;
+  --color1: #f3f8fd;
+}
+
+#scale {
+  position: absolute;
+}
+
+.main-content {
+  position: absolute;
+  overflow: hidden;
+}

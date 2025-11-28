@@ -1,0 +1,53 @@
+* {
+  font-family: Roboto;
+}
+
+.l1-box {
+  background: #F7F9FD;
+  padding: 10px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.l1-title {
+  width: 100%;
+  padding: 10px;
+  color: #414042;
+  font-family: 'Noto Sans SC';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
+}
+
+.l1-inner {
+  width: 100%;
+  height: calc(100% - 30px);
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px !important;
+    height: 5px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #f1f2f2;
+    background-color: #f1f2f2 !important;
+    border-radius: 3px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px !important;
+    -webkit-box-shadow: inset 0 0 6px #999 !important;
+    background-color: #999 !important;
+  }
+}
+
+.l1-bottom {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F7F9FD;
+}

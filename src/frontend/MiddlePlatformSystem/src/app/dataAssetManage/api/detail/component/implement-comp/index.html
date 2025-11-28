@@ -1,0 +1,306 @@
+<div class="implementForm-main-form sys-form">
+  <div class="form-item">
+    <label [class]="lang === 'en' ? 'break' : ''"><span class="valid-pre">*</span>{{ 'field.collocation.method' | translate }}</label>
+    <p-dropdown
+      [emptyMessage]="'no.results.found' | translate"
+      [disabled]="formType == 'look'"
+      class="dropdown-text"
+      [showClear]="true"
+      [options]="dict.dataConfigType"
+      [(ngModel)]="implementForm.executeConfig.configType"
+      [placeholder]="'input.select.please' | translate"
+      optionLabel="text"
+      optionValue="value"
+      appendTo="body"
+      panelStyleClass="smallWidth"
+      (onChange)="onChange($event)"
+      [ngClass]="{ 'ng-invalid': implementFormInvalid && !implementForm.executeConfig.configType }"></p-dropdown>
+  </div>
+  <div class="form-item">
+    <label><span class="valid-pre">*</span>{{ 'field.data.source' | translate }}</label>
+    <p-dropdown
+      [emptyMessage]="'no.results.found' | translate"
+      [disabled]="formType == 'look'"
+      class="dropdown-text"
+      [showClear]="true"
+      [options]="sourceList"
+      appendTo="body"
+      [(ngModel)]="implementForm.executeConfig.sourceId"
+      (ngModelChange)="selectSource($event)"
+      [placeholder]="'input.select.please' | translate"
+      optionLabel="sourceName"
+      optionValue="id"
+      [filter]="true"
+      panelStyleClass="smallWidth"
+      [ngClass]="{ 'ng-invalid': implementFormInvalid && !implementForm.executeConfig.sourceId }"></p-dropdown>
+  </div>
+  <div class="form-item" [hidden]="isShowSelect == '2'">
+    <label><span class="valid-pre">*</span>{{ 'field.database.table' | translate }}</label>
+    <p-dropdown
+      [emptyMessage]="'no.results.found' | translate"
+      [disabled]="formType == 'look'"
+      class="dropdown-text"
+      [showClear]="true"
+      appendTo="body"
+      [options]="sourceTableList"
+      [(ngModel)]="implementForm.executeConfig.tableId"
+      (ngModelChange)="selectTable($event)"
+      [placeholder]="'input.select.please' | translate"
+      optionLabel="tableName"
+      optionValue="id"
+      panelStyleClass="smallWidth"
+      [filter]="true"
+      [ngClass]="{ 'ng-invalid': implementFormInvalid && !implementForm.executeConfig.tableId }"></p-dropdown>
+  </div>
+</div>
+<div class="implementForm-table">
+  <div style="width: 100%" [hidden]="!(isShowSelect == '1')  ">
+    <div class="implementForm-table-title">{{ 'label.field.list' | translate }}</div>
+    <div class="implementForm-table-box">
+      <p-table
+        [loading]="sourceTableLoading"
+        [value]="sourceTableColumList"
+        dataKey="value"
+        [scrollable]="true"
+        scrollHeight="300px"
+        styleClass="sys-table"
+        [tableStyle]="{ 'min-width': '100%' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th
+              class="xd-theader-white"
+              pFrozenColumn
+              alignFrozen="left"
+              style="max-width: 55px; z-index: 999 !important">
+              {{ 'field.number' | translate }}
+            </th>
+            <th
+              pFrozenColumn
+              alignFrozen="left"
+              class="xd-theader-white"
+              style="min-width: 200px; max-width: 300px; z-index: 999 !important">
+              {{ 'field.column.name' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.data.type' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.data.length' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.data.accuracy' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.decimal.places' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.primary.key' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.null' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.field.number' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.column.default.value' | translate }}
+            </th>
+            <th class="xd-theader-white" style="min-width: 200px; max-width: 300px">
+              {{ 'field.column.comment' | translate }}
+            </th>
+            <th
+              class="xd-theader-white"
+              style="min-width: 200px; max-width: 300px; display: inline-flex; column-gap: 5px">
+              <p-checkbox
+                [(ngModel)]="allReqParams"
+                [binary]="true"
+                (onChange)="onChangeAllParams($event,'req')"></p-checkbox>
+              {{ 'field.as.request.parameter' | translate }}
+            </th>
+            <th
+              class="xd-theader-white"
+              style="min-width: 200px; max-width: 300px; display: inline-flex; column-gap: 5px">
+              <p-checkbox
+                [(ngModel)]="allResParams"
+                [binary]="true"
+                (onChange)="onChangeAllParams($event,'res')"></p-checkbox>
+              {{ 'field.as.response.parameter' | translate }}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-colum>
+          <tr>
+            <td
+              class="xd-tbody"
+              pFrozenColumn
+              alignFrozen="left"
+              style="max-width: 55px; z-index: 1">
+              {{ colum.index }}
+            </td>
+            <td
+              pFrozenColumn
+              alignFrozen="left"
+              class="xd-tbody"
+              style="min-width: 200px; max-width: 300px; z-index: 1">
+              {{colum.colName}}
+              <!-- <input
+                [disabled]="true"
+                class="index-text-class"
+                pInputText
+                type="text"
+                class="index-text-class"
+                [(ngModel)]="colum.colName "
+                pInputText
+                [pTooltip]="colum.colName"
+                tooltipPosition="top"
+                (blur)="onInput($event)" /> -->
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <p-dropdown
+                [emptyMessage]="'no.results.found' | translate"
+                [disabled]="formType == 'look'"
+                appendTo="body"
+                [options]="dataTypeList"
+                class="index-text-class"
+                (onChange)="onBlur($event)"
+                [(ngModel)]="colum.dataType"
+                optionLabel="itemValue"
+                optionValue="itemText"></p-dropdown>
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <input
+                [disabled]="formType == 'look'"
+                class="index-text-class"
+                pInputText
+                type="number"
+                class="index-text-class"
+                [(ngModel)]="colum.dataLength "
+                (blur)="onInput($event)" />
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <input
+                [disabled]="formType == 'look'"
+                class="index-text-class"
+                pInputText
+                type="text"
+                class="index-text-class"
+                [(ngModel)]="colum.dataPrecision "
+                (blur)="onInput($event)" />
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <input
+                [disabled]="formType == 'look'"
+                class="index-text-class"
+                pInputText
+                type="number"
+                class="index-text-class"
+                [(ngModel)]="colum.dataScale "
+                (blur)="onInput($event)" />
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <p-dropdown
+                [emptyMessage]="'no.results.found' | translate"
+                [disabled]="formType == 'look'"
+                appendTo="body"
+                [options]="isOrNoList"
+                class="index-text-class"
+                (onChange)="onBlur($event)"
+                [(ngModel)]="colum.colKey"
+                optionLabel="label"
+                optionValue="value"></p-dropdown>
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <p-dropdown
+                [emptyMessage]="'no.results.found' | translate"
+                [disabled]="formType == 'look'"
+                appendTo="body"
+                [options]="isOrNoList"
+                class="index-text-class"
+                (onChange)="onBlur($event)"
+                [(ngModel)]="colum.nullable"
+                optionLabel="label"
+                optionValue="value"></p-dropdown>
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <input
+                [disabled]="formType == 'look'"
+                class="index-text-class"
+                pInputText
+                type="text"
+                class="index-text-class"
+                [(ngModel)]="colum.colPosition "
+                (blur)="onInput($event)" />
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <input
+                [disabled]="formType == 'look'"
+                class="index-text-class"
+                pInputText
+                type="text"
+                class="index-text-class"
+                [(ngModel)]="colum.dataDefault"
+                pInputText
+                [pTooltip]="colum.dataDefault"
+                tooltipPosition="top"
+                (blur)="onInput($event)" />
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <input
+                [disabled]="formType == 'look'"
+                class="index-text-class"
+                pInputText
+                type="text"
+                class="index-text-class"
+                pInputText
+                [pTooltip]="colum.colComment"
+                tooltipPosition="top"
+                [(ngModel)]="colum.colComment"
+                (blur)="onInput($event)" />
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <p-checkbox
+                [disabled]="formType == 'look'"
+                [(ngModel)]="colum.checked"
+                [binary]="true"
+                (onChange)="onCheckChange($event,colum)"></p-checkbox>
+            </td>
+            <td class="xd-tbody" style="min-width: 200px; max-width: 300px">
+              <p-checkbox
+                [disabled]="formType == 'look'"
+                [(ngModel)]="colum.resParams"
+                [binary]="true"
+                (onChange)="onCheckChange($event,colum)"></p-checkbox>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  <div class="implementForm-table-box" [hidden]="!(isShowSelect == '2')">
+    <div
+      *ngIf="consultValue"
+      style="
+        width: 100%;
+        height: 40px;
+        background-color: #eee;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding-left: 20px;
+      ">
+      {{consultValue}}
+    </div>
+    <div id="implement-mysql-edit" style="width: 100%; height: 500px; font-size: 16px"></div>
+  </div>
+  <div
+    class=""
+    style="width: 100%; display: flex; align-items: center; column-gap: 10px"
+    [hidden]="!(isShowSelect == '2')">
+    <!-- <div class="da-button" (click)="SQLQuery()">{{ 'dataapi.sql.analysis' | translate }}</div> -->
+    <div class="da-button" (click)="formatCode()">{{ 'Sql.Format' | translate }}</div>
+  </div>
+</div>
+<p-toast></p-toast>
+<jabil-loading *ngIf="loading"></jabil-loading>

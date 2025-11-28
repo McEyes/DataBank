@@ -1,0 +1,439 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataTopicStore.Application</name>
+    </assembly>
+    <members>
+        <member name="T:DataTopicStore.Application.ApproveFlow.Dtos.BMApproveFlowDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.CreateEntity`1.CreateTime">
+            <summary>
+            createTime
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.CreateEntity`1.CreateBy">
+            <summary>
+            createBy
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.AuditEntity`1.UpdateTime">
+            <summary>
+            updateTime
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.AuditEntity`1.UpdateBy">
+            <summary>
+            updateBy
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.PageEntity`1.Keyword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.ICreateEntity`1.CreateTime">
+            <summary>
+            createTime
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.ICreateEntity`1.CreateBy">
+            <summary>
+            createBy
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.IAuditEntity`1.UpdateTime">
+            <summary>
+            updateTime
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.IAuditEntity`1.UpdateBy">
+            <summary>
+            updateBy
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.ISoftDeleteEntity`1.DeleteTime">
+            <summary>
+            updateTime
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.IStatusEntity.Status">
+            <summary>
+            status 0-unuse 1-use
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Entities.IStatusEntity.Remark">
+            <summary>
+            remark
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:DataTopicStore.Application.ApproveFlow.Enums.BMFlowAction.Approval" -->
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.BMFlowAction.Reject">
+            <summary>
+            拒绝，驳回
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.BMFlowAction.RejectEnd">
+            <summary>
+            RejectEnd，流程结束
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Application.ApproveFlow.Enums.FlowStatus">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowStatus.Draft">
+            <summary>
+            草稿
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowStatus.Running">
+            <summary>
+            运行中
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowStatus.Cancel">
+            <summary>
+            取消，申请人取消，废弃状态，流程结束
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowStatus.Stop">
+            <summary>
+            异常终止
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowStatus.Completed">
+            <summary>
+            正常结束
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            活动状态
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.None">
+            <summary>
+            未到达
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.Running">
+            <summary>
+            已到达待审批
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.Approval">
+            <summary>
+            已审批
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.Transfer">
+            <summary>
+            已经转办
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.Reject">
+            <summary>
+            拒绝，驳回
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.Cancel">
+            <summary>
+            已取消，申请人取消
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.RejectStart">
+            <summary>
+            驳回到开始
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.ActivityStatus.Stop">
+            <summary>
+            异常终止
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Application.ApproveFlow.Enums.FlowAction">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.Start">
+            <summary>
+            启动
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.Submit">
+            <summary>
+            提交
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.Approval">
+            <summary>
+            审批
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.Transfer">
+            <summary>
+            转办运行中
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.Reject">
+            <summary>
+            拒绝，驳回
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.RejectStart">
+            <summary>
+            RejectStart
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.RejectEnd">
+            <summary>
+            RejectEnd，流程结束
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowAction.End">
+            <summary>
+            正常结束
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus.Todo">
+            <summary>
+            待审批
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus.Audit">
+            <summary>
+            已审批
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus.Transfer">
+            <summary>
+            已转办
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus.Reject">
+            <summary>
+            已驳回
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus.Cancel">
+            <summary>
+            已取消，申请人取消
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus.RejectStart">
+            <summary>
+            已驳回到开始节点
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.TodoStatus.Error">
+            <summary>
+            异常停止
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Application.ApproveFlow.Enums.FlowNoticeType">
+            <summary>
+            draft
+            running
+            Stop
+            Turn to do
+            unusual
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowNoticeType.Todo">
+            <summary>
+            Todo 待办
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowNoticeType.Email">
+            <summary>
+            Email邮件
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowNoticeType.SMS">
+            <summary>
+            短信SMS
+            </summary>
+        </member>
+        <member name="F:DataTopicStore.Application.ApproveFlow.Enums.FlowNoticeType.Mobile">
+            <summary>
+            Mobile移动端
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService">
+            <summary>
+            data auth apply 流程接口代理
+            </summary>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.GetFlowTempInfo(System.String)">
+            <summary>
+            发起流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.InitFlowAsync(DataTopicStore.Application.ApproveFlow.Dto.StartFlowDto)">
+            <summary>
+            发起流程
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.DeleteAsync(System.String)">
+            <summary>
+            发起失败时删除流程
+            </summary>
+            <param name="applyFormNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.DeleteAsync(System.Guid)">
+            <summary>
+            发起失败时删除流程
+            </summary>
+            <param name="applyFormNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.SendApproveAsync(DataTopicStore.Application.ApproveFlow.Dto.FlowAuditDto)">
+            <summary>
+            流程审批，通用审批
+            </summary>
+            <param name="applyFormNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.SendRejectAsync(DataTopicStore.Application.ApproveFlow.Dto.FlowAuditDto)">
+            <summary>
+            驳回
+            </summary>
+            <param name="applyFormNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.SendRejectEndAsync(DataTopicStore.Application.ApproveFlow.Dto.FlowAuditDto)">
+            <summary>
+            拒绝
+            </summary>
+            <param name="applyFormNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.SendRejectStartAsync(DataTopicStore.Application.ApproveFlow.Dto.FlowAuditDto)">
+            <summary>
+            驳回到开始
+            </summary>
+            <param name="applyFormNo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataTopicStore.Application.ApproveFlow.FlowApplyProxyService.GetFlowInstAsync(System.Guid)">
+            <summary>
+            获取审批流信息
+            </summary>
+            <param name="flowId"></param>
+            <returns></returns>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StartFlowDto.FlowTempId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StartFlowDto.FormNo">
+            <summary>
+            为空时，根据template规则自动生成
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StartFlowDto.Applicant">
+            <summary>
+            申请人ID
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StartFlowDto.ApplicantName">
+            <summary>
+            申请人名称
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StartFlowDto.ActApprovers">
+            <summary>
+            指定节点审批人
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StaffInfo.Ntid">
+            <summary>
+            Ntid
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StaffInfo.Name">
+            <summary>
+            显示名称：
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.StaffInfo.Department">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.FlowAuditDto.ActOperate">
+            <summary>
+            审批动作
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.FlowAuditDto.AuditContent">
+            <summary>
+            审批内容
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.FlowTemplateDto.FlowNo">
+            <summary>
+            流程编号模板
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.ApproveFlow.Dto.FlowTempActDto.HitTimes">
+            <summary>
+            几人通过
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.Common.Dtos.IHttpResult.Extras">
+            <summary>
+            附加数据
+            </summary>
+        </member>
+        <member name="P:DataTopicStore.Application.Common.Dtos.HttpResult.Extras">
+            <summary>
+            附加数据
+            </summary>
+        </member>
+        <member name="T:DataTopicStore.Application.SystemAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:DataTopicStore.Application.SystemAppService.GetDescription(System.Int32[])">
+            <summary>
+            获取系统描述
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

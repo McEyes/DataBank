@@ -1,0 +1,221 @@
+{
+  "eventType": "COMPLETE",
+  "eventTime": "2025-10-10T09:00:00Z",
+  "run": {
+    "runId": "bbfee40d-9c23-46e1-bcef-f4191449cb28",
+    "facets": null
+  },
+  "job": {
+    "namespace": "datatopicstore",
+    "name": "topic20251107002",
+    "facets": null
+  },
+  "inputs": [
+    {
+      "namespace": "datatopicstore",
+      "name": "trace_finance.std_price",
+      "facets": {
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "standard_price",
+              "type": "decimal",
+              "description": ""
+            },
+            {
+              "name": "per",
+              "type": "decimal",
+              "description": ""
+            }
+          ]
+        }
+      },
+      "inputFacets": null,
+      "outputFacets": null
+    },
+    {
+      "namespace": "datatopicstore",
+      "name": "trace_emrb.tp_global_mrb_tool",
+      "facets": {
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "total_price",
+              "type": "decimal",
+              "description": ""
+            }
+          ]
+        }
+      },
+      "inputFacets": null,
+      "outputFacets": null
+    },
+    {
+      "namespace": "datatopicstore",
+      "name": "trace_sappo.tb_sap_movement2",
+      "facets": {
+        "schema": {
+          "_producer": "https://my-test-job",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/OpenLineage.json#/definitions/SchemaDatasetFacet",
+          "fields": [
+            {
+              "name": "postng_date",
+              "type": "DATETIME",
+              "description": ""
+            },
+            {
+              "name": "profit_center",
+              "type": "VARCHAR",
+              "description": ""
+            },
+            {
+              "name": "quantity",
+              "type": "INT",
+              "description": ""
+            }
+          ]
+        }
+      },
+      "inputFacets": null,
+      "outputFacets": null
+    }
+  ],
+  "outputs": [
+    {
+      "namespace": "datatopicstore",
+      "name": "_default_.topic20251107002",
+      "facets": {
+        "documentation": null,
+        "schema": {
+          "_producer": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "fields": [
+            {
+              "name": "date",
+              "type": "datetime",
+              "description": "date"
+            },
+            {
+              "name": "profit_center",
+              "type": "VARCHAR",
+              "description": "profit_center"
+            },
+            {
+              "name": "scrap",
+              "type": "double",
+              "description": "scrap"
+            },
+            {
+              "name": "amount",
+              "type": "decimal",
+              "description": "amount"
+            },
+            {
+              "name": "cost",
+              "type": "double",
+              "description": "cost"
+            }
+          ]
+        },
+        "dataSource": null,
+        "description": null,
+        "lifecycleStateChange": null,
+        "columnLineage": {
+          "_producer": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "_schemaURL": "https://openlineage.io/spec/1-0-5/SchemaDatasetFacet.json",
+          "fields": {
+            "date": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_sappo.tb_sap_movement2",
+                  "field": "postng_date"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "profit_center": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_sappo.tb_sap_movement2",
+                  "field": "profit_center"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "scrap": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_global_mrb_tool",
+                  "field": "total_price"
+                },
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_finance.std_price",
+                  "field": "standard_price"
+                },
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_finance.std_price",
+                  "field": "per"
+                },
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_sappo.tb_sap_movement2",
+                  "field": "quantity"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "amount": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_emrb.tp_global_mrb_tool",
+                  "field": "total_price"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            },
+            "cost": {
+              "inputFields": [
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_finance.std_price",
+                  "field": "standard_price"
+                },
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_finance.std_price",
+                  "field": "per"
+                },
+                {
+                  "namespace": "datatopicstore",
+                  "name": "trace_sappo.tb_sap_movement2",
+                  "field": "quantity"
+                }
+              ],
+              "transformationDescription": null,
+              "transformationType": null
+            }
+          }
+        },
+        "symlinks": null
+      },
+      "inputFacets": null,
+      "outputFacets": null
+    }
+  ],
+  "producer": "http://cnhuam0webstg85:6002/#/home/page",
+  "schemaURL": "http://cnhuam0webstg85:6002/#/home/page"
+}

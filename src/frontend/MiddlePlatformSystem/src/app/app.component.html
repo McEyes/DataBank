@@ -1,0 +1,11 @@
+<div id="scale">
+  <app-login *ngIf="!isLogin" style="width: 100%"></app-login>
+  
+  <div *ngIf="isLogin" class="main-content h-100 w-100">
+    <jabil-header (menuEvent)="menuEvent($event)"></jabil-header>
+   
+    <div style="width: 100%; height: calc(100% - 48px); margin-top: 48px">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

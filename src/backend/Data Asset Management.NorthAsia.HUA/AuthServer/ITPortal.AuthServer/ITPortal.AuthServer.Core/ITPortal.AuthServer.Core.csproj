@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>ITPortal.AuthServer.Core.xml</DocumentationFile>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="AccountService\**" />
+	  <EmbeddedResource Remove="AccountService\**" />
+	  <None Remove="AccountService\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="DbContext.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="ITPortal.AuthServer.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Shared\ITPortal.Core\ITPortal.Core.csproj" />
+	</ItemGroup>
+
+</Project>

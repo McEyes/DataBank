@@ -1,0 +1,186 @@
+<div class="content" [class]="currentLanguage">
+  <level-one-panel [titleName]="('label.data.down.apply' | translate)+ '  ' + (flowData.flowNo??'')">
+    <level-two-panel [titleName]="('basic.information' | translate) ">
+      <div class="form contents-form sys-form" [ngClass]="currentLanguage">
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.applicant' | translate}}
+          </label>
+          <span class="no-input"> {{formData.userName}}</span>
+        </div>
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.applicant.email' | translate}}
+          </label>
+          <span class="no-input"> {{formData.userMail}} </span>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.data.change.table' | translate}}
+          </label>
+          <input *ngIf="flowData.id" [disabled]="formData.id" pInputText type="text" [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.tableName" [ngClass]="{ 'ng-invalid': invalid && !formData.tableName }" />
+
+          <p-dropdown *ngIf="!flowData.id" [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="tableList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.tableName"
+            [filter]="true" filterBy="tableName" optionLabel="tableName" optionValue="tableName"
+            (onChange)="onChangeTable($event)" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.tableName }">
+            <ng-template pTemplate="selectedItem">
+              <div>
+                <div>{{formData.tableName}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <span class="no-input" *ngIf="formData.visitedTimes>=0"> {{formData.visitedTimes}}次/月</span>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.data.change.type' | translate}}
+          </label>
+          <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate"
+            [autoDisplayFirst]="false" [options]="changeTypeList" [(ngModel)]="formData.changeType"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.changeType }"
+            [placeholder]="'input.select.please' | translate" [filter]="false" appendTo="body"
+            class="w-100"></p-dropdown>
+        </div>
+
+        <div style="width: 100%" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.table.comment' | translate}}
+          </label>
+          <input [disabled]="true" pInputText type="text"
+             [(ngModel)]="formData.tableComment"  />
+        </div>
+
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.data.change.source' | translate}}
+          </label>
+          <input [disabled]="true" pInputText type="text"
+             [(ngModel)]="formData.sourceName"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.sourceName }" />
+          <!-- <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="sourceList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.sourceId"
+            [filter]="true" filterBy="sourceName" optionLabel="sourceName" optionValue="id"
+            (onChange)="onSourceChange($event)" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.sourceId }"
+           ></p-dropdown> -->
+        </div>
+
+         <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.data.change.owner' | translate}}
+          </label>
+          <input [disabled]="true" pInputText type="text" [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.ownerName" [ngClass]="{ 'ng-invalid': invalid && !formData.ownerName }" />
+          <!-- <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate"
+            [autoDisplayFirst]="false" [options]="sourcesystemsmeList" [(ngModel)]="formData.ownerId"
+            [placeholder]="'input.select.please' | translate" [virtualScroll]="true" [virtualScrollItemSize]="38"
+            [ngClass]="{'ng-invalid': invalid && !formData.ownerId}" [filter]="true" filterBy="name" appendTo="body"
+            class="w-100" optionLabel="name" optionValue="id"></p-dropdown> -->
+         </div>
+
+
+        <div style="width: 100%;" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.data.change.purpose' | translate}}
+          </label>
+          <input [disabled]="formData.id" pInputText type="text" [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.changePurpose" [ngClass]="{ 'ng-invalid': invalid && !formData.changePurpose }" />
+        </div>
+
+        <div style="width: 100%;" class="form-item ver-item" >
+          <label><span class="valid-pre">*</span>{{'field.data.change.descrption' | translate}}</label>
+          <span class="value">
+            <textarea style="width: 100%;height: 200px; border: none;" [disabled]="formData.id" [placeholder]="'please.input' | translate" pInputTextarea
+             [ngClass]="{ 'ng-invalid': invalid && !formData.descrption }"
+             rows="20"
+              [(ngModel)]="formData.descrption"></textarea>
+          </span>
+        </div>
+      </div>
+
+    </level-two-panel>
+
+
+    <level-two-panel [titleName]="'label.approval.history'| translate" *ngIf="flowData.id">
+      <p-table class="tableClass" [scrollable]="true" scrollHeight="flex" [columns]="historyHeader"
+        [value]="historyData" [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th [ngStyle]="{'max-width': col.width}" *ngFor="let col of columns">
+              {{col.header | translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td class="text-overflow inline-block" [title]="rowData[col.field]" [ngStyle]="{'max-width': col.width}"
+              *ngFor="let col of columns">
+              {{rowData[col.field] | translate}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </level-two-panel>
+  </level-one-panel>
+
+
+  <div ngProjectAs="bottom" class="bottom-btn">
+    <div class="da-button" (click)="goBack()">{{'operate.back' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==0 || !formData.id" class="da-button submit" (click)="onCommit()">
+      {{'submit' | translate}}
+    </div>
+    <div *ngIf="flowData.flowStatus==1 && formData.id && userInfo.id==formData.userId" class="da-button"
+      (click)="openApproveDialog('cancel')">{{'cancel' |
+      translate}}</div>
+
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="openApproveDialog('agree')">{{'agree' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="openApproveDialog('reject')">{{'reject' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="openApproveDialog('return')">{{'return' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+          (click)="openApproveDialog('transfer')">{{'transfer' | translate}}</div>
+  </div>
+
+
+
+  <jabil-loading style="position: absolute; z-index: 998" *ngIf="loading"></jabil-loading>
+  <p-toast position="top-center" [ngStyle]="{'z-index': '999'}"></p-toast>
+  <p-confirmDialog [header]="tip" [style]="{ width: '450px' }"></p-confirmDialog>
+</div>
+
+<p-dialog [header]="'Workflow '+typeInfo[approvalData.acttype]" [(visible)]="approvalData.dialogVisible" [style]="{ width: '450px' }">
+  <level-one-panel style="height:100%">
+    <div *ngIf="approvalData.acttype=='transfer'" class="contents-form-item"
+      style="display: flex;align-items: flex-start;width: 100%;margin-bottom: 10px;">
+      <label style="width: 120px;"><span class="valid-pre">*</span>{{'field.user.name' | translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="sourcesystemsmeList"
+        [(ngModel)]="approvalData.transferor" [placeholder]="'input.select.please' | translate" [virtualScroll]="true"
+        [virtualScrollItemSize]="38" [ngClass]="{'ng-invalid': invalid && !approvalData.transferor}" [filter]="true"
+        filterBy="name" appendTo="body" class="w-100" optionLabel="name" optionValue="id"></p-dropdown>
+    </div>
+    <div class="contents-form-item" style="display: flex;align-items: flex-start;width: 100%;margin-bottom: 10px;">
+      <textarea [ngClass]="{ 'ng-invalid':  !approvalData.auditContent }" class="input-text"
+        [ngStyle]="{'background-color': '#F7F9FD', 'height': 'auto', 'width': '100%'}" id="float-input"
+        [placeholder]="'info.fill.comment' | translate" rows="5" cols="30" [(ngModel)]="approvalData.auditContent"
+        pInputTextarea></textarea>
+    </div>
+
+  </level-one-panel>
+  <div class="ui-dialog-buttonpane" style="text-align: center;margin-top: 10px;">
+    <button type="button" pButton (click)="approvalData.dialogVisible=false" [label]="'cancel'|translate"></button>
+    <button type="button" pButton (click)="submit(approvalData.acttype)"
+      [label]="approvalData.acttype|translate"></button>
+  </div>
+</p-dialog>

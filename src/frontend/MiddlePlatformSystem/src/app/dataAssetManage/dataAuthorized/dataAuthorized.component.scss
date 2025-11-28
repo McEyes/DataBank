@@ -1,0 +1,263 @@
+* {
+  font-family: Roboto;
+}
+.contents {
+  width: 100%;
+      height: 100%;
+  padding: 10px;
+  background-color: #fff;
+  .contents-form {
+    width: 100%;
+    // overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px;
+    margin-bottom: 10px;
+    padding: 0px 10px;
+    label {
+      // width: 100px;
+      text-align: right;
+      color: #414042;
+      font-family: Noto Sans SC;
+      // font-size: 14px;
+      font-style: normal;
+      // font-weight: 400;
+      line-height: normal;
+    }
+    .contents-form-item {
+      // overflow: hidden;
+      display: flex;
+      align-items: center;
+      column-gap: 10px;
+      .input-text {
+        width: 300px;
+        background-color: #fff;
+        border: 1px solid #e6e6e6;
+      }
+      .field-radiobutton {
+        width: 115px;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        column-gap: 10px;
+        label {
+          text-align: left;
+        }
+      }
+      .remark-text {
+        width: 480px;
+      }
+    }
+  }
+  .tableBox {
+    width: 100%;
+    // height: 100%;
+    overflow: hidden;
+    .tableCard {
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+      table,
+      tbody {
+        display: block;
+        height: 40px !important;
+      }
+      tbody {
+        overflow-y: scroll;
+      }
+      table thead,
+      tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;
+      }
+    }
+  }
+}
+
+.isHover {
+  cursor: pointer;
+  &:hover {
+    color: #147ad9 !important;
+    text-decoration: underline;
+  }
+}
+.viewapiclass {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  .viewapiclass-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    line-height: auto;
+    padding: 10px 20px 10px 20px;
+    &:nth-child(odd) {
+      background-color: #f5f5f5;
+    }
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+    .viewapiclass-item-url {
+      width: 89%;
+      word-wrap: break-word;
+    }
+    .viewapiclass-item-btn {
+      width: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .viewapiclass-copy {
+        cursor: pointer;
+        height: 25px;
+        line-height: 25px;
+        padding: 0px 10px;
+        font-size: 12px;
+      }
+    }
+  }
+}
+::ng-deep .main-content .p-datatable-scrollable .p-datatable-tbody tr:nth-child(2n + 1) {
+  background-color: #f5f5f5 !important;
+}
+:host ::ng-deep .p-datatable > .p-datatable-wrapper {
+  &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #f1f2f2;
+    background-color: #f1f2f2 !important;
+    border-radius: 3px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px !important;
+    -webkit-box-shadow: inset 0 0 6px #999 !important;
+    background-color: #999 !important;
+  }
+}
+
+:host ::ng-deep {
+  .p-inputtext {
+    height: auto;
+  }
+  .p-ripple {
+    background-color: #fff !important;
+  }
+  .p-inputtext {
+    height: auto !important;
+    background-color: #fff;
+  }
+  .p-dropdown {
+    width: 100% !important;
+    background-color: #fff !important;
+    border-bottom: 1px solid #e6e6e6 !important;
+  }
+  .p-dropdown .p-dropdown-label {
+    // border-bottom: 1px solid #e6e6e6 !important;
+  }
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #e3f2fd !important;
+    border-color: #e3f2fd !important;
+  }
+  /* 为需要添加POST前缀的元素设置样式 */
+  .post-item:before {
+    /* 添加POST文本内容 */
+    content: "POST";
+
+    /* 设置背景色 */
+    background-color: #49cc90;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+
+  /* 为需要添加POST前缀的元素设置样式 */
+  .get-item:before {
+    /* 添加POST文本内容 */
+    content: "GET";
+
+    /* 设置背景色 */
+    background-color: #61affe;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+
+
+  /* 为需要添加POST前缀的元素设置样式 */
+  .put-item:before {
+    /* 添加POST文本内容 */
+    content: "PUT";
+
+    /* 设置背景色 */
+    background-color: #fca130;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+
+  /* 为需要添加POST前缀的元素设置样式 */
+  .delete-item:before {
+    /* 添加POST文本内容 */
+    content: "DELETE";
+
+    /* 设置背景色 */
+    background-color: #f93e3e;
+
+    /* 可添加其他样式增强显示效果 */
+    color: white;
+    /* 文本颜色 */
+    padding: 2px 8px;
+    /* 内边距 */
+    margin-right: 8px;
+    /* 与主内容的间距 */
+    border-radius: 3px;
+    /* 圆角 */
+    font-size: 12px;
+    /* 字体大小 */
+    font-weight: bold;
+    /* 字体加粗 */
+  }
+}

@@ -1,0 +1,20 @@
+<p></p>
+<nz-steps [nzCurrent]="1" nzDirection="vertical" nzSize="small">
+  <ng-container *ngFor="let item of historyList;let idx=index">
+    <nz-step [nzTitle]="item.actTitle|translate" [nzSubtitle]="item.createTime" [nzStatus]="getStatus(item.actOperate)"
+      [nzDescription]="historyTpl">
+    </nz-step>
+    <ng-template #historyTpl>
+      <div class="history-content">
+        <p *ngIf="item.actOperate=='Running'">{{'info.apply.waiting'|translate}} {{item.approverName}} {{'info.apply'|translate}}
+        </p>
+        <p *ngIf="item.auditContent!==null">{{item.actOperate}} : {{item.approverName}}
+          ({{'info.completedat'|translate}}
+          {{item.updateTime}} )</p>
+        <p *ngIf="item.auditContent!==null&&item.auditContent!=='Submit'&&item.auditContent!=='End'">
+          {{'info.audit.content'|translate}} : {{item.auditContent}}
+        </p>
+      </div>
+    </ng-template>
+  </ng-container>
+</nz-steps>

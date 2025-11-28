@@ -1,0 +1,63 @@
+:host {
+  height: 100%;
+  display: block;
+
+  .card {
+    height: 100%;
+    background: #fff;
+    padding: 0 24px;
+    border-radius: 12px;
+  }
+
+  nz-cascader {
+    width: 100%;
+  }
+
+  p-treeTable {
+    height: calc(100% - 47px);
+    display: block;
+
+    ::ng-deep {
+      .p-treetable {
+        height: 100%;
+
+        .p-treetable-wrapper  {
+          height: calc(100% - 100px)
+        }
+
+        td .p-button {
+          padding: 0 8px;
+          margin-right: 10px;
+          width: 70px;
+
+          &.p-button-danger {
+            margin-left: 16px;
+          }
+
+          .p-button-label {
+            display: none
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.template-dialog {
+  label {
+    width: 100px;
+    text-align: right;
+    margin-right: 20px;
+  }
+
+  .dialog-input {
+    width: 200px;
+    margin: 0 20px
+  }
+
+  .no-margin {
+    width: calc(100% - 130px);
+    margin: 0
+  }
+}

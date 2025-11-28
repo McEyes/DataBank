@@ -1,0 +1,313 @@
+<div class="content" [class]="currentLanguage">
+  <level-one-panel [titleName]="('label.data.source.apply' | translate)+ '  ' + (flowData.flowNo??'')">
+    <level-two-panel [titleName]="('basic.information' | translate) ">
+      <div class="form contents-form sys-form" [ngClass]="currentLanguage">
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.applicant' | translate}}
+          </label>
+          <span class="no-input"> {{formData.userName}}</span>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.applicant.email' | translate}}
+          </label>
+          <span class="no-input"> {{formData.userMail}} </span>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.data.source.system' | translate}}
+          </label>
+          <input [disabled]="formData.id" pInputText type="text" (change)="onchangeDataSourse()"
+            [placeholder]="'input.please' | translate" [(ngModel)]="formData.dataSourse"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.dataSourse }" />
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.sync.frequency' | translate}}
+          </label>
+          <input [disabled]="formData.id" pInputText type="text" [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.syncFrequency" [ngClass]="{ 'ng-invalid': invalid && !formData.syncFrequency }" />
+
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.sync.type' | translate}}
+          </label>
+          <!-- <input [disabled]="formData.id" pInputText type="text"
+            [placeholder]="'input.please' | translate" [(ngModel)]="formData.syncType"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.syncType }" /> -->
+
+          <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate"
+            [autoDisplayFirst]="false" [options]="syncTypeList" [(ngModel)]="formData.syncType"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.syncType }"
+            [placeholder]="'input.select.please' | translate" [filter]="false" appendTo="body"
+            class="w-100"></p-dropdown>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.update.type' | translate}}
+          </label>
+          <!-- <input [disabled]="formData.id" pInputText type="text"
+            [placeholder]="'input.please' | translate" [(ngModel)]="formData.updateMethod"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.updateMethod }" /> -->
+
+          <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate"
+            [autoDisplayFirst]="false" [options]="updateMethodList" [(ngModel)]="formData.updateMethod"
+            [ngClass]="{ 'ng-invalid': invalid && !formData.updateMethod }"
+            [placeholder]="'input.select.please' | translate" [filter]="false" appendTo="body"
+            class="w-100"></p-dropdown>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.purpose.of.application' | translate}}
+          </label>
+
+          <input [disabled]="formData.id" pInputText type="text" [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.applyPurpose" [ngClass]="{ 'ng-invalid': invalid && !formData.applyPurpose }" />
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.data.source.system.sme' | translate}}
+          </label>
+
+          <!-- <p-multiSelect [ngClass]="{ 'ng-invalid': invalid && formData.smeList.length == 0 }"
+            [disabled]="formData.id" [showToggleAll]="false" [options]="sourcesystemsmeList"
+            [(ngModel)]="formData.smeList" [virtualScroll]="true" [virtualScrollItemSize]="38"
+            optionLabel="employeeName" optionValue="workNTID" (onPanelHide)="onPanelHide()"
+            appendTo="body" class="input-text" [placeholder]="'input.select.please' | translate">
+          </p-multiSelect> -->
+          <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate"
+            [autoDisplayFirst]="false" [options]="sourcesystemsmeList" [(ngModel)]="formData.smeUserId"
+            [placeholder]="'input.select.please' | translate" [virtualScroll]="true" [virtualScrollItemSize]="38"
+            [ngClass]="{'ng-invalid': invalid && !formData.smeUserId}" [filter]="true" filterBy="name" appendTo="body"
+            class="w-100" optionLabel="name" optionValue="id"></p-dropdown>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.executive.name' | translate}}
+          </label>
+          <span class="no-input"> {{formData.superiorName}}</span>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item">
+          <label>
+            <span class="valid-pre">*</span>{{'field.bsa.name' | translate}}
+          </label>
+          <!-- <p-multiSelect [ngClass]="{ 'ng-invalid': invalid && formData.smeList.length == 0 }"
+            [disabled]="formData.id" [showToggleAll]="false" [options]="sourcesystemsmeList"
+            [(ngModel)]="formData.bsaList" [virtualScroll]="true" [virtualScrollItemSize]="38"
+            optionLabel="employeeName" optionValue="workNTID"  (onPanelHide)="onPanelHide()"
+            appendTo="body" class="input-text" [placeholder]="'input.select.please' | translate">
+          </p-multiSelect> -->
+          <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate"
+            [autoDisplayFirst]="false" [options]="sourcesystemsmeList" [(ngModel)]="formData.bASUserId"
+            [placeholder]="'input.select.please' | translate" [virtualScroll]="true" [virtualScrollItemSize]="38"
+            [ngClass]="{'ng-invalid': invalid && !formData.bASUserId}" [filter]="true" filterBy="name" appendTo="body"
+            class="w-100" optionLabel="name" optionValue="id"></p-dropdown>
+        </div>
+
+        <div style="width: calc(50% - 10px)" class="form-item ver-item">
+          <label style="pointer-events: none;display: flex;flex-wrap: nowrap;flex-direction: row;justify-content: space-between;">
+            <span>
+              {{'field.application.attachment' | translate}}
+              <a class="downloadTemplate" routerLink="#" (click)="downloadTemplate()">
+                {{ 'label.download.entering.lake.template' | translate}}
+              </a>
+            </span>
+            <span>
+            <nz-upload *ngIf="flowData.flowStepName=='BSA Approval'  || !formData.id"
+              [nzAction]="fileHost+'/api/file/upload?category=DataSourceFlow'"
+              [nzHeaders]="{ authorization: 'Bearer ' + token}" (nzChange)="handleChange($event)"
+              [nzDownload]="handleDownloadFile" [nzFileList]="formData.fileList" [nzShowUploadList]="false">
+              <button class="da-button">{{'upload' | translate}}</button>
+            </nz-upload>
+          </span>
+          </label>
+          <span class="file">
+            <div *ngIf="formData.id" class="file-list border-0">
+              <div class="border-0" *ngFor="let item of currFileList;index as i">
+                <span>{{item.fileName??item?.response?.data?.fileName}}</span>
+                <a (click)="deleteFile(item,i)" style="margin-left: 10px;">{{'delete' | translate}}</a>
+                <a (click)="download(item)">{{'preview' | translate}}</a>
+              </div>
+            </div>
+          </span>
+        </div>
+
+        <!-- <div *ngIf="formData.isUploadFile || formData.currNodeIndex > 2 || formData.currNodeIndex ==0 "
+          style="width: calc(50% - 10px)" class="form-item ver-item">
+          <label>
+            {{'label.data.source.other.file' | translate}}
+            <nz-upload *ngIf="formData.isToEdit || !formData.id" nzAction="/gateway/basic/file/upload"
+              [nzHeaders]="{ authorization: 'authorization-text' }" (nzChange)="handleOtherChange($event)"
+              [nzDownload]="handleDownloadFile" [nzFileList]="formData.otherFileList">
+              <button class="da-button">{{'upload' | translate}}</button>
+            </nz-upload>
+          </label>
+          <span class="file">
+            <div *ngIf="formData.id" class="file-list border-0">
+              <div class="border-0" *ngFor="let item of currOtherFileList">
+                <span>{{item.fileName}}</span>
+                <a (click)="download(item.fileUrl)">{{'preview' | translate}}</a>
+              </div>
+            </div>
+          </span>
+        </div> -->
+
+        <div style="width: calc(50% - 10px)" class="form-item ver-item" *ngIf="flowData.flowStatus==1 && formData.id">
+          <label><span class="valid-pre">*</span>{{'field.comment' | translate}}</label>
+          <span class="value">
+            <textarea style="width: 100%;border: none;" [disabled]="flowData.flowStatus!=1"
+              [placeholder]="'please.input' | translate"
+              [placeholder]="flowData.flowStatus==1 ?('please.input' | translate):''" pInputTextarea
+              [(ngModel)]="remarkValue"></textarea>
+          </span>
+        </div>
+      </div>
+
+      <div class="table-operate row row2">
+        <div style="width: 100%">
+          <span style="width: 200px" class="name">{{'field.involves.master.data' | translate}}:</span>
+          <span class="value" [ngStyle]="{'padding':'0px'}">
+            <div class="master-data-row" style="height: 32px;">
+              <span class="item-column">{{'field.master.data' | translate}}</span>
+              <span class="item-column">{{'field.source.system' | translate}}</span>
+              <span class="item-column">{{'field.is.need.standard' | translate}}</span>
+              <span class="item-column">{{'field.is.mapped' | translate}} </span>
+              <span class="item-column" style="text-align: left;">
+                <span *ngIf="!formData.isToEdit && !formData.id" class="pi pi-plus hover-effect"
+                  style="font-weight: 900;margin-right: 10px;" (click)="addRow()"></span>
+              </span>
+            </div>
+            <div class="master-data-row" *ngFor="let item of formData.masterData;index as i">
+              <span class="item-column">
+                <p-dropdown [disabled]="formData.id" [emptyMessage]="'no.results.found' | translate"
+                  [autoDisplayFirst]="false" [options]="masterDataList" [(ngModel)]="item.masterData"
+                  [placeholder]="'input.select.please' | translate"
+                  [ngClass]="{'ng-invalid': invalid && !item.masterData}" [filter]="true" filterBy="name"
+                  appendTo="body" class="w-100" (onChange)="onChangeMasterData($event,item)" optionLabel="name"
+                  optionValue="name"></p-dropdown>
+              </span>
+              <span class="item-column">
+                <input [disabled]="formData.id" class="item-text" pInputText type="text"
+                  [placeholder]="'input.please' | translate" [(ngModel)]="item.dataSource"
+                  (change)="onchangeItemDataSourse(item)" [ngClass]="{ 'ng-invalid': invalid && !item.dataSource }" />
+              </span>
+              <span class="item-column">
+                <p-dropdown [disabled]="true" [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false"
+                  [options]="yesOrNoList" [(ngModel)]="item.needStandard"
+                  [placeholder]="'input.select.please' | translate" [filter]="false" appendTo="body"
+                  class="w-100"></p-dropdown>
+              </span>
+              <span class="item-column" style="height: 38px;">
+                <p-dropdown *ngIf="item.needStandard" [disabled]="formData.id"
+                  [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="yesOrNoList"
+                  [(ngModel)]="item.isMapping" [placeholder]="'input.select.please' | translate"
+                  [ngClass]="{'ng-invalid': invalid && (item.isMapping===null || item.isMapping==='' || item.isMapping===undefined)}"
+                  [filter]="false" appendTo="body" class="w-100"></p-dropdown>
+              </span>
+              <span class="item-column" style="text-align: left;font-weight: bolder;">
+                <span *ngIf="!formData.isToEdit && !formData.id" class="pi pi-plus hover-effect"
+                  style="font-weight: 900;margin-right: 10px;" (click)="addRow()"></span>
+                <span *ngIf="!formData.isToEdit && !formData.id" class="pi pi-trash hover-effect"
+                  style="font-weight: 900; color: red;" (click)="deleteRow(item,i)"></span>
+              </span>
+            </div>
+          </span>
+        </div>
+      </div>
+
+      <!-- <div class="bottom-btn" *ngIf="flowData.approverId==userInfo.id || !formData.id"
+        style="margin-top: 30px">
+
+      </div> -->
+    </level-two-panel>
+
+
+    <level-two-panel [titleName]="'label.approval.history'| translate" *ngIf="flowData.id">
+      <p-table class="tableClass" [scrollable]="true" scrollHeight="flex" [columns]="historyHeader"
+        [value]="historyData" [tableStyle]="{'min-width': '100%'}" styleClass="sys-table">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th [ngStyle]="{'max-width': col.width}" *ngFor="let col of columns">
+              {{col.header | translate}}
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td class="text-overflow inline-block" [title]="rowData[col.field]" [ngStyle]="{'max-width': col.width}"
+              *ngFor="let col of columns">
+              {{rowData[col.field] | translate}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </level-two-panel>
+  </level-one-panel>
+
+
+  <div ngProjectAs="bottom" class="bottom-btn">
+    <div class="da-button" (click)="goBack()">{{'operate.back' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==0 || !formData.id" class="da-button submit" (click)="onCommit()">
+      {{'submit' | translate}}
+    </div>
+    <div *ngIf="flowData.flowStatus==1 && formData.id && userInfo.id==formData.userId" class="da-button"
+      (click)="submit('cancel')">{{'cancel' |
+      translate}}</div>
+
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="submit('agree')">{{'agree' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="submit('reject')">{{'reject' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+      (click)="submit('return')">{{'return' | translate}}</div>
+    <div *ngIf="flowData.flowStatus==1 && IsApprover() && formData.id " class="da-button submit"
+          (click)="openApproveDialog('transfer')">{{'transfer' | translate}}</div>
+  </div>
+
+
+
+  <jabil-loading style="position: absolute; z-index: 998" *ngIf="loading"></jabil-loading>
+  <p-toast position="top-center" [ngStyle]="{'z-index': '999'}"></p-toast>
+  <p-confirmDialog [header]="tip" [style]="{ width: '450px' }"></p-confirmDialog>
+</div>
+
+<p-dialog header="Workflow Approval" [(visible)]="approvalData.dialogVisible" [style]="{ width: '450px' }">
+  <level-one-panel style="height:100%">
+    <div *ngIf="approvalData.acttype=='transfer'" class="contents-form-item"
+      style="display: flex;align-items: flex-start;width: 100%;margin-bottom: 10px;">
+      <label style="width: 120px;"><span class="valid-pre">*</span>{{'field.user.name' | translate}}</label>
+      <p-dropdown [emptyMessage]="'no.results.found' | translate" [autoDisplayFirst]="false" [options]="sourcesystemsmeList"
+        [(ngModel)]="approvalData.transferor" [placeholder]="'input.select.please' | translate" [virtualScroll]="true"
+        [virtualScrollItemSize]="38" [ngClass]="{'ng-invalid': invalid && !approvalData.transferor}" [filter]="true"
+        filterBy="name" appendTo="body" class="w-100" optionLabel="name" optionValue="id"></p-dropdown>
+    </div>
+    <div class="contents-form-item" style="display: flex;align-items: flex-start;width: 100%;margin-bottom: 10px;">
+      <textarea [ngClass]="{ 'ng-invalid':  !approvalData.auditContent }" class="input-text"
+        [ngStyle]="{'background-color': '#F7F9FD', 'height': 'auto', 'width': '100%'}" id="float-input"
+        [placeholder]="'info.audit.content' | translate" rows="5" cols="30" [(ngModel)]="approvalData.auditContent"
+        pInputTextarea></textarea>
+    </div>
+
+  </level-one-panel>
+  <div class="ui-dialog-buttonpane" style="text-align: center;margin-top: 10px;">
+    <button type="button" pButton (click)="approvalData.dialogVisible=false" [label]="'cancel'|translate"></button>
+    <button type="button" pButton (click)="submit(approvalData.acttype)"
+      [label]="approvalData.acttype|translate"></button>
+  </div>
+</p-dialog>

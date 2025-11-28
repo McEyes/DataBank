@@ -1,0 +1,182 @@
+<div class="tableBox" style="position: relative;">
+  <div class="toolbar">
+
+        <label>{{'field.app.source' | translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="appSourceList"
+          [placeholder]="'label.select.for.all' | translate" optionLabel="clientName" [filter]="true"
+          optionValue="nickName" appendTo="body" (onChange)="onChangeAllAppSource($event)"></p-dropdown>
+
+        <label>{{'field.security.level' | translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="levelList"
+          [placeholder]="'label.select.for.all' | translate" optionLabel="itemValue"
+          optionValue="itemText" appendTo="body" (onChange)="onChangeAllLevel($event)"></p-dropdown>
+
+  </div>
+  <p-table [loading]="tableLoading" [scrollable]="true" [selectionPageOnly]="true" [columns]="commonMessageHeaderData"
+    [value]="commonMessageTableData" [(selection)]="selectedItems" [paginator]="false" dataKey="colName"
+    [tableStyle]="{ 'min-width': '100%' }" styleClass="sys-table">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th class="xd-theader-white" style="max-width: 55px">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th class="xd-theader-white" *ngFor="let col of columns" style="min-width: 200px; max-width: 200px">
+          {{col.header | translate}}
+        </th>
+        <th class="xd-theader-white" pFrozenColumn alignFrozen="right" style="min-width: 150px; max-width: 150px">
+          {{'label.operate' | translate}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
+      <tr>
+        <td class="xd-tbody" style="max-width: 55px">
+          <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+        </td>
+        <td class="xd-tbody text-overflow inline-block" *ngFor="let col of columns"
+          style="min-width: 200px; max-width: 200px">
+          <span *ngIf="['standardized', 'requiredAsCondition', 'sortable'].includes(col.field)">{{rowData[col.field] ?
+            ('yes' | translate) : ('no' | translate)}}</span>
+          <span *ngIf="['colKey', 'nullable'].includes(col.field)">{{(rowData[col.field] == 1||rowData[col.field] == true ) ? ('yes' | translate) :
+            ('no' | translate)}}</span>
+          <span
+            *ngIf="!['colKey', 'nullable', 'standardized', 'requiredAsCondition', 'sortable'].includes(col.field)">{{rowData[col.field]}}</span>
+        </td>
+        <td class="xd-tbody text-overflow inline-block" pFrozenColumn alignFrozen="right"
+          style="min-width: 150px; max-width: 150px">
+          <div class="table-button-box">
+            <div class="table-button" (click)="allTableBtn(rowIndex,rowData)">
+              {{'operate.edit' | translate}}
+            </div>
+            <div class="table-button" (click)="ondelete($event,rowData)">
+              {{'operate.delete' | translate}}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="4" class="no-data">{{'nodata' | translate}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div style="width: 100%; margin: 5px 0px" [hidden]="!(dataMessageTotal > 0)">
+    <nz-pagination class="flex justify-content-center" [nzPageIndex]="dataMessageParams.pageNum"
+      [nzTotal]="dataMessageTotal" nzShowSizeChanger [nzPageSize]="dataMessageParams.pageSize"
+      [nzShowTotal]="rangeTemplate" (nzPageIndexChange)="nzPageIndexChange($event)"
+      (nzPageSizeChange)="nzPageSizeChange($event)"></nz-pagination>
+    <ng-template #rangeTemplate let-range="range" let-total>
+      {{ dataMessageParams.pageNum + (dataMessageParams.pageNum - 1) *
+      dataMessageParams.pageSize }}-{{ dataMessageParams.pageNum * dataMessageParams.pageSize
+      }} {{'label.pagination.of' | translate}} {{ dataMessageTotal }}
+    </ng-template>
+  </div>
+</div>
+
+<!-- //编辑数据信息 -->
+<p-dialog [header]="'operate.edit'| translate" [(visible)]="messageDialog" [modal]="true" [style]="{ width: '70%' }">
+  <div class="m-0">
+    <div class="datatable-form sys-form">
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.field.name' | translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="messageForm.colName" [ngClass]="{ 'ng-invalid': messageInvalid && !messageForm.colName }" />
+      </div>
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.field.comment' | translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="messageForm.colComment"
+          [ngClass]="{ 'ng-invalid': messageInvalid && !messageForm.colComment }" />
+      </div>
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.primary.key' | translate}}</label>
+        <div class="radio-text">
+          <nz-switch [(ngModel)]="columnKeyValue"
+            (ngModelChange)="switchChange($event,messageForm,'colKey')"></nz-switch>
+        </div>
+      </div>
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.null' | translate}}</label>
+        <div class="radio-text">
+          <nz-switch [(ngModel)]="columnNullableValue"
+            (ngModelChange)="switchChange($event,messageForm,'nullable')"></nz-switch>
+        </div>
+      </div>
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.data.type' | translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" appendTo="body" class="input-text"
+          [options]="typeList" [placeholder]="'input.select.please' | translate" [(ngModel)]="messageForm.dataType"
+          optionLabel="itemText" optionValue="itemText"
+          [ngClass]="{ 'ng-invalid': messageInvalid && !messageForm.dataType }"></p-dropdown>
+      </div>
+      <div class="form-item">
+        <label>{{'field.data.length' | translate}}</label>
+        <input type="number" class="input-text" min="0" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="messageForm.dataLength" />
+      </div>
+      <div class="form-item">
+        <label>{{'field.data.accuracy' | translate}}</label>
+        <input type="number" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="messageForm.dataPrecision" />
+      </div>
+      <div class="form-item">
+        <label>{{'field.decimal.places' | translate}}</label>
+        <input type="number" class="input-text" pInputText min="0" [placeholder]="'input.please' | translate"
+          [(ngModel)]="messageForm.dataScale" />
+      </div>
+      <div class="form-item">
+        <label>{{'field.default.value' | translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="messageForm.dataDefault" />
+      </div>
+      <div class="form-item">
+        <label>{{'field.required.as.condition' | translate}}</label>
+        <div class="radio-text">
+          <nz-switch name="condition" [(ngModel)]="messageForm.requiredAsCondition"></nz-switch>
+        </div>
+      </div>
+      <div class="form-item">
+        <label>{{'field.sortable' | translate}}</label>
+        <div class="radio-text">
+          <nz-switch name="sortable" [(ngModel)]="messageForm.sortable"></nz-switch>
+        </div>
+      </div>
+      <div class="form-item">
+        <label>{{'field.master.data.type' | translate}}</label>
+        <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+          [(ngModel)]="messageForm.masterdataType" />
+      </div>
+      <div class="form-item">
+        <label>{{'field.standardized' | translate}}</label>
+        <div class="radio-text">
+          <nz-switch name="standardized" [(ngModel)]="messageForm.standardized"></nz-switch>
+        </div>
+      </div>
+      <div class="form-item">
+        <label><span class="valid-pre">*</span>{{'field.security.level' | translate}}</label>
+        <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text" [options]="levelList"
+          [placeholder]="'input.select.please' | translate" [(ngModel)]="messageForm.levelId" optionLabel="itemValue"
+          optionValue="itemText" appendTo="body" (onChange)="onChangeLevel($event)"
+          [ngClass]="{ 'ng-invalid': formData.invalid && !messageForm.levelId }"></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <div class="bottom-btn">
+      <div class="da-button" (click)="onCloseDialog()" style="margin-right: 10px">
+        {{'operate.cancel' | translate}}
+      </div>
+      <div class="da-button save" (click)="onMessageSumbit()">
+        {{'operate.save' | translate}}
+      </div>
+    </div>
+
+  </ng-template>
+</p-dialog>
+
+<p-confirmPopup></p-confirmPopup>
+
+<p-toast></p-toast>
+
+<jabil-loading [hidden]="!tableLoading"></jabil-loading>

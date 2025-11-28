@@ -1,0 +1,27 @@
+<div id="app">
+
+  <div class="bg-container">
+    <div class="toolkit_group">
+      <button type="button" class="btn btn-success" (click)="resetZoom()">
+        <i class="pi pi-replay" style="color: #fff"></i>
+      </button>
+      <button type="button" class="btn btn-success" (click)="zoomIn()"> 
+        <i class="pi pi-search-plus" style="color: #fff"></i>
+      </button>
+      <button type="button" class="btn btn-success" (click)="zoomOut()">
+        <i class="pi pi-search-minus" style="color: #fff"></i>
+      </button>
+    </div>
+
+    <div class="min-height data-lineage" 
+    id="bg" 
+    #bg
+    (contextmenu)="onContextMenu($event)"
+    (mousedown)="onMouseDown($event)"
+    (mousemove)="onMouseMove($event)"
+    (mouseleave)="onMouseLeave($event)"
+    (mouseup)="onMouseUp($event)">
+</div>
+  </div>
+  
+</div>

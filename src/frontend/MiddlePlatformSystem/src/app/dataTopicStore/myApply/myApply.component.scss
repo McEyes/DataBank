@@ -1,0 +1,106 @@
+* {
+  font-family: Roboto;
+}
+.datatable-box {
+  width: 100%;
+  height: calc(100% - 40px);
+  background-color: #fff;
+  padding: 10px;
+
+  .btnBox {
+    width: 100%;
+    overflow: hidden;
+    margin: 10px 0px;
+  }
+  .tableBox {
+    width: 100%;
+    // overflow: hidden;
+    padding: 5px;
+
+    table,
+    tbody {
+      display: block;
+      height: 50px;
+    }
+    tbody {
+      overflow-y: scroll;
+    }
+    table thead,
+    tbody tr {
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+    }
+  }
+  .operateBtns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 10px;
+    width: 100%;
+    overflow: hidden;
+    .operateBtns-btns {
+      font-size: 14px;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .operateBtns-see {
+      color: #147ad9;
+    }
+    .operateBtns-edit {
+      color: #147ad9;
+    }
+    .operateBtns-delete {
+      color: red;
+    }
+  }
+  .department-paginator {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+:host ::ng-deep .p-datatable-scrollable .p-datatable-tbody tr:nth-child(2n + 1) {
+  background-color: #f5f5f5 !important;
+}
+:host ::ng-deep .p-datatable > .p-datatable-wrapper {
+  &::-webkit-scrollbar {
+    width: 7px !important;
+    height: 7px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px #f1f2f2;
+    background-color: #f1f2f2 !important;
+    border-radius: 3px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 7px !important;
+    -webkit-box-shadow: inset 0 0 6px #999 !important;
+    background-color: #999 !important;
+  }
+}
+
+:host ::ng-deep {
+  .p-inputtext {
+    height: auto;
+  }
+  .p-inputtext {
+    height: auto !important;
+    background-color: #fff;
+  }
+  .p-dropdown {
+    width: 100% !important;
+    background-color: #fff !important;
+  }
+  .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background: #e3f2fd !important;
+    border-color: #e3f2fd !important;
+  }
+}

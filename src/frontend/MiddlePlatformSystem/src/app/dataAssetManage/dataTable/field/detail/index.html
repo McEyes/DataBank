@@ -1,0 +1,79 @@
+<div class="f-container" style="width: 100%;height: 100%; padding: 10px">
+  <level-one-panel [titleName]="'operate.define.data.field' | translate">
+    <level-two-panel [titleName]="'basic.information' | translate">
+      <div class="form sys-form">
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.field.name' | translate}}</label>
+          <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.colName" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.colName }" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.field.comment' | translate}}</label>
+          <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.colComment" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.colComment }" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.primary.key' | translate}}</label>
+          <div class="radio-text">
+            <p-radioButton name="status" [value]="'1'" [(ngModel)]="formData.colKey"
+              [label]="'yes' | translate"></p-radioButton>
+            <p-radioButton name="status" [value]="'0'" [(ngModel)]="formData.colKey"
+              [label]="'no' | translate"></p-radioButton>
+          </div>
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.null' | translate}}</label>
+          <div class="radio-text">
+            <p-radioButton name="status" [value]="'1'" [(ngModel)]="formData.nullable"
+              [label]="'yes' | translate"></p-radioButton>
+            <p-radioButton name="status" [value]="'0'" [(ngModel)]="formData.nullable"
+              [label]="'no' | translate"></p-radioButton>
+          </div>
+        </div>
+        <div class="form-item">
+          <label>{{'field.data.type' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" appendTo="body" class="input-text"
+            [options]="typeList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.dataType"
+            optionLabel="itemText" optionValue="itemText"></p-dropdown>
+        </div>
+        <div class="form-item">
+          <label>{{'field.data.length' | translate}}</label>
+          <input type="number" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.dataLength" />
+        </div>
+        <div class="form-item">
+          <label>{{'field.data.accuracy' | translate}}</label>
+          <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.dataPrecision" />
+        </div>
+        <div class="form-item">
+          <label>{{'field.decimal.places' | translate}}</label>
+          <input type="number" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.dataScale" />
+        </div>
+        <div class="form-item">
+          <label>{{'field.default.value' | translate}}</label>
+          <input type="text" class="input-text" pInputText [placeholder]="'input.please' | translate"
+            [(ngModel)]="formData.dataDefault" />
+        </div>
+        <div class="form-item">
+          <label><span class="valid-pre">*</span>{{'field.security.level' | translate}}</label>
+          <p-dropdown [emptyMessage]="'no.results.found' | translate" class="input-text"
+            [options]="levelList" [placeholder]="'input.select.please' | translate" [(ngModel)]="formData.levelId"
+            optionLabel="itemValue" optionValue="itemText" appendTo="body"
+            panelStyleClass="smallWidth"
+            [ngClass]="{ 'ng-invalid': formData.invalid && !formData.levelId }"></p-dropdown>
+        </div>
+      </div>
+    </level-two-panel>
+  </level-one-panel>
+  <div class="bottom-btn" ngProjectAs="bottom">
+    <div class="da-button" (click)="goBackPage()">{{'operate.cancel' | translate}}</div>
+    <div class="da-button save" (click)="submit()">
+      {{'operate.save' | translate}}
+    </div>
+  </div>
+
+</div>
+<p-toast></p-toast>
+<jabil-loading [hidden]="!loading"></jabil-loading>

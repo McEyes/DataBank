@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<NoWarn>1701;1702;1591</NoWarn>
+		<DocumentationFile>DataAssetManager.DataApiServer.Core.xml</DocumentationFile>
+		<Configurations>Debug;Release;Stg</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="DocumentFilter\**" />
+	  <Compile Remove="Middleware\**" />
+	  <Compile Remove="WebApi\DynamicApi\**" />
+	  <EmbeddedResource Remove="DocumentFilter\**" />
+	  <EmbeddedResource Remove="Middleware\**" />
+	  <EmbeddedResource Remove="WebApi\DynamicApi\**" />
+	  <None Remove="DocumentFilter\**" />
+	  <None Remove="Middleware\**" />
+	  <None Remove="WebApi\DynamicApi\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="DbContext.cs" />
+	  <Compile Remove="HomeSqlSugarClient.cs" />
+	  <Compile Remove="IHomeSqlSugarClient.cs" />
+	  <Compile Remove="WebApi\DatabaseService.cs" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Remove="DataAssetManager.DataApiServer.Core.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.ServiceDiscovery" Version="8.2.2" />
+		<PackageReference Include="MySql.Data" Version="8.4.0" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.9.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Shared\ITPortal.Core\ITPortal.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="DataTable\" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,74 @@
+<div class="card">
+  <p-treeTable [value]="treeData" styleClass="sys-table" [loading]="loading">
+    <ng-template pTemplate="caption">
+      <div class="t-caption ">
+        <div class="formgroup-inline justify-content-between w-100 sys-search-form">
+          <div class="field form-item"></div>
+          <div class="field form-item" style="justify-content: flex-end;column-gap: 15px;">
+            <div class="da-button add" (click)="editCategoryData()">
+              {{'add'|translate}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ 'category.name' | translate }}</th>
+        <th style="width: 250px; text-align: center;">{{ 'operation' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+      <tr [ttRow]="rowNode">
+        <td><p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>{{rowData.name}}</td>
+        <td style="width: 250px; text-align: center;">
+          <div class="table-button-box justify-content-center">
+            <div class="table-button" (click)="editCategoryData(rowData)">
+              {{'edit'|translate}}
+            </div>
+            <div class="table-button" (click)="deleteData(rowData)">
+              {{'delete'|translate}}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-treeTable>
+</div>
+
+<p-dialog #dialog [(visible)]="dialogDisplay" [style]="{ width: '550px' }" [modal]="true" [draggable]="false"
+  [resizable]="false" (onHide)=closeDialog() styleClass="p-fluid">
+  <ng-template pTemplate="header">
+    <h3 class="text-center w-100">{{'menu.category.management' | translate }}</h3>
+  </ng-template>
+  <div class="card p-fluid">
+    <div class="p-formgrid grid">
+      <div class="field col">
+        <label class="block">{{ 'mfg.training.course.ware.parent.category' | translate }}</label>
+        <nz-cascader nzChangeOnSelect [nzPlaceHolder]="'mfg.training.course.ware.category'| translate"
+          [nzOptions]="categoryTreeData" [(ngModel)]="formData.parent_id" [nzShowSearch]="true" nzLabelProperty="name"
+          nzValueProperty="id" [nzPlaceHolder]="'input.select.please' | translate" (ngModelChange)="categoryTreeChanges($event)">
+        </nz-cascader>
+      </div>
+    </div>
+    <div class="field col">
+      <label class="block"><span class="valid-pre">*</span>{{ 'category.name' | translate }}</label>
+      <input class="dialog-input" pInputText maxlength="50" [(ngModel)]="formData.name"
+        [placeholder]="'category.name' | translate" [ngClass]="{ 'ng-invalid': formData.invalid && !formData.name }" />
+    </div>
+  </div>
+  <p-footer>
+    <div style="display: flex; float: right">
+      <p-button (click)="submitForm()">{{ 'submit' | translate }}</p-button>
+      <button pButton pRipple type="button" class="p-button-outlined" (click)="closeDialog()">
+        {{ 'cancel' | translate }}
+      </button>
+    </div>
+  </p-footer>
+</p-dialog>
+
+<p-toast position="top-center"></p-toast>
+
+
+<p-toast position="top-center"></p-toast>
+<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>

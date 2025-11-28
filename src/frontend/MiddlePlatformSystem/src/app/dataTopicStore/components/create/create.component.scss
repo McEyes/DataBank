@@ -1,0 +1,164 @@
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    .e-container {
+        width: 100%;
+        height: 100%;
+        padding: 12px 20px 20px 20px;
+    }
+
+    .e-title {
+        font-family: Roboto;
+        font-weight: bold;
+        font-size: 16px;
+        color: #464F60;
+        margin-bottom: 10px;
+    }
+
+    .tab-list {
+        display: flex;
+        column-gap: 3px;
+
+        &>div {
+            position: relative;
+            width: 25%;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 5px;
+            justify-content: center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+
+            .next {
+                position: absolute;
+                top: 23px;
+                right: -26px;
+                width: 48px;
+                height: 48px;
+                background-image: url('~src/assets/images/dataTopicStore/edit/next.png');
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+            }
+
+            .label {
+                font-family: Roboto;
+                font-weight: bold;
+                font-size: 16px;
+                color: #003865;
+            }
+
+            &.active {
+                .label {
+                    color: #fff;
+                }
+
+                .next {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/next-active.png');
+                }
+            }
+
+            .img {
+                width: 30px;
+                height: 30px;
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+            }
+        }
+
+        .step1 {
+            background-image: url('~src/assets/images/dataTopicStore/edit/step1-bg.png');
+
+            &.active {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step1-bg-active.png');
+
+                .img {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/step1-active.png');
+                }
+            }
+
+            .img {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step1.png');
+            }
+        }
+
+        .step2 {
+            background-image: url('~src/assets/images/dataTopicStore/edit/step23-bg.png');
+
+            &.active {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step23-bg-active.png');
+
+                .img {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/step2-active.png');
+                }
+            }
+
+            .img {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step2.png');
+            }
+        }
+
+        .step3 {
+            background-image: url('~src/assets/images/dataTopicStore/edit/step23-bg.png');
+
+            &.active {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step23-bg-active.png');
+
+                .img {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/step3-active.png');
+                }
+            }
+
+            .img {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step3.png');
+            }
+        }
+
+        .step4 {
+            background-image: url('~src/assets/images/dataTopicStore/edit/step4-bg.png');
+
+            &.active {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step4-bg-active.png');
+
+                .img {
+                    background-image: url('~src/assets/images/dataTopicStore/edit/step4-active.png');
+                }
+            }
+
+            .img {
+                background-image: url('~src/assets/images/dataTopicStore/edit/step4.png');
+            }
+        }
+    }
+
+    .e-content {
+        height: calc(100% - 180px);
+        margin-top: 10px;
+    }
+
+    .e-footer {
+        display: flex;
+        height: 100px;
+        padding-top: 10px;
+        justify-content: space-between;
+
+        .end {
+            display: flex;
+
+            .save {
+                margin-left: 20px;
+            }
+        }
+
+        .da-button {
+            background: #fff;
+
+            &.save {
+                background: #003865;
+            }
+        }
+    }
+}

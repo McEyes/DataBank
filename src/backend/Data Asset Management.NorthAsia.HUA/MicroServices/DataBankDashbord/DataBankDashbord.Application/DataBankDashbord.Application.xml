@@ -1,0 +1,714 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataBankDashbord.Application</name>
+    </assembly>
+    <members>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.DashbordMetaDataAppService">
+            <summary>
+            DashbordMetaData服务
+            </summary>
+        </member>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity">
+            <summary>
+            数据库表信息表
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.create_by">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.update_by">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.dict_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.item_text">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.item_value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.item_sort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.item_data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.AssetDictItemEntity.item_text_en">
+            <summary>
+            英文名称
+            </summary>
+        </member>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity">
+            <summary>
+            数据库表信息表
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.SourceId">
+            <summary>
+            数据源主数据ID
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.OwnerId">
+            <summary>
+            拥有者NTID
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.IsIndicator">
+             <summary>
+            是否是Indicator
+             </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.IsDashboard">
+             <summary>
+            是否是Dashboard
+             </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.TableName">
+             <summary>
+            TableName
+             </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.ColumnName">
+             <summary>
+            ColumnName
+             </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.DashbordMetadataEntity.ColumnId">
+             <summary>
+            ColumnId
+             </summary>
+        </member>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity">
+            <summary>
+            人员信息表
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.ntid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.workday_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.employee_chi_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.employee_last_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.employee_first_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.work_email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.employee_workcell">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.employee_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.department_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.direct_manager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.direct_manager_wdid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.direct_manager_email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.direct_manager_ntid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.direct_manager_employee_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.company_code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.company_location">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.job_family_group">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.business_title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.cost_center_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.global_job_title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.employee_nationality">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.higher_direct_manager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.higher_direct_manager_email">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.higher_direct_manager_wdid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.higher_direct_manager_ntid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.higher_direct_manager_employee_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.job_classification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.employee_worktype">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.work_space">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.onboard_date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.job_category">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.supplier">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.profit_center">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.probation_end_date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.sap_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.hua_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.supervisor_org_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.EmployeeBaseInfoEntity.hire_date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataAuthorizeOwnerEntity">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataAuthorizeOwnerEntity.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataAuthorizeOwnerEntity.object_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataAuthorizeOwnerEntity.owner_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataAuthorizeOwnerEntity.object_type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataAuthorizeOwnerEntity.owner_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataAuthorizeOwnerEntity.owner_dept">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity">
+            <summary>
+            数据库表信息表
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.source_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.table_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.column_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.column_comment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.column_key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.column_nullable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.column_position">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.data_type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.data_length">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.data_precision">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.data_scale">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.data_default">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.sortable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.required_as_condition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.standardized">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.masterdata_type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.security_level">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.column_code">
+            <summary>
+            字段编码
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.indicator_code">
+            <summary>
+            Indicator code
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.quality_score">
+            <summary>
+            indicator quality score, 指标质量分数
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataColumnEntity.last_score">
+            <summary>
+            indicator 上一次质量分数
+            </summary>
+        </member>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity">
+            <summary>
+            数据库表信息表
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.create_by">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.create_org">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.update_by">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.db_type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.source_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.db_schema">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.system_name">
+            <summary>
+            系统名称
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataSourceEntity.source_code">
+            <summary>
+            库编码
+            </summary>
+        </member>
+        <member name="T:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity">
+            <summary>
+            数据库表信息表
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.source_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.table_name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.table_comment">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.status">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.create_by">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.create_time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.create_org">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.update_by">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.update_time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.db_type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.is_sync">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.db_schema">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.reviewable">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.alias">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.jsonsql_config">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.update_frequency">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.update_method">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.data_time_range">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.owner_depart">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.quality_score">
+            <summary>
+            质量分数
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.data_category">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.last_score">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.update_category">
+            <summary>
+            更新类型：Full全量，Incremental增量
+            </summary>
+        </member>
+        <member name="P:DataBankDashbord.Application.DashbordMetaData.Dtos.MetadataTableEntity.table_code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DataBankDashbord.Application.DashbordMetaData.Services.DashbordMetaDataService.GetAllIndicatorCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DataBankDashbord.Application.DashbordMetaData.Services.DashbordMetaDataService.CraeteIndicatorCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DataBankDashbord.Application.DashbordMetaData.Services.IDashbordMetaDataService.GetDashbordListForOwnerId(System.String)">
+            <summary>
+            根据ownerId获取所有标记记录
+            </summary>
+            <param name="ownerId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataBankDashbord.Application.DashbordMetaData.Services.IDashbordMetaDataService.getDashbordListForColumnId(System.Collections.Generic.List{System.String})">
+            <summary>
+            根据columnIdList获取所有标记记录
+            </summary>
+            <param name="columnIdList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DataBankDashbord.Application.DashbordMetaData.Services.IDashbordMetaDataService.GetDashbordList">
+            <summary>
+            获取所有数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DataBankDashbord.Application.DashbordMetaData.Services.IDashbordMetaDataService.GetAllIndicatorCode">
+            <summary>
+            生成所有IndicatorCode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DataBankDashbord.Application.DashbordMetaData.Services.IDashbordMetaDataService.UpdateDashbordStatu(DataBankDashbord.Application.DashbordMetaData.Dtos.apiDashbordDto)">
+            <summary>
+            更新标记
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DataBankDashbord.Application.SystemAppService">
+            <summary>
+            系统服务接口
+            </summary>
+        </member>
+        <member name="M:DataBankDashbord.Application.SystemAppService.GetDescription">
+            <summary>
+            获取系统描述
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
